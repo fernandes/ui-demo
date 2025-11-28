@@ -66,3 +66,8 @@ group :test do
   gem "capybara"
   gem "selenium-webdriver"
 end
+
+gem "fernandes-ui", path: "~/src/ui"
+gem "phlex-rails"
+gem "view_component", "~> 3"
+
