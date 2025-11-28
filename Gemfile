@@ -36,6 +36,9 @@ gem "bootsnap", require: false
 # Deploy this application anywhere as a Docker container [https://kamal-deploy.org]
 gem "kamal", require: false
 
+# Load environment variables from .env file
+gem "dotenv-rails"
+
 # Add HTTP asset caching/compression and X-Sendfile acceleration to Puma [https://github.com/basecamp/thruster/]
 gem "thruster", require: false
 
@@ -67,7 +70,7 @@ group :test do
   gem "selenium-webdriver"
 end
 
-gem "fernandes-ui", path: "~/src/ui"
+gem "fernandes-ui"
 gem "phlex-rails"
 gem "view_component", "~> 3"
 
