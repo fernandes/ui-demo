@@ -72,7 +72,7 @@ end
 
 gem "fernandes-ui"
 gem "phlex-rails"
-gem "view_component", "~> 3"
+gem "view_component", "~> 4"
 
 # Syntax highlighting for code blocks
 gem "rouge"
