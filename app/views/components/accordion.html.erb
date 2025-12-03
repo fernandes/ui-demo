@@ -1,0 +1,165 @@
+<%= render Docs::ComponentPage.new(component_name: "accordion") do %>
+
+    <%# Basic Example %>
+    <%= render Docs::Example.new(
+      name: "Basic Accordion",
+      description: "A vertically stacked set of interactive headings that each reveal a section of content.",
+      view_context: self
+    ) do |example| %>
+      <% example.erb do %>
+        <%= render "ui/accordion", classes: "w-full" do %>
+          <%= render "ui/accordion/item", value: "item-1" do %>
+            <%= render "ui/accordion/trigger", content: "Is it accessible?" %>
+            <%= render "ui/accordion/content", content: "Yes. It adheres to the WAI-ARIA design pattern." %>
+          <% end %>
+          <%= render "ui/accordion/item", value: "item-2" do %>
+            <%= render "ui/accordion/trigger", content: "Is it styled?" %>
+            <%= render "ui/accordion/content", content: "Yes. It comes with default styles that match shadcn/ui design system." %>
+          <% end %>
+          <%= render "ui/accordion/item", value: "item-3" do %>
+            <%= render "ui/accordion/trigger", content: "Is it animated?" %>
+            <%= render "ui/accordion/content", content: "Yes. It features smooth transitions when expanding and collapsing." %>
+          <% end %>
+        <% end %>
+      <% end %>
+
+      <% example.phlex do %>
+        <%= render UI::Accordion.new(classes: "w-full") do %>
+          <%= render UI::AccordionItem.new(value: "item-1") do %>
+            <%= render UI::AccordionTrigger.new { "Is it accessible?" } %>
+            <%= render UI::AccordionContent.new { "Yes. It adheres to the WAI-ARIA design pattern." } %>
+          <% end %>
+          <%= render UI::AccordionItem.new(value: "item-2") do %>
+            <%= render UI::AccordionTrigger.new { "Is it styled?" } %>
+            <%= render UI::AccordionContent.new { "Yes. It comes with default styles that match shadcn/ui design system." } %>
+          <% end %>
+          <%= render UI::AccordionItem.new(value: "item-3") do %>
+            <%= render UI::AccordionTrigger.new { "Is it animated?" } %>
+            <%= render UI::AccordionContent.new { "Yes. It features smooth transitions when expanding and collapsing." } %>
+          <% end %>
+        <% end %>
+      <% end %>
+
+      <% example.view_component do %>
+        <%= render UI::AccordionComponent.new(classes: "w-full") do %>
+          <%= render UI::AccordionItemComponent.new(value: "item-1") do %>
+            <%= render(UI::AccordionTriggerComponent.new) { "Is it accessible?" } %>
+            <%= render(UI::AccordionContentComponent.new) { "Yes. It adheres to the WAI-ARIA design pattern." } %>
+          <% end %>
+          <%= render UI::AccordionItemComponent.new(value: "item-2") do %>
+            <%= render(UI::AccordionTriggerComponent.new) { "Is it styled?" } %>
+            <%= render(UI::AccordionContentComponent.new) { "Yes. It comes with default styles that match shadcn/ui design system." } %>
+          <% end %>
+          <%= render UI::AccordionItemComponent.new(value: "item-3") do %>
+            <%= render(UI::AccordionTriggerComponent.new) { "Is it animated?" } %>
+            <%= render(UI::AccordionContentComponent.new) { "Yes. It features smooth transitions when expanding and collapsing." } %>
+          <% end %>
+        <% end %>
+      <% end %>
+    <% end %>
+
+    <%# Initially Open %>
+    <%= render Docs::Example.new(
+      name: "Initially Open",
+      description: "An accordion item can be open by default.",
+      view_context: self
+    ) do |example| %>
+      <% example.erb do %>
+        <%= render "ui/accordion", classes: "w-full" do %>
+          <%= render "ui/accordion/item", value: "open-1", initial_open: true do %>
+            <%= render "ui/accordion/trigger", content: "Getting Started" %>
+            <%= render "ui/accordion/content", content: "This accordion item starts in the open state." %>
+          <% end %>
+          <%= render "ui/accordion/item", value: "open-2" do %>
+            <%= render "ui/accordion/trigger", content: "Advanced Usage" %>
+            <%= render "ui/accordion/content", content: "Learn about advanced features and customization options." %>
+          <% end %>
+        <% end %>
+      <% end %>
+
+      <% example.phlex do %>
+        <%= render UI::Accordion.new(classes: "w-full") do %>
+          <%= render UI::AccordionItem.new(value: "open-1", initial_open: true) do %>
+            <%= render UI::AccordionTrigger.new(item_value: "open-1", initial_open: true) { "Getting Started" } %>
+            <%= render UI::AccordionContent.new(item_value: "open-1", initial_open: true) { "This accordion item starts in the open state." } %>
+          <% end %>
+          <%= render UI::AccordionItem.new(value: "open-2") do %>
+            <%= render UI::AccordionTrigger.new(item_value: "open-2") { "Advanced Usage" } %>
+            <%= render UI::AccordionContent.new(item_value: "open-2") { "Learn about advanced features and customization options." } %>
+          <% end %>
+        <% end %>
+      <% end %>
+
+      <% example.view_component do %>
+        <%= render UI::AccordionComponent.new(classes: "w-full") do %>
+          <%= render UI::AccordionItemComponent.new(value: "open-1", initial_open: true) do %>
+            <%= render(UI::AccordionTriggerComponent.new(item_value: "open-1", initial_open: true)) { "Getting Started" } %>
+            <%= render(UI::AccordionContentComponent.new(item_value: "open-1", initial_open: true)) { "This accordion item starts in the open state." } %>
+          <% end %>
+          <%= render UI::AccordionItemComponent.new(value: "open-2") do %>
+            <%= render(UI::AccordionTriggerComponent.new) { "Advanced Usage" } %>
+            <%= render(UI::AccordionContentComponent.new) { "Learn about advanced features and customization options." } %>
+          <% end %>
+        <% end %>
+      <% end %>
+    <% end %>
+
+    <%# Multiple Open %>
+    <%= render Docs::Example.new(
+      name: "Multiple Open",
+      description: "With type=\"multiple\", multiple accordion items can be open at the same time.",
+      view_context: self
+    ) do |example| %>
+      <% example.erb do %>
+        <%= render "ui/accordion", classes: "w-full", type: "multiple" do %>
+          <%= render "ui/accordion/item", value: "multi-1", initial_open: true do %>
+            <%= render "ui/accordion/trigger", content: "What payment methods do you accept?" %>
+            <%= render "ui/accordion/content", content: "We accept all major credit cards, PayPal, and bank transfers." %>
+          <% end %>
+          <%= render "ui/accordion/item", value: "multi-2", initial_open: true do %>
+            <%= render "ui/accordion/trigger", content: "How long does shipping take?" %>
+            <%= render "ui/accordion/content", content: "Standard shipping takes 3-5 business days." %>
+          <% end %>
+          <%= render "ui/accordion/item", value: "multi-3" do %>
+            <%= render "ui/accordion/trigger", content: "What is your return policy?" %>
+            <%= render "ui/accordion/content", content: "We offer a 30-day money-back guarantee on all products." %>
+          <% end %>
+        <% end %>
+      <% end %>
+
+      <% example.phlex do %>
+        <%= render UI::Accordion.new(classes: "w-full", type: "multiple") do %>
+          <%= render UI::AccordionItem.new(value: "multi-1", initial_open: true) do %>
+            <%= render UI::AccordionTrigger.new { "What payment methods do you accept?" } %>
+            <%= render UI::AccordionContent.new { "We accept all major credit cards, PayPal, and bank transfers." } %>
+          <% end %>
+          <%= render UI::AccordionItem.new(value: "multi-2", initial_open: true) do %>
+            <%= render UI::AccordionTrigger.new { "How long does shipping take?" } %>
+            <%= render UI::AccordionContent.new { "Standard shipping takes 3-5 business days." } %>
+          <% end %>
+          <%= render UI::AccordionItem.new(value: "multi-3") do %>
+            <%= render UI::AccordionTrigger.new { "What is your return policy?" } %>
+            <%= render UI::AccordionContent.new { "We offer a 30-day money-back guarantee on all products." } %>
+          <% end %>
+        <% end %>
+      <% end %>
+
+      <% example.view_component do %>
+        <%= render UI::AccordionComponent.new(classes: "w-full", type: "multiple") do %>
+          <%= render UI::AccordionItemComponent.new(value: "multi-1", initial_open: true) do %>
+            <%= render(UI::AccordionTriggerComponent.new) { "What payment methods do you accept?" } %>
+            <%= render(UI::AccordionContentComponent.new) { "We accept all major credit cards, PayPal, and bank transfers." } %>
+          <% end %>
+          <%= render UI::AccordionItemComponent.new(value: "multi-2", initial_open: true) do %>
+            <%= render(UI::AccordionTriggerComponent.new) { "How long does shipping take?" } %>
+            <%= render(UI::AccordionContentComponent.new) { "Standard shipping takes 3-5 business days." } %>
+          <% end %>
+          <%= render UI::AccordionItemComponent.new(value: "multi-3") do %>
+            <%= render(UI::AccordionTriggerComponent.new) { "What is your return policy?" } %>
+            <%= render(UI::AccordionContentComponent.new) { "We offer a 30-day money-back guarantee on all products." } %>
+          <% end %>
+        <% end %>
+      <% end %>
+    <% end %>
+
+<% end %>

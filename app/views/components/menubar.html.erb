@@ -1,0 +1,256 @@
+<%= render Docs::ComponentPage.new(component_name: "menubar") do %>
+
+  <%# Default %>
+  <%= render Docs::Example.new(
+    name: "Default",
+    description: "A visually persistent menu common in desktop applications.",
+    view_context: self
+  ) do |example| %>
+    <% example.erb do %>
+      <%= render "ui/menubar" do %>
+        <%= render "ui/menubar/menu" do %>
+          <%= render "ui/menubar/trigger" do %>File<% end %>
+          <%= render "ui/menubar/content" do %>
+            <%= render "ui/menubar/item" do %>
+              New Tab
+              <%= render "ui/menubar/shortcut" do %>⌘T<% end %>
+            <% end %>
+            <%= render "ui/menubar/item" do %>
+              New Window
+              <%= render "ui/menubar/shortcut" do %>⌘N<% end %>
+            <% end %>
+            <%= render "ui/menubar/separator" %>
+            <%= render "ui/menubar/item" do %>
+              Print...
+              <%= render "ui/menubar/shortcut" do %>⌘P<% end %>
+            <% end %>
+          <% end %>
+        <% end %>
+        <%= render "ui/menubar/menu" do %>
+          <%= render "ui/menubar/trigger" do %>Edit<% end %>
+          <%= render "ui/menubar/content" do %>
+            <%= render "ui/menubar/item" do %>
+              Undo
+              <%= render "ui/menubar/shortcut" do %>⌘Z<% end %>
+            <% end %>
+            <%= render "ui/menubar/item" do %>
+              Redo
+              <%= render "ui/menubar/shortcut" do %>⇧⌘Z<% end %>
+            <% end %>
+            <%= render "ui/menubar/separator" %>
+            <%= render "ui/menubar/item" do %>Cut<% end %>
+            <%= render "ui/menubar/item" do %>Copy<% end %>
+            <%= render "ui/menubar/item" do %>Paste<% end %>
+          <% end %>
+        <% end %>
+      <% end %>
+    <% end %>
+
+    <% example.phlex do %>
+      <%= render UI::Menubar.new do %>
+        <%= render UI::MenubarMenu.new do %>
+          <%= render UI::MenubarTrigger.new { "File" } %>
+          <%= render UI::MenubarContent.new do %>
+            <%= render UI::MenubarItem.new do %>
+              New Tab
+              <%= render UI::MenubarShortcut.new { "⌘T" } %>
+            <% end %>
+            <%= render UI::MenubarItem.new do %>
+              New Window
+              <%= render UI::MenubarShortcut.new { "⌘N" } %>
+            <% end %>
+            <%= render UI::MenubarSeparator.new %>
+            <%= render UI::MenubarItem.new do %>
+              Print...
+              <%= render UI::MenubarShortcut.new { "⌘P" } %>
+            <% end %>
+          <% end %>
+        <% end %>
+        <%= render UI::MenubarMenu.new do %>
+          <%= render UI::MenubarTrigger.new { "Edit" } %>
+          <%= render UI::MenubarContent.new do %>
+            <%= render UI::MenubarItem.new do %>
+              Undo
+              <%= render UI::MenubarShortcut.new { "⌘Z" } %>
+            <% end %>
+            <%= render UI::MenubarItem.new do %>
+              Redo
+              <%= render UI::MenubarShortcut.new { "⇧⌘Z" } %>
+            <% end %>
+            <%= render UI::MenubarSeparator.new %>
+            <%= render UI::MenubarItem.new { "Cut" } %>
+            <%= render UI::MenubarItem.new { "Copy" } %>
+            <%= render UI::MenubarItem.new { "Paste" } %>
+          <% end %>
+        <% end %>
+      <% end %>
+    <% end %>
+
+    <% example.view_component do %>
+      <%= render UI::MenubarComponent.new do %>
+        <%= render UI::MenubarMenuComponent.new do %>
+          <%= render(UI::MenubarTriggerComponent.new) { "File" } %>
+          <%= render UI::MenubarContentComponent.new do %>
+            <%= render UI::MenubarItemComponent.new do %>
+              New Tab
+              <%= render(UI::MenubarShortcutComponent.new) { "⌘T" } %>
+            <% end %>
+            <%= render UI::MenubarItemComponent.new do %>
+              New Window
+              <%= render(UI::MenubarShortcutComponent.new) { "⌘N" } %>
+            <% end %>
+            <%= render UI::MenubarSeparatorComponent.new %>
+            <%= render UI::MenubarItemComponent.new do %>
+              Print...
+              <%= render(UI::MenubarShortcutComponent.new) { "⌘P" } %>
+            <% end %>
+          <% end %>
+        <% end %>
+        <%= render UI::MenubarMenuComponent.new do %>
+          <%= render(UI::MenubarTriggerComponent.new) { "Edit" } %>
+          <%= render UI::MenubarContentComponent.new do %>
+            <%= render UI::MenubarItemComponent.new do %>
+              Undo
+              <%= render(UI::MenubarShortcutComponent.new) { "⌘Z" } %>
+            <% end %>
+            <%= render UI::MenubarItemComponent.new do %>
+              Redo
+              <%= render(UI::MenubarShortcutComponent.new) { "⇧⌘Z" } %>
+            <% end %>
+            <%= render UI::MenubarSeparatorComponent.new %>
+            <%= render(UI::MenubarItemComponent.new) { "Cut" } %>
+            <%= render(UI::MenubarItemComponent.new) { "Copy" } %>
+            <%= render(UI::MenubarItemComponent.new) { "Paste" } %>
+          <% end %>
+        <% end %>
+      <% end %>
+    <% end %>
+  <% end %>
+
+  <%# With Checkbox Items %>
+  <%= render Docs::Example.new(
+    name: "With Checkbox Items",
+    description: "Menubar with checkbox items for toggling options.",
+    view_context: self
+  ) do |example| %>
+    <% example.erb do %>
+      <%= render "ui/menubar" do %>
+        <%= render "ui/menubar/menu" do %>
+          <%= render "ui/menubar/trigger" do %>View<% end %>
+          <%= render "ui/menubar/content" do %>
+            <%= render "ui/menubar/checkbox_item", checked: true do %>
+              Show Toolbar
+              <%= render "ui/menubar/shortcut" do %>⌘T<% end %>
+            <% end %>
+            <%= render "ui/menubar/checkbox_item" do %>
+              Show Statusbar
+              <%= render "ui/menubar/shortcut" do %>⌘S<% end %>
+            <% end %>
+            <%= render "ui/menubar/separator" %>
+            <%= render "ui/menubar/checkbox_item", checked: true do %>Show Sidebar<% end %>
+          <% end %>
+        <% end %>
+      <% end %>
+    <% end %>
+
+    <% example.phlex do %>
+      <%= render UI::Menubar.new do %>
+        <%= render UI::MenubarMenu.new do %>
+          <%= render UI::MenubarTrigger.new { "View" } %>
+          <%= render UI::MenubarContent.new do %>
+            <%= render UI::MenubarCheckboxItem.new(checked: true) do %>
+              Show Toolbar
+              <%= render UI::MenubarShortcut.new { "⌘T" } %>
+            <% end %>
+            <%= render UI::MenubarCheckboxItem.new do %>
+              Show Statusbar
+              <%= render UI::MenubarShortcut.new { "⌘S" } %>
+            <% end %>
+            <%= render UI::MenubarSeparator.new %>
+            <%= render UI::MenubarCheckboxItem.new(checked: true) { "Show Sidebar" } %>
+          <% end %>
+        <% end %>
+      <% end %>
+    <% end %>
+
+    <% example.view_component do %>
+      <%= render UI::MenubarComponent.new do %>
+        <%= render UI::MenubarMenuComponent.new do %>
+          <%= render(UI::MenubarTriggerComponent.new) { "View" } %>
+          <%= render UI::MenubarContentComponent.new do %>
+            <%= render UI::MenubarCheckboxItemComponent.new(checked: true) do %>
+              Show Toolbar
+              <%= render(UI::MenubarShortcutComponent.new) { "⌘T" } %>
+            <% end %>
+            <%= render UI::MenubarCheckboxItemComponent.new do %>
+              Show Statusbar
+              <%= render(UI::MenubarShortcutComponent.new) { "⌘S" } %>
+            <% end %>
+            <%= render UI::MenubarSeparatorComponent.new %>
+            <%= render(UI::MenubarCheckboxItemComponent.new(checked: true)) { "Show Sidebar" } %>
+          <% end %>
+        <% end %>
+      <% end %>
+    <% end %>
+  <% end %>
+
+  <%# With Radio Items %>
+  <%= render Docs::Example.new(
+    name: "With Radio Items",
+    description: "Menubar with radio items for selecting one option from a group.",
+    view_context: self
+  ) do |example| %>
+    <% example.erb do %>
+      <%= render "ui/menubar" do %>
+        <%= render "ui/menubar/menu" do %>
+          <%= render "ui/menubar/trigger" do %>Format<% end %>
+          <%= render "ui/menubar/content" do %>
+            <%= render "ui/menubar/label" do %>Font Size<% end %>
+            <%= render "ui/menubar/separator" %>
+            <%= render "ui/menubar/radio_group", value: "medium" do %>
+              <%= render "ui/menubar/radio_item", value: "small" do %>Small<% end %>
+              <%= render "ui/menubar/radio_item", value: "medium" do %>Medium<% end %>
+              <%= render "ui/menubar/radio_item", value: "large" do %>Large<% end %>
+            <% end %>
+          <% end %>
+        <% end %>
+      <% end %>
+    <% end %>
+
+    <% example.phlex do %>
+      <%= render UI::Menubar.new do %>
+        <%= render UI::MenubarMenu.new do %>
+          <%= render UI::MenubarTrigger.new { "Format" } %>
+          <%= render UI::MenubarContent.new do %>
+            <%= render UI::MenubarLabel.new { "Font Size" } %>
+            <%= render UI::MenubarSeparator.new %>
+            <%= render UI::MenubarRadioGroup.new(value: "medium") do %>
+              <%= render UI::MenubarRadioItem.new(value: "small") { "Small" } %>
+              <%= render UI::MenubarRadioItem.new(value: "medium") { "Medium" } %>
+              <%= render UI::MenubarRadioItem.new(value: "large") { "Large" } %>
+            <% end %>
+          <% end %>
+        <% end %>
+      <% end %>
+    <% end %>
+
+    <% example.view_component do %>
+      <%= render UI::MenubarComponent.new do %>
+        <%= render UI::MenubarMenuComponent.new do %>
+          <%= render(UI::MenubarTriggerComponent.new) { "Format" } %>
+          <%= render UI::MenubarContentComponent.new do %>
+            <%= render(UI::MenubarLabelComponent.new) { "Font Size" } %>
+            <%= render UI::MenubarSeparatorComponent.new %>
+            <%= render UI::MenubarRadioGroupComponent.new(value: "medium") do %>
+              <%= render(UI::MenubarRadioItemComponent.new(value: "small")) { "Small" } %>
+              <%= render(UI::MenubarRadioItemComponent.new(value: "medium")) { "Medium" } %>
+              <%= render(UI::MenubarRadioItemComponent.new(value: "large")) { "Large" } %>
+            <% end %>
+          <% end %>
+        <% end %>
+      <% end %>
+    <% end %>
+  <% end %>
+
+<% end %>
+

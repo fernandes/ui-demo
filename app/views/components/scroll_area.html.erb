@@ -1,0 +1,189 @@
+<%= render Docs::ComponentPage.new(component_name: "scroll_area") do %>
+
+  <%# Default %>
+  <%= render Docs::Example.new(
+    name: "Default",
+    description: "Augments native scroll functionality for custom, cross-browser styling.",
+    view_context: self
+  ) do |example| %>
+    <% example.erb do %>
+      <%= render "ui/scroll_area", classes: "h-[200px] w-[350px] rounded-md border p-4" do %>
+        <div class="space-y-4">
+          <h3 class="text-sm font-semibold">Tags</h3>
+          <div class="space-y-1">
+            <% %w[v1.2.0 v1.1.0 v1.0.0 v0.9.0 v0.8.0 v0.7.0 v0.6.0 v0.5.0 v0.4.0 v0.3.0].each do |tag| %>
+              <div class="text-sm text-muted-foreground"><%= tag %></div>
+            <% end %>
+          </div>
+        </div>
+      <% end %>
+    <% end %>
+
+    <% example.phlex do %>
+      <%= render "ui/scroll_area", classes: "h-[200px] w-[350px] rounded-md border p-4" do %>
+        <div class="space-y-4">
+          <h3 class="text-sm font-semibold">Tags</h3>
+          <div class="space-y-1">
+            <% %w[v1.2.0 v1.1.0 v1.0.0 v0.9.0 v0.8.0 v0.7.0 v0.6.0 v0.5.0 v0.4.0 v0.3.0].each do |tag| %>
+              <div class="text-sm text-muted-foreground"><%= tag %></div>
+            <% end %>
+          </div>
+        </div>
+      <% end %>
+    <% end %>
+
+    <% example.view_component do %>
+      <%= render "ui/scroll_area", classes: "h-[200px] w-[350px] rounded-md border p-4" do %>
+        <div class="space-y-4">
+          <h3 class="text-sm font-semibold">Tags</h3>
+          <div class="space-y-1">
+            <% %w[v1.2.0 v1.1.0 v1.0.0 v0.9.0 v0.8.0 v0.7.0 v0.6.0 v0.5.0 v0.4.0 v0.3.0].each do |tag| %>
+              <div class="text-sm text-muted-foreground"><%= tag %></div>
+            <% end %>
+          </div>
+        </div>
+      <% end %>
+    <% end %>
+  <% end %>
+
+  <%# Horizontal %>
+  <%= render Docs::Example.new(
+    name: "Horizontal",
+    description: "Horizontal scroll area for content that extends beyond the viewport width.",
+    view_context: self
+  ) do |example| %>
+    <% example.erb do %>
+      <div class="relative w-96 whitespace-nowrap rounded-md border" data-controller="ui--scroll-area">
+        <div data-ui-scroll-area-viewport data-ui--scroll-area-target="viewport" class="size-full rounded-[inherit] transition-[color,box-shadow] outline-none focus-visible:ring-[3px] focus-visible:outline-1 focus-visible:ring-ring/50" style="overflow-x: scroll; overflow-y: hidden;">
+          <div style="min-width: 100%; display: table;">
+            <div class="flex w-max space-x-4 p-4">
+              <% 10.times do |i| %>
+                <div class="h-[150px] w-[150px] rounded-md bg-muted flex items-center justify-center shrink-0">
+                  <span class="text-4xl font-semibold text-muted-foreground"><%= i + 1 %></span>
+                </div>
+              <% end %>
+            </div>
+          </div>
+        </div>
+        <%= render "ui/scroll_area/scrollbar", orientation: "horizontal" %>
+      </div>
+    <% end %>
+
+    <% example.phlex do %>
+      <div class="relative w-96 whitespace-nowrap rounded-md border" data-controller="ui--scroll-area">
+        <div data-ui-scroll-area-viewport data-ui--scroll-area-target="viewport" class="size-full rounded-[inherit] transition-[color,box-shadow] outline-none focus-visible:ring-[3px] focus-visible:outline-1 focus-visible:ring-ring/50" style="overflow-x: scroll; overflow-y: hidden;">
+          <div style="min-width: 100%; display: table;">
+            <div class="flex w-max space-x-4 p-4">
+              <% 10.times do |i| %>
+                <div class="h-[150px] w-[150px] rounded-md bg-muted flex items-center justify-center shrink-0">
+                  <span class="text-4xl font-semibold text-muted-foreground"><%= i + 1 %></span>
+                </div>
+              <% end %>
+            </div>
+          </div>
+        </div>
+        <%= render "ui/scroll_area/scrollbar", orientation: "horizontal" %>
+      </div>
+    <% end %>
+
+    <% example.view_component do %>
+      <div class="relative w-96 whitespace-nowrap rounded-md border" data-controller="ui--scroll-area">
+        <div data-ui-scroll-area-viewport data-ui--scroll-area-target="viewport" class="size-full rounded-[inherit] transition-[color,box-shadow] outline-none focus-visible:ring-[3px] focus-visible:outline-1 focus-visible:ring-ring/50" style="overflow-x: scroll; overflow-y: hidden;">
+          <div style="min-width: 100%; display: table;">
+            <div class="flex w-max space-x-4 p-4">
+              <% 10.times do |i| %>
+                <div class="h-[150px] w-[150px] rounded-md bg-muted flex items-center justify-center shrink-0">
+                  <span class="text-4xl font-semibold text-muted-foreground"><%= i + 1 %></span>
+                </div>
+              <% end %>
+            </div>
+          </div>
+        </div>
+        <%= render "ui/scroll_area/scrollbar", orientation: "horizontal" %>
+      </div>
+    <% end %>
+  <% end %>
+
+  <%# With Custom Sizes %>
+  <%= render Docs::Example.new(
+    name: "Custom Sizes",
+    description: "Scroll areas with different heights.",
+    view_context: self
+  ) do |example| %>
+    <% example.erb do %>
+      <div class="grid grid-cols-2 gap-4">
+        <div>
+          <h3 class="text-sm font-medium mb-2">Small (h-24)</h3>
+          <%= render "ui/scroll_area", classes: "h-24 w-full rounded-md border p-4" do %>
+            <div class="space-y-2">
+              <% 10.times do |i| %>
+                <div class="text-sm">Item <%= i + 1 %></div>
+              <% end %>
+            </div>
+          <% end %>
+        </div>
+        <div>
+          <h3 class="text-sm font-medium mb-2">Large (h-48)</h3>
+          <%= render "ui/scroll_area", classes: "h-48 w-full rounded-md border p-4" do %>
+            <div class="space-y-2">
+              <% 20.times do |i| %>
+                <div class="text-sm">Item <%= i + 1 %></div>
+              <% end %>
+            </div>
+          <% end %>
+        </div>
+      </div>
+    <% end %>
+
+    <% example.phlex do %>
+      <div class="grid grid-cols-2 gap-4">
+        <div>
+          <h3 class="text-sm font-medium mb-2">Small (h-24)</h3>
+          <%= render "ui/scroll_area", classes: "h-24 w-full rounded-md border p-4" do %>
+            <div class="space-y-2">
+              <% 10.times do |i| %>
+                <div class="text-sm">Item <%= i + 1 %></div>
+              <% end %>
+            </div>
+          <% end %>
+        </div>
+        <div>
+          <h3 class="text-sm font-medium mb-2">Large (h-48)</h3>
+          <%= render "ui/scroll_area", classes: "h-48 w-full rounded-md border p-4" do %>
+            <div class="space-y-2">
+              <% 20.times do |i| %>
+                <div class="text-sm">Item <%= i + 1 %></div>
+              <% end %>
+            </div>
+          <% end %>
+        </div>
+      </div>
+    <% end %>
+
+    <% example.view_component do %>
+      <div class="grid grid-cols-2 gap-4">
+        <div>
+          <h3 class="text-sm font-medium mb-2">Small (h-24)</h3>
+          <%= render "ui/scroll_area", classes: "h-24 w-full rounded-md border p-4" do %>
+            <div class="space-y-2">
+              <% 10.times do |i| %>
+                <div class="text-sm">Item <%= i + 1 %></div>
+              <% end %>
+            </div>
+          <% end %>
+        </div>
+        <div>
+          <h3 class="text-sm font-medium mb-2">Large (h-48)</h3>
+          <%= render "ui/scroll_area", classes: "h-48 w-full rounded-md border p-4" do %>
+            <div class="space-y-2">
+              <% 20.times do |i| %>
+                <div class="text-sm">Item <%= i + 1 %></div>
+              <% end %>
+            </div>
+          <% end %>
+        </div>
+      </div>
+    <% end %>
+  <% end %>
+
+<% end %>

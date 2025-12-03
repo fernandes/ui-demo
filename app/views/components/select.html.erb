@@ -1,0 +1,280 @@
+<%= render Docs::ComponentPage.new(component_name: "select") do %>
+
+    <%# Basic Example %>
+    <%= render Docs::Example.new(
+      name: "Basic Select",
+      description: "A simple select with a few options.",
+      view_context: self
+    ) do |example| %>
+      <% example.erb do %>
+        <%= render "ui/select" do %>
+          <%= render "ui/select/trigger", placeholder: "Select a fruit..." %>
+          <%= render "ui/select/content" do %>
+            <%= render "ui/select/item", value: "apple" do %>Apple<% end %>
+            <%= render "ui/select/item", value: "banana" do %>Banana<% end %>
+            <%= render "ui/select/item", value: "orange" do %>Orange<% end %>
+          <% end %>
+        <% end %>
+      <% end %>
+
+      <% example.phlex do %>
+        <%= render UI::Select.new do %>
+          <%= render UI::SelectTrigger.new(placeholder: "Select a fruit...") %>
+          <%= render UI::SelectContent.new do %>
+            <%= render UI::SelectItem.new(value: "apple") { "Apple" } %>
+            <%= render UI::SelectItem.new(value: "banana") { "Banana" } %>
+            <%= render UI::SelectItem.new(value: "orange") { "Orange" } %>
+          <% end %>
+        <% end %>
+      <% end %>
+
+      <% example.view_component do %>
+        <%= render UI::SelectComponent.new do %>
+          <%= render UI::SelectTriggerComponent.new(placeholder: "Select a fruit...") %>
+          <%= render UI::SelectContentComponent.new do %>
+            <%= render(UI::SelectItemComponent.new(value: "apple")) { "Apple" } %>
+            <%= render(UI::SelectItemComponent.new(value: "banana")) { "Banana" } %>
+            <%= render(UI::SelectItemComponent.new(value: "orange")) { "Orange" } %>
+          <% end %>
+        <% end %>
+      <% end %>
+    <% end %>
+
+    <%# With Default Value %>
+    <%= render Docs::Example.new(
+      name: "With Default Value",
+      description: "Select with a pre-selected value.",
+      view_context: self
+    ) do |example| %>
+      <% example.erb do %>
+        <%= render "ui/select", value: "banana" do %>
+          <%= render "ui/select/trigger", placeholder: "Select a fruit..." %>
+          <%= render "ui/select/content" do %>
+            <%= render "ui/select/item", value: "apple" do %>Apple<% end %>
+            <%= render "ui/select/item", value: "banana" do %>Banana<% end %>
+            <%= render "ui/select/item", value: "orange" do %>Orange<% end %>
+          <% end %>
+        <% end %>
+      <% end %>
+
+      <% example.phlex do %>
+        <%= render UI::Select.new(value: "banana") do %>
+          <%= render UI::SelectTrigger.new(placeholder: "Select a fruit...") %>
+          <%= render UI::SelectContent.new do %>
+            <%= render UI::SelectItem.new(value: "apple") { "Apple" } %>
+            <%= render UI::SelectItem.new(value: "banana") { "Banana" } %>
+            <%= render UI::SelectItem.new(value: "orange") { "Orange" } %>
+          <% end %>
+        <% end %>
+      <% end %>
+
+      <% example.view_component do %>
+        <%= render UI::SelectComponent.new(value: "banana") do %>
+          <%= render UI::SelectTriggerComponent.new(placeholder: "Select a fruit...") %>
+          <%= render UI::SelectContentComponent.new do %>
+            <%= render(UI::SelectItemComponent.new(value: "apple")) { "Apple" } %>
+            <%= render(UI::SelectItemComponent.new(value: "banana")) { "Banana" } %>
+            <%= render(UI::SelectItemComponent.new(value: "orange")) { "Orange" } %>
+          <% end %>
+        <% end %>
+      <% end %>
+    <% end %>
+
+    <%# With Disabled Items %>
+    <%= render Docs::Example.new(
+      name: "With Disabled Items",
+      description: "Some items can be disabled to prevent selection.",
+      view_context: self
+    ) do |example| %>
+      <% example.erb do %>
+        <%= render "ui/select" do %>
+          <%= render "ui/select/trigger", placeholder: "Select a status..." %>
+          <%= render "ui/select/content" do %>
+            <%= render "ui/select/item", value: "active" do %>Active<% end %>
+            <%= render "ui/select/item", value: "pending" do %>Pending<% end %>
+            <%= render "ui/select/item", value: "archived", disabled: true do %>Archived<% end %>
+          <% end %>
+        <% end %>
+      <% end %>
+
+      <% example.phlex do %>
+        <%= render UI::Select.new do %>
+          <%= render UI::SelectTrigger.new(placeholder: "Select a status...") %>
+          <%= render UI::SelectContent.new do %>
+            <%= render UI::SelectItem.new(value: "active") { "Active" } %>
+            <%= render UI::SelectItem.new(value: "pending") { "Pending" } %>
+            <%= render UI::SelectItem.new(value: "archived", disabled: true) { "Archived" } %>
+          <% end %>
+        <% end %>
+      <% end %>
+
+      <% example.view_component do %>
+        <%= render UI::SelectComponent.new do %>
+          <%= render UI::SelectTriggerComponent.new(placeholder: "Select a status...") %>
+          <%= render UI::SelectContentComponent.new do %>
+            <%= render(UI::SelectItemComponent.new(value: "active")) { "Active" } %>
+            <%= render(UI::SelectItemComponent.new(value: "pending")) { "Pending" } %>
+            <%= render(UI::SelectItemComponent.new(value: "archived", disabled: true)) { "Archived" } %>
+          <% end %>
+        <% end %>
+      <% end %>
+    <% end %>
+
+    <%# Scrollable %>
+    <%= render Docs::Example.new(
+      name: "Scrollable",
+      description: "A select with a scrollable list of timezones.",
+      view_context: self
+    ) do |example| %>
+      <% example.erb do %>
+        <%= render "ui/select" do %>
+          <%= render "ui/select/trigger", classes: "w-[280px]", placeholder: "Select a timezone" %>
+          <%= render "ui/select/content" do %>
+            <%= render "ui/select/group" do %>
+              <%= render "ui/select/label" do %>North America<% end %>
+              <%= render "ui/select/item", value: "est" do %>Eastern Standard Time (EST)<% end %>
+              <%= render "ui/select/item", value: "cst" do %>Central Standard Time (CST)<% end %>
+              <%= render "ui/select/item", value: "mst" do %>Mountain Standard Time (MST)<% end %>
+              <%= render "ui/select/item", value: "pst" do %>Pacific Standard Time (PST)<% end %>
+              <%= render "ui/select/item", value: "akst" do %>Alaska Standard Time (AKST)<% end %>
+              <%= render "ui/select/item", value: "hst" do %>Hawaii Standard Time (HST)<% end %>
+            <% end %>
+            <%= render "ui/select/group" do %>
+              <%= render "ui/select/label" do %>Europe & Africa<% end %>
+              <%= render "ui/select/item", value: "gmt" do %>Greenwich Mean Time (GMT)<% end %>
+              <%= render "ui/select/item", value: "cet" do %>Central European Time (CET)<% end %>
+              <%= render "ui/select/item", value: "eet" do %>Eastern European Time (EET)<% end %>
+              <%= render "ui/select/item", value: "west" do %>Western European Summer Time (WEST)<% end %>
+              <%= render "ui/select/item", value: "cat" do %>Central Africa Time (CAT)<% end %>
+              <%= render "ui/select/item", value: "eat" do %>East Africa Time (EAT)<% end %>
+            <% end %>
+            <%= render "ui/select/group" do %>
+              <%= render "ui/select/label" do %>Asia<% end %>
+              <%= render "ui/select/item", value: "msk" do %>Moscow Standard Time (MSK)<% end %>
+              <%= render "ui/select/item", value: "ist" do %>India Standard Time (IST)<% end %>
+              <%= render "ui/select/item", value: "cst_china" do %>China Standard Time (CST)<% end %>
+              <%= render "ui/select/item", value: "jst" do %>Japan Standard Time (JST)<% end %>
+              <%= render "ui/select/item", value: "kst" do %>Korea Standard Time (KST)<% end %>
+              <%= render "ui/select/item", value: "ist_indonesia" do %>Indonesia Central Standard Time (WITA)<% end %>
+            <% end %>
+            <%= render "ui/select/group" do %>
+              <%= render "ui/select/label" do %>Australia & Pacific<% end %>
+              <%= render "ui/select/item", value: "awst" do %>Australian Western Standard Time (AWST)<% end %>
+              <%= render "ui/select/item", value: "acst" do %>Australian Central Standard Time (ACST)<% end %>
+              <%= render "ui/select/item", value: "aest" do %>Australian Eastern Standard Time (AEST)<% end %>
+              <%= render "ui/select/item", value: "nzst" do %>New Zealand Standard Time (NZST)<% end %>
+              <%= render "ui/select/item", value: "fjt" do %>Fiji Time (FJT)<% end %>
+            <% end %>
+            <%= render "ui/select/group" do %>
+              <%= render "ui/select/label" do %>South America<% end %>
+              <%= render "ui/select/item", value: "art" do %>Argentina Time (ART)<% end %>
+              <%= render "ui/select/item", value: "bot" do %>Bolivia Time (BOT)<% end %>
+              <%= render "ui/select/item", value: "brt" do %>Brasilia Time (BRT)<% end %>
+              <%= render "ui/select/item", value: "clt" do %>Chile Standard Time (CLT)<% end %>
+            <% end %>
+          <% end %>
+        <% end %>
+      <% end %>
+
+      <% example.phlex do %>
+        <%= render UI::Select.new do %>
+          <%= render UI::SelectTrigger.new(classes: "w-[280px]", placeholder: "Select a timezone") %>
+          <%= render UI::SelectContent.new do %>
+            <%= render UI::SelectGroup.new do %>
+              <%= render UI::SelectLabel.new { "North America" } %>
+              <%= render UI::SelectItem.new(value: "est") { "Eastern Standard Time (EST)" } %>
+              <%= render UI::SelectItem.new(value: "cst") { "Central Standard Time (CST)" } %>
+              <%= render UI::SelectItem.new(value: "mst") { "Mountain Standard Time (MST)" } %>
+              <%= render UI::SelectItem.new(value: "pst") { "Pacific Standard Time (PST)" } %>
+              <%= render UI::SelectItem.new(value: "akst") { "Alaska Standard Time (AKST)" } %>
+              <%= render UI::SelectItem.new(value: "hst") { "Hawaii Standard Time (HST)" } %>
+            <% end %>
+            <%= render UI::SelectGroup.new do %>
+              <%= render UI::SelectLabel.new { "Europe & Africa" } %>
+              <%= render UI::SelectItem.new(value: "gmt") { "Greenwich Mean Time (GMT)" } %>
+              <%= render UI::SelectItem.new(value: "cet") { "Central European Time (CET)" } %>
+              <%= render UI::SelectItem.new(value: "eet") { "Eastern European Time (EET)" } %>
+              <%= render UI::SelectItem.new(value: "west") { "Western European Summer Time (WEST)" } %>
+              <%= render UI::SelectItem.new(value: "cat") { "Central Africa Time (CAT)" } %>
+              <%= render UI::SelectItem.new(value: "eat") { "East Africa Time (EAT)" } %>
+            <% end %>
+            <%= render UI::SelectGroup.new do %>
+              <%= render UI::SelectLabel.new { "Asia" } %>
+              <%= render UI::SelectItem.new(value: "msk") { "Moscow Standard Time (MSK)" } %>
+              <%= render UI::SelectItem.new(value: "ist") { "India Standard Time (IST)" } %>
+              <%= render UI::SelectItem.new(value: "cst_china") { "China Standard Time (CST)" } %>
+              <%= render UI::SelectItem.new(value: "jst") { "Japan Standard Time (JST)" } %>
+              <%= render UI::SelectItem.new(value: "kst") { "Korea Standard Time (KST)" } %>
+              <%= render UI::SelectItem.new(value: "ist_indonesia") { "Indonesia Central Standard Time (WITA)" } %>
+            <% end %>
+            <%= render UI::SelectGroup.new do %>
+              <%= render UI::SelectLabel.new { "Australia & Pacific" } %>
+              <%= render UI::SelectItem.new(value: "awst") { "Australian Western Standard Time (AWST)" } %>
+              <%= render UI::SelectItem.new(value: "acst") { "Australian Central Standard Time (ACST)" } %>
+              <%= render UI::SelectItem.new(value: "aest") { "Australian Eastern Standard Time (AEST)" } %>
+              <%= render UI::SelectItem.new(value: "nzst") { "New Zealand Standard Time (NZST)" } %>
+              <%= render UI::SelectItem.new(value: "fjt") { "Fiji Time (FJT)" } %>
+            <% end %>
+            <%= render UI::SelectGroup.new do %>
+              <%= render UI::SelectLabel.new { "South America" } %>
+              <%= render UI::SelectItem.new(value: "art") { "Argentina Time (ART)" } %>
+              <%= render UI::SelectItem.new(value: "bot") { "Bolivia Time (BOT)" } %>
+              <%= render UI::SelectItem.new(value: "brt") { "Brasilia Time (BRT)" } %>
+              <%= render UI::SelectItem.new(value: "clt") { "Chile Standard Time (CLT)" } %>
+            <% end %>
+          <% end %>
+        <% end %>
+      <% end %>
+
+      <% example.view_component do %>
+        <%= render UI::SelectComponent.new do %>
+          <%= render UI::SelectTriggerComponent.new(classes: "w-[280px]", placeholder: "Select a timezone") %>
+          <%= render UI::SelectContentComponent.new do %>
+            <%= render UI::SelectGroupComponent.new do %>
+              <%= render(UI::SelectLabelComponent.new) { "North America" } %>
+              <%= render(UI::SelectItemComponent.new(value: "est")) { "Eastern Standard Time (EST)" } %>
+              <%= render(UI::SelectItemComponent.new(value: "cst")) { "Central Standard Time (CST)" } %>
+              <%= render(UI::SelectItemComponent.new(value: "mst")) { "Mountain Standard Time (MST)" } %>
+              <%= render(UI::SelectItemComponent.new(value: "pst")) { "Pacific Standard Time (PST)" } %>
+              <%= render(UI::SelectItemComponent.new(value: "akst")) { "Alaska Standard Time (AKST)" } %>
+              <%= render(UI::SelectItemComponent.new(value: "hst")) { "Hawaii Standard Time (HST)" } %>
+            <% end %>
+            <%= render UI::SelectGroupComponent.new do %>
+              <%= render(UI::SelectLabelComponent.new) { "Europe & Africa" } %>
+              <%= render(UI::SelectItemComponent.new(value: "gmt")) { "Greenwich Mean Time (GMT)" } %>
+              <%= render(UI::SelectItemComponent.new(value: "cet")) { "Central European Time (CET)" } %>
+              <%= render(UI::SelectItemComponent.new(value: "eet")) { "Eastern European Time (EET)" } %>
+              <%= render(UI::SelectItemComponent.new(value: "west")) { "Western European Summer Time (WEST)" } %>
+              <%= render(UI::SelectItemComponent.new(value: "cat")) { "Central Africa Time (CAT)" } %>
+              <%= render(UI::SelectItemComponent.new(value: "eat")) { "East Africa Time (EAT)" } %>
+            <% end %>
+            <%= render UI::SelectGroupComponent.new do %>
+              <%= render(UI::SelectLabelComponent.new) { "Asia" } %>
+              <%= render(UI::SelectItemComponent.new(value: "msk")) { "Moscow Standard Time (MSK)" } %>
+              <%= render(UI::SelectItemComponent.new(value: "ist")) { "India Standard Time (IST)" } %>
+              <%= render(UI::SelectItemComponent.new(value: "cst_china")) { "China Standard Time (CST)" } %>
+              <%= render(UI::SelectItemComponent.new(value: "jst")) { "Japan Standard Time (JST)" } %>
+              <%= render(UI::SelectItemComponent.new(value: "kst")) { "Korea Standard Time (KST)" } %>
+              <%= render(UI::SelectItemComponent.new(value: "ist_indonesia")) { "Indonesia Central Standard Time (WITA)" } %>
+            <% end %>
+            <%= render UI::SelectGroupComponent.new do %>
+              <%= render(UI::SelectLabelComponent.new) { "Australia & Pacific" } %>
+              <%= render(UI::SelectItemComponent.new(value: "awst")) { "Australian Western Standard Time (AWST)" } %>
+              <%= render(UI::SelectItemComponent.new(value: "acst")) { "Australian Central Standard Time (ACST)" } %>
+              <%= render(UI::SelectItemComponent.new(value: "aest")) { "Australian Eastern Standard Time (AEST)" } %>
+              <%= render(UI::SelectItemComponent.new(value: "nzst")) { "New Zealand Standard Time (NZST)" } %>
+              <%= render(UI::SelectItemComponent.new(value: "fjt")) { "Fiji Time (FJT)" } %>
+            <% end %>
+            <%= render UI::SelectGroupComponent.new do %>
+              <%= render(UI::SelectLabelComponent.new) { "South America" } %>
+              <%= render(UI::SelectItemComponent.new(value: "art")) { "Argentina Time (ART)" } %>
+              <%= render(UI::SelectItemComponent.new(value: "bot")) { "Bolivia Time (BOT)" } %>
+              <%= render(UI::SelectItemComponent.new(value: "brt")) { "Brasilia Time (BRT)" } %>
+              <%= render(UI::SelectItemComponent.new(value: "clt")) { "Chile Standard Time (CLT)" } %>
+            <% end %>
+          <% end %>
+        <% end %>
+      <% end %>
+    <% end %>
+
+<% end %>

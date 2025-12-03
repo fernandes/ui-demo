@@ -1,0 +1,538 @@
+<%= render Docs::ComponentPage.new(component_name: "combobox") do %>
+
+  <%# Default %>
+  <%= render Docs::Example.new(
+    name: "Default",
+    description: "Autocomplete input and command palette composition.",
+    view_context: self
+  ) do |example| %>
+    <% example.erb do %>
+      <%
+        frameworks = [
+          { value: "next", label: "Next.js" },
+          { value: "sveltekit", label: "SvelteKit" },
+          { value: "nuxt", label: "Nuxt.js" },
+          { value: "remix", label: "Remix" },
+          { value: "astro", label: "Astro" }
+        ]
+      %>
+      <%= render "ui/popover", placement: "bottom-start", data: { controller: "ui--popover ui--combobox", ui__combobox_value_value: "" } do %>
+        <%= render "ui/popover/trigger", as_child: true do |trigger_attrs| %>
+          <%= render "ui/button", **trigger_attrs, variant: :outline, classes: "w-[200px] justify-between" do %>
+            <span data-ui--combobox-target="text">Select framework...</span>
+            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="ml-2 h-4 w-4 shrink-0 opacity-50">
+              <path d="m7 15 5 5 5-5"/>
+              <path d="m7 9 5-5 5 5"/>
+            </svg>
+          <% end %>
+        <% end %>
+        <%= render "ui/popover/content", classes: "w-[200px] p-0" do %>
+          <%= render "ui/command" do %>
+            <%= render "ui/command/input", placeholder: "Search framework..." %>
+            <%= render "ui/command/list" do %>
+              <%= render "ui/command/empty" do %>No framework found.<% end %>
+              <%= render "ui/command/group" do %>
+                <% frameworks.each do |framework| %>
+                  <%= render "ui/command/item", value: framework[:value], data: { ui__combobox_target: "item" } do %>
+                    <span><%= framework[:label] %></span>
+                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="ml-auto h-4 w-4 opacity-0">
+                      <path d="M20 6 9 17l-5-5"/>
+                    </svg>
+                  <% end %>
+                <% end %>
+              <% end %>
+            <% end %>
+          <% end %>
+        <% end %>
+      <% end %>
+    <% end %>
+
+    <% example.phlex do %>
+      <%
+        frameworks = [
+          { value: "next", label: "Next.js" },
+          { value: "sveltekit", label: "SvelteKit" },
+          { value: "nuxt", label: "Nuxt.js" },
+          { value: "remix", label: "Remix" },
+          { value: "astro", label: "Astro" }
+        ]
+      %>
+      <%= render UI::Popover.new(
+        placement: "bottom-start",
+        data: { controller: "ui--popover ui--combobox", ui__combobox_value_value: "" }
+      ) do %>
+        <%= render UI::PopoverTrigger.new(as_child: true) do |trigger_attrs| %>
+          <%= render UI::Button.new(**trigger_attrs, variant: :outline, classes: "w-[200px] justify-between") do %>
+            <span data-ui--combobox-target="text">Select framework...</span>
+            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="ml-2 h-4 w-4 shrink-0 opacity-50">
+              <path d="m7 15 5 5 5-5"/>
+              <path d="m7 9 5-5 5 5"/>
+            </svg>
+          <% end %>
+        <% end %>
+        <%= render UI::PopoverContent.new(classes: "w-[200px] p-0") do %>
+          <%= render UI::Command.new do %>
+            <%= render UI::CommandInput.new(placeholder: "Search framework...") %>
+            <%= render UI::CommandList.new do %>
+              <%= render UI::CommandEmpty.new { "No framework found." } %>
+              <%= render UI::CommandGroup.new do %>
+                <% frameworks.each do |framework| %>
+                  <%= render UI::CommandItem.new(value: framework[:value], data: { ui__combobox_target: "item" }) do %>
+                    <span><%= framework[:label] %></span>
+                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="ml-auto h-4 w-4 opacity-0">
+                      <path d="M20 6 9 17l-5-5"/>
+                    </svg>
+                  <% end %>
+                <% end %>
+              <% end %>
+            <% end %>
+          <% end %>
+        <% end %>
+      <% end %>
+    <% end %>
+
+    <% example.view_component do %>
+      <%
+        frameworks = [
+          { value: "next", label: "Next.js" },
+          { value: "sveltekit", label: "SvelteKit" },
+          { value: "nuxt", label: "Nuxt.js" },
+          { value: "remix", label: "Remix" },
+          { value: "astro", label: "Astro" }
+        ]
+      %>
+      <%= render UI::PopoverComponent.new(
+        placement: "bottom-start",
+        data: { controller: "ui--popover ui--combobox", ui__combobox_value_value: "" }
+      ) do %>
+        <%= render UI::PopoverTriggerComponent.new(as_child: true) do %>
+          <%= render UI::ButtonComponent.new(variant: :outline, classes: "w-[200px] justify-between") do %>
+            <span data-ui--combobox-target="text">Select framework...</span>
+            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="ml-2 h-4 w-4 shrink-0 opacity-50">
+              <path d="m7 15 5 5 5-5"/>
+              <path d="m7 9 5-5 5 5"/>
+            </svg>
+          <% end %>
+        <% end %>
+        <%= render UI::PopoverContentComponent.new(classes: "w-[200px] p-0") do %>
+          <%= render UI::CommandComponent.new do %>
+            <%= render UI::CommandInputComponent.new(placeholder: "Search framework...") %>
+            <%= render UI::CommandListComponent.new do %>
+              <%= render(UI::CommandEmptyComponent.new) { "No framework found." } %>
+              <%= render UI::CommandGroupComponent.new do %>
+                <% frameworks.each do |framework| %>
+                  <%= render UI::CommandItemComponent.new(value: framework[:value], data: { ui__combobox_target: "item" }) do %>
+                    <span><%= framework[:label] %></span>
+                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="ml-auto h-4 w-4 opacity-0">
+                      <path d="M20 6 9 17l-5-5"/>
+                    </svg>
+                  <% end %>
+                <% end %>
+              <% end %>
+            <% end %>
+          <% end %>
+        <% end %>
+      <% end %>
+    <% end %>
+  <% end %>
+
+  <%# Status Selector %>
+  <%= render Docs::Example.new(
+    name: "Status Selector",
+    description: "Select a status with visual indicators and icons.",
+    view_context: self
+  ) do |example| %>
+    <% example.erb do %>
+      <%
+        statuses = [
+          { value: "backlog", label: "Backlog", icon: "help-circle" },
+          { value: "todo", label: "Todo", icon: "circle" },
+          { value: "in-progress", label: "In Progress", icon: "arrow-up-circle" },
+          { value: "done", label: "Done", icon: "check-circle" },
+          { value: "canceled", label: "Canceled", icon: "x-circle" }
+        ]
+      %>
+      <%= render "ui/popover", placement: "bottom-start", data: { controller: "ui--popover ui--combobox", ui__combobox_value_value: "" } do %>
+        <%= render "ui/popover/trigger", as_child: true do |trigger_attrs| %>
+          <%= render "ui/button", **trigger_attrs, variant: :outline, classes: "w-[200px] justify-start" do %>
+            <span data-ui--combobox-target="text">+ Set status</span>
+          <% end %>
+        <% end %>
+        <%= render "ui/popover/content", classes: "w-[200px] p-0", align: "start" do %>
+          <%= render "ui/command" do %>
+            <%= render "ui/command/input", placeholder: "Change status..." %>
+            <%= render "ui/command/list" do %>
+              <%= render "ui/command/empty" do %>No results found.<% end %>
+              <%= render "ui/command/group" do %>
+                <% statuses.each do |status| %>
+                  <%= render "ui/command/item", value: status[:value], data: { ui__combobox_target: "item" } do %>
+                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="mr-2 h-4 w-4">
+                      <% if status[:icon] == "help-circle" %>
+                        <circle cx="12" cy="12" r="10"/>
+                        <path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3"/>
+                        <path d="M12 17h.01"/>
+                      <% elsif status[:icon] == "circle" %>
+                        <circle cx="12" cy="12" r="10"/>
+                      <% elsif status[:icon] == "arrow-up-circle" %>
+                        <circle cx="12" cy="12" r="10"/>
+                        <path d="m16 12-4-4-4 4"/>
+                        <path d="M12 16V8"/>
+                      <% elsif status[:icon] == "check-circle" %>
+                        <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/>
+                        <path d="m9 11 3 3L22 4"/>
+                      <% elsif status[:icon] == "x-circle" %>
+                        <circle cx="12" cy="12" r="10"/>
+                        <path d="m15 9-6 6"/>
+                        <path d="m9 9 6 6"/>
+                      <% end %>
+                    </svg>
+                    <span><%= status[:label] %></span>
+                  <% end %>
+                <% end %>
+              <% end %>
+            <% end %>
+          <% end %>
+        <% end %>
+      <% end %>
+    <% end %>
+
+    <% example.phlex do %>
+      <%
+        statuses = [
+          { value: "backlog", label: "Backlog", icon: "help-circle" },
+          { value: "todo", label: "Todo", icon: "circle" },
+          { value: "in-progress", label: "In Progress", icon: "arrow-up-circle" },
+          { value: "done", label: "Done", icon: "check-circle" },
+          { value: "canceled", label: "Canceled", icon: "x-circle" }
+        ]
+      %>
+      <%= render UI::Popover.new(
+        placement: "bottom-start",
+        data: { controller: "ui--popover ui--combobox", ui__combobox_value_value: "" }
+      ) do %>
+        <%= render UI::PopoverTrigger.new(as_child: true) do |trigger_attrs| %>
+          <%= render UI::Button.new(**trigger_attrs, variant: :outline, classes: "w-[200px] justify-start") do %>
+            <span data-ui--combobox-target="text">+ Set status</span>
+          <% end %>
+        <% end %>
+        <%= render UI::PopoverContent.new(classes: "w-[200px] p-0", align: "start") do %>
+          <%= render UI::Command.new do %>
+            <%= render UI::CommandInput.new(placeholder: "Change status...") %>
+            <%= render UI::CommandList.new do %>
+              <%= render UI::CommandEmpty.new { "No results found." } %>
+              <%= render UI::CommandGroup.new do %>
+                <% statuses.each do |status| %>
+                  <%= render UI::CommandItem.new(value: status[:value], data: { ui__combobox_target: "item" }) do %>
+                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="mr-2 h-4 w-4">
+                      <% if status[:icon] == "help-circle" %>
+                        <circle cx="12" cy="12" r="10"/>
+                        <path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3"/>
+                        <path d="M12 17h.01"/>
+                      <% elsif status[:icon] == "circle" %>
+                        <circle cx="12" cy="12" r="10"/>
+                      <% elsif status[:icon] == "arrow-up-circle" %>
+                        <circle cx="12" cy="12" r="10"/>
+                        <path d="m16 12-4-4-4 4"/>
+                        <path d="M12 16V8"/>
+                      <% elsif status[:icon] == "check-circle" %>
+                        <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/>
+                        <path d="m9 11 3 3L22 4"/>
+                      <% elsif status[:icon] == "x-circle" %>
+                        <circle cx="12" cy="12" r="10"/>
+                        <path d="m15 9-6 6"/>
+                        <path d="m9 9 6 6"/>
+                      <% end %>
+                    </svg>
+                    <span><%= status[:label] %></span>
+                  <% end %>
+                <% end %>
+              <% end %>
+            <% end %>
+          <% end %>
+        <% end %>
+      <% end %>
+    <% end %>
+
+    <% example.view_component do %>
+      <%
+        statuses = [
+          { value: "backlog", label: "Backlog", icon: "help-circle" },
+          { value: "todo", label: "Todo", icon: "circle" },
+          { value: "in-progress", label: "In Progress", icon: "arrow-up-circle" },
+          { value: "done", label: "Done", icon: "check-circle" },
+          { value: "canceled", label: "Canceled", icon: "x-circle" }
+        ]
+      %>
+      <%= render UI::PopoverComponent.new(
+        placement: "bottom-start",
+        data: { controller: "ui--popover ui--combobox", ui__combobox_value_value: "" }
+      ) do %>
+        <%= render UI::PopoverTriggerComponent.new(as_child: true) do %>
+          <%= render UI::ButtonComponent.new(variant: :outline, classes: "w-[200px] justify-start") do %>
+            <span data-ui--combobox-target="text">+ Set status</span>
+          <% end %>
+        <% end %>
+        <%= render UI::PopoverContentComponent.new(classes: "w-[200px] p-0", align: "start") do %>
+          <%= render UI::CommandComponent.new do %>
+            <%= render UI::CommandInputComponent.new(placeholder: "Change status...") %>
+            <%= render UI::CommandListComponent.new do %>
+              <%= render(UI::CommandEmptyComponent.new) { "No results found." } %>
+              <%= render UI::CommandGroupComponent.new do %>
+                <% statuses.each do |status| %>
+                  <%= render UI::CommandItemComponent.new(value: status[:value], data: { ui__combobox_target: "item" }) do %>
+                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="mr-2 h-4 w-4">
+                      <% if status[:icon] == "help-circle" %>
+                        <circle cx="12" cy="12" r="10"/>
+                        <path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3"/>
+                        <path d="M12 17h.01"/>
+                      <% elsif status[:icon] == "circle" %>
+                        <circle cx="12" cy="12" r="10"/>
+                      <% elsif status[:icon] == "arrow-up-circle" %>
+                        <circle cx="12" cy="12" r="10"/>
+                        <path d="m16 12-4-4-4 4"/>
+                        <path d="M12 16V8"/>
+                      <% elsif status[:icon] == "check-circle" %>
+                        <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/>
+                        <path d="m9 11 3 3L22 4"/>
+                      <% elsif status[:icon] == "x-circle" %>
+                        <circle cx="12" cy="12" r="10"/>
+                        <path d="m15 9-6 6"/>
+                        <path d="m9 9 6 6"/>
+                      <% end %>
+                    </svg>
+                    <span><%= status[:label] %></span>
+                  <% end %>
+                <% end %>
+              <% end %>
+            <% end %>
+          <% end %>
+        <% end %>
+      <% end %>
+    <% end %>
+  <% end %>
+
+  <%# Responsive (Popover + Drawer) %>
+  <%= render Docs::Example.new(
+    name: "Responsive",
+    description: "Desktop shows Popover, mobile shows Drawer. Resize browser to see responsive behavior.",
+    view_context: self
+  ) do |example| %>
+    <% example.erb do %>
+      <%
+        statuses = [
+          { value: "backlog", label: "Backlog" },
+          { value: "todo", label: "Todo" },
+          { value: "in-progress", label: "In Progress" },
+          { value: "done", label: "Done" },
+          { value: "canceled", label: "Canceled" }
+        ]
+      %>
+      <%# Desktop: Popover %>
+      <div class="hidden md:block">
+        <%= render "ui/popover", placement: "bottom-start", data: { controller: "ui--popover ui--combobox", ui__combobox_value_value: "" } do %>
+          <%= render "ui/popover/trigger", as_child: true do |trigger_attrs| %>
+            <%= render "ui/button", **trigger_attrs, variant: :outline, classes: "w-[200px] justify-start" do %>
+              <span data-ui--combobox-target="text">+ Set status</span>
+            <% end %>
+          <% end %>
+          <%= render "ui/popover/content", classes: "w-[200px] p-0", align: "start" do %>
+            <%= render "ui/command" do %>
+              <%= render "ui/command/input", placeholder: "Change status..." %>
+              <%= render "ui/command/list" do %>
+                <%= render "ui/command/empty" do %>No results found.<% end %>
+                <%= render "ui/command/group" do %>
+                  <% statuses.each do |status| %>
+                    <%= render "ui/command/item", value: status[:value], data: { ui__combobox_target: "item" } do %>
+                      <span><%= status[:label] %></span>
+                    <% end %>
+                  <% end %>
+                <% end %>
+              <% end %>
+            <% end %>
+          <% end %>
+        <% end %>
+      </div>
+      <%# Mobile: Drawer %>
+      <div class="md:hidden" data-controller="ui--combobox" data-ui--combobox-value-value="">
+        <%= render "ui/drawer" do %>
+          <%= render "ui/drawer/trigger", as_child: true do |trigger_attrs| %>
+            <%= render "ui/button", attributes: trigger_attrs, variant: :outline, classes: "w-[200px] justify-start" do %>
+              <span data-ui--combobox-target="text">+ Set status</span>
+            <% end %>
+          <% end %>
+          <%= render "ui/drawer/overlay" %>
+          <%= render "ui/drawer/content" do %>
+            <%= render "ui/drawer/handle" %>
+            <%= render "ui/drawer/header" do %>
+              <%= render "ui/drawer/title" do %>Set Status<% end %>
+              <%= render "ui/drawer/description" do %>Select a status for your task<% end %>
+            <% end %>
+            <div class="p-4">
+              <%= render "ui/command" do %>
+                <%= render "ui/command/input", placeholder: "Change status..." %>
+                <%= render "ui/command/list" do %>
+                  <%= render "ui/command/empty" do %>No results found.<% end %>
+                  <%= render "ui/command/group" do %>
+                    <% statuses.each do |status| %>
+                      <%= render "ui/command/item", value: status[:value], data: { ui__combobox_target: "item" } do %>
+                        <span><%= status[:label] %></span>
+                      <% end %>
+                    <% end %>
+                  <% end %>
+                <% end %>
+              <% end %>
+            </div>
+          <% end %>
+        <% end %>
+      </div>
+    <% end %>
+
+    <% example.phlex do %>
+      <%
+        statuses = [
+          { value: "backlog", label: "Backlog" },
+          { value: "todo", label: "Todo" },
+          { value: "in-progress", label: "In Progress" },
+          { value: "done", label: "Done" },
+          { value: "canceled", label: "Canceled" }
+        ]
+      %>
+      <%# Desktop: Popover %>
+      <div class="hidden md:block">
+        <%= render UI::Popover.new(
+          placement: "bottom-start",
+          data: { controller: "ui--popover ui--combobox", ui__combobox_value_value: "" }
+        ) do %>
+          <%= render UI::PopoverTrigger.new(as_child: true) do |trigger_attrs| %>
+            <%= render UI::Button.new(**trigger_attrs, variant: :outline, classes: "w-[200px] justify-start") do %>
+              <span data-ui--combobox-target="text">+ Set status</span>
+            <% end %>
+          <% end %>
+          <%= render UI::PopoverContent.new(classes: "w-[200px] p-0", align: "start") do %>
+            <%= render UI::Command.new do %>
+              <%= render UI::CommandInput.new(placeholder: "Change status...") %>
+              <%= render UI::CommandList.new do %>
+                <%= render UI::CommandEmpty.new { "No results found." } %>
+                <%= render UI::CommandGroup.new do %>
+                  <% statuses.each do |status| %>
+                    <%= render UI::CommandItem.new(value: status[:value], data: { ui__combobox_target: "item" }) do %>
+                      <span><%= status[:label] %></span>
+                    <% end %>
+                  <% end %>
+                <% end %>
+              <% end %>
+            <% end %>
+          <% end %>
+        <% end %>
+      </div>
+      <%# Mobile: Drawer %>
+      <div class="md:hidden" data-controller="ui--combobox" data-ui--combobox-value-value="">
+        <%= render UI::Drawer.new do %>
+          <%= render UI::DrawerTrigger.new(as_child: true) do |trigger_attrs| %>
+            <%= render UI::Button.new(**trigger_attrs, variant: :outline, classes: "w-[200px] justify-start") do %>
+              <span data-ui--combobox-target="text">+ Set status</span>
+            <% end %>
+          <% end %>
+          <%= render UI::DrawerOverlay.new %>
+          <%= render UI::DrawerContent.new do %>
+            <%= render UI::DrawerHandle.new %>
+            <%= render UI::DrawerHeader.new do %>
+              <%= render UI::DrawerTitle.new { "Set Status" } %>
+              <%= render UI::DrawerDescription.new { "Select a status for your task" } %>
+            <% end %>
+            <div class="p-4">
+              <%= render UI::Command.new do %>
+                <%= render UI::CommandInput.new(placeholder: "Change status...") %>
+                <%= render UI::CommandList.new do %>
+                  <%= render UI::CommandEmpty.new { "No results found." } %>
+                  <%= render UI::CommandGroup.new do %>
+                    <% statuses.each do |status| %>
+                      <%= render UI::CommandItem.new(value: status[:value], data: { ui__combobox_target: "item" }) do %>
+                        <span><%= status[:label] %></span>
+                      <% end %>
+                    <% end %>
+                  <% end %>
+                <% end %>
+              <% end %>
+            </div>
+          <% end %>
+        <% end %>
+      </div>
+    <% end %>
+
+    <% example.view_component do %>
+      <%
+        statuses = [
+          { value: "backlog", label: "Backlog" },
+          { value: "todo", label: "Todo" },
+          { value: "in-progress", label: "In Progress" },
+          { value: "done", label: "Done" },
+          { value: "canceled", label: "Canceled" }
+        ]
+      %>
+      <%# Desktop: Popover %>
+      <div class="hidden md:block">
+        <%= render UI::PopoverComponent.new(
+          placement: "bottom-start",
+          data: { controller: "ui--popover ui--combobox", ui__combobox_value_value: "" }
+        ) do %>
+          <%= render UI::PopoverTriggerComponent.new(as_child: true) do %>
+            <%= render UI::ButtonComponent.new(variant: :outline, classes: "w-[200px] justify-start") do %>
+              <span data-ui--combobox-target="text">+ Set status</span>
+            <% end %>
+          <% end %>
+          <%= render UI::PopoverContentComponent.new(classes: "w-[200px] p-0", align: "start") do %>
+            <%= render UI::CommandComponent.new do %>
+              <%= render UI::CommandInputComponent.new(placeholder: "Change status...") %>
+              <%= render UI::CommandListComponent.new do %>
+                <%= render(UI::CommandEmptyComponent.new) { "No results found." } %>
+                <%= render UI::CommandGroupComponent.new do %>
+                  <% statuses.each do |status| %>
+                    <%= render UI::CommandItemComponent.new(value: status[:value], data: { ui__combobox_target: "item" }) do %>
+                      <span><%= status[:label] %></span>
+                    <% end %>
+                  <% end %>
+                <% end %>
+              <% end %>
+            <% end %>
+          <% end %>
+        <% end %>
+      </div>
+      <%# Mobile: Drawer %>
+      <div class="md:hidden" data-controller="ui--combobox" data-ui--combobox-value-value="">
+        <%= render UI::DrawerComponent.new do %>
+          <%= render UI::DrawerTriggerComponent.new(as_child: true) do %>
+            <%= render UI::ButtonComponent.new(variant: :outline, classes: "w-[200px] justify-start") do %>
+              <span data-ui--combobox-target="text">+ Set status</span>
+            <% end %>
+          <% end %>
+          <%= render UI::DrawerOverlayComponent.new %>
+          <%= render UI::DrawerContentComponent.new do %>
+            <%= render UI::DrawerHandleComponent.new %>
+            <%= render UI::DrawerHeaderComponent.new do %>
+              <%= render UI::DrawerTitleComponent.new { "Set Status" } %>
+              <%= render UI::DrawerDescriptionComponent.new { "Select a status for your task" } %>
+            <% end %>
+            <div class="p-4">
+              <%= render UI::CommandComponent.new do %>
+                <%= render UI::CommandInputComponent.new(placeholder: "Change status...") %>
+                <%= render UI::CommandListComponent.new do %>
+                  <%= render(UI::CommandEmptyComponent.new) { "No results found." } %>
+                  <%= render UI::CommandGroupComponent.new do %>
+                    <% statuses.each do |status| %>
+                      <%= render UI::CommandItemComponent.new(value: status[:value], data: { ui__combobox_target: "item" }) do %>
+                        <span><%= status[:label] %></span>
+                      <% end %>
+                    <% end %>
+                  <% end %>
+                <% end %>
+              <% end %>
+            </div>
+          <% end %>
+        <% end %>
+      </div>
+    <% end %>
+  <% end %>
+
+<% end %>
+

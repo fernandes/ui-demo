@@ -1,0 +1,208 @@
+<%= render Docs::ComponentPage.new(component_name: "toggle_group") do %>
+
+  <%# Default %>
+  <%= render Docs::Example.new(
+    name: "Default",
+    description: "A set of two-state buttons that can be toggled on or off.",
+    view_context: self
+  ) do |example| %>
+    <% example.erb do %>
+      <%= render "ui/toggle_group", type: "single", variant: "outline" do %>
+        <%= render "ui/toggle_group/item", value: "left" do %>Left<% end %>
+        <%= render "ui/toggle_group/item", value: "center" do %>Center<% end %>
+        <%= render "ui/toggle_group/item", value: "right" do %>Right<% end %>
+      <% end %>
+    <% end %>
+
+    <% example.phlex do %>
+      <%= render UI::ToggleGroup.new(type: "single", variant: "outline") do %>
+        <%= render UI::ToggleGroupItem.new(value: "left") { "Left" } %>
+        <%= render UI::ToggleGroupItem.new(value: "center") { "Center" } %>
+        <%= render UI::ToggleGroupItem.new(value: "right") { "Right" } %>
+      <% end %>
+    <% end %>
+
+    <% example.view_component do %>
+      <%= render UI::ToggleGroupComponent.new(type: "single", variant: "outline") do %>
+        <%= render(UI::ToggleGroupItemComponent.new(value: "left")) { "Left" } %>
+        <%= render(UI::ToggleGroupItemComponent.new(value: "center")) { "Center" } %>
+        <%= render(UI::ToggleGroupItemComponent.new(value: "right")) { "Right" } %>
+      <% end %>
+    <% end %>
+  <% end %>
+
+  <%# Multiple Selection %>
+  <%= render Docs::Example.new(
+    name: "Multiple Selection",
+    description: "Multiple items can be selected simultaneously.",
+    view_context: self
+  ) do |example| %>
+    <% example.erb do %>
+      <%= render "ui/toggle_group", type: "multiple", variant: "outline" do %>
+        <%= render "ui/toggle_group/item", value: "bold" do %>B<% end %>
+        <%= render "ui/toggle_group/item", value: "italic" do %>I<% end %>
+        <%= render "ui/toggle_group/item", value: "underline" do %>U<% end %>
+      <% end %>
+    <% end %>
+
+    <% example.phlex do %>
+      <%= render UI::ToggleGroup.new(type: "multiple", variant: "outline") do %>
+        <%= render UI::ToggleGroupItem.new(value: "bold") { "B" } %>
+        <%= render UI::ToggleGroupItem.new(value: "italic") { "I" } %>
+        <%= render UI::ToggleGroupItem.new(value: "underline") { "U" } %>
+      <% end %>
+    <% end %>
+
+    <% example.view_component do %>
+      <%= render UI::ToggleGroupComponent.new(type: "multiple", variant: "outline") do %>
+        <%= render(UI::ToggleGroupItemComponent.new(value: "bold")) { "B" } %>
+        <%= render(UI::ToggleGroupItemComponent.new(value: "italic")) { "I" } %>
+        <%= render(UI::ToggleGroupItemComponent.new(value: "underline")) { "U" } %>
+      <% end %>
+    <% end %>
+  <% end %>
+
+  <%# Outline %>
+  <%= render Docs::Example.new(
+    name: "Outline",
+    description: "Toggle group with outline variant.",
+    view_context: self
+  ) do |example| %>
+    <% example.erb do %>
+      <%= render "ui/toggle_group", type: "single", variant: "outline" do %>
+        <%= render "ui/toggle_group/item", value: "bold" do %>
+          <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 12h12"/><path d="M6 18h12"/><path d="M6 6h12"/></svg>
+        <% end %>
+        <%= render "ui/toggle_group/item", value: "italic" do %>
+          <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M8 6h8"/><path d="M8 18h8"/><path d="M12 6v12"/></svg>
+        <% end %>
+        <%= render "ui/toggle_group/item", value: "underline" do %>
+          <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17 6h-12"/><path d="M17 18h-12"/><path d="M3 12h18"/></svg>
+        <% end %>
+      <% end %>
+    <% end %>
+
+    <% example.phlex do %>
+      <%= render UI::ToggleGroup.new(type: "single", variant: "outline") do %>
+        <%= render UI::ToggleGroupItem.new(value: "bold") do %>
+          <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 12h12"/><path d="M6 18h12"/><path d="M6 6h12"/></svg>
+        <% end %>
+        <%= render UI::ToggleGroupItem.new(value: "italic") do %>
+          <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M8 6h8"/><path d="M8 18h8"/><path d="M12 6v12"/></svg>
+        <% end %>
+        <%= render UI::ToggleGroupItem.new(value: "underline") do %>
+          <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17 6h-12"/><path d="M17 18h-12"/><path d="M3 12h18"/></svg>
+        <% end %>
+      <% end %>
+    <% end %>
+
+    <% example.view_component do %>
+      <%= render UI::ToggleGroupComponent.new(type: "single", variant: "outline") do %>
+        <%= render(UI::ToggleGroupItemComponent.new(value: "bold")) do %>
+          <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 12h12"/><path d="M6 18h12"/><path d="M6 6h12"/></svg>
+        <% end %>
+        <%= render(UI::ToggleGroupItemComponent.new(value: "italic")) do %>
+          <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M8 6h8"/><path d="M8 18h8"/><path d="M12 6v12"/></svg>
+        <% end %>
+        <%= render(UI::ToggleGroupItemComponent.new(value: "underline")) do %>
+          <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17 6h-12"/><path d="M17 18h-12"/><path d="M3 12h18"/></svg>
+        <% end %>
+      <% end %>
+    <% end %>
+  <% end %>
+
+  <%# Small %>
+  <%= render Docs::Example.new(
+    name: "Small",
+    description: "A small toggle group.",
+    view_context: self
+  ) do |example| %>
+    <% example.erb do %>
+      <%= render "ui/toggle_group", type: "single", variant: "outline", size: "sm" do %>
+        <%= render "ui/toggle_group/item", value: "bold" do %>B<% end %>
+        <%= render "ui/toggle_group/item", value: "italic" do %>I<% end %>
+        <%= render "ui/toggle_group/item", value: "underline" do %>U<% end %>
+      <% end %>
+    <% end %>
+
+    <% example.phlex do %>
+      <%= render UI::ToggleGroup.new(type: "single", variant: "outline", size: "sm") do %>
+        <%= render UI::ToggleGroupItem.new(value: "bold") { "B" } %>
+        <%= render UI::ToggleGroupItem.new(value: "italic") { "I" } %>
+        <%= render UI::ToggleGroupItem.new(value: "underline") { "U" } %>
+      <% end %>
+    <% end %>
+
+    <% example.view_component do %>
+      <%= render UI::ToggleGroupComponent.new(type: "single", variant: "outline", size: "sm") do %>
+        <%= render(UI::ToggleGroupItemComponent.new(value: "bold")) { "B" } %>
+        <%= render(UI::ToggleGroupItemComponent.new(value: "italic")) { "I" } %>
+        <%= render(UI::ToggleGroupItemComponent.new(value: "underline")) { "U" } %>
+      <% end %>
+    <% end %>
+  <% end %>
+
+  <%# Large %>
+  <%= render Docs::Example.new(
+    name: "Large",
+    description: "A large toggle group.",
+    view_context: self
+  ) do |example| %>
+    <% example.erb do %>
+      <%= render "ui/toggle_group", type: "single", variant: "outline", size: "lg" do %>
+        <%= render "ui/toggle_group/item", value: "bold" do %>B<% end %>
+        <%= render "ui/toggle_group/item", value: "italic" do %>I<% end %>
+        <%= render "ui/toggle_group/item", value: "underline" do %>U<% end %>
+      <% end %>
+    <% end %>
+
+    <% example.phlex do %>
+      <%= render UI::ToggleGroup.new(type: "single", variant: "outline", size: "lg") do %>
+        <%= render UI::ToggleGroupItem.new(value: "bold") { "B" } %>
+        <%= render UI::ToggleGroupItem.new(value: "italic") { "I" } %>
+        <%= render UI::ToggleGroupItem.new(value: "underline") { "U" } %>
+      <% end %>
+    <% end %>
+
+    <% example.view_component do %>
+      <%= render UI::ToggleGroupComponent.new(type: "single", variant: "outline", size: "lg") do %>
+        <%= render(UI::ToggleGroupItemComponent.new(value: "bold")) { "B" } %>
+        <%= render(UI::ToggleGroupItemComponent.new(value: "italic")) { "I" } %>
+        <%= render(UI::ToggleGroupItemComponent.new(value: "underline")) { "U" } %>
+      <% end %>
+    <% end %>
+  <% end %>
+
+  <%# Disabled %>
+  <%= render Docs::Example.new(
+    name: "Disabled",
+    description: "A disabled toggle group.",
+    view_context: self
+  ) do |example| %>
+    <% example.erb do %>
+      <%= render "ui/toggle_group", type: "single", variant: "outline", disabled: true do %>
+        <%= render "ui/toggle_group/item", value: "bold" do %>B<% end %>
+        <%= render "ui/toggle_group/item", value: "italic" do %>I<% end %>
+        <%= render "ui/toggle_group/item", value: "underline" do %>U<% end %>
+      <% end %>
+    <% end %>
+
+    <% example.phlex do %>
+      <%= render UI::ToggleGroup.new(type: "single", variant: "outline", disabled: true) do %>
+        <%= render UI::ToggleGroupItem.new(value: "bold") { "B" } %>
+        <%= render UI::ToggleGroupItem.new(value: "italic") { "I" } %>
+        <%= render UI::ToggleGroupItem.new(value: "underline") { "U" } %>
+      <% end %>
+    <% end %>
+
+    <% example.view_component do %>
+      <%= render UI::ToggleGroupComponent.new(type: "single", variant: "outline", disabled: true) do %>
+        <%= render(UI::ToggleGroupItemComponent.new(value: "bold")) { "B" } %>
+        <%= render(UI::ToggleGroupItemComponent.new(value: "italic")) { "I" } %>
+        <%= render(UI::ToggleGroupItemComponent.new(value: "underline")) { "U" } %>
+      <% end %>
+    <% end %>
+  <% end %>
+
+<% end %>
+

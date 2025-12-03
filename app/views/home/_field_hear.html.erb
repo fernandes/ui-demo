@@ -1,0 +1,33 @@
+<%= render "ui/card", classes: "py-4 shadow-none" do %>
+  <%= render "ui/card/content", classes: "px-4" do %>
+    <form>
+      <%= render "ui/field/group" do %>
+        <%= render "ui/field/set", classes: "gap-4" do %>
+          <%= render "ui/field/legend", variant: "legend" do %>How did you hear about us?<% end %>
+          <%= render "ui/field/description", classes: "line-clamp-1" do %>Select the option that best describes how you heard about us.<% end %>
+          <%= render "ui/field/group", classes: "flex flex-row flex-wrap gap-2 [--radius:9999rem]" do %>
+            <% [
+              { label: "Social Media", value: "social-media", checked: true },
+              { label: "Search Engine", value: "search-engine", checked: false },
+              { label: "Referral", value: "referral", checked: false },
+              { label: "Other", value: "other", checked: false }
+            ].each do |option| %>
+              <% field_id = "hear-#{option[:value]}" %>
+              <%= render "ui/field/label", for_id: field_id, classes: "!w-fit" do %>
+                <%= render "ui/field", orientation: "horizontal", classes: "gap-1.5 overflow-hidden !px-3 !py-1.5 transition-all duration-100 ease-linear group-has-data-[state=checked]/field-label:!px-2" do %>
+                  <%= render "ui/checkbox",
+                      id: field_id,
+                      name: "hear_about[]",
+                      value: option[:value],
+                      checked: option[:checked],
+                      classes: "-ml-7 -translate-x-2 rounded-full transition-all duration-100 ease-linear data-[state=checked]:ml-0 data-[state=checked]:translate-x-0" %>
+                  <%= render "ui/field/title" do %><%= option[:label] %><% end %>
+                <% end %>
+              <% end %>
+            <% end %>
+          <% end %>
+        <% end %>
+      <% end %>
+    </form>
+  <% end %>
+<% end %>

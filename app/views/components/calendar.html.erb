@@ -1,0 +1,310 @@
+<%= render Docs::ComponentPage.new(component_name: "calendar") do %>
+
+  <%# Default %>
+  <%= render Docs::Example.new(
+    name: "Default",
+    description: "A date picker calendar built with date-fns and Stimulus.",
+    view_context: self
+  ) do |example| %>
+    <% example.erb do %>
+      <div class="rounded-md border">
+        <%= render "ui/calendar" %>
+      </div>
+    <% end %>
+
+    <% example.phlex do %>
+      <div class="rounded-md border">
+        <%= render UI::Calendar.new %>
+      </div>
+    <% end %>
+
+    <% example.view_component do %>
+      <div class="rounded-md border">
+        <%= render UI::CalendarComponent.new %>
+      </div>
+    <% end %>
+  <% end %>
+
+  <%# With Selected Date %>
+  <%= render Docs::Example.new(
+    name: "With Selected Date",
+    description: "Calendar with a pre-selected date.",
+    view_context: self
+  ) do |example| %>
+    <% example.erb do %>
+      <div class="rounded-md border">
+        <%= render "ui/calendar", selected: Date.today %>
+      </div>
+    <% end %>
+
+    <% example.phlex do %>
+      <div class="rounded-md border">
+        <%= render UI::Calendar.new(selected: Date.today) %>
+      </div>
+    <% end %>
+
+    <% example.view_component do %>
+      <div class="rounded-md border">
+        <%= render UI::CalendarComponent.new(selected: Date.today) %>
+      </div>
+    <% end %>
+  <% end %>
+
+  <%# Date Range %>
+  <%= render Docs::Example.new(
+    name: "Date Range",
+    description: "Select a start and end date.",
+    view_context: self
+  ) do |example| %>
+    <% example.erb do %>
+      <div class="rounded-md border">
+        <%= render "ui/calendar", mode: :range, selected: Date.today..(Date.today + 7) %>
+      </div>
+    <% end %>
+
+    <% example.phlex do %>
+      <div class="rounded-md border">
+        <%= render UI::Calendar.new(mode: :range, selected: Date.today..(Date.today + 7)) %>
+      </div>
+    <% end %>
+
+    <% example.view_component do %>
+      <div class="rounded-md border">
+        <%= render UI::CalendarComponent.new(mode: :range, selected: Date.today..(Date.today + 7)) %>
+      </div>
+    <% end %>
+  <% end %>
+
+  <%# Multiple Months %>
+  <%= render Docs::Example.new(
+    name: "Multiple Months",
+    description: "Display 2 months side by side.",
+    view_context: self
+  ) do |example| %>
+    <% example.erb do %>
+      <div class="rounded-md border">
+        <%= render "ui/calendar", number_of_months: 2 %>
+      </div>
+    <% end %>
+
+    <% example.phlex do %>
+      <div class="rounded-md border">
+        <%= render UI::Calendar.new(number_of_months: 2) %>
+      </div>
+    <% end %>
+
+    <% example.view_component do %>
+      <div class="rounded-md border">
+        <%= render UI::CalendarComponent.new(number_of_months: 2) %>
+      </div>
+    <% end %>
+  <% end %>
+
+  <%# Multiple Months with Range %>
+  <%= render Docs::Example.new(
+    name: "Multiple Months with Range",
+    description: "Date range selection with 2 months displayed (hover to preview range).",
+    view_context: self
+  ) do |example| %>
+    <% example.erb do %>
+      <div class="rounded-md border">
+        <%= render "ui/calendar", mode: :range, number_of_months: 2 %>
+      </div>
+    <% end %>
+
+    <% example.phlex do %>
+      <div class="rounded-md border">
+        <%= render UI::Calendar.new(mode: :range, number_of_months: 2) %>
+      </div>
+    <% end %>
+
+    <% example.view_component do %>
+      <div class="rounded-md border">
+        <%= render UI::CalendarComponent.new(mode: :range, number_of_months: 2) %>
+      </div>
+    <% end %>
+  <% end %>
+
+  <%# With Dropdowns (Native) %>
+  <%= render Docs::Example.new(
+    name: "With Dropdowns (Native)",
+    description: "Month/Year dropdown navigation using native HTML selects.",
+    view_context: self
+  ) do |example| %>
+    <% example.erb do %>
+      <div class="rounded-md border">
+        <%= render "ui/calendar", show_dropdowns: true %>
+      </div>
+    <% end %>
+
+    <% example.phlex do %>
+      <div class="rounded-md border">
+        <%= render UI::Calendar.new(show_dropdowns: true) %>
+      </div>
+    <% end %>
+
+    <% example.view_component do %>
+      <div class="rounded-md border">
+        <%= render UI::CalendarComponent.new(show_dropdowns: true) %>
+      </div>
+    <% end %>
+  <% end %>
+
+  <%# With Dropdowns (UI Select) %>
+  <%= render Docs::Example.new(
+    name: "With Dropdowns (UI Select)",
+    description: "Month/Year dropdown navigation using our custom UI Select component.",
+    view_context: self
+  ) do |example| %>
+    <% example.erb do %>
+      <div class="rounded-md border">
+        <%= render "ui/calendar", show_dropdowns: true, use_native_select: false %>
+      </div>
+    <% end %>
+
+    <% example.phlex do %>
+      <div class="rounded-md border">
+        <%= render UI::Calendar.new(show_dropdowns: true, use_native_select: false) %>
+      </div>
+    <% end %>
+
+    <% example.view_component do %>
+      <div class="rounded-md border">
+        <%= render UI::CalendarComponent.new(show_dropdowns: true, use_native_select: false) %>
+      </div>
+    <% end %>
+  <% end %>
+
+  <%# With Min/Max Dates %>
+  <%= render Docs::Example.new(
+    name: "With Min/Max Dates",
+    description: "Restricted date range (next 30 days only).",
+    view_context: self
+  ) do |example| %>
+    <% example.erb do %>
+      <div class="rounded-md border">
+        <%= render "ui/calendar", min_date: Date.today, max_date: Date.today + 30.days %>
+      </div>
+    <% end %>
+
+    <% example.phlex do %>
+      <div class="rounded-md border">
+        <%= render UI::Calendar.new(min_date: Date.today, max_date: Date.today + 30.days) %>
+      </div>
+    <% end %>
+
+    <% example.view_component do %>
+      <div class="rounded-md border">
+        <%= render UI::CalendarComponent.new(min_date: Date.today, max_date: Date.today + 30.days) %>
+      </div>
+    <% end %>
+  <% end %>
+
+  <%# Range With Min/Max Days %>
+  <%= render Docs::Example.new(
+    name: "Range With Min/Max Days",
+    description: "Range selection constrained to 3-7 days (hover over dates to see preview).",
+    view_context: self
+  ) do |example| %>
+    <% example.erb do %>
+      <div class="rounded-md border">
+        <%= render "ui/calendar", mode: :range, min_range_days: 3, max_range_days: 7 %>
+      </div>
+    <% end %>
+
+    <% example.phlex do %>
+      <div class="rounded-md border">
+        <%= render UI::Calendar.new(mode: :range, min_range_days: 3, max_range_days: 7) %>
+      </div>
+    <% end %>
+
+    <% example.view_component do %>
+      <div class="rounded-md border">
+        <%= render UI::CalendarComponent.new(mode: :range, min_range_days: 3, max_range_days: 7) %>
+      </div>
+    <% end %>
+  <% end %>
+
+  <%# Range With Disabled Dates %>
+  <%
+    today = Date.today
+    month_start = today.beginning_of_month
+    month_end = today.end_of_month
+    weekend_dates = (month_start..month_end).select { |d| d.saturday? || d.sunday? }
+  %>
+  <%= render Docs::Example.new(
+    name: "Range With Disabled Dates",
+    description: "Range cannot include disabled dates (weekends disabled).",
+    view_context: self
+  ) do |example| %>
+    <% example.erb do %>
+      <div class="rounded-md border">
+        <%= render "ui/calendar", mode: :range, exclude_disabled: true, disabled_dates: weekend_dates %>
+      </div>
+    <% end %>
+
+    <% example.phlex do %>
+      <div class="rounded-md border">
+        <%= render UI::Calendar.new(mode: :range, exclude_disabled: true, disabled_dates: weekend_dates) %>
+      </div>
+    <% end %>
+
+    <% example.view_component do %>
+      <div class="rounded-md border">
+        <%= render UI::CalendarComponent.new(mode: :range, exclude_disabled: true, disabled_dates: weekend_dates) %>
+      </div>
+    <% end %>
+  <% end %>
+
+  <%# Week Starts Monday %>
+  <%= render Docs::Example.new(
+    name: "Week Starts Monday",
+    description: "European-style calendar starting on Monday.",
+    view_context: self
+  ) do |example| %>
+    <% example.erb do %>
+      <div class="rounded-md border">
+        <%= render "ui/calendar", week_starts_on: 1 %>
+      </div>
+    <% end %>
+
+    <% example.phlex do %>
+      <div class="rounded-md border">
+        <%= render UI::Calendar.new(week_starts_on: 1) %>
+      </div>
+    <% end %>
+
+    <% example.view_component do %>
+      <div class="rounded-md border">
+        <%= render UI::CalendarComponent.new(week_starts_on: 1) %>
+      </div>
+    <% end %>
+  <% end %>
+
+  <%# Localization (pt-BR) %>
+  <%= render Docs::Example.new(
+    name: "Localization (pt-BR)",
+    description: "Calendar with Portuguese (Brazil) locale for month and weekday names.",
+    view_context: self
+  ) do |example| %>
+    <% example.erb do %>
+      <div class="rounded-md border">
+        <%= render "ui/calendar", locale: "pt-BR" %>
+      </div>
+    <% end %>
+
+    <% example.phlex do %>
+      <div class="rounded-md border">
+        <%= render UI::Calendar.new(locale: "pt-BR") %>
+      </div>
+    <% end %>
+
+    <% example.view_component do %>
+      <div class="rounded-md border">
+        <%= render UI::CalendarComponent.new(locale: "pt-BR") %>
+      </div>
+    <% end %>
+  <% end %>
+
+<% end %>
+

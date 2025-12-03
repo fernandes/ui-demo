@@ -1,0 +1,140 @@
+<%= render Docs::ComponentPage.new(component_name: "typography") do %>
+
+  <%# Default %>
+  <%= render Docs::Example.new(
+    name: "Default",
+    description: "Styles for headings, paragraphs, lists, and more.",
+    view_context: self
+  ) do |example| %>
+    <% example.erb do %>
+      <div class="space-y-4">
+        <%= render "ui/h1" do %>This is H1<% end %>
+        <%= render "ui/h2" do %>This is H2<% end %>
+        <%= render "ui/h3" do %>This is H3<% end %>
+        <%= render "ui/h4" do %>This is H4<% end %>
+        <%= render "ui/p" do %>
+          This is a paragraph with some text content.
+        <% end %>
+      </div>
+    <% end %>
+
+    <% example.phlex do %>
+      <div class="space-y-4">
+        <%= render UI::H1.new { "This is H1" } %>
+        <%= render UI::H2.new { "This is H2" } %>
+        <%= render UI::H3.new { "This is H3" } %>
+        <%= render UI::H4.new { "This is H4" } %>
+        <%= render UI::P.new do %>
+          This is a paragraph with some text content.
+        <% end %>
+      </div>
+    <% end %>
+
+    <% example.view_component do %>
+      <div class="space-y-4">
+        <%= render(UI::H1Component.new) { "This is H1" } %>
+        <%= render(UI::H2Component.new) { "This is H2" } %>
+        <%= render(UI::H3Component.new) { "This is H3" } %>
+        <%= render(UI::H4Component.new) { "This is H4" } %>
+        <%= render UI::PComponent.new do %>
+          This is a paragraph with some text content.
+        <% end %>
+      </div>
+    <% end %>
+  <% end %>
+
+  <%# Blockquote %>
+  <%= render Docs::Example.new(
+    name: "Blockquote",
+    description: "Styled blockquote element.",
+    view_context: self
+  ) do |example| %>
+    <% example.erb do %>
+      <%= render "ui/blockquote" do %>
+        "After all," he said, "everyone enjoys a good joke, so it's only fair that they should pay for the privilege."
+      <% end %>
+    <% end %>
+
+    <% example.phlex do %>
+      <%= render UI::Blockquote.new do %>
+        "After all," he said, "everyone enjoys a good joke, so it's only fair that they should pay for the privilege."
+      <% end %>
+    <% end %>
+
+    <% example.view_component do %>
+      <%= render UI::BlockquoteComponent.new do %>
+        "After all," he said, "everyone enjoys a good joke, so it's only fair that they should pay for the privilege."
+      <% end %>
+    <% end %>
+  <% end %>
+
+  <%# List %>
+  <%= render Docs::Example.new(
+    name: "List",
+    description: "Styled unordered list.",
+    view_context: self
+  ) do |example| %>
+    <% example.erb do %>
+      <%= render "ui/list" do %>
+        <li>First item</li>
+        <li>Second item</li>
+        <li>Third item</li>
+      <% end %>
+    <% end %>
+
+    <% example.phlex do %>
+      <%= render UI::List.new do %>
+        <li>First item</li>
+        <li>Second item</li>
+        <li>Third item</li>
+      <% end %>
+    <% end %>
+
+    <% example.view_component do %>
+      <%= render UI::ListComponent.new do %>
+        <li>First item</li>
+        <li>Second item</li>
+        <li>Third item</li>
+      <% end %>
+    <% end %>
+  <% end %>
+
+  <%# Text Styles %>
+  <%= render Docs::Example.new(
+    name: "Text Styles",
+    description: "Various text styling utilities.",
+    view_context: self
+  ) do |example| %>
+    <% example.erb do %>
+      <div class="space-y-4">
+        <%= render "ui/lead" do %>This is lead text<% end %>
+        <%= render "ui/large" do %>This is large text<% end %>
+        <%= render "ui/small" do %>This is small text<% end %>
+        <%= render "ui/muted" do %>This is muted text<% end %>
+        <p>Use <%= render "ui/inline_code" do %>inline code<% end %> for code snippets.</p>
+      </div>
+    <% end %>
+
+    <% example.phlex do %>
+      <div class="space-y-4">
+        <%= render UI::Lead.new { "This is lead text" } %>
+        <%= render UI::Large.new { "This is large text" } %>
+        <%= render UI::Small.new { "This is small text" } %>
+        <%= render UI::Muted.new { "This is muted text" } %>
+        <p>Use <%= render UI::InlineCode.new { "inline code" } %> for code snippets.</p>
+      </div>
+    <% end %>
+
+    <% example.view_component do %>
+      <div class="space-y-4">
+        <%= render(UI::LeadComponent.new) { "This is lead text" } %>
+        <%= render(UI::LargeComponent.new) { "This is large text" } %>
+        <%= render(UI::SmallComponent.new) { "This is small text" } %>
+        <%= render(UI::MutedComponent.new) { "This is muted text" } %>
+        <p>Use <%= render(UI::InlineCodeComponent.new) { "inline code" } %> for code snippets.</p>
+      </div>
+    <% end %>
+  <% end %>
+
+<% end %>
+

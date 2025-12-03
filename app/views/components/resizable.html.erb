@@ -1,0 +1,169 @@
+<%= render Docs::ComponentPage.new(component_name: "resizable") do %>
+
+  <%# Default %>
+  <%= render Docs::Example.new(
+    name: "Default",
+    description: "Accessible resizable panel groups with keyboard support.",
+    view_context: self
+  ) do |example| %>
+    <% example.erb do %>
+      <%= render "ui/resizable/panel_group", direction: "horizontal", classes: "max-w-md rounded-lg border" do %>
+        <%= render "ui/resizable/panel", default_size: 50 do %>
+          <div class="flex h-[200px] items-center justify-center p-6">
+            <span class="font-semibold">One</span>
+          </div>
+        <% end %>
+        <%= render "ui/resizable/handle" %>
+        <%= render "ui/resizable/panel", default_size: 50 do %>
+          <div class="flex h-[200px] items-center justify-center p-6">
+            <span class="font-semibold">Two</span>
+          </div>
+        <% end %>
+      <% end %>
+    <% end %>
+
+    <% example.phlex do %>
+      <%= render UI::ResizablePanelGroup.new(direction: "horizontal", classes: "max-w-md rounded-lg border") do %>
+        <%= render UI::ResizablePanel.new(default_size: 50) do %>
+          <div class="flex h-[200px] items-center justify-center p-6">
+            <span class="font-semibold">One</span>
+          </div>
+        <% end %>
+        <%= render UI::ResizableHandle.new %>
+        <%= render UI::ResizablePanel.new(default_size: 50) do %>
+          <div class="flex h-[200px] items-center justify-center p-6">
+            <span class="font-semibold">Two</span>
+          </div>
+        <% end %>
+      <% end %>
+    <% end %>
+
+    <% example.view_component do %>
+      <%= render UI::ResizablePanelGroupComponent.new(direction: "horizontal", classes: "max-w-md rounded-lg border") do %>
+        <%= render UI::ResizablePanelComponent.new(default_size: 50) do %>
+          <div class="flex h-[200px] items-center justify-center p-6">
+            <span class="font-semibold">One</span>
+          </div>
+        <% end %>
+        <%= render UI::ResizableHandleComponent.new %>
+        <%= render UI::ResizablePanelComponent.new(default_size: 50) do %>
+          <div class="flex h-[200px] items-center justify-center p-6">
+            <span class="font-semibold">Two</span>
+          </div>
+        <% end %>
+      <% end %>
+    <% end %>
+  <% end %>
+
+  <%# Vertical %>
+  <%= render Docs::Example.new(
+    name: "Vertical",
+    description: "Panels stacked vertically.",
+    view_context: self
+  ) do |example| %>
+    <% example.erb do %>
+      <%= render "ui/resizable/panel_group", direction: "vertical", classes: "min-h-[200px] max-w-md rounded-lg border" do %>
+        <%= render "ui/resizable/panel", default_size: 50 do %>
+          <div class="flex h-full items-center justify-center p-6">
+            <span class="font-semibold">One</span>
+          </div>
+        <% end %>
+        <%= render "ui/resizable/handle" %>
+        <%= render "ui/resizable/panel", default_size: 50 do %>
+          <div class="flex h-full items-center justify-center p-6">
+            <span class="font-semibold">Two</span>
+          </div>
+        <% end %>
+      <% end %>
+    <% end %>
+
+    <% example.phlex do %>
+      <%= render UI::ResizablePanelGroup.new(direction: "vertical", classes: "min-h-[200px] max-w-md rounded-lg border") do %>
+        <%= render UI::ResizablePanel.new(default_size: 50) do %>
+          <div class="flex h-full items-center justify-center p-6">
+            <span class="font-semibold">One</span>
+          </div>
+        <% end %>
+        <%= render UI::ResizableHandle.new %>
+        <%= render UI::ResizablePanel.new(default_size: 50) do %>
+          <div class="flex h-full items-center justify-center p-6">
+            <span class="font-semibold">Two</span>
+          </div>
+        <% end %>
+      <% end %>
+    <% end %>
+
+    <% example.view_component do %>
+      <%= render UI::ResizablePanelGroupComponent.new(direction: "vertical", classes: "min-h-[200px] max-w-md rounded-lg border") do %>
+        <%= render UI::ResizablePanelComponent.new(default_size: 50) do %>
+          <div class="flex h-full items-center justify-center p-6">
+            <span class="font-semibold">One</span>
+          </div>
+        <% end %>
+        <%= render UI::ResizableHandleComponent.new %>
+        <%= render UI::ResizablePanelComponent.new(default_size: 50) do %>
+          <div class="flex h-full items-center justify-center p-6">
+            <span class="font-semibold">Two</span>
+          </div>
+        <% end %>
+      <% end %>
+    <% end %>
+  <% end %>
+
+  <%# Handle with Grip %>
+  <%= render Docs::Example.new(
+    name: "Handle with Grip",
+    description: "Handle with visible grip icon for better visibility.",
+    view_context: self
+  ) do |example| %>
+    <% example.erb do %>
+      <%= render "ui/resizable/panel_group", direction: "horizontal", classes: "min-h-[200px] max-w-md rounded-lg border" do %>
+        <%= render "ui/resizable/panel", default_size: 50 do %>
+          <div class="flex h-full items-center justify-center p-6">
+            <span class="font-semibold">One</span>
+          </div>
+        <% end %>
+        <%= render "ui/resizable/handle", with_handle: true %>
+        <%= render "ui/resizable/panel", default_size: 50 do %>
+          <div class="flex h-full items-center justify-center p-6">
+            <span class="font-semibold">Two</span>
+          </div>
+        <% end %>
+      <% end %>
+    <% end %>
+
+    <% example.phlex do %>
+      <%= render UI::ResizablePanelGroup.new(direction: "horizontal", classes: "min-h-[200px] max-w-md rounded-lg border") do %>
+        <%= render UI::ResizablePanel.new(default_size: 50) do %>
+          <div class="flex h-full items-center justify-center p-6">
+            <span class="font-semibold">One</span>
+          </div>
+        <% end %>
+        <%= render UI::ResizableHandle.new(with_handle: true) %>
+        <%= render UI::ResizablePanel.new(default_size: 50) do %>
+          <div class="flex h-full items-center justify-center p-6">
+            <span class="font-semibold">Two</span>
+          </div>
+        <% end %>
+      <% end %>
+    <% end %>
+
+    <% example.view_component do %>
+      <%= render UI::ResizablePanelGroupComponent.new(direction: "horizontal", classes: "min-h-[200px] max-w-md rounded-lg border") do %>
+        <%= render UI::ResizablePanelComponent.new(default_size: 50) do %>
+          <div class="flex h-full items-center justify-center p-6">
+            <span class="font-semibold">One</span>
+          </div>
+        <% end %>
+        <%= render UI::ResizableHandleComponent.new(with_handle: true) %>
+        <%= render UI::ResizablePanelComponent.new(default_size: 50) do %>
+          <div class="flex h-full items-center justify-center p-6">
+            <span class="font-semibold">Two</span>
+          </div>
+        <% end %>
+      <% end %>
+    <% end %>
+  <% end %>
+
+<% end %>
+

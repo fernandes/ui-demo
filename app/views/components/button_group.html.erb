@@ -1,0 +1,446 @@
+<%= render Docs::ComponentPage.new(component_name: "button_group") do %>
+
+  <%# Default %>
+  <%= render Docs::Example.new(
+    name: "Default",
+    description: "A container that groups related buttons together with consistent styling.",
+    view_context: self
+  ) do |example| %>
+    <% example.erb do %>
+      <%= render "ui/button_group" do %>
+        <%= render "ui/button", variant: :outline do %>Archive<% end %>
+        <%= render "ui/button", variant: :outline do %>Report<% end %>
+      <% end %>
+    <% end %>
+
+    <% example.phlex do %>
+      <%= render UI::ButtonGroup.new do %>
+        <%= render UI::Button.new(variant: :outline) { "Archive" } %>
+        <%= render UI::Button.new(variant: :outline) { "Report" } %>
+      <% end %>
+    <% end %>
+
+    <% example.view_component do %>
+      <%= render UI::ButtonGroupComponent.new do %>
+        <%= render(UI::ButtonComponent.new(variant: :outline)) { "Archive" } %>
+        <%= render(UI::ButtonComponent.new(variant: :outline)) { "Report" } %>
+      <% end %>
+    <% end %>
+  <% end %>
+
+  <%# Orientation %>
+  <%= render Docs::Example.new(
+    name: "Orientation",
+    description: "Change the button group layout with the orientation prop.",
+    view_context: self
+  ) do |example| %>
+    <% example.erb do %>
+      <%= render "ui/button_group", orientation: :vertical, classes: "h-fit" do %>
+        <%= render "ui/button", variant: :outline, size: :icon do %>
+          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="M12 5v14"/></svg>
+        <% end %>
+        <%= render "ui/button", variant: :outline, size: :icon do %>
+          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/></svg>
+        <% end %>
+      <% end %>
+    <% end %>
+
+    <% example.phlex do %>
+      <%= render UI::ButtonGroup.new(orientation: :vertical, classes: "h-fit") do %>
+        <%= render UI::Button.new(variant: :outline, size: :icon) do %>
+          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="M12 5v14"/></svg>
+        <% end %>
+        <%= render UI::Button.new(variant: :outline, size: :icon) do %>
+          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/></svg>
+        <% end %>
+      <% end %>
+    <% end %>
+
+    <% example.view_component do %>
+      <%= render UI::ButtonGroupComponent.new(orientation: :vertical, classes: "h-fit") do %>
+        <%= render UI::ButtonComponent.new(variant: :outline, size: :icon) do %>
+          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="M12 5v14"/></svg>
+        <% end %>
+        <%= render UI::ButtonComponent.new(variant: :outline, size: :icon) do %>
+          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/></svg>
+        <% end %>
+      <% end %>
+    <% end %>
+  <% end %>
+
+  <%# Size %>
+  <%= render Docs::Example.new(
+    name: "Size",
+    description: "Control the size of buttons using the size prop on individual buttons.",
+    view_context: self
+  ) do |example| %>
+    <% example.erb do %>
+      <div class="flex flex-col items-start gap-4">
+        <%= render "ui/button_group" do %>
+          <%= render "ui/button", variant: :outline, size: :sm do %>Small<% end %>
+          <%= render "ui/button", variant: :outline, size: :sm do %>Button<% end %>
+          <%= render "ui/button", variant: :outline, size: :sm do %>Group<% end %>
+        <% end %>
+
+        <%= render "ui/button_group" do %>
+          <%= render "ui/button", variant: :outline do %>Default<% end %>
+          <%= render "ui/button", variant: :outline do %>Button<% end %>
+          <%= render "ui/button", variant: :outline do %>Group<% end %>
+        <% end %>
+
+        <%= render "ui/button_group" do %>
+          <%= render "ui/button", variant: :outline, size: :lg do %>Large<% end %>
+          <%= render "ui/button", variant: :outline, size: :lg do %>Button<% end %>
+          <%= render "ui/button", variant: :outline, size: :lg do %>Group<% end %>
+        <% end %>
+      </div>
+    <% end %>
+
+    <% example.phlex do %>
+      <div class="flex flex-col items-start gap-4">
+        <%= render UI::ButtonGroup.new do %>
+          <%= render UI::Button.new(variant: :outline, size: :sm) { "Small" } %>
+          <%= render UI::Button.new(variant: :outline, size: :sm) { "Button" } %>
+          <%= render UI::Button.new(variant: :outline, size: :sm) { "Group" } %>
+        <% end %>
+
+        <%= render UI::ButtonGroup.new do %>
+          <%= render UI::Button.new(variant: :outline) { "Default" } %>
+          <%= render UI::Button.new(variant: :outline) { "Button" } %>
+          <%= render UI::Button.new(variant: :outline) { "Group" } %>
+        <% end %>
+
+        <%= render UI::ButtonGroup.new do %>
+          <%= render UI::Button.new(variant: :outline, size: :lg) { "Large" } %>
+          <%= render UI::Button.new(variant: :outline, size: :lg) { "Button" } %>
+          <%= render UI::Button.new(variant: :outline, size: :lg) { "Group" } %>
+        <% end %>
+      </div>
+    <% end %>
+
+    <% example.view_component do %>
+      <div class="flex flex-col items-start gap-4">
+        <%= render UI::ButtonGroupComponent.new do %>
+          <%= render(UI::ButtonComponent.new(variant: :outline, size: :sm)) { "Small" } %>
+          <%= render(UI::ButtonComponent.new(variant: :outline, size: :sm)) { "Button" } %>
+          <%= render(UI::ButtonComponent.new(variant: :outline, size: :sm)) { "Group" } %>
+        <% end %>
+
+        <%= render UI::ButtonGroupComponent.new do %>
+          <%= render(UI::ButtonComponent.new(variant: :outline)) { "Default" } %>
+          <%= render(UI::ButtonComponent.new(variant: :outline)) { "Button" } %>
+          <%= render(UI::ButtonComponent.new(variant: :outline)) { "Group" } %>
+        <% end %>
+
+        <%= render UI::ButtonGroupComponent.new do %>
+          <%= render(UI::ButtonComponent.new(variant: :outline, size: :lg)) { "Large" } %>
+          <%= render(UI::ButtonComponent.new(variant: :outline, size: :lg)) { "Button" } %>
+          <%= render(UI::ButtonComponent.new(variant: :outline, size: :lg)) { "Group" } %>
+        <% end %>
+      </div>
+    <% end %>
+  <% end %>
+
+  <%# Nested %>
+  <%= render Docs::Example.new(
+    name: "Nested",
+    description: "Nest button groups to create spacing between groups.",
+    view_context: self
+  ) do |example| %>
+    <% example.erb do %>
+      <%= render "ui/button_group" do %>
+        <%= render "ui/button_group" do %>
+          <%= render "ui/button", variant: :outline, size: :sm do %>1<% end %>
+          <%= render "ui/button", variant: :outline, size: :sm do %>2<% end %>
+          <%= render "ui/button", variant: :outline, size: :sm do %>3<% end %>
+          <%= render "ui/button", variant: :outline, size: :sm do %>4<% end %>
+          <%= render "ui/button", variant: :outline, size: :sm do %>5<% end %>
+        <% end %>
+
+        <%= render "ui/button_group" do %>
+          <%= render "ui/button", variant: :outline, size: :"icon-sm" do %>
+            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m12 19-7-7 7-7"/><path d="M19 12H5"/></svg>
+          <% end %>
+          <%= render "ui/button", variant: :outline, size: :"icon-sm" do %>
+            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
+          <% end %>
+        <% end %>
+      <% end %>
+    <% end %>
+
+    <% example.phlex do %>
+      <%= render UI::ButtonGroup.new do %>
+        <%= render UI::ButtonGroup.new do %>
+          <%= render UI::Button.new(variant: :outline, size: :sm) { "1" } %>
+          <%= render UI::Button.new(variant: :outline, size: :sm) { "2" } %>
+          <%= render UI::Button.new(variant: :outline, size: :sm) { "3" } %>
+          <%= render UI::Button.new(variant: :outline, size: :sm) { "4" } %>
+          <%= render UI::Button.new(variant: :outline, size: :sm) { "5" } %>
+        <% end %>
+
+        <%= render UI::ButtonGroup.new do %>
+          <%= render UI::Button.new(variant: :outline, size: :"icon-sm") do %>
+            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m12 19-7-7 7-7"/><path d="M19 12H5"/></svg>
+          <% end %>
+          <%= render UI::Button.new(variant: :outline, size: :"icon-sm") do %>
+            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
+          <% end %>
+        <% end %>
+      <% end %>
+    <% end %>
+
+    <% example.view_component do %>
+      <%= render UI::ButtonGroupComponent.new do %>
+        <%= render UI::ButtonGroupComponent.new do %>
+          <%= render(UI::ButtonComponent.new(variant: :outline, size: :sm)) { "1" } %>
+          <%= render(UI::ButtonComponent.new(variant: :outline, size: :sm)) { "2" } %>
+          <%= render(UI::ButtonComponent.new(variant: :outline, size: :sm)) { "3" } %>
+          <%= render(UI::ButtonComponent.new(variant: :outline, size: :sm)) { "4" } %>
+          <%= render(UI::ButtonComponent.new(variant: :outline, size: :sm)) { "5" } %>
+        <% end %>
+
+        <%= render UI::ButtonGroupComponent.new do %>
+          <%= render UI::ButtonComponent.new(variant: :outline, size: :"icon-sm") do %>
+            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m12 19-7-7 7-7"/><path d="M19 12H5"/></svg>
+          <% end %>
+          <%= render UI::ButtonComponent.new(variant: :outline, size: :"icon-sm") do %>
+            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
+          <% end %>
+        <% end %>
+      <% end %>
+    <% end %>
+  <% end %>
+
+  <%# With Separator %>
+  <%= render Docs::Example.new(
+    name: "With Separator",
+    description: "The separator visually divides buttons. Use for non-outline variants to improve visual hierarchy.",
+    view_context: self
+  ) do |example| %>
+    <% example.erb do %>
+      <%= render "ui/button_group" do %>
+        <%= render "ui/button", variant: :secondary, size: :sm do %>Copy<% end %>
+        <%= render "ui/button_group/separator" %>
+        <%= render "ui/button", variant: :secondary, size: :sm do %>Paste<% end %>
+      <% end %>
+    <% end %>
+
+    <% example.phlex do %>
+      <%= render UI::ButtonGroup.new do %>
+        <%= render UI::Button.new(variant: :secondary, size: :sm) { "Copy" } %>
+        <%= render UI::ButtonGroupSeparator.new %>
+        <%= render UI::Button.new(variant: :secondary, size: :sm) { "Paste" } %>
+      <% end %>
+    <% end %>
+
+    <% example.view_component do %>
+      <%= render UI::ButtonGroupComponent.new do %>
+        <%= render(UI::ButtonComponent.new(variant: :secondary, size: :sm)) { "Copy" } %>
+        <%= render UI::ButtonGroupSeparatorComponent.new %>
+        <%= render(UI::ButtonComponent.new(variant: :secondary, size: :sm)) { "Paste" } %>
+      <% end %>
+    <% end %>
+  <% end %>
+
+  <%# Split Button %>
+  <%= render Docs::Example.new(
+    name: "Split Button",
+    description: "Create a split button group by adding two buttons separated by a separator.",
+    view_context: self
+  ) do |example| %>
+    <% example.erb do %>
+      <%= render "ui/button_group" do %>
+        <%= render "ui/button", variant: :secondary do %>Button<% end %>
+        <%= render "ui/button_group/separator" %>
+        <%= render "ui/button", size: :icon, variant: :secondary do %>
+          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="M12 5v14"/></svg>
+        <% end %>
+      <% end %>
+    <% end %>
+
+    <% example.phlex do %>
+      <%= render UI::ButtonGroup.new do %>
+        <%= render UI::Button.new(variant: :secondary) { "Button" } %>
+        <%= render UI::ButtonGroupSeparator.new %>
+        <%= render UI::Button.new(size: :icon, variant: :secondary) do %>
+          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="M12 5v14"/></svg>
+        <% end %>
+      <% end %>
+    <% end %>
+
+    <% example.view_component do %>
+      <%= render UI::ButtonGroupComponent.new do %>
+        <%= render(UI::ButtonComponent.new(variant: :secondary)) { "Button" } %>
+        <%= render UI::ButtonGroupSeparatorComponent.new %>
+        <%= render UI::ButtonComponent.new(size: :icon, variant: :secondary) do %>
+          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="M12 5v14"/></svg>
+        <% end %>
+      <% end %>
+    <% end %>
+  <% end %>
+
+  <%# With Dropdown Menu %>
+  <%= render Docs::Example.new(
+    name: "With Dropdown Menu",
+    description: "Create a split button with a dropdown menu. Use as_child on the dropdown menu to attach it to the button group.",
+    view_context: self
+  ) do |example| %>
+    <% example.erb do %>
+      <%= render "ui/dropdown_menu", as_child: true do |dropdown_attrs| %>
+        <%= render "ui/button_group", **dropdown_attrs do %>
+          <%= render "ui/button", variant: :outline do %>Follow<% end %>
+          <%= render "ui/dropdown_menu/trigger", as_child: true do |trigger_attrs| %>
+            <%= render "ui/button", variant: :outline, size: :icon, attributes: trigger_attrs do %>
+              <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m6 9 6 6 6-6"/></svg>
+            <% end %>
+          <% end %>
+          <%= render "ui/dropdown_menu/content", align: "end" do %>
+            <%= render "ui/dropdown_menu/item" do %>
+              <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M2 18a1 1 0 0 0 1 1h18a1 1 0 0 0 1-1v-2a1 1 0 0 0-1-1H3a1 1 0 0 0-1 1v2z"/><path d="M10 10V5a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1v5"/><path d="M4 15v-3a6 6 0 0 1 6-6h0"/><path d="M14 6h0a6 6 0 0 1 6 6v3"/></svg>
+              Mute Conversation
+            <% end %>
+            <%= render "ui/dropdown_menu/item" do %>
+              <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="m4.9 4.9 14.2 14.2"/></svg>
+              Block User
+            <% end %>
+            <%= render "ui/dropdown_menu/separator" %>
+            <%= render "ui/dropdown_menu/item", variant: :destructive do %>
+              <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 6h18"/><path d="M19 6v14c0 1-1 2-2 2H7c-1 0-2-1-2-2V6"/><path d="M8 6V4c0-1 1-2 2-2h4c1 0 2 1 2 2v2"/></svg>
+              Unfollow
+            <% end %>
+          <% end %>
+        <% end %>
+      <% end %>
+    <% end %>
+
+    <% example.phlex do %>
+      <%= render UI::DropdownMenu.new(as_child: true) do |dropdown_attrs| %>
+        <%= render UI::ButtonGroup.new(**dropdown_attrs) do %>
+          <%= render UI::Button.new(variant: :outline) { "Follow" } %>
+          <%= render UI::DropdownMenuTrigger.new(as_child: true) do |trigger_attrs| %>
+            <%= render UI::Button.new(**trigger_attrs, variant: :outline, size: :icon) do %>
+              <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m6 9 6 6 6-6"/></svg>
+            <% end %>
+          <% end %>
+          <%= render UI::DropdownMenuContent.new(align: :end) do %>
+            <%= render UI::DropdownMenuItem.new do %>
+              <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M2 18a1 1 0 0 0 1 1h18a1 1 0 0 0 1-1v-2a1 1 0 0 0-1-1H3a1 1 0 0 0-1 1v2z"/><path d="M10 10V5a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1v5"/><path d="M4 15v-3a6 6 0 0 1 6-6h0"/><path d="M14 6h0a6 6 0 0 1 6 6v3"/></svg>
+              Mute Conversation
+            <% end %>
+            <%= render UI::DropdownMenuItem.new do %>
+              <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="m4.9 4.9 14.2 14.2"/></svg>
+              Block User
+            <% end %>
+            <%= render UI::DropdownMenuSeparator.new %>
+            <%= render UI::DropdownMenuItem.new(variant: :destructive) do %>
+              <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 6h18"/><path d="M19 6v14c0 1-1 2-2 2H7c-1 0-2-1-2-2V6"/><path d="M8 6V4c0-1 1-2 2-2h4c1 0 2 1 2 2v2"/></svg>
+              Unfollow
+            <% end %>
+          <% end %>
+        <% end %>
+      <% end %>
+    <% end %>
+
+    <% example.view_component do %>
+      <%# ViewComponent implementation follows same as_child pattern %>
+      <%= render UI::DropdownMenuComponent.new(as_child: true) do |dropdown_attrs| %>
+        <%= render UI::ButtonGroupComponent.new(**dropdown_attrs) do %>
+          <%= render(UI::ButtonComponent.new(variant: :outline)) { "Follow" } %>
+          <%= render UI::DropdownMenuTriggerComponent.new(as_child: true) do |trigger_attrs| %>
+            <%= render UI::ButtonComponent.new(**trigger_attrs, variant: :outline, size: :icon) do %>
+              <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m6 9 6 6 6-6"/></svg>
+            <% end %>
+          <% end %>
+          <%= render UI::DropdownMenuContentComponent.new(align: :end) do %>
+            <%= render UI::DropdownMenuItemComponent.new do %>
+              <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M2 18a1 1 0 0 0 1 1h18a1 1 0 0 0 1-1v-2a1 1 0 0 0-1-1H3a1 1 0 0 0-1 1v2z"/><path d="M10 10V5a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1v5"/><path d="M4 15v-3a6 6 0 0 1 6-6h0"/><path d="M14 6h0a6 6 0 0 1 6 6v3"/></svg>
+              Mute Conversation
+            <% end %>
+            <%= render UI::DropdownMenuItemComponent.new do %>
+              <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="m4.9 4.9 14.2 14.2"/></svg>
+              Block User
+            <% end %>
+            <%= render UI::DropdownMenuSeparatorComponent.new %>
+            <%= render UI::DropdownMenuItemComponent.new(variant: :destructive) do %>
+              <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 6h18"/><path d="M19 6v14c0 1-1 2-2 2H7c-1 0-2-1-2-2V6"/><path d="M8 6V4c0-1 1-2 2-2h4c1 0 2 1 2 2v2"/></svg>
+              Unfollow
+            <% end %>
+          <% end %>
+        <% end %>
+      <% end %>
+    <% end %>
+  <% end %>
+
+  <%# With Input %>
+  <%= render Docs::Example.new(
+    name: "With Input",
+    description: "Wrap an input component with buttons.",
+    view_context: self
+  ) do |example| %>
+    <% example.erb do %>
+      <%= render "ui/button_group" do %>
+        <%= render "ui/input", type: "text", placeholder: "Search..." %>
+        <%= render "ui/button", variant: :outline do %>
+          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.3-4.3"/></svg>
+        <% end %>
+      <% end %>
+    <% end %>
+
+    <% example.phlex do %>
+      <%= render UI::ButtonGroup.new do %>
+        <%= render UI::Input.new(type: "text", placeholder: "Search...") %>
+        <%= render UI::Button.new(variant: :outline) do %>
+          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.3-4.3"/></svg>
+        <% end %>
+      <% end %>
+    <% end %>
+
+    <% example.view_component do %>
+      <%= render UI::ButtonGroupComponent.new do %>
+        <%= render UI::InputComponent.new(type: "text", placeholder: "Search...") %>
+        <%= render UI::ButtonComponent.new(variant: :outline) do %>
+          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.3-4.3"/></svg>
+        <% end %>
+      <% end %>
+    <% end %>
+  <% end %>
+
+  <%# With Text %>
+  <%= render Docs::Example.new(
+    name: "With Text",
+    description: "Display text within a button group.",
+    view_context: self
+  ) do |example| %>
+    <% example.erb do %>
+      <%= render "ui/button_group" do %>
+        <%= render "ui/button_group/text" do %>
+          <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2v20M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg>
+          USD
+        <% end %>
+        <%= render "ui/button", variant: :outline do %>Button<% end %>
+      <% end %>
+    <% end %>
+
+    <% example.phlex do %>
+      <%= render UI::ButtonGroup.new do %>
+        <%= render UI::ButtonGroupText.new do %>
+          <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2v20M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg>
+          USD
+        <% end %>
+        <%= render UI::Button.new(variant: :outline) { "Button" } %>
+      <% end %>
+    <% end %>
+
+    <% example.view_component do %>
+      <%= render UI::ButtonGroupComponent.new do %>
+        <%= render UI::ButtonGroupTextComponent.new do %>
+          <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2v20M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg>
+          USD
+        <% end %>
+        <%= render(UI::ButtonComponent.new(variant: :outline)) { "Button" } %>
+      <% end %>
+    <% end %>
+  <% end %>
+
+<% end %>
+

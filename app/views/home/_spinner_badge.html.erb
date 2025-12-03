@@ -1,0 +1,14 @@
+<div class="flex items-center gap-2">
+  <%= render "ui/badge", variant: :default do %>
+    <%= render "ui/spinner" %>
+    Syncing
+  <% end %>
+  <%= render "ui/badge", variant: :secondary do %>
+    <%= render "ui/spinner" %>
+    Updating
+  <% end %>
+  <%= render "ui/badge", variant: :outline do %>
+    <%= render "ui/spinner" %>
+    Loading
+  <% end %>
+</div>

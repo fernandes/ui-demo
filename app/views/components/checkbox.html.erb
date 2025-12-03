@@ -1,0 +1,134 @@
+<%= render Docs::ComponentPage.new(component_name: "checkbox") do %>
+
+  <%# Basic Example %>
+  <%= render Docs::Example.new(
+    name: "Default",
+    description: "A control that allows the user to toggle between checked and not checked.",
+    view_context: self
+  ) do |example| %>
+    <% example.erb do %>
+      <div class="flex items-center space-x-2">
+        <%= render "ui/checkbox", id: "terms", name: "terms", value: "accepted" %>
+        <%= render "ui/label", for: "terms" do %>Accept terms and conditions<% end %>
+      </div>
+    <% end %>
+
+    <% example.phlex do %>
+      <div class="flex items-center space-x-2">
+        <%= render UI::Checkbox.new(id: "terms", name: "terms", value: "accepted") %>
+        <%= render UI::Label.new(for: "terms") { "Accept terms and conditions" } %>
+      </div>
+    <% end %>
+
+    <% example.view_component do %>
+      <div class="flex items-center space-x-2">
+        <%= render UI::CheckboxComponent.new(id: "terms", name: "terms", value: "accepted") %>
+        <%= render(UI::LabelComponent.new(for: "terms")) { "Accept terms and conditions" } %>
+      </div>
+    <% end %>
+  <% end %>
+
+  <%# With Text %>
+  <%= render Docs::Example.new(
+    name: "With Text",
+    description: "Checkbox with a label and description text.",
+    view_context: self
+  ) do |example| %>
+    <% example.erb do %>
+      <div class="items-top flex space-x-2">
+        <%= render "ui/checkbox", id: "terms-text", name: "terms", value: "accepted" %>
+        <div class="grid gap-1.5 leading-none">
+          <%= render "ui/label", for: "terms-text" do %>Accept terms and conditions<% end %>
+          <p class="text-sm text-muted-foreground">You agree to our Terms of Service and Privacy Policy.</p>
+        </div>
+      </div>
+    <% end %>
+
+    <% example.phlex do %>
+      <div class="items-top flex space-x-2">
+        <%= render UI::Checkbox.new(id: "terms-text", name: "terms", value: "accepted") %>
+        <div class="grid gap-1.5 leading-none">
+          <%= render UI::Label.new(for: "terms-text") { "Accept terms and conditions" } %>
+          <p class="text-sm text-muted-foreground">You agree to our Terms of Service and Privacy Policy.</p>
+        </div>
+      </div>
+    <% end %>
+
+    <% example.view_component do %>
+      <div class="items-top flex space-x-2">
+        <%= render UI::CheckboxComponent.new(id: "terms-text", name: "terms", value: "accepted") %>
+        <div class="grid gap-1.5 leading-none">
+          <%= render(UI::LabelComponent.new(for: "terms-text")) { "Accept terms and conditions" } %>
+          <p class="text-sm text-muted-foreground">You agree to our Terms of Service and Privacy Policy.</p>
+        </div>
+      </div>
+    <% end %>
+  <% end %>
+
+  <%# Disabled %>
+  <%= render Docs::Example.new(
+    name: "Disabled",
+    description: "A disabled checkbox.",
+    view_context: self
+  ) do |example| %>
+    <% example.erb do %>
+      <div class="flex items-center space-x-2">
+        <%= render "ui/checkbox", id: "disabled", name: "disabled", value: "yes", disabled: true %>
+        <%= render "ui/label", for: "disabled" do %>Disabled<% end %>
+      </div>
+    <% end %>
+
+    <% example.phlex do %>
+      <div class="flex items-center space-x-2">
+        <%= render UI::Checkbox.new(id: "disabled", name: "disabled", value: "yes", disabled: true) %>
+        <%= render UI::Label.new(for: "disabled") { "Disabled" } %>
+      </div>
+    <% end %>
+
+    <% example.view_component do %>
+      <div class="flex items-center space-x-2">
+        <%= render UI::CheckboxComponent.new(id: "disabled", name: "disabled", value: "yes", disabled: true) %>
+        <%= render(UI::LabelComponent.new(for: "disabled")) { "Disabled" } %>
+      </div>
+    <% end %>
+  <% end %>
+
+  <%# With Card Style %>
+  <%= render Docs::Example.new(
+    name: "With Card Style",
+    description: "A checkbox inside a styled card with visual feedback on checked state.",
+    view_context: self
+  ) do |example| %>
+    <% example.erb do %>
+      <%= render "ui/label", for: "notifications", classes: "hover:bg-accent/50 flex items-start gap-3 rounded-lg border p-3 has-[[aria-checked=true]]:border-blue-600 has-[[aria-checked=true]]:bg-blue-50 dark:has-[[aria-checked=true]]:border-blue-900 dark:has-[[aria-checked=true]]:bg-blue-950" do %>
+        <%= render "ui/checkbox", id: "notifications", checked: true, classes: "data-[state=checked]:border-blue-600 data-[state=checked]:bg-blue-600 data-[state=checked]:text-white dark:data-[state=checked]:border-blue-700 dark:data-[state=checked]:bg-blue-700" %>
+        <div class="grid gap-1.5 font-normal">
+          <p class="text-sm leading-none font-medium">Enable notifications</p>
+          <p class="text-muted-foreground text-sm">You can enable or disable notifications at any time.</p>
+        </div>
+      <% end %>
+    <% end %>
+
+    <% example.phlex do %>
+      <%= render UI::Label.new(for: "notifications-phlex", classes: "hover:bg-accent/50 flex items-start gap-3 rounded-lg border p-3 has-[[aria-checked=true]]:border-blue-600 has-[[aria-checked=true]]:bg-blue-50 dark:has-[[aria-checked=true]]:border-blue-900 dark:has-[[aria-checked=true]]:bg-blue-950") do %>
+        <%= render UI::Checkbox.new(id: "notifications-phlex", checked: true, classes: "data-[state=checked]:border-blue-600 data-[state=checked]:bg-blue-600 data-[state=checked]:text-white dark:data-[state=checked]:border-blue-700 dark:data-[state=checked]:bg-blue-700") %>
+        <div class="grid gap-1.5 font-normal">
+          <p class="text-sm leading-none font-medium">Enable notifications</p>
+          <p class="text-muted-foreground text-sm">You can enable or disable notifications at any time.</p>
+        </div>
+      <% end %>
+    <% end %>
+
+    <% example.view_component do %>
+      <%= render UI::LabelComponent.new(for: "notifications-vc", classes: "hover:bg-accent/50 flex items-start gap-3 rounded-lg border p-3 has-[[aria-checked=true]]:border-blue-600 has-[[aria-checked=true]]:bg-blue-50 dark:has-[[aria-checked=true]]:border-blue-900 dark:has-[[aria-checked=true]]:bg-blue-950") do %>
+        <%= render UI::CheckboxComponent.new(id: "notifications-vc", checked: true, classes: "data-[state=checked]:border-blue-600 data-[state=checked]:bg-blue-600 data-[state=checked]:text-white dark:data-[state=checked]:border-blue-700 dark:data-[state=checked]:bg-blue-700") %>
+        <div class="grid gap-1.5 font-normal">
+          <p class="text-sm leading-none font-medium">Enable notifications</p>
+          <p class="text-muted-foreground text-sm">You can enable or disable notifications at any time.</p>
+        </div>
+      <% end %>
+    <% end %>
+  <% end %>
+
+<% end %>
+

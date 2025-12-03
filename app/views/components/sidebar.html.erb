@@ -1,0 +1,170 @@
+<%= render Docs::ComponentPage.new(component_name: "sidebar") do %>
+
+  <%# Default %>
+  <%= render Docs::Example.new(
+    name: "Default",
+    description: "A composable, themeable and customizable sidebar component.",
+    view_context: self
+  ) do |example| %>
+    <% example.erb do %>
+      <%= render "ui/sidebar/provider", open: true do %>
+        <%= render "ui/sidebar", side: :left do %>
+          <%= render "ui/sidebar/header" do %>
+            <%= render "ui/sidebar/menu" do %>
+              <%= render "ui/sidebar/menu_item" do %>
+                <%= render "ui/sidebar/menu_button", size: :lg do %>
+                  <div class="flex aspect-square size-8 items-center justify-center rounded-lg bg-sidebar-primary text-sidebar-primary-foreground">
+                    <svg class="size-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 11H5m14 0a2 2 0 012 2v6a2 2 0 01-2 2H5a2 2 0 01-2-2v-6a2 2 0 012-2m14 0V9a2 2 0 00-2-2M5 11V9a2 2 0 012-2m0 0V5a2 2 0 012-2h6a2 2 0 012 2v2M7 7h10"/>
+                    </svg>
+                  </div>
+                  <div class="grid flex-1 text-left text-sm leading-tight">
+                    <span class="truncate font-medium">Acme Inc</span>
+                    <span class="truncate text-xs">Enterprise</span>
+                  </div>
+                <% end %>
+              <% end %>
+            <% end %>
+          <% end %>
+          <%= render "ui/sidebar/content" do %>
+            <%= render "ui/sidebar/group" do %>
+              <%= render "ui/sidebar/group_label" do %>Platform<% end %>
+              <%= render "ui/sidebar/group_content" do %>
+                <%= render "ui/sidebar/menu" do %>
+                  <%= render "ui/sidebar/menu_item" do %>
+                    <%= render "ui/sidebar/menu_button" do %>
+                      <svg class="size-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6"/>
+                      </svg>
+                      <span>Dashboard</span>
+                    <% end %>
+                  <% end %>
+                  <%= render "ui/sidebar/menu_item" do %>
+                    <%= render "ui/sidebar/menu_button" do %>
+                      <svg class="size-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z"/>
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"/>
+                      </svg>
+                      <span>Settings</span>
+                    <% end %>
+                  <% end %>
+                <% end %>
+              <% end %>
+            <% end %>
+          <% end %>
+        <% end %>
+        <%= render "ui/sidebar/inset" do %>
+          <div class="p-4">Main content area</div>
+        <% end %>
+      <% end %>
+    <% end %>
+
+    <% example.phlex do %>
+      <%= render UI::SidebarProvider.new(open: true) do %>
+        <%= render UI::Sidebar.new(side: :left) do %>
+          <%= render UI::SidebarHeader.new do %>
+            <%= render UI::SidebarMenu.new do %>
+              <%= render UI::SidebarMenuItem.new do %>
+                <%= render UI::SidebarMenuButton.new(size: :lg) do %>
+                  <div class="flex aspect-square size-8 items-center justify-center rounded-lg bg-sidebar-primary text-sidebar-primary-foreground">
+                    <svg class="size-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 11H5m14 0a2 2 0 012 2v6a2 2 0 01-2 2H5a2 2 0 01-2-2v-6a2 2 0 012-2m14 0V9a2 2 0 00-2-2M5 11V9a2 2 0 012-2m0 0V5a2 2 0 012-2h6a2 2 0 012 2v2M7 7h10"/>
+                    </svg>
+                  </div>
+                  <div class="grid flex-1 text-left text-sm leading-tight">
+                    <span class="truncate font-medium">Acme Inc</span>
+                    <span class="truncate text-xs">Enterprise</span>
+                  </div>
+                <% end %>
+              <% end %>
+            <% end %>
+          <% end %>
+          <%= render UI::SidebarContent.new do %>
+            <%= render UI::SidebarGroup.new do %>
+              <%= render UI::SidebarGroupLabel.new { "Platform" } %>
+              <%= render UI::SidebarGroupContent.new do %>
+                <%= render UI::SidebarMenu.new do %>
+                  <%= render UI::SidebarMenuItem.new do %>
+                    <%= render UI::SidebarMenuButton.new do %>
+                      <svg class="size-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6"/>
+                      </svg>
+                      <span>Dashboard</span>
+                    <% end %>
+                  <% end %>
+                  <%= render UI::SidebarMenuItem.new do %>
+                    <%= render UI::SidebarMenuButton.new do %>
+                      <svg class="size-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z"/>
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"/>
+                      </svg>
+                      <span>Settings</span>
+                    <% end %>
+                  <% end %>
+                <% end %>
+              <% end %>
+            <% end %>
+          <% end %>
+        <% end %>
+        <%= render UI::SidebarInset.new do %>
+          <div class="p-4">Main content area</div>
+        <% end %>
+      <% end %>
+    <% end %>
+
+    <% example.view_component do %>
+      <%= render UI::SidebarProviderComponent.new(open: true) do %>
+        <%= render UI::SidebarComponent.new(side: :left) do %>
+          <%= render UI::SidebarHeaderComponent.new do %>
+            <%= render UI::SidebarMenuComponent.new do %>
+              <%= render UI::SidebarMenuItemComponent.new do %>
+                <%= render UI::SidebarMenuButtonComponent.new(size: :lg) do %>
+                  <div class="flex aspect-square size-8 items-center justify-center rounded-lg bg-sidebar-primary text-sidebar-primary-foreground">
+                    <svg class="size-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 11H5m14 0a2 2 0 012 2v6a2 2 0 01-2 2H5a2 2 0 01-2-2v-6a2 2 0 012-2m14 0V9a2 2 0 00-2-2M5 11V9a2 2 0 012-2m0 0V5a2 2 0 012-2h6a2 2 0 012 2v2M7 7h10"/>
+                    </svg>
+                  </div>
+                  <div class="grid flex-1 text-left text-sm leading-tight">
+                    <span class="truncate font-medium">Acme Inc</span>
+                    <span class="truncate text-xs">Enterprise</span>
+                  </div>
+                <% end %>
+              <% end %>
+            <% end %>
+          <% end %>
+          <%= render UI::SidebarContentComponent.new do %>
+            <%= render UI::SidebarGroupComponent.new do %>
+              <%= render(UI::SidebarGroupLabelComponent.new) { "Platform" } %>
+              <%= render UI::SidebarGroupContentComponent.new do %>
+                <%= render UI::SidebarMenuComponent.new do %>
+                  <%= render UI::SidebarMenuItemComponent.new do %>
+                    <%= render UI::SidebarMenuButtonComponent.new do %>
+                      <svg class="size-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6"/>
+                      </svg>
+                      <span>Dashboard</span>
+                    <% end %>
+                  <% end %>
+                  <%= render UI::SidebarMenuItemComponent.new do %>
+                    <%= render UI::SidebarMenuButtonComponent.new do %>
+                      <svg class="size-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z"/>
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"/>
+                      </svg>
+                      <span>Settings</span>
+                    <% end %>
+                  <% end %>
+                <% end %>
+              <% end %>
+            <% end %>
+          <% end %>
+        <% end %>
+        <%= render UI::SidebarInsetComponent.new do %>
+          <div class="p-4">Main content area</div>
+        <% end %>
+      <% end %>
+    <% end %>
+  <% end %>
+
+<% end %>
+

@@ -1,0 +1,25 @@
+<div class="flex w-full max-w-md flex-col gap-6">
+  <%= render "ui/item", variant: "outline" do %>
+    <%= render "ui/item/content" do %>
+      <%= render "ui/item/title" do %>Two-factor authentication<% end %>
+      <%= render "ui/item/description", classes: "text-pretty xl:hidden 2xl:block" do %>Verify via email or phone number.<% end %>
+    <% end %>
+    <%= render "ui/item/actions" do %>
+      <%= render "ui/button", size: :sm do %>Enable<% end %>
+    <% end %>
+  <% end %>
+
+  <%= render "ui/item", variant: "outline", size: "sm", as_child: true do |item_attrs| %>
+    <%= content_tag(:a, **item_attrs, href: "#") do %>
+      <%= render "ui/item/media" do %>
+        <%= lucide_icon("badge-check", class: "size-5") %>
+      <% end %>
+      <%= render "ui/item/content" do %>
+        <%= render "ui/item/title" do %>Your profile has been verified.<% end %>
+      <% end %>
+      <%= render "ui/item/actions" do %>
+        <%= lucide_icon("chevron-right", class: "size-4") %>
+      <% end %>
+    <% end %>
+  <% end %>
+</div>

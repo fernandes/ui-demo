@@ -1,0 +1,322 @@
+<%= render Docs::ComponentPage.new(component_name: "dropdown_menu") do %>
+
+  <%# Basic %>
+  <%= render Docs::Example.new(
+    name: "Basic",
+    description: "Displays a menu to the user—such as a set of actions or functions—triggered by a button.",
+    view_context: self
+  ) do |example| %>
+    <% example.erb do %>
+      <%= render "ui/dropdown_menu" do %>
+        <%= render "ui/dropdown_menu/trigger", as_child: true do |attrs| %>
+          <%= render "ui/button", variant: :outline, attributes: attrs do %>Open Menu<% end %>
+        <% end %>
+        <%= render "ui/dropdown_menu/content", classes: "w-56" do %>
+          <%= render "ui/dropdown_menu/label" do %>My Account<% end %>
+          <%= render "ui/dropdown_menu/separator" %>
+          <%= render "ui/dropdown_menu/item" do %>
+            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-user"><path d="M19 21v-2a4 4 0 0 0-4-4H9a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+            Profile
+            <%= render "ui/dropdown_menu/shortcut" do %>⇧⌘P<% end %>
+          <% end %>
+          <%= render "ui/dropdown_menu/item" do %>
+            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-credit-card"><rect width="20" height="14" x="2" y="5" rx="2"/><line x1="2" x2="22" y1="10" y2="10"/></svg>
+            Billing
+            <%= render "ui/dropdown_menu/shortcut" do %>⌘B<% end %>
+          <% end %>
+          <%= render "ui/dropdown_menu/item" do %>
+            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-settings"><path d="M12.22 2h-.44a2 2 0 0 0-2 2v.18a2 2 0 0 1-1 1.73l-.43.25a2 2 0 0 1-2 0l-.15-.08a2 2 0 0 0-2.73.73l-.22.38a2 2 0 0 0 .73 2.73l.15.1a2 2 0 0 1 1 1.72v.51a2 2 0 0 1-1 1.74l-.15.09a2 2 0 0 0-.73 2.73l.22.38a2 2 0 0 0 2.73.73l.15-.08a2 2 0 0 1 2 0l.43.25a2 2 0 0 1 1 1.73V20a2 2 0 0 0 2 2h.44a2 2 0 0 0 2-2v-.18a2 2 0 0 1 1-1.73l.43-.25a2 2 0 0 1 2 0l.15.08a2 2 0 0 0 2.73-.73l.22-.39a2 2 0 0 0-.73-2.73l-.15-.08a2 2 0 0 1-1-1.74v-.5a2 2 0 0 1 1-1.74l.15-.09a2 2 0 0 0 .73-2.73l-.22-.38a2 2 0 0 0-2.73-.73l-.15.08a2 2 0 0 1-2 0l-.43-.25a2 2 0 0 1-1-1.73V4a2 2 0 0 0-2-2z"/><circle cx="12" cy="12" r="3"/></svg>
+            Settings
+            <%= render "ui/dropdown_menu/shortcut" do %>⌘S<% end %>
+          <% end %>
+          <%= render "ui/dropdown_menu/separator" %>
+          <%= render "ui/dropdown_menu/item" do %>
+            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-log-out"><path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"/><polyline points="16 17 21 12 16 7"/><line x1="21" x2="9" y1="12" y2="12"/></svg>
+            Log out
+            <%= render "ui/dropdown_menu/shortcut" do %>⇧⌘Q<% end %>
+          <% end %>
+        <% end %>
+      <% end %>
+    <% end %>
+
+    <% example.phlex do %>
+      <%= render UI::DropdownMenu.new do %>
+        <%= render UI::DropdownMenuTrigger.new(as_child: true) do |attrs| %>
+          <%= render UI::Button.new(**attrs, variant: :outline) { "Open Menu" } %>
+        <% end %>
+        <%= render UI::DropdownMenuContent.new(classes: "w-56") do %>
+          <%= render UI::DropdownMenuLabel.new { "My Account" } %>
+          <%= render UI::DropdownMenuSeparator.new %>
+          <%= render UI::DropdownMenuItem.new do %>
+            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-user"><path d="M19 21v-2a4 4 0 0 0-4-4H9a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+            Profile
+            <%= render UI::DropdownMenuShortcut.new { "⇧⌘P" } %>
+          <% end %>
+          <%= render UI::DropdownMenuItem.new do %>
+            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-credit-card"><rect width="20" height="14" x="2" y="5" rx="2"/><line x1="2" x2="22" y1="10" y2="10"/></svg>
+            Billing
+            <%= render UI::DropdownMenuShortcut.new { "⌘B" } %>
+          <% end %>
+          <%= render UI::DropdownMenuItem.new do %>
+            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-settings"><path d="M12.22 2h-.44a2 2 0 0 0-2 2v.18a2 2 0 0 1-1 1.73l-.43.25a2 2 0 0 1-2 0l-.15-.08a2 2 0 0 0-2.73.73l-.22.38a2 2 0 0 0 .73 2.73l.15.1a2 2 0 0 1 1 1.72v.51a2 2 0 0 1-1 1.74l-.15.09a2 2 0 0 0-.73 2.73l.22.38a2 2 0 0 0 2.73.73l.15-.08a2 2 0 0 1 2 0l.43.25a2 2 0 0 1 1 1.73V20a2 2 0 0 0 2 2h.44a2 2 0 0 0 2-2v-.18a2 2 0 0 1 1-1.73l.43-.25a2 2 0 0 1 2 0l.15.08a2 2 0 0 0 2.73-.73l.22-.39a2 2 0 0 0-.73-2.73l-.15-.08a2 2 0 0 1-1-1.74v-.5a2 2 0 0 1 1-1.74l.15-.09a2 2 0 0 0 .73-2.73l-.22-.38a2 2 0 0 0-2.73-.73l-.15.08a2 2 0 0 1-2 0l-.43-.25a2 2 0 0 1-1-1.73V4a2 2 0 0 0-2-2z"/><circle cx="12" cy="12" r="3"/></svg>
+            Settings
+            <%= render UI::DropdownMenuShortcut.new { "⌘S" } %>
+          <% end %>
+          <%= render UI::DropdownMenuSeparator.new %>
+          <%= render UI::DropdownMenuItem.new do %>
+            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-log-out"><path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"/><polyline points="16 17 21 12 16 7"/><line x1="21" x2="9" y1="12" y2="12"/></svg>
+            Log out
+            <%= render UI::DropdownMenuShortcut.new { "⇧⌘Q" } %>
+          <% end %>
+        <% end %>
+      <% end %>
+    <% end %>
+
+    <% example.view_component do %>
+      <%= render UI::DropdownMenuComponent.new do %>
+        <%= render UI::DropdownMenuTriggerComponent.new(as_child: true) do %>
+          <%= render(UI::ButtonComponent.new(variant: :outline)) { "Open Menu" } %>
+        <% end %>
+        <%= render UI::DropdownMenuContentComponent.new(classes: "w-56") do %>
+          <%= render(UI::DropdownMenuLabelComponent.new) { "My Account" } %>
+          <%= render UI::DropdownMenuSeparatorComponent.new %>
+          <%= render UI::DropdownMenuItemComponent.new do %>
+            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-user"><path d="M19 21v-2a4 4 0 0 0-4-4H9a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+            Profile
+            <%= render(UI::DropdownMenuShortcutComponent.new) { "⇧⌘P" } %>
+          <% end %>
+          <%= render UI::DropdownMenuItemComponent.new do %>
+            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-credit-card"><rect width="20" height="14" x="2" y="5" rx="2"/><line x1="2" x2="22" y1="10" y2="10"/></svg>
+            Billing
+            <%= render(UI::DropdownMenuShortcutComponent.new) { "⌘B" } %>
+          <% end %>
+          <%= render UI::DropdownMenuItemComponent.new do %>
+            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-settings"><path d="M12.22 2h-.44a2 2 0 0 0-2 2v.18a2 2 0 0 1-1 1.73l-.43.25a2 2 0 0 1-2 0l-.15-.08a2 2 0 0 0-2.73.73l-.22.38a2 2 0 0 0 .73 2.73l.15.1a2 2 0 0 1 1 1.72v.51a2 2 0 0 1-1 1.74l-.15.09a2 2 0 0 0-.73 2.73l.22.38a2 2 0 0 0 2.73.73l.15-.08a2 2 0 0 1 2 0l.43.25a2 2 0 0 1 1 1.73V20a2 2 0 0 0 2 2h.44a2 2 0 0 0 2-2v-.18a2 2 0 0 1 1-1.73l.43-.25a2 2 0 0 1 2 0l.15.08a2 2 0 0 0 2.73-.73l.22-.39a2 2 0 0 0-.73-2.73l-.15-.08a2 2 0 0 1-1-1.74v-.5a2 2 0 0 1 1-1.74l.15-.09a2 2 0 0 0 .73-2.73l-.22-.38a2 2 0 0 0-2.73-.73l-.15.08a2 2 0 0 1-2 0l-.43-.25a2 2 0 0 1-1-1.73V4a2 2 0 0 0-2-2z"/><circle cx="12" cy="12" r="3"/></svg>
+            Settings
+            <%= render(UI::DropdownMenuShortcutComponent.new) { "⌘S" } %>
+          <% end %>
+          <%= render UI::DropdownMenuSeparatorComponent.new %>
+          <%= render UI::DropdownMenuItemComponent.new do %>
+            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-log-out"><path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"/><polyline points="16 17 21 12 16 7"/><line x1="21" x2="9" y1="12" y2="12"/></svg>
+            Log out
+            <%= render(UI::DropdownMenuShortcutComponent.new) { "⇧⌘Q" } %>
+          <% end %>
+        <% end %>
+      <% end %>
+    <% end %>
+  <% end %>
+
+  <%# With Checkboxes %>
+  <%= render Docs::Example.new(
+    name: "With Checkboxes",
+    description: "A dropdown menu with checkbox items for toggling options.",
+    view_context: self
+  ) do |example| %>
+    <% example.erb do %>
+      <%= render "ui/dropdown_menu" do %>
+        <%= render "ui/dropdown_menu/trigger", as_child: true do |attrs| %>
+          <%= render "ui/button", variant: :outline, attributes: attrs do %>View Options<% end %>
+        <% end %>
+        <%= render "ui/dropdown_menu/content", classes: "w-56" do %>
+          <%= render "ui/dropdown_menu/label" do %>Appearance<% end %>
+          <%= render "ui/dropdown_menu/separator" %>
+          <%= render "ui/dropdown_menu/checkbox_item", checked: true do %>Status Bar<% end %>
+          <%= render "ui/dropdown_menu/checkbox_item", checked: false do %>Activity Bar<% end %>
+          <%= render "ui/dropdown_menu/checkbox_item", checked: true do %>Panel<% end %>
+        <% end %>
+      <% end %>
+    <% end %>
+
+    <% example.phlex do %>
+      <%= render UI::DropdownMenu.new do %>
+        <%= render UI::DropdownMenuTrigger.new(as_child: true) do |attrs| %>
+          <%= render UI::Button.new(**attrs, variant: :outline) { "View Options" } %>
+        <% end %>
+        <%= render UI::DropdownMenuContent.new(classes: "w-56") do %>
+          <%= render UI::DropdownMenuLabel.new { "Appearance" } %>
+          <%= render UI::DropdownMenuSeparator.new %>
+          <%= render UI::DropdownMenuCheckboxItem.new(checked: true) { "Status Bar" } %>
+          <%= render UI::DropdownMenuCheckboxItem.new(checked: false) { "Activity Bar" } %>
+          <%= render UI::DropdownMenuCheckboxItem.new(checked: true) { "Panel" } %>
+        <% end %>
+      <% end %>
+    <% end %>
+
+    <% example.view_component do %>
+      <%= render UI::DropdownMenuComponent.new do %>
+        <%= render UI::DropdownMenuTriggerComponent.new(as_child: true) do %>
+          <%= render(UI::ButtonComponent.new(variant: :outline)) { "View Options" } %>
+        <% end %>
+        <%= render UI::DropdownMenuContentComponent.new(classes: "w-56") do %>
+          <%= render(UI::DropdownMenuLabelComponent.new) { "Appearance" } %>
+          <%= render UI::DropdownMenuSeparatorComponent.new %>
+          <%= render(UI::DropdownMenuCheckboxItemComponent.new(checked: true)) { "Status Bar" } %>
+          <%= render(UI::DropdownMenuCheckboxItemComponent.new(checked: false)) { "Activity Bar" } %>
+          <%= render(UI::DropdownMenuCheckboxItemComponent.new(checked: true)) { "Panel" } %>
+        <% end %>
+      <% end %>
+    <% end %>
+  <% end %>
+
+  <%# With Radio Group %>
+  <%= render Docs::Example.new(
+    name: "With Radio Group",
+    description: "A dropdown menu with radio items for selecting a single option.",
+    view_context: self
+  ) do |example| %>
+    <% example.erb do %>
+      <%= render "ui/dropdown_menu" do %>
+        <%= render "ui/dropdown_menu/trigger", as_child: true do |attrs| %>
+          <%= render "ui/button", variant: :outline, attributes: attrs do %>Panel Position<% end %>
+        <% end %>
+        <%= render "ui/dropdown_menu/content", classes: "w-56" do %>
+          <%= render "ui/dropdown_menu/label" do %>Position<% end %>
+          <%= render "ui/dropdown_menu/separator" %>
+          <%= render "ui/dropdown_menu/radio_group" do %>
+            <%= render "ui/dropdown_menu/radio_item", value: "top" do %>Top<% end %>
+            <%= render "ui/dropdown_menu/radio_item", value: "bottom", checked: true do %>Bottom<% end %>
+            <%= render "ui/dropdown_menu/radio_item", value: "right" do %>Right<% end %>
+          <% end %>
+        <% end %>
+      <% end %>
+    <% end %>
+
+    <% example.phlex do %>
+      <%= render UI::DropdownMenu.new do %>
+        <%= render UI::DropdownMenuTrigger.new(as_child: true) do |attrs| %>
+          <%= render UI::Button.new(**attrs, variant: :outline) { "Panel Position" } %>
+        <% end %>
+        <%= render UI::DropdownMenuContent.new(classes: "w-56") do %>
+          <%= render UI::DropdownMenuLabel.new { "Position" } %>
+          <%= render UI::DropdownMenuSeparator.new %>
+          <%= render UI::DropdownMenuRadioGroup.new do %>
+            <%= render UI::DropdownMenuRadioItem.new(value: "top") { "Top" } %>
+            <%= render UI::DropdownMenuRadioItem.new(value: "bottom", checked: true) { "Bottom" } %>
+            <%= render UI::DropdownMenuRadioItem.new(value: "right") { "Right" } %>
+          <% end %>
+        <% end %>
+      <% end %>
+    <% end %>
+
+    <% example.view_component do %>
+      <%= render UI::DropdownMenuComponent.new do %>
+        <%= render UI::DropdownMenuTriggerComponent.new(as_child: true) do %>
+          <%= render(UI::ButtonComponent.new(variant: :outline)) { "Panel Position" } %>
+        <% end %>
+        <%= render UI::DropdownMenuContentComponent.new(classes: "w-56") do %>
+          <%= render(UI::DropdownMenuLabelComponent.new) { "Position" } %>
+          <%= render UI::DropdownMenuSeparatorComponent.new %>
+          <%= render UI::DropdownMenuRadioGroupComponent.new do %>
+            <%= render(UI::DropdownMenuRadioItemComponent.new(value: "top")) { "Top" } %>
+            <%= render(UI::DropdownMenuRadioItemComponent.new(value: "bottom", checked: true)) { "Bottom" } %>
+            <%= render(UI::DropdownMenuRadioItemComponent.new(value: "right")) { "Right" } %>
+          <% end %>
+        <% end %>
+      <% end %>
+    <% end %>
+  <% end %>
+
+  <%# With Submenu %>
+  <%= render Docs::Example.new(
+    name: "With Submenu",
+    description: "A dropdown menu with nested submenus for organizing related items.",
+    view_context: self
+  ) do |example| %>
+    <% example.erb do %>
+      <%= render "ui/dropdown_menu" do %>
+        <%= render "ui/dropdown_menu/trigger", as_child: true do |attrs| %>
+          <%= render "ui/button", variant: :outline, attributes: attrs do %>More Options<% end %>
+        <% end %>
+        <%= render "ui/dropdown_menu/content", classes: "w-56" do %>
+          <%= render "ui/dropdown_menu/item" do %>
+            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-mail"><rect width="20" height="16" x="2" y="4" rx="2"/><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/></svg>
+            Email
+          <% end %>
+          <%= render "ui/dropdown_menu/item" do %>
+            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-message-square"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
+            Message
+          <% end %>
+          <%= render "ui/dropdown_menu/separator" %>
+          <%= render "ui/dropdown_menu/sub" do %>
+            <%= render "ui/dropdown_menu/sub_trigger" do %>
+              <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-plus-circle"><circle cx="12" cy="12" r="10"/><path d="M8 12h8"/><path d="M12 8v8"/></svg>
+              More Tools
+            <% end %>
+            <%= render "ui/dropdown_menu/sub_content" do %>
+              <%= render "ui/dropdown_menu/item" do %>Save Page As...<% end %>
+              <%= render "ui/dropdown_menu/item" do %>Create Shortcut...<% end %>
+              <%= render "ui/dropdown_menu/item" do %>Name Window...<% end %>
+              <%= render "ui/dropdown_menu/separator" %>
+              <%= render "ui/dropdown_menu/item" do %>Developer Tools<% end %>
+            <% end %>
+          <% end %>
+        <% end %>
+      <% end %>
+    <% end %>
+
+    <% example.phlex do %>
+      <%= render UI::DropdownMenu.new do %>
+        <%= render UI::DropdownMenuTrigger.new(as_child: true) do |attrs| %>
+          <%= render UI::Button.new(**attrs, variant: :outline) { "More Options" } %>
+        <% end %>
+        <%= render UI::DropdownMenuContent.new(classes: "w-56") do %>
+          <%= render UI::DropdownMenuItem.new do %>
+            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-mail"><rect width="20" height="16" x="2" y="4" rx="2"/><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/></svg>
+            Email
+          <% end %>
+          <%= render UI::DropdownMenuItem.new do %>
+            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-message-square"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
+            Message
+          <% end %>
+          <%= render UI::DropdownMenuSeparator.new %>
+          <%= render UI::DropdownMenuSub.new do %>
+            <%= render UI::DropdownMenuSubTrigger.new do %>
+              <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-plus-circle"><circle cx="12" cy="12" r="10"/><path d="M8 12h8"/><path d="M12 8v8"/></svg>
+              More Tools
+            <% end %>
+            <%= render UI::DropdownMenuSubContent.new do %>
+              <%= render UI::DropdownMenuItem.new { "Save Page As..." } %>
+              <%= render UI::DropdownMenuItem.new { "Create Shortcut..." } %>
+              <%= render UI::DropdownMenuItem.new { "Name Window..." } %>
+              <%= render UI::DropdownMenuSeparator.new %>
+              <%= render UI::DropdownMenuItem.new { "Developer Tools" } %>
+            <% end %>
+          <% end %>
+        <% end %>
+      <% end %>
+    <% end %>
+
+    <% example.view_component do %>
+      <%= render UI::DropdownMenuComponent.new do %>
+        <%= render UI::DropdownMenuTriggerComponent.new(as_child: true) do %>
+          <%= render(UI::ButtonComponent.new(variant: :outline)) { "More Options" } %>
+        <% end %>
+        <%= render UI::DropdownMenuContentComponent.new(classes: "w-56") do %>
+          <%= render UI::DropdownMenuItemComponent.new do %>
+            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-mail"><rect width="20" height="16" x="2" y="4" rx="2"/><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/></svg>
+            Email
+          <% end %>
+          <%= render UI::DropdownMenuItemComponent.new do %>
+            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-message-square"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
+            Message
+          <% end %>
+          <%= render UI::DropdownMenuSeparatorComponent.new %>
+          <%= render UI::DropdownMenuSubComponent.new do %>
+            <%= render UI::DropdownMenuSubTriggerComponent.new do %>
+              <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-plus-circle"><circle cx="12" cy="12" r="10"/><path d="M8 12h8"/><path d="M12 8v8"/></svg>
+              More Tools
+            <% end %>
+            <%= render UI::DropdownMenuSubContentComponent.new do %>
+              <%= render(UI::DropdownMenuItemComponent.new) { "Save Page As..." } %>
+              <%= render(UI::DropdownMenuItemComponent.new) { "Create Shortcut..." } %>
+              <%= render(UI::DropdownMenuItemComponent.new) { "Name Window..." } %>
+              <%= render UI::DropdownMenuSeparatorComponent.new %>
+              <%= render(UI::DropdownMenuItemComponent.new) { "Developer Tools" } %>
+            <% end %>
+          <% end %>
+        <% end %>
+      <% end %>
+    <% end %>
+  <% end %>
+
+<% end %>

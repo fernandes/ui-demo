@@ -1,0 +1,126 @@
+<%= render Docs::ComponentPage.new(component_name: "input") do %>
+
+  <%# Default %>
+  <%= render Docs::Example.new(
+    name: "Default",
+    description: "The default text input field.",
+    view_context: self
+  ) do |example| %>
+    <% example.erb do %>
+      <%= render "ui/input", type: "email", placeholder: "Email" %>
+    <% end %>
+
+    <% example.phlex do %>
+      <%= render UI::Input.new(type: "email", placeholder: "Email") %>
+    <% end %>
+
+    <% example.view_component do %>
+      <%= render UI::InputComponent.new(type: "email", placeholder: "Email") %>
+    <% end %>
+  <% end %>
+
+  <%# File Input %>
+  <%= render Docs::Example.new(
+    name: "File",
+    description: "A file input field.",
+    view_context: self
+  ) do |example| %>
+    <% example.erb do %>
+      <div class="grid w-full max-w-sm items-center gap-1.5">
+        <%= render "ui/label", for: "picture" do %>Picture<% end %>
+        <%= render "ui/input", id: "picture", type: "file" %>
+      </div>
+    <% end %>
+
+    <% example.phlex do %>
+      <div class="grid w-full max-w-sm items-center gap-1.5">
+        <%= render UI::Label.new(for: "picture") { "Picture" } %>
+        <%= render UI::Input.new(id: "picture", type: "file") %>
+      </div>
+    <% end %>
+
+    <% example.view_component do %>
+      <div class="grid w-full max-w-sm items-center gap-1.5">
+        <%= render(UI::LabelComponent.new(for: "picture")) { "Picture" } %>
+        <%= render UI::InputComponent.new(id: "picture", type: "file") %>
+      </div>
+    <% end %>
+  <% end %>
+
+  <%# Disabled %>
+  <%= render Docs::Example.new(
+    name: "Disabled",
+    description: "A disabled input field.",
+    view_context: self
+  ) do |example| %>
+    <% example.erb do %>
+      <%= render "ui/input", type: "email", placeholder: "Email", disabled: true %>
+    <% end %>
+
+    <% example.phlex do %>
+      <%= render UI::Input.new(type: "email", placeholder: "Email", disabled: true) %>
+    <% end %>
+
+    <% example.view_component do %>
+      <%= render UI::InputComponent.new(type: "email", placeholder: "Email", disabled: true) %>
+    <% end %>
+  <% end %>
+
+  <%# With Label %>
+  <%= render Docs::Example.new(
+    name: "With Label",
+    description: "Input field with an associated label.",
+    view_context: self
+  ) do |example| %>
+    <% example.erb do %>
+      <div class="grid w-full max-w-sm items-center gap-1.5">
+        <%= render "ui/label", for: "email" do %>Email<% end %>
+        <%= render "ui/input", type: "email", id: "email", placeholder: "Email" %>
+      </div>
+    <% end %>
+
+    <% example.phlex do %>
+      <div class="grid w-full max-w-sm items-center gap-1.5">
+        <%= render UI::Label.new(for: "email") { "Email" } %>
+        <%= render UI::Input.new(type: "email", id: "email", placeholder: "Email") %>
+      </div>
+    <% end %>
+
+    <% example.view_component do %>
+      <div class="grid w-full max-w-sm items-center gap-1.5">
+        <%= render(UI::LabelComponent.new(for: "email")) { "Email" } %>
+        <%= render UI::InputComponent.new(type: "email", id: "email", placeholder: "Email") %>
+      </div>
+    <% end %>
+  <% end %>
+
+  <%# With Button %>
+  <%= render Docs::Example.new(
+    name: "With Button",
+    description: "Input field with an associated button.",
+    view_context: self
+  ) do |example| %>
+    <% example.erb do %>
+      <div class="flex w-full max-w-sm items-center space-x-2">
+        <%= render "ui/input", type: "email", placeholder: "Email" %>
+        <%= render "ui/button", content: "Subscribe" %>
+      </div>
+    <% end %>
+
+    <% example.phlex do %>
+      <div class="flex w-full max-w-sm items-center space-x-2">
+        <%= render UI::Input.new(type: "email", placeholder: "Email") %>
+        <%= render UI::Button.new { "Subscribe" } %>
+      </div>
+    <% end %>
+
+    <% example.view_component do %>
+      <div class="flex w-full max-w-sm items-center space-x-2">
+        <%= render UI::InputComponent.new(type: "email", placeholder: "Email") %>
+        <%= render(UI::ButtonComponent.new) { "Subscribe" } %>
+      </div>
+    <% end %>
+  <% end %>
+
+<% end %>
+

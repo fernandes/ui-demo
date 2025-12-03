@@ -1,0 +1,127 @@
+<%= render Docs::ComponentPage.new(component_name: "kbd") do %>
+
+  <%# Default %>
+  <%= render Docs::Example.new(
+    name: "Default",
+    description: "Display textual user input from keyboard.",
+    view_context: self
+  ) do |example| %>
+    <% example.erb do %>
+      <div class="flex flex-wrap items-center gap-4">
+        <%= render "ui/kbd", content: "Ctrl" %>
+        <%= render "ui/kbd", content: "Shift" %>
+        <%= render "ui/kbd", content: "Alt" %>
+        <%= render "ui/kbd", content: "Enter" %>
+      </div>
+    <% end %>
+
+    <% example.phlex do %>
+      <div class="flex flex-wrap items-center gap-4">
+        <%= render UI::Kbd.new { "Ctrl" } %>
+        <%= render UI::Kbd.new { "Shift" } %>
+        <%= render UI::Kbd.new { "Alt" } %>
+        <%= render UI::Kbd.new { "Enter" } %>
+      </div>
+    <% end %>
+
+    <% example.view_component do %>
+      <div class="flex flex-wrap items-center gap-4">
+        <%= render(UI::KbdComponent.new) { "Ctrl" } %>
+        <%= render(UI::KbdComponent.new) { "Shift" } %>
+        <%= render(UI::KbdComponent.new) { "Alt" } %>
+        <%= render(UI::KbdComponent.new) { "Enter" } %>
+      </div>
+    <% end %>
+  <% end %>
+
+  <%# Key Combinations %>
+  <%= render Docs::Example.new(
+    name: "Key Combinations",
+    description: "Grouped keyboard shortcuts.",
+    view_context: self
+  ) do |example| %>
+    <% example.erb do %>
+      <div class="flex flex-wrap items-center gap-4">
+        <%= render "ui/kbd/group" do %>
+          <%= render "ui/kbd", content: "Ctrl" %>
+          +
+          <%= render "ui/kbd", content: "C" %>
+        <% end %>
+        <%= render "ui/kbd/group" do %>
+          <%= render "ui/kbd", content: "⌘" %>
+          <%= render "ui/kbd", content: "K" %>
+        <% end %>
+      </div>
+    <% end %>
+
+    <% example.phlex do %>
+      <div class="flex flex-wrap items-center gap-4">
+        <%= render UI::KbdGroup.new do %>
+          <%= render UI::Kbd.new { "Ctrl" } %>
+          +
+          <%= render UI::Kbd.new { "C" } %>
+        <% end %>
+        <%= render UI::KbdGroup.new do %>
+          <%= render UI::Kbd.new { "⌘" } %>
+          <%= render UI::Kbd.new { "K" } %>
+        <% end %>
+      </div>
+    <% end %>
+
+    <% example.view_component do %>
+      <div class="flex flex-wrap items-center gap-4">
+        <%= render(UI::KbdGroupComponent.new) do %>
+          <%= render(UI::KbdComponent.new) { "Ctrl" } %>
+          +
+          <%= render(UI::KbdComponent.new) { "C" } %>
+        <% end %>
+        <%= render(UI::KbdGroupComponent.new) do %>
+          <%= render(UI::KbdComponent.new) { "⌘" } %>
+          <%= render(UI::KbdComponent.new) { "K" } %>
+        <% end %>
+      </div>
+    <% end %>
+  <% end %>
+
+  <%# Mac Symbols %>
+  <%= render Docs::Example.new(
+    name: "Mac Symbols",
+    description: "Mac-style keyboard modifier symbols.",
+    view_context: self
+  ) do |example| %>
+    <% example.erb do %>
+      <div class="flex flex-wrap items-center gap-4">
+        <%= render "ui/kbd", content: "⌘" %>
+        <%= render "ui/kbd", content: "⌃" %>
+        <%= render "ui/kbd", content: "⌥" %>
+        <%= render "ui/kbd", content: "⇧" %>
+        <%= render "ui/kbd", content: "⏎" %>
+        <%= render "ui/kbd", content: "⌫" %>
+      </div>
+    <% end %>
+
+    <% example.phlex do %>
+      <div class="flex flex-wrap items-center gap-4">
+        <%= render UI::Kbd.new { "⌘" } %>
+        <%= render UI::Kbd.new { "⌃" } %>
+        <%= render UI::Kbd.new { "⌥" } %>
+        <%= render UI::Kbd.new { "⇧" } %>
+        <%= render UI::Kbd.new { "⏎" } %>
+        <%= render UI::Kbd.new { "⌫" } %>
+      </div>
+    <% end %>
+
+    <% example.view_component do %>
+      <div class="flex flex-wrap items-center gap-4">
+        <%= render(UI::KbdComponent.new) { "⌘" } %>
+        <%= render(UI::KbdComponent.new) { "⌃" } %>
+        <%= render(UI::KbdComponent.new) { "⌥" } %>
+        <%= render(UI::KbdComponent.new) { "⇧" } %>
+        <%= render(UI::KbdComponent.new) { "⏎" } %>
+        <%= render(UI::KbdComponent.new) { "⌫" } %>
+      </div>
+    <% end %>
+  <% end %>
+
+<% end %>
+

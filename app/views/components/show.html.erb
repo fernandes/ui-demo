@@ -1,0 +1,19 @@
+<%# Generic show template that renders component-specific views %>
+<%
+  component_view = "components/#{@component_name}"
+  if lookup_context.exists?(component_view, [], false)
+%>
+  <%= render template: component_view %>
+<% else %>
+  <div class="container mx-auto px-4 py-8">
+    <div class="max-w-3xl mx-auto text-center">
+      <h1 class="text-4xl font-bold tracking-tight mb-4"><%= @component_name.titleize %></h1>
+      <p class="text-lg text-muted-foreground mb-8">
+        Documentation for this component is not yet available.
+      </p>
+      <p class="text-sm text-muted-foreground">
+        Create a view at <code>app/views/components/<%= @component_name %>.html.erb</code>
+      </p>
+    </div>
+  </div>
+<% end %>

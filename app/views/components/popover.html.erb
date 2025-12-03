@@ -1,0 +1,156 @@
+<%= render Docs::ComponentPage.new(component_name: "popover") do %>
+
+  <%# Default %>
+  <%= render Docs::Example.new(
+    name: "Default",
+    description: "Displays rich content in a portal, triggered by a button.",
+    view_context: self
+  ) do |example| %>
+    <% example.erb do %>
+      <%= render "ui/popover" do %>
+        <%= render "ui/popover/trigger" do %>
+          <%= render "ui/button", variant: :outline do %>Open popover<% end %>
+        <% end %>
+        <%= render "ui/popover/content" do %>
+          <div class="grid gap-4">
+            <div class="space-y-2">
+              <h4 class="font-medium leading-none">Dimensions</h4>
+              <p class="text-sm text-muted-foreground">Set the dimensions for the layer.</p>
+            </div>
+          </div>
+        <% end %>
+      <% end %>
+    <% end %>
+
+    <% example.phlex do %>
+      <%= render UI::Popover.new do %>
+        <%= render UI::PopoverTrigger.new(as_child: true) do |attrs| %>
+          <%= render UI::Button.new(**attrs, variant: :outline) { "Open popover" } %>
+        <% end %>
+        <%= render UI::PopoverContent.new do %>
+          <div class="grid gap-4">
+            <div class="space-y-2">
+              <h4 class="font-medium leading-none">Dimensions</h4>
+              <p class="text-sm text-muted-foreground">Set the dimensions for the layer.</p>
+            </div>
+          </div>
+        <% end %>
+      <% end %>
+    <% end %>
+
+    <% example.view_component do %>
+      <%= render UI::PopoverComponent.new do %>
+        <%= render UI::PopoverTriggerComponent.new(as_child: true) do %>
+          <%= render(UI::ButtonComponent.new(variant: :outline)) { "Open popover" } %>
+        <% end %>
+        <%= render UI::PopoverContentComponent.new do %>
+          <div class="grid gap-4">
+            <div class="space-y-2">
+              <h4 class="font-medium leading-none">Dimensions</h4>
+              <p class="text-sm text-muted-foreground">Set the dimensions for the layer.</p>
+            </div>
+          </div>
+        <% end %>
+      <% end %>
+    <% end %>
+  <% end %>
+
+  <%# With Form %>
+  <%= render Docs::Example.new(
+    name: "With Form",
+    description: "Popover containing a form for input.",
+    view_context: self
+  ) do |example| %>
+    <% example.erb do %>
+      <%= render "ui/popover" do %>
+        <%= render "ui/popover/trigger" do %>
+          <%= render "ui/button", variant: :outline do %>Open<% end %>
+        <% end %>
+        <%= render "ui/popover/content", classes: "w-80" do %>
+          <div class="grid gap-4">
+            <div class="space-y-2">
+              <h4 class="font-medium leading-none">Dimensions</h4>
+              <p class="text-sm text-muted-foreground">Set the dimensions for the layer.</p>
+            </div>
+            <div class="grid gap-2">
+              <div class="grid grid-cols-3 items-center gap-4">
+                <%= render "ui/label", for: "width" do %>Width<% end %>
+                <%= render "ui/input", id: "width", value: "100%", classes: "col-span-2 h-8" %>
+              </div>
+              <div class="grid grid-cols-3 items-center gap-4">
+                <%= render "ui/label", for: "max-width" do %>Max. width<% end %>
+                <%= render "ui/input", id: "max-width", value: "300px", classes: "col-span-2 h-8" %>
+              </div>
+              <div class="grid grid-cols-3 items-center gap-4">
+                <%= render "ui/label", for: "height" do %>Height<% end %>
+                <%= render "ui/input", id: "height", value: "25px", classes: "col-span-2 h-8" %>
+              </div>
+            </div>
+          </div>
+        <% end %>
+      <% end %>
+    <% end %>
+
+    <% example.phlex do %>
+      <%= render UI::Popover.new do %>
+        <%= render UI::PopoverTrigger.new(as_child: true) do |attrs| %>
+          <%= render UI::Button.new(**attrs, variant: :outline) { "Open" } %>
+        <% end %>
+        <%= render UI::PopoverContent.new(classes: "w-80") do %>
+          <div class="grid gap-4">
+            <div class="space-y-2">
+              <h4 class="font-medium leading-none">Dimensions</h4>
+              <p class="text-sm text-muted-foreground">Set the dimensions for the layer.</p>
+            </div>
+            <div class="grid gap-2">
+              <div class="grid grid-cols-3 items-center gap-4">
+                <%= render UI::Label.new(for: "width") { "Width" } %>
+                <%= render UI::Input.new(id: "width", value: "100%", classes: "col-span-2 h-8") %>
+              </div>
+              <div class="grid grid-cols-3 items-center gap-4">
+                <%= render UI::Label.new(for: "max-width") { "Max. width" } %>
+                <%= render UI::Input.new(id: "max-width", value: "300px", classes: "col-span-2 h-8") %>
+              </div>
+              <div class="grid grid-cols-3 items-center gap-4">
+                <%= render UI::Label.new(for: "height") { "Height" } %>
+                <%= render UI::Input.new(id: "height", value: "25px", classes: "col-span-2 h-8") %>
+              </div>
+            </div>
+          </div>
+        <% end %>
+      <% end %>
+    <% end %>
+
+    <% example.view_component do %>
+      <%= render UI::PopoverComponent.new do %>
+        <%= render UI::PopoverTriggerComponent.new(as_child: true) do %>
+          <%= render(UI::ButtonComponent.new(variant: :outline)) { "Open" } %>
+        <% end %>
+        <%= render UI::PopoverContentComponent.new(classes: "w-80") do %>
+          <div class="grid gap-4">
+            <div class="space-y-2">
+              <h4 class="font-medium leading-none">Dimensions</h4>
+              <p class="text-sm text-muted-foreground">Set the dimensions for the layer.</p>
+            </div>
+            <div class="grid gap-2">
+              <div class="grid grid-cols-3 items-center gap-4">
+                <%= render(UI::LabelComponent.new(for: "width")) { "Width" } %>
+                <%= render UI::InputComponent.new(id: "width", value: "100%", classes: "col-span-2 h-8") %>
+              </div>
+              <div class="grid grid-cols-3 items-center gap-4">
+                <%= render(UI::LabelComponent.new(for: "max-width")) { "Max. width" } %>
+                <%= render UI::InputComponent.new(id: "max-width", value: "300px", classes: "col-span-2 h-8") %>
+              </div>
+              <div class="grid grid-cols-3 items-center gap-4">
+                <%= render(UI::LabelComponent.new(for: "height")) { "Height" } %>
+                <%= render UI::InputComponent.new(id: "height", value: "25px", classes: "col-span-2 h-8") %>
+              </div>
+            </div>
+          </div>
+        <% end %>
+      <% end %>
+    <% end %>
+  <% end %>
+
+<% end %>
+

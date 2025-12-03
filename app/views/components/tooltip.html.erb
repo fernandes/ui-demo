@@ -1,0 +1,157 @@
+<%= render Docs::ComponentPage.new(component_name: "tooltip") do %>
+
+  <%# Default %>
+  <%= render Docs::Example.new(
+    name: "Default",
+    description: "A popup that displays information related to an element when hovered.",
+    view_context: self
+  ) do |example| %>
+    <% example.erb do %>
+      <%= render "ui/tooltip" do %>
+        <%= render "ui/tooltip/trigger" do %>Hover<% end %>
+        <%= render "ui/tooltip/content" do %>Add to library<% end %>
+      <% end %>
+    <% end %>
+
+    <% example.phlex do %>
+      <%= render UI::Tooltip.new do %>
+        <%= render UI::TooltipTrigger.new(as_child: true) do |attrs| %>
+          <%= render UI::Button.new(**attrs, variant: :outline) { "Hover" } %>
+        <% end %>
+        <%= render UI::TooltipContent.new { "Add to library" } %>
+      <% end %>
+    <% end %>
+
+    <% example.view_component do %>
+      <%= render UI::TooltipComponent.new do %>
+        <%= render UI::TooltipTriggerComponent.new do %>Hover<% end %>
+        <%= render(UI::TooltipContentComponent.new) { "Add to library" } %>
+      <% end %>
+    <% end %>
+  <% end %>
+
+  <%# With Icon %>
+  <%= render Docs::Example.new(
+    name: "With Icon",
+    description: "Tooltip trigger with an icon.",
+    view_context: self
+  ) do |example| %>
+    <% example.erb do %>
+      <%= render "ui/tooltip" do %>
+        <%= render "ui/tooltip/trigger" do %>
+          <svg class="size-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4"/></svg>
+        <% end %>
+        <%= render "ui/tooltip/content" do %>Add to library<% end %>
+      <% end %>
+    <% end %>
+
+    <% example.phlex do %>
+      <%= render UI::Tooltip.new do %>
+        <%= render UI::TooltipTrigger.new(as_child: true) do |attrs| %>
+          <%= render UI::Button.new(**attrs, variant: :outline, size: :icon) do %>
+            <svg class="size-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4"/></svg>
+          <% end %>
+        <% end %>
+        <%= render UI::TooltipContent.new { "Add to library" } %>
+      <% end %>
+    <% end %>
+
+    <% example.view_component do %>
+      <%= render UI::TooltipComponent.new do %>
+        <%= render UI::TooltipTriggerComponent.new do %>
+          <svg class="size-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4"/></svg>
+        <% end %>
+        <%= render(UI::TooltipContentComponent.new) { "Add to library" } %>
+      <% end %>
+    <% end %>
+  <% end %>
+
+  <%# Side Positions %>
+  <%= render Docs::Example.new(
+    name: "Side Positions",
+    description: "Tooltips can appear on different sides of the trigger.",
+    view_context: self
+  ) do |example| %>
+    <% example.erb do %>
+      <div class="flex gap-4">
+        <%= render "ui/tooltip" do %>
+          <%= render "ui/tooltip/trigger" do %>Top<% end %>
+          <%= render "ui/tooltip/content", side: :top do %>Tooltip on top<% end %>
+        <% end %>
+
+        <%= render "ui/tooltip" do %>
+          <%= render "ui/tooltip/trigger" do %>Right<% end %>
+          <%= render "ui/tooltip/content", side: :right do %>Tooltip on right<% end %>
+        <% end %>
+
+        <%= render "ui/tooltip" do %>
+          <%= render "ui/tooltip/trigger" do %>Bottom<% end %>
+          <%= render "ui/tooltip/content", side: :bottom do %>Tooltip on bottom<% end %>
+        <% end %>
+
+        <%= render "ui/tooltip" do %>
+          <%= render "ui/tooltip/trigger" do %>Left<% end %>
+          <%= render "ui/tooltip/content", side: :left do %>Tooltip on left<% end %>
+        <% end %>
+      </div>
+    <% end %>
+
+    <% example.phlex do %>
+      <div class="flex gap-4">
+        <%= render UI::Tooltip.new do %>
+          <%= render UI::TooltipTrigger.new(as_child: true) do |attrs| %>
+            <%= render UI::Button.new(**attrs, variant: :outline) { "Top" } %>
+          <% end %>
+          <%= render UI::TooltipContent.new(side: :top) { "Tooltip on top" } %>
+        <% end %>
+
+        <%= render UI::Tooltip.new do %>
+          <%= render UI::TooltipTrigger.new(as_child: true) do |attrs| %>
+            <%= render UI::Button.new(**attrs, variant: :outline) { "Right" } %>
+          <% end %>
+          <%= render UI::TooltipContent.new(side: :right) { "Tooltip on right" } %>
+        <% end %>
+
+        <%= render UI::Tooltip.new do %>
+          <%= render UI::TooltipTrigger.new(as_child: true) do |attrs| %>
+            <%= render UI::Button.new(**attrs, variant: :outline) { "Bottom" } %>
+          <% end %>
+          <%= render UI::TooltipContent.new(side: :bottom) { "Tooltip on bottom" } %>
+        <% end %>
+
+        <%= render UI::Tooltip.new do %>
+          <%= render UI::TooltipTrigger.new(as_child: true) do |attrs| %>
+            <%= render UI::Button.new(**attrs, variant: :outline) { "Left" } %>
+          <% end %>
+          <%= render UI::TooltipContent.new(side: :left) { "Tooltip on left" } %>
+        <% end %>
+      </div>
+    <% end %>
+
+    <% example.view_component do %>
+      <div class="flex gap-4">
+        <%= render UI::TooltipComponent.new do %>
+          <%= render UI::TooltipTriggerComponent.new do %>Top<% end %>
+          <%= render(UI::TooltipContentComponent.new(side: :top)) { "Tooltip on top" } %>
+        <% end %>
+
+        <%= render UI::TooltipComponent.new do %>
+          <%= render UI::TooltipTriggerComponent.new do %>Right<% end %>
+          <%= render(UI::TooltipContentComponent.new(side: :right)) { "Tooltip on right" } %>
+        <% end %>
+
+        <%= render UI::TooltipComponent.new do %>
+          <%= render UI::TooltipTriggerComponent.new do %>Bottom<% end %>
+          <%= render(UI::TooltipContentComponent.new(side: :bottom)) { "Tooltip on bottom" } %>
+        <% end %>
+
+        <%= render UI::TooltipComponent.new do %>
+          <%= render UI::TooltipTriggerComponent.new do %>Left<% end %>
+          <%= render(UI::TooltipContentComponent.new(side: :left)) { "Tooltip on left" } %>
+        <% end %>
+      </div>
+    <% end %>
+  <% end %>
+
+<% end %>
+

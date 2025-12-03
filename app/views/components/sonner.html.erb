@@ -1,0 +1,233 @@
+<%= render Docs::ComponentPage.new(component_name: "sonner") do %>
+
+  <%# Default %>
+  <%= render Docs::Example.new(
+    name: "Default",
+    description: "A simple toast notification triggered via JavaScript custom event.",
+    view_context: self
+  ) do |example| %>
+    <% example.erb do %>
+      <button class="inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-md text-sm font-medium transition-all disabled:pointer-events-none disabled:opacity-50 border border-input bg-background shadow-xs hover:bg-accent hover:text-accent-foreground h-9 px-4 py-2"
+              onclick="document.dispatchEvent(new CustomEvent('ui:toast', { detail: { message: 'Event has been created', description: 'Sunday, December 03, 2023 at 9:00 AM' } }))">
+        Show Toast
+      </button>
+    <% end %>
+
+    <% example.phlex do %>
+      <button class="inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-md text-sm font-medium transition-all disabled:pointer-events-none disabled:opacity-50 border border-input bg-background shadow-xs hover:bg-accent hover:text-accent-foreground h-9 px-4 py-2"
+              onclick="document.dispatchEvent(new CustomEvent('ui:toast', { detail: { message: 'Event has been created', description: 'Sunday, December 03, 2023 at 9:00 AM' } }))">
+        Show Toast
+      </button>
+    <% end %>
+
+    <% example.view_component do %>
+      <button class="inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-md text-sm font-medium transition-all disabled:pointer-events-none disabled:opacity-50 border border-input bg-background shadow-xs hover:bg-accent hover:text-accent-foreground h-9 px-4 py-2"
+              onclick="document.dispatchEvent(new CustomEvent('ui:toast', { detail: { message: 'Event has been created', description: 'Sunday, December 03, 2023 at 9:00 AM' } }))">
+        Show Toast
+      </button>
+    <% end %>
+  <% end %>
+
+  <%# Types %>
+  <%= render Docs::Example.new(
+    name: "Types",
+    description: "Different toast notification types: default, success, info, warning, and error.",
+    view_context: self
+  ) do |example| %>
+    <% example.erb do %>
+      <div class="flex flex-wrap gap-2">
+        <button class="inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-md text-sm font-medium transition-all disabled:pointer-events-none disabled:opacity-50 border border-input bg-background shadow-xs hover:bg-accent hover:text-accent-foreground h-9 px-4 py-2"
+                onclick="document.dispatchEvent(new CustomEvent('ui:toast', { detail: { message: 'Event has been created', description: 'Monday, January 3rd at 6:00pm' } }))">
+          Default
+        </button>
+        <button class="inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-md text-sm font-medium transition-all disabled:pointer-events-none disabled:opacity-50 border border-input bg-background shadow-xs hover:bg-accent hover:text-accent-foreground h-9 px-4 py-2"
+                onclick="document.dispatchEvent(new CustomEvent('ui:toast', { detail: { type: 'success', message: 'Profile updated', description: 'Your changes have been saved successfully.' } }))">
+          Success
+        </button>
+        <button class="inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-md text-sm font-medium transition-all disabled:pointer-events-none disabled:opacity-50 border border-input bg-background shadow-xs hover:bg-accent hover:text-accent-foreground h-9 px-4 py-2"
+                onclick="document.dispatchEvent(new CustomEvent('ui:toast', { detail: { type: 'info', message: 'Did you know?', description: 'You can customize the position of toasts.' } }))">
+          Info
+        </button>
+        <button class="inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-md text-sm font-medium transition-all disabled:pointer-events-none disabled:opacity-50 border border-input bg-background shadow-xs hover:bg-accent hover:text-accent-foreground h-9 px-4 py-2"
+                onclick="document.dispatchEvent(new CustomEvent('ui:toast', { detail: { type: 'warning', message: 'Warning', description: 'Your session will expire in 5 minutes.' } }))">
+          Warning
+        </button>
+        <button class="inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-md text-sm font-medium transition-all disabled:pointer-events-none disabled:opacity-50 border border-input bg-background shadow-xs hover:bg-accent hover:text-accent-foreground h-9 px-4 py-2"
+                onclick="document.dispatchEvent(new CustomEvent('ui:toast', { detail: { type: 'error', message: 'Error occurred', description: 'There was a problem with your request.' } }))">
+          Error
+        </button>
+      </div>
+    <% end %>
+
+    <% example.phlex do %>
+      <div class="flex flex-wrap gap-2">
+        <button class="inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-md text-sm font-medium transition-all disabled:pointer-events-none disabled:opacity-50 border border-input bg-background shadow-xs hover:bg-accent hover:text-accent-foreground h-9 px-4 py-2"
+                onclick="document.dispatchEvent(new CustomEvent('ui:toast', { detail: { message: 'Event has been created', description: 'Monday, January 3rd at 6:00pm' } }))">
+          Default
+        </button>
+        <button class="inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-md text-sm font-medium transition-all disabled:pointer-events-none disabled:opacity-50 border border-input bg-background shadow-xs hover:bg-accent hover:text-accent-foreground h-9 px-4 py-2"
+                onclick="document.dispatchEvent(new CustomEvent('ui:toast', { detail: { type: 'success', message: 'Profile updated', description: 'Your changes have been saved successfully.' } }))">
+          Success
+        </button>
+        <button class="inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-md text-sm font-medium transition-all disabled:pointer-events-none disabled:opacity-50 border border-input bg-background shadow-xs hover:bg-accent hover:text-accent-foreground h-9 px-4 py-2"
+                onclick="document.dispatchEvent(new CustomEvent('ui:toast', { detail: { type: 'info', message: 'Did you know?', description: 'You can customize the position of toasts.' } }))">
+          Info
+        </button>
+        <button class="inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-md text-sm font-medium transition-all disabled:pointer-events-none disabled:opacity-50 border border-input bg-background shadow-xs hover:bg-accent hover:text-accent-foreground h-9 px-4 py-2"
+                onclick="document.dispatchEvent(new CustomEvent('ui:toast', { detail: { type: 'warning', message: 'Warning', description: 'Your session will expire in 5 minutes.' } }))">
+          Warning
+        </button>
+        <button class="inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-md text-sm font-medium transition-all disabled:pointer-events-none disabled:opacity-50 border border-input bg-background shadow-xs hover:bg-accent hover:text-accent-foreground h-9 px-4 py-2"
+                onclick="document.dispatchEvent(new CustomEvent('ui:toast', { detail: { type: 'error', message: 'Error occurred', description: 'There was a problem with your request.' } }))">
+          Error
+        </button>
+      </div>
+    <% end %>
+
+    <% example.view_component do %>
+      <div class="flex flex-wrap gap-2">
+        <button class="inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-md text-sm font-medium transition-all disabled:pointer-events-none disabled:opacity-50 border border-input bg-background shadow-xs hover:bg-accent hover:text-accent-foreground h-9 px-4 py-2"
+                onclick="document.dispatchEvent(new CustomEvent('ui:toast', { detail: { message: 'Event has been created', description: 'Monday, January 3rd at 6:00pm' } }))">
+          Default
+        </button>
+        <button class="inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-md text-sm font-medium transition-all disabled:pointer-events-none disabled:opacity-50 border border-input bg-background shadow-xs hover:bg-accent hover:text-accent-foreground h-9 px-4 py-2"
+                onclick="document.dispatchEvent(new CustomEvent('ui:toast', { detail: { type: 'success', message: 'Profile updated', description: 'Your changes have been saved successfully.' } }))">
+          Success
+        </button>
+        <button class="inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-md text-sm font-medium transition-all disabled:pointer-events-none disabled:opacity-50 border border-input bg-background shadow-xs hover:bg-accent hover:text-accent-foreground h-9 px-4 py-2"
+                onclick="document.dispatchEvent(new CustomEvent('ui:toast', { detail: { type: 'info', message: 'Did you know?', description: 'You can customize the position of toasts.' } }))">
+          Info
+        </button>
+        <button class="inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-md text-sm font-medium transition-all disabled:pointer-events-none disabled:opacity-50 border border-input bg-background shadow-xs hover:bg-accent hover:text-accent-foreground h-9 px-4 py-2"
+                onclick="document.dispatchEvent(new CustomEvent('ui:toast', { detail: { type: 'warning', message: 'Warning', description: 'Your session will expire in 5 minutes.' } }))">
+          Warning
+        </button>
+        <button class="inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-md text-sm font-medium transition-all disabled:pointer-events-none disabled:opacity-50 border border-input bg-background shadow-xs hover:bg-accent hover:text-accent-foreground h-9 px-4 py-2"
+                onclick="document.dispatchEvent(new CustomEvent('ui:toast', { detail: { type: 'error', message: 'Error occurred', description: 'There was a problem with your request.' } }))">
+          Error
+        </button>
+      </div>
+    <% end %>
+  <% end %>
+
+  <%# Simple Toast %>
+  <%= render Docs::Example.new(
+    name: "Simple",
+    description: "Toast without description, useful for quick notifications.",
+    view_context: self
+  ) do |example| %>
+    <% example.erb do %>
+      <div class="flex flex-wrap gap-2">
+        <button class="inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-md text-sm font-medium transition-all disabled:pointer-events-none disabled:opacity-50 border border-input bg-background shadow-xs hover:bg-accent hover:text-accent-foreground h-9 px-4 py-2"
+                onclick="document.dispatchEvent(new CustomEvent('ui:toast', { detail: { type: 'success', message: 'Copied to clipboard!' } }))">
+          Copy
+        </button>
+        <button class="inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-md text-sm font-medium transition-all disabled:pointer-events-none disabled:opacity-50 border border-input bg-background shadow-xs hover:bg-accent hover:text-accent-foreground h-9 px-4 py-2"
+                onclick="document.dispatchEvent(new CustomEvent('ui:toast', { detail: { type: 'error', message: 'Failed to save' } }))">
+          Save (fails)
+        </button>
+      </div>
+    <% end %>
+
+    <% example.phlex do %>
+      <div class="flex flex-wrap gap-2">
+        <button class="inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-md text-sm font-medium transition-all disabled:pointer-events-none disabled:opacity-50 border border-input bg-background shadow-xs hover:bg-accent hover:text-accent-foreground h-9 px-4 py-2"
+                onclick="document.dispatchEvent(new CustomEvent('ui:toast', { detail: { type: 'success', message: 'Copied to clipboard!' } }))">
+          Copy
+        </button>
+        <button class="inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-md text-sm font-medium transition-all disabled:pointer-events-none disabled:opacity-50 border border-input bg-background shadow-xs hover:bg-accent hover:text-accent-foreground h-9 px-4 py-2"
+                onclick="document.dispatchEvent(new CustomEvent('ui:toast', { detail: { type: 'error', message: 'Failed to save' } }))">
+          Save (fails)
+        </button>
+      </div>
+    <% end %>
+
+    <% example.view_component do %>
+      <div class="flex flex-wrap gap-2">
+        <button class="inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-md text-sm font-medium transition-all disabled:pointer-events-none disabled:opacity-50 border border-input bg-background shadow-xs hover:bg-accent hover:text-accent-foreground h-9 px-4 py-2"
+                onclick="document.dispatchEvent(new CustomEvent('ui:toast', { detail: { type: 'success', message: 'Copied to clipboard!' } }))">
+          Copy
+        </button>
+        <button class="inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-md text-sm font-medium transition-all disabled:pointer-events-none disabled:opacity-50 border border-input bg-background shadow-xs hover:bg-accent hover:text-accent-foreground h-9 px-4 py-2"
+                onclick="document.dispatchEvent(new CustomEvent('ui:toast', { detail: { type: 'error', message: 'Failed to save' } }))">
+          Save (fails)
+        </button>
+      </div>
+    <% end %>
+  <% end %>
+
+  <%# Custom Duration %>
+  <%= render Docs::Example.new(
+    name: "Custom Duration",
+    description: "Control how long the toast stays visible with the duration option (in milliseconds).",
+    view_context: self
+  ) do |example| %>
+    <% example.erb do %>
+      <div class="flex flex-wrap gap-2">
+        <button class="inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-md text-sm font-medium transition-all disabled:pointer-events-none disabled:opacity-50 border border-input bg-background shadow-xs hover:bg-accent hover:text-accent-foreground h-9 px-4 py-2"
+                onclick="document.dispatchEvent(new CustomEvent('ui:toast', { detail: { type: 'info', message: 'Quick toast', description: 'This disappears in 1 second', duration: 1000 } }))">
+          1 second
+        </button>
+        <button class="inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-md text-sm font-medium transition-all disabled:pointer-events-none disabled:opacity-50 border border-input bg-background shadow-xs hover:bg-accent hover:text-accent-foreground h-9 px-4 py-2"
+                onclick="document.dispatchEvent(new CustomEvent('ui:toast', { detail: { type: 'info', message: 'Long toast', description: 'This stays for 10 seconds', duration: 10000 } }))">
+          10 seconds
+        </button>
+      </div>
+    <% end %>
+
+    <% example.phlex do %>
+      <div class="flex flex-wrap gap-2">
+        <button class="inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-md text-sm font-medium transition-all disabled:pointer-events-none disabled:opacity-50 border border-input bg-background shadow-xs hover:bg-accent hover:text-accent-foreground h-9 px-4 py-2"
+                onclick="document.dispatchEvent(new CustomEvent('ui:toast', { detail: { type: 'info', message: 'Quick toast', description: 'This disappears in 1 second', duration: 1000 } }))">
+          1 second
+        </button>
+        <button class="inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-md text-sm font-medium transition-all disabled:pointer-events-none disabled:opacity-50 border border-input bg-background shadow-xs hover:bg-accent hover:text-accent-foreground h-9 px-4 py-2"
+                onclick="document.dispatchEvent(new CustomEvent('ui:toast', { detail: { type: 'info', message: 'Long toast', description: 'This stays for 10 seconds', duration: 10000 } }))">
+          10 seconds
+        </button>
+      </div>
+    <% end %>
+
+    <% example.view_component do %>
+      <div class="flex flex-wrap gap-2">
+        <button class="inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-md text-sm font-medium transition-all disabled:pointer-events-none disabled:opacity-50 border border-input bg-background shadow-xs hover:bg-accent hover:text-accent-foreground h-9 px-4 py-2"
+                onclick="document.dispatchEvent(new CustomEvent('ui:toast', { detail: { type: 'info', message: 'Quick toast', description: 'This disappears in 1 second', duration: 1000 } }))">
+          1 second
+        </button>
+        <button class="inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-md text-sm font-medium transition-all disabled:pointer-events-none disabled:opacity-50 border border-input bg-background shadow-xs hover:bg-accent hover:text-accent-foreground h-9 px-4 py-2"
+                onclick="document.dispatchEvent(new CustomEvent('ui:toast', { detail: { type: 'info', message: 'Long toast', description: 'This stays for 10 seconds', duration: 10000 } }))">
+          10 seconds
+        </button>
+      </div>
+    <% end %>
+  <% end %>
+
+  <%# With Action %>
+  <%= render Docs::Example.new(
+    name: "With Action",
+    description: "Toast with an action button that dispatches a custom event when clicked.",
+    view_context: self
+  ) do |example| %>
+    <% example.erb do %>
+      <button class="inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-md text-sm font-medium transition-all disabled:pointer-events-none disabled:opacity-50 border border-input bg-background shadow-xs hover:bg-accent hover:text-accent-foreground h-9 px-4 py-2"
+              onclick="document.dispatchEvent(new CustomEvent('ui:toast', { detail: { type: 'info', message: 'With Action', description: 'Click the button to undo', action: { label: 'Undo', event: 'undo:action' } } }))">
+        With Action Button
+      </button>
+    <% end %>
+
+    <% example.phlex do %>
+      <button class="inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-md text-sm font-medium transition-all disabled:pointer-events-none disabled:opacity-50 border border-input bg-background shadow-xs hover:bg-accent hover:text-accent-foreground h-9 px-4 py-2"
+              onclick="document.dispatchEvent(new CustomEvent('ui:toast', { detail: { type: 'info', message: 'With Action', description: 'Click the button to undo', action: { label: 'Undo', event: 'undo:action' } } }))">
+        With Action Button
+      </button>
+    <% end %>
+
+    <% example.view_component do %>
+      <button class="inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-md text-sm font-medium transition-all disabled:pointer-events-none disabled:opacity-50 border border-input bg-background shadow-xs hover:bg-accent hover:text-accent-foreground h-9 px-4 py-2"
+              onclick="document.dispatchEvent(new CustomEvent('ui:toast', { detail: { type: 'info', message: 'With Action', description: 'Click the button to undo', action: { label: 'Undo', event: 'undo:action' } } }))">
+        With Action Button
+      </button>
+    <% end %>
+  <% end %>
+
+<% end %>

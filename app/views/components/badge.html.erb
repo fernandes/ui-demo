@@ -1,0 +1,151 @@
+<%= render Docs::ComponentPage.new(component_name: "badge") do %>
+
+  <%# Default %>
+  <%= render Docs::Example.new(
+    name: "Default",
+    description: "The default badge style.",
+    view_context: self
+  ) do |example| %>
+    <% example.erb do %>
+      <%= render "ui/badge" do %>Badge<% end %>
+    <% end %>
+
+    <% example.phlex do %>
+      <%= render UI::Badge.new { "Badge" } %>
+    <% end %>
+
+    <% example.view_component do %>
+      <%= render(UI::BadgeComponent.new) { "Badge" } %>
+    <% end %>
+  <% end %>
+
+  <%# Secondary %>
+  <%= render Docs::Example.new(
+    name: "Secondary",
+    description: "A secondary badge style.",
+    view_context: self
+  ) do |example| %>
+    <% example.erb do %>
+      <%= render "ui/badge", variant: :secondary do %>Secondary<% end %>
+    <% end %>
+
+    <% example.phlex do %>
+      <%= render UI::Badge.new(variant: :secondary) { "Secondary" } %>
+    <% end %>
+
+    <% example.view_component do %>
+      <%= render(UI::BadgeComponent.new(variant: :secondary)) { "Secondary" } %>
+    <% end %>
+  <% end %>
+
+  <%# Destructive %>
+  <%= render Docs::Example.new(
+    name: "Destructive",
+    description: "A destructive badge style.",
+    view_context: self
+  ) do |example| %>
+    <% example.erb do %>
+      <%= render "ui/badge", variant: :destructive do %>Destructive<% end %>
+    <% end %>
+
+    <% example.phlex do %>
+      <%= render UI::Badge.new(variant: :destructive) { "Destructive" } %>
+    <% end %>
+
+    <% example.view_component do %>
+      <%= render(UI::BadgeComponent.new(variant: :destructive)) { "Destructive" } %>
+    <% end %>
+  <% end %>
+
+  <%# Outline %>
+  <%= render Docs::Example.new(
+    name: "Outline",
+    description: "An outline badge style.",
+    view_context: self
+  ) do |example| %>
+    <% example.erb do %>
+      <%= render "ui/badge", variant: :outline do %>Outline<% end %>
+    <% end %>
+
+    <% example.phlex do %>
+      <%= render UI::Badge.new(variant: :outline) { "Outline" } %>
+    <% end %>
+
+    <% example.view_component do %>
+      <%= render(UI::BadgeComponent.new(variant: :outline)) { "Outline" } %>
+    <% end %>
+  <% end %>
+
+  <%# With Icon %>
+  <%= render Docs::Example.new(
+    name: "With Icon",
+    description: "Badge with an icon for visual emphasis.",
+    view_context: self
+  ) do |example| %>
+    <% example.erb do %>
+      <%= render "ui/badge", variant: :secondary, classes: "bg-blue-500 text-white dark:bg-blue-600" do %>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" class="size-3">
+          <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.857-9.809a.75.75 0 00-1.214-.882l-3.483 4.79-1.88-1.88a.75.75 0 10-1.06 1.061l2.5 2.5a.75.75 0 001.137-.089l4-5.5z" clip-rule="evenodd" />
+        </svg>
+        Verified
+      <% end %>
+    <% end %>
+
+    <% example.phlex do %>
+      <%= render UI::Badge.new(variant: :secondary, classes: "bg-blue-500 text-white dark:bg-blue-600") do %>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" class="size-3">
+          <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.857-9.809a.75.75 0 00-1.214-.882l-3.483 4.79-1.88-1.88a.75.75 0 10-1.06 1.061l2.5 2.5a.75.75 0 001.137-.089l4-5.5z" clip-rule="evenodd" />
+        </svg>
+        Verified
+      <% end %>
+    <% end %>
+
+    <% example.view_component do %>
+      <%= render(UI::BadgeComponent.new(variant: :secondary, classes: "bg-blue-500 text-white dark:bg-blue-600")) do %>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" class="size-3">
+          <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.857-9.809a.75.75 0 00-1.214-.882l-3.483 4.79-1.88-1.88a.75.75 0 10-1.06 1.061l2.5 2.5a.75.75 0 001.137-.089l4-5.5z" clip-rule="evenodd" />
+        </svg>
+        Verified
+      <% end %>
+    <% end %>
+  <% end %>
+
+  <%# Notification Badge on Avatar %>
+  <%= render Docs::Example.new(
+    name: "Notification Badge on Avatar",
+    description: "Badge used as notification count on an avatar.",
+    view_context: self
+  ) do |example| %>
+    <% example.erb do %>
+      <div class="relative inline-block">
+        <%= render "ui/avatar" do %>
+          <%= render "ui/avatar/image", src: "https://github.com/fernandes.png", alt: "@fernandes" %>
+          <%= render "ui/avatar/fallback" do %>F<% end %>
+        <% end %>
+        <%= render "ui/badge", classes: "absolute -top-1 -right-1 h-5 min-w-5 p-0 text-[10px]" do %>3<% end %>
+      </div>
+    <% end %>
+
+    <% example.phlex do %>
+      <div class="relative inline-block">
+        <%= render UI::Avatar.new do %>
+          <%= render UI::AvatarImage.new(src: "https://github.com/fernandes.png", alt: "@fernandes") %>
+          <%= render UI::AvatarFallback.new { "F" } %>
+        <% end %>
+        <%= render UI::Badge.new(classes: "absolute -top-1 -right-1 h-5 min-w-5 p-0 text-[10px]") { "3" } %>
+      </div>
+    <% end %>
+
+    <% example.view_component do %>
+      <div class="relative inline-block">
+        <%= render UI::AvatarComponent.new do %>
+          <%= render UI::AvatarImageComponent.new(src: "https://github.com/fernandes.png", alt: "@fernandes") %>
+          <%= render(UI::AvatarFallbackComponent.new) { "F" } %>
+        <% end %>
+        <%= render(UI::BadgeComponent.new(classes: "absolute -top-1 -right-1 h-5 min-w-5 p-0 text-[10px]")) { "3" } %>
+      </div>
+    <% end %>
+  <% end %>
+
+<% end %>
+

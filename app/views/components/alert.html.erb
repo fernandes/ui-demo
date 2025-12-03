@@ -1,0 +1,60 @@
+<%= render Docs::ComponentPage.new(component_name: "alert") do %>
+
+  <%# Basic Example %>
+  <%= render Docs::Example.new(
+    name: "Default",
+    description: "A callout component for displaying important information.",
+    view_context: self
+  ) do |example| %>
+    <% example.erb do %>
+      <%= render "ui/alert" do %>
+        <%= render "ui/alert/title" do %>Heads up!<% end %>
+        <%= render "ui/alert/description" do %>You can add components to your app using the CLI.<% end %>
+      <% end %>
+    <% end %>
+
+    <% example.phlex do %>
+      <%= render UI::Alert.new do %>
+        <%= render UI::AlertTitle.new { "Heads up!" } %>
+        <%= render UI::AlertDescription.new { "You can add components to your app using the CLI." } %>
+      <% end %>
+    <% end %>
+
+    <% example.view_component do %>
+      <%= render UI::AlertComponent.new do %>
+        <%= render(UI::AlertTitleComponent.new) { "Heads up!" } %>
+        <%= render(UI::AlertDescriptionComponent.new) { "You can add components to your app using the CLI." } %>
+      <% end %>
+    <% end %>
+  <% end %>
+
+  <%# Destructive Variant %>
+  <%= render Docs::Example.new(
+    name: "Destructive",
+    description: "Use the destructive variant to indicate an error or warning.",
+    view_context: self
+  ) do |example| %>
+    <% example.erb do %>
+      <%= render "ui/alert", variant: :destructive do %>
+        <%= render "ui/alert/title" do %>Error<% end %>
+        <%= render "ui/alert/description" do %>Your session has expired. Please log in again.<% end %>
+      <% end %>
+    <% end %>
+
+    <% example.phlex do %>
+      <%= render UI::Alert.new(variant: :destructive) do %>
+        <%= render UI::AlertTitle.new { "Error" } %>
+        <%= render UI::AlertDescription.new { "Your session has expired. Please log in again." } %>
+      <% end %>
+    <% end %>
+
+    <% example.view_component do %>
+      <%= render UI::AlertComponent.new(variant: :destructive) do %>
+        <%= render(UI::AlertTitleComponent.new) { "Error" } %>
+        <%= render(UI::AlertDescriptionComponent.new) { "Your session has expired. Please log in again." } %>
+      <% end %>
+    <% end %>
+  <% end %>
+
+<% end %>
+

@@ -1,0 +1,209 @@
+<%= render Docs::ComponentPage.new(component_name: "input_otp") do %>
+
+  <%# Default %>
+  <%= render Docs::Example.new(
+    name: "Default",
+    description: "Accessible one-time password component with auto-advance and copy-paste functionality.",
+    view_context: self
+  ) do |example| %>
+    <% example.erb do %>
+      <%= render "ui/input_otp", length: 6 do %>
+        <%= render "ui/input_otp/group" do %>
+          <%= render "ui/input_otp/slot", index: 0 %>
+          <%= render "ui/input_otp/slot", index: 1 %>
+          <%= render "ui/input_otp/slot", index: 2 %>
+        <% end %>
+        <%= render "ui/input_otp/separator" %>
+        <%= render "ui/input_otp/group" do %>
+          <%= render "ui/input_otp/slot", index: 3 %>
+          <%= render "ui/input_otp/slot", index: 4 %>
+          <%= render "ui/input_otp/slot", index: 5 %>
+        <% end %>
+      <% end %>
+    <% end %>
+
+    <% example.phlex do %>
+      <%= render UI::InputOtp.new(length: 6) do %>
+        <%= render UI::InputOtpGroup.new do %>
+          <%= render UI::InputOtpSlot.new(index: 0) %>
+          <%= render UI::InputOtpSlot.new(index: 1) %>
+          <%= render UI::InputOtpSlot.new(index: 2) %>
+        <% end %>
+        <%= render UI::InputOtpSeparator.new %>
+        <%= render UI::InputOtpGroup.new do %>
+          <%= render UI::InputOtpSlot.new(index: 3) %>
+          <%= render UI::InputOtpSlot.new(index: 4) %>
+          <%= render UI::InputOtpSlot.new(index: 5) %>
+        <% end %>
+      <% end %>
+    <% end %>
+
+    <% example.view_component do %>
+      <%= render UI::InputOtpComponent.new(length: 6) do %>
+        <%= render UI::InputOtpGroupComponent.new do %>
+          <%= render UI::InputOtpSlotComponent.new(index: 0) %>
+          <%= render UI::InputOtpSlotComponent.new(index: 1) %>
+          <%= render UI::InputOtpSlotComponent.new(index: 2) %>
+        <% end %>
+        <%= render UI::InputOtpSeparatorComponent.new %>
+        <%= render UI::InputOtpGroupComponent.new do %>
+          <%= render UI::InputOtpSlotComponent.new(index: 3) %>
+          <%= render UI::InputOtpSlotComponent.new(index: 4) %>
+          <%= render UI::InputOtpSlotComponent.new(index: 5) %>
+        <% end %>
+      <% end %>
+    <% end %>
+  <% end %>
+
+  <%# Four Digits %>
+  <%= render Docs::Example.new(
+    name: "Four Digits",
+    description: "Shorter PIN-style input without separator.",
+    view_context: self
+  ) do |example| %>
+    <% example.erb do %>
+      <%= render "ui/input_otp", length: 4 do %>
+        <%= render "ui/input_otp/group" do %>
+          <%= render "ui/input_otp/slot", index: 0 %>
+          <%= render "ui/input_otp/slot", index: 1 %>
+          <%= render "ui/input_otp/slot", index: 2 %>
+          <%= render "ui/input_otp/slot", index: 3 %>
+        <% end %>
+      <% end %>
+    <% end %>
+
+    <% example.phlex do %>
+      <%= render UI::InputOtp.new(length: 4) do %>
+        <%= render UI::InputOtpGroup.new do %>
+          <%= render UI::InputOtpSlot.new(index: 0) %>
+          <%= render UI::InputOtpSlot.new(index: 1) %>
+          <%= render UI::InputOtpSlot.new(index: 2) %>
+          <%= render UI::InputOtpSlot.new(index: 3) %>
+        <% end %>
+      <% end %>
+    <% end %>
+
+    <% example.view_component do %>
+      <%= render UI::InputOtpComponent.new(length: 4) do %>
+        <%= render UI::InputOtpGroupComponent.new do %>
+          <%= render UI::InputOtpSlotComponent.new(index: 0) %>
+          <%= render UI::InputOtpSlotComponent.new(index: 1) %>
+          <%= render UI::InputOtpSlotComponent.new(index: 2) %>
+          <%= render UI::InputOtpSlotComponent.new(index: 3) %>
+        <% end %>
+      <% end %>
+    <% end %>
+  <% end %>
+
+  <%# Pattern %>
+  <%= render Docs::Example.new(
+    name: "Pattern",
+    description: "Use the pattern prop to restrict input to specific characters.",
+    view_context: self
+  ) do |example| %>
+    <% example.erb do %>
+      <%= render "ui/input_otp", length: 6, pattern: "^[a-zA-Z0-9]+$" do %>
+        <%= render "ui/input_otp/group" do %>
+          <%= render "ui/input_otp/slot", index: 0 %>
+          <%= render "ui/input_otp/slot", index: 1 %>
+          <%= render "ui/input_otp/slot", index: 2 %>
+          <%= render "ui/input_otp/slot", index: 3 %>
+          <%= render "ui/input_otp/slot", index: 4 %>
+          <%= render "ui/input_otp/slot", index: 5 %>
+        <% end %>
+      <% end %>
+    <% end %>
+
+    <% example.phlex do %>
+      <%= render UI::InputOtp.new(length: 6, pattern: "^[a-zA-Z0-9]+$") do %>
+        <%= render UI::InputOtpGroup.new do %>
+          <%= render UI::InputOtpSlot.new(index: 0) %>
+          <%= render UI::InputOtpSlot.new(index: 1) %>
+          <%= render UI::InputOtpSlot.new(index: 2) %>
+          <%= render UI::InputOtpSlot.new(index: 3) %>
+          <%= render UI::InputOtpSlot.new(index: 4) %>
+          <%= render UI::InputOtpSlot.new(index: 5) %>
+        <% end %>
+      <% end %>
+    <% end %>
+
+    <% example.view_component do %>
+      <%= render UI::InputOtpComponent.new(length: 6, pattern: "^[a-zA-Z0-9]+$") do %>
+        <%= render UI::InputOtpGroupComponent.new do %>
+          <%= render UI::InputOtpSlotComponent.new(index: 0) %>
+          <%= render UI::InputOtpSlotComponent.new(index: 1) %>
+          <%= render UI::InputOtpSlotComponent.new(index: 2) %>
+          <%= render UI::InputOtpSlotComponent.new(index: 3) %>
+          <%= render UI::InputOtpSlotComponent.new(index: 4) %>
+          <%= render UI::InputOtpSlotComponent.new(index: 5) %>
+        <% end %>
+      <% end %>
+    <% end %>
+  <% end %>
+
+  <%# Separator %>
+  <%= render Docs::Example.new(
+    name: "Separator",
+    description: "Use the separator component to visually separate groups of slots.",
+    view_context: self
+  ) do |example| %>
+    <% example.erb do %>
+      <%= render "ui/input_otp", length: 6 do %>
+        <%= render "ui/input_otp/group" do %>
+          <%= render "ui/input_otp/slot", index: 0 %>
+          <%= render "ui/input_otp/slot", index: 1 %>
+        <% end %>
+        <%= render "ui/input_otp/separator" %>
+        <%= render "ui/input_otp/group" do %>
+          <%= render "ui/input_otp/slot", index: 2 %>
+          <%= render "ui/input_otp/slot", index: 3 %>
+        <% end %>
+        <%= render "ui/input_otp/separator" %>
+        <%= render "ui/input_otp/group" do %>
+          <%= render "ui/input_otp/slot", index: 4 %>
+          <%= render "ui/input_otp/slot", index: 5 %>
+        <% end %>
+      <% end %>
+    <% end %>
+
+    <% example.phlex do %>
+      <%= render UI::InputOtp.new(length: 6) do %>
+        <%= render UI::InputOtpGroup.new do %>
+          <%= render UI::InputOtpSlot.new(index: 0) %>
+          <%= render UI::InputOtpSlot.new(index: 1) %>
+        <% end %>
+        <%= render UI::InputOtpSeparator.new %>
+        <%= render UI::InputOtpGroup.new do %>
+          <%= render UI::InputOtpSlot.new(index: 2) %>
+          <%= render UI::InputOtpSlot.new(index: 3) %>
+        <% end %>
+        <%= render UI::InputOtpSeparator.new %>
+        <%= render UI::InputOtpGroup.new do %>
+          <%= render UI::InputOtpSlot.new(index: 4) %>
+          <%= render UI::InputOtpSlot.new(index: 5) %>
+        <% end %>
+      <% end %>
+    <% end %>
+
+    <% example.view_component do %>
+      <%= render UI::InputOtpComponent.new(length: 6) do %>
+        <%= render UI::InputOtpGroupComponent.new do %>
+          <%= render UI::InputOtpSlotComponent.new(index: 0) %>
+          <%= render UI::InputOtpSlotComponent.new(index: 1) %>
+        <% end %>
+        <%= render UI::InputOtpSeparatorComponent.new %>
+        <%= render UI::InputOtpGroupComponent.new do %>
+          <%= render UI::InputOtpSlotComponent.new(index: 2) %>
+          <%= render UI::InputOtpSlotComponent.new(index: 3) %>
+        <% end %>
+        <%= render UI::InputOtpSeparatorComponent.new %>
+        <%= render UI::InputOtpGroupComponent.new do %>
+          <%= render UI::InputOtpSlotComponent.new(index: 4) %>
+          <%= render UI::InputOtpSlotComponent.new(index: 5) %>
+        <% end %>
+      <% end %>
+    <% end %>
+  <% end %>
+
+<% end %>
+

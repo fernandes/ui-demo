@@ -1,0 +1,12 @@
+<%= render "ui/empty", classes: "w-full border md:p-6" do %>
+  <%= render "ui/empty/header" do %>
+    <%= render "ui/empty/media", variant: "icon" do %>
+      <%= render "ui/spinner", size: :lg %>
+    <% end %>
+    <%= render "ui/empty/title" do %>Processing your request<% end %>
+    <%= render "ui/empty/description" do %>Please wait while we process your request. Do not refresh the page.<% end %>
+  <% end %>
+  <%= render "ui/empty/content" do %>
+    <%= render "ui/button", variant: :outline, size: :sm do %>Cancel<% end %>
+  <% end %>
+<% end %>

@@ -1,0 +1,78 @@
+<%= render Docs::ComponentPage.new(component_name: "aspect_ratio") do %>
+
+  <%# Default %>
+  <%= render Docs::Example.new(
+    name: "Default",
+    description: "Displays content within a desired aspect ratio.",
+    view_context: self
+  ) do |example| %>
+    <% example.erb do %>
+      <div class="w-full max-w-md">
+        <%= render "ui/aspect_ratio", ratio: 16.0/9.0 do %>
+          <%= image_tag "https://images.unsplash.com/photo-1588345921523-c2dcdb7f1dcd?w=800&dpr=2&q=80",
+                        alt: "Photo by Drew Beamer",
+                        class: "h-full w-full rounded-lg object-cover" %>
+        <% end %>
+      </div>
+    <% end %>
+
+    <% example.phlex do %>
+      <div class="w-full max-w-md">
+        <%= render UI::AspectRatio.new(ratio: 16.0/9.0) do %>
+          <%= image_tag "https://images.unsplash.com/photo-1588345921523-c2dcdb7f1dcd?w=800&dpr=2&q=80",
+                        alt: "Photo by Drew Beamer",
+                        class: "h-full w-full rounded-lg object-cover" %>
+        <% end %>
+      </div>
+    <% end %>
+
+    <% example.view_component do %>
+      <div class="w-full max-w-md">
+        <%= render UI::AspectRatioComponent.new(ratio: 16.0/9.0) do %>
+          <%= image_tag "https://images.unsplash.com/photo-1588345921523-c2dcdb7f1dcd?w=800&dpr=2&q=80",
+                        alt: "Photo by Drew Beamer",
+                        class: "h-full w-full rounded-lg object-cover" %>
+        <% end %>
+      </div>
+    <% end %>
+  <% end %>
+
+  <%# Square %>
+  <%= render Docs::Example.new(
+    name: "Square",
+    description: "Square image with 1:1 ratio.",
+    view_context: self
+  ) do |example| %>
+    <% example.erb do %>
+      <div class="w-48">
+        <%= render "ui/aspect_ratio", ratio: 1.0 do %>
+          <%= image_tag "https://images.unsplash.com/photo-1535713875002-d1d0cf377fde?w=300&dpr=2&q=80",
+                        alt: "User avatar",
+                        class: "h-full w-full object-cover rounded-full" %>
+        <% end %>
+      </div>
+    <% end %>
+
+    <% example.phlex do %>
+      <div class="w-48">
+        <%= render UI::AspectRatio.new(ratio: 1.0) do %>
+          <%= image_tag "https://images.unsplash.com/photo-1535713875002-d1d0cf377fde?w=300&dpr=2&q=80",
+                        alt: "User avatar",
+                        class: "h-full w-full object-cover rounded-full" %>
+        <% end %>
+      </div>
+    <% end %>
+
+    <% example.view_component do %>
+      <div class="w-48">
+        <%= render UI::AspectRatioComponent.new(ratio: 1.0) do %>
+          <%= image_tag "https://images.unsplash.com/photo-1535713875002-d1d0cf377fde?w=300&dpr=2&q=80",
+                        alt: "User avatar",
+                        class: "h-full w-full object-cover rounded-full" %>
+        <% end %>
+      </div>
+    <% end %>
+  <% end %>
+
+<% end %>
+

@@ -1,0 +1,411 @@
+<%= render Docs::ComponentPage.new(component_name: "empty") do %>
+
+  <%# Default %>
+  <%= render Docs::Example.new(
+    name: "Default",
+    description: "Standard empty state with icon, title, description, and action buttons.",
+    view_context: self
+  ) do |example| %>
+    <% example.erb do %>
+      <%= render "ui/empty" do %>
+        <%= render "ui/empty/header" do %>
+          <%= render "ui/empty/media", variant: "icon" do %>
+            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="size-6"><path d="m6 14 1.5-2.9A2 2 0 0 1 9.24 10H20a2 2 0 0 1 1.94 2.5l-1.54 6a2 2 0 0 1-1.95 1.5H4a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h3.9a2 2 0 0 1 1.69.9l.81 1.2a2 2 0 0 0 1.67.9H18a2 2 0 0 1 2 2v2"/></svg>
+          <% end %>
+          <%= render "ui/empty/title", content: "No Projects Yet" %>
+          <%= render "ui/empty/description", content: "You haven't created any projects yet. Get started by creating your first project." %>
+        <% end %>
+        <%= render "ui/empty/content" do %>
+          <div class="flex flex-col sm:flex-row gap-2">
+            <%= render "ui/button" do %>Create Project<% end %>
+            <%= render "ui/button", variant: :outline do %>Import Project<% end %>
+          </div>
+          <a href="#" class="text-sm text-muted-foreground hover:text-foreground underline underline-offset-4">Learn More</a>
+        <% end %>
+      <% end %>
+    <% end %>
+
+    <% example.phlex do %>
+      <%= render UI::Empty.new do %>
+        <%= render UI::EmptyHeader.new do %>
+          <%= render UI::EmptyMedia.new(variant: "icon") do %>
+            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="size-6"><path d="m6 14 1.5-2.9A2 2 0 0 1 9.24 10H20a2 2 0 0 1 1.94 2.5l-1.54 6a2 2 0 0 1-1.95 1.5H4a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h3.9a2 2 0 0 1 1.69.9l.81 1.2a2 2 0 0 0 1.67.9H18a2 2 0 0 1 2 2v2"/></svg>
+          <% end %>
+          <%= render UI::EmptyTitle.new { "No Projects Yet" } %>
+          <%= render UI::EmptyDescription.new { "You haven't created any projects yet. Get started by creating your first project." } %>
+        <% end %>
+        <%= render UI::EmptyContent.new do %>
+          <div class="flex flex-col sm:flex-row gap-2">
+            <%= render UI::Button.new { "Create Project" } %>
+            <%= render UI::Button.new(variant: :outline) { "Import Project" } %>
+          </div>
+          <a href="#" class="text-sm text-muted-foreground hover:text-foreground underline underline-offset-4">Learn More</a>
+        <% end %>
+      <% end %>
+    <% end %>
+
+    <% example.view_component do %>
+      <%= render UI::EmptyComponent.new do %>
+        <%= render UI::EmptyHeaderComponent.new do %>
+          <%= render UI::EmptyMediaComponent.new(variant: "icon") do %>
+            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="size-6"><path d="m6 14 1.5-2.9A2 2 0 0 1 9.24 10H20a2 2 0 0 1 1.94 2.5l-1.54 6a2 2 0 0 1-1.95 1.5H4a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h3.9a2 2 0 0 1 1.69.9l.81 1.2a2 2 0 0 0 1.67.9H18a2 2 0 0 1 2 2v2"/></svg>
+          <% end %>
+          <%= render(UI::EmptyTitleComponent.new) { "No Projects Yet" } %>
+          <%= render(UI::EmptyDescriptionComponent.new) { "You haven't created any projects yet. Get started by creating your first project." } %>
+        <% end %>
+        <%= render UI::EmptyContentComponent.new do %>
+          <div class="flex flex-col sm:flex-row gap-2">
+            <%= render(UI::ButtonComponent.new) { "Create Project" } %>
+            <%= render(UI::ButtonComponent.new(variant: :outline)) { "Import Project" } %>
+          </div>
+          <a href="#" class="text-sm text-muted-foreground hover:text-foreground underline underline-offset-4">Learn More</a>
+        <% end %>
+      <% end %>
+    <% end %>
+  <% end %>
+
+  <%# Outline %>
+  <%= render Docs::Example.new(
+    name: "Outline",
+    description: "Empty state with dashed border styling for visual containment.",
+    view_context: self
+  ) do |example| %>
+    <% example.erb do %>
+      <%= render "ui/empty", classes: "border border-dashed" do %>
+        <%= render "ui/empty/header" do %>
+          <%= render "ui/empty/media", variant: "icon" do %>
+            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="size-6"><path d="M17.5 19H9a7 7 0 1 1 6.71-9h1.79a4.5 4.5 0 1 1 0 9Z"/></svg>
+          <% end %>
+          <%= render "ui/empty/title", content: "Cloud Storage Empty" %>
+          <%= render "ui/empty/description", content: "Upload files to your cloud storage to access them anywhere." %>
+        <% end %>
+        <%= render "ui/empty/content" do %>
+          <%= render "ui/button", variant: :outline do %>Upload Files<% end %>
+        <% end %>
+      <% end %>
+    <% end %>
+
+    <% example.phlex do %>
+      <%= render UI::Empty.new(classes: "border border-dashed") do %>
+        <%= render UI::EmptyHeader.new do %>
+          <%= render UI::EmptyMedia.new(variant: "icon") do %>
+            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="size-6"><path d="M17.5 19H9a7 7 0 1 1 6.71-9h1.79a4.5 4.5 0 1 1 0 9Z"/></svg>
+          <% end %>
+          <%= render UI::EmptyTitle.new { "Cloud Storage Empty" } %>
+          <%= render UI::EmptyDescription.new { "Upload files to your cloud storage to access them anywhere." } %>
+        <% end %>
+        <%= render UI::EmptyContent.new do %>
+          <%= render UI::Button.new(variant: :outline) { "Upload Files" } %>
+        <% end %>
+      <% end %>
+    <% end %>
+
+    <% example.view_component do %>
+      <%= render UI::EmptyComponent.new(classes: "border border-dashed") do %>
+        <%= render UI::EmptyHeaderComponent.new do %>
+          <%= render UI::EmptyMediaComponent.new(variant: "icon") do %>
+            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="size-6"><path d="M17.5 19H9a7 7 0 1 1 6.71-9h1.79a4.5 4.5 0 1 1 0 9Z"/></svg>
+          <% end %>
+          <%= render(UI::EmptyTitleComponent.new) { "Cloud Storage Empty" } %>
+          <%= render(UI::EmptyDescriptionComponent.new) { "Upload files to your cloud storage to access them anywhere." } %>
+        <% end %>
+        <%= render UI::EmptyContentComponent.new do %>
+          <%= render(UI::ButtonComponent.new(variant: :outline)) { "Upload Files" } %>
+        <% end %>
+      <% end %>
+    <% end %>
+  <% end %>
+
+  <%# Muted %>
+  <%= render Docs::Example.new(
+    name: "Muted",
+    description: "Background gradient variation for softer visual presentation.",
+    view_context: self
+  ) do |example| %>
+    <% example.erb do %>
+      <%= render "ui/empty", classes: "bg-gradient-to-b from-muted/50" do %>
+        <%= render "ui/empty/header" do %>
+          <%= render "ui/empty/media", variant: "icon" do %>
+            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="size-6"><path d="M6 8a6 6 0 0 1 12 0c0 7 3 9 3 9H3s3-2 3-9"/><path d="M10.3 21a1.94 1.94 0 0 0 3.4 0"/></svg>
+          <% end %>
+          <%= render "ui/empty/title", content: "No Notifications" %>
+          <%= render "ui/empty/description", content: "You're all caught up. New notifications will appear here." %>
+        <% end %>
+        <%= render "ui/empty/content" do %>
+          <%= render "ui/button", variant: :outline do %>
+            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="mr-2"><path d="M21 12a9 9 0 1 1-9-9c2.52 0 4.93 1 6.74 2.74L21 8"/><path d="M21 3v5h-5"/></svg>
+            Refresh
+          <% end %>
+        <% end %>
+      <% end %>
+    <% end %>
+
+    <% example.phlex do %>
+      <%= render UI::Empty.new(classes: "bg-gradient-to-b from-muted/50") do %>
+        <%= render UI::EmptyHeader.new do %>
+          <%= render UI::EmptyMedia.new(variant: "icon") do %>
+            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="size-6"><path d="M6 8a6 6 0 0 1 12 0c0 7 3 9 3 9H3s3-2 3-9"/><path d="M10.3 21a1.94 1.94 0 0 0 3.4 0"/></svg>
+          <% end %>
+          <%= render UI::EmptyTitle.new { "No Notifications" } %>
+          <%= render UI::EmptyDescription.new { "You're all caught up. New notifications will appear here." } %>
+        <% end %>
+        <%= render UI::EmptyContent.new do %>
+          <%= render UI::Button.new(variant: :outline) do %>
+            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="mr-2"><path d="M21 12a9 9 0 1 1-9-9c2.52 0 4.93 1 6.74 2.74L21 8"/><path d="M21 3v5h-5"/></svg>
+            Refresh
+          <% end %>
+        <% end %>
+      <% end %>
+    <% end %>
+
+    <% example.view_component do %>
+      <%= render UI::EmptyComponent.new(classes: "bg-gradient-to-b from-muted/50") do %>
+        <%= render UI::EmptyHeaderComponent.new do %>
+          <%= render UI::EmptyMediaComponent.new(variant: "icon") do %>
+            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="size-6"><path d="M6 8a6 6 0 0 1 12 0c0 7 3 9 3 9H3s3-2 3-9"/><path d="M10.3 21a1.94 1.94 0 0 0 3.4 0"/></svg>
+          <% end %>
+          <%= render(UI::EmptyTitleComponent.new) { "No Notifications" } %>
+          <%= render(UI::EmptyDescriptionComponent.new) { "You're all caught up. New notifications will appear here." } %>
+        <% end %>
+        <%= render UI::EmptyContentComponent.new do %>
+          <%= render UI::ButtonComponent.new(variant: :outline) do %>
+            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="mr-2"><path d="M21 12a9 9 0 1 1-9-9c2.52 0 4.93 1 6.74 2.74L21 8"/><path d="M21 3v5h-5"/></svg>
+            Refresh
+          <% end %>
+        <% end %>
+      <% end %>
+    <% end %>
+  <% end %>
+
+  <%# With Avatar %>
+  <%= render Docs::Example.new(
+    name: "With Avatar",
+    description: "Displays a grayscale avatar image instead of an icon.",
+    view_context: self
+  ) do |example| %>
+    <% example.erb do %>
+      <%= render "ui/empty" do %>
+        <%= render "ui/empty/header" do %>
+          <%= render "ui/empty/media" do %>
+            <%= render "ui/avatar", classes: "size-16 grayscale" do %>
+              <%= render "ui/avatar/image", src: "https://github.com/shadcn.png", alt: "User" %>
+              <%= render "ui/avatar/fallback" do %>LR<% end %>
+            <% end %>
+          <% end %>
+          <%= render "ui/empty/title", content: "User Offline" %>
+          <%= render "ui/empty/description", content: "This user is currently unavailable. Leave a message and they'll get back to you." %>
+        <% end %>
+        <%= render "ui/empty/content" do %>
+          <%= render "ui/button" do %>Leave Message<% end %>
+        <% end %>
+      <% end %>
+    <% end %>
+
+    <% example.phlex do %>
+      <%= render UI::Empty.new do %>
+        <%= render UI::EmptyHeader.new do %>
+          <%= render UI::EmptyMedia.new do %>
+            <%= render UI::Avatar.new(classes: "size-16 grayscale") do %>
+              <%= render UI::AvatarImage.new(src: "https://github.com/shadcn.png", alt: "User") %>
+              <%= render UI::AvatarFallback.new { "LR" } %>
+            <% end %>
+          <% end %>
+          <%= render UI::EmptyTitle.new { "User Offline" } %>
+          <%= render UI::EmptyDescription.new { "This user is currently unavailable. Leave a message and they'll get back to you." } %>
+        <% end %>
+        <%= render UI::EmptyContent.new do %>
+          <%= render UI::Button.new { "Leave Message" } %>
+        <% end %>
+      <% end %>
+    <% end %>
+
+    <% example.view_component do %>
+      <%= render UI::EmptyComponent.new do %>
+        <%= render UI::EmptyHeaderComponent.new do %>
+          <%= render UI::EmptyMediaComponent.new do %>
+            <%= render UI::AvatarComponent.new(classes: "size-16 grayscale") do %>
+              <%= render UI::AvatarImageComponent.new(src: "https://github.com/shadcn.png", alt: "User") %>
+              <%= render(UI::AvatarFallbackComponent.new) { "LR" } %>
+            <% end %>
+          <% end %>
+          <%= render(UI::EmptyTitleComponent.new) { "User Offline" } %>
+          <%= render(UI::EmptyDescriptionComponent.new) { "This user is currently unavailable. Leave a message and they'll get back to you." } %>
+        <% end %>
+        <%= render UI::EmptyContentComponent.new do %>
+          <%= render(UI::ButtonComponent.new) { "Leave Message" } %>
+        <% end %>
+      <% end %>
+    <% end %>
+  <% end %>
+
+  <%# With Avatar Group %>
+  <%= render Docs::Example.new(
+    name: "With Avatar Group",
+    description: "Multiple overlapping avatars in a group layout.",
+    view_context: self
+  ) do |example| %>
+    <% example.erb do %>
+      <%= render "ui/empty" do %>
+        <%= render "ui/empty/header" do %>
+          <%= render "ui/empty/media" do %>
+            <div class="flex -space-x-4">
+              <%= render "ui/avatar", classes: "size-12 ring-2 ring-background grayscale" do %>
+                <%= render "ui/avatar/image", src: "https://github.com/shadcn.png", alt: "User 1" %>
+                <%= render "ui/avatar/fallback" do %>U1<% end %>
+              <% end %>
+              <%= render "ui/avatar", classes: "size-12 ring-2 ring-background grayscale" do %>
+                <%= render "ui/avatar/image", src: "https://github.com/vercel.png", alt: "User 2" %>
+                <%= render "ui/avatar/fallback" do %>U2<% end %>
+              <% end %>
+              <%= render "ui/avatar", classes: "size-12 ring-2 ring-background grayscale" do %>
+                <%= render "ui/avatar/image", src: "https://github.com/github.png", alt: "User 3" %>
+                <%= render "ui/avatar/fallback" do %>U3<% end %>
+              <% end %>
+            </div>
+          <% end %>
+          <%= render "ui/empty/title", content: "No Team Members" %>
+          <%= render "ui/empty/description", content: "Invite your team to collaborate on this project." %>
+        <% end %>
+        <%= render "ui/empty/content" do %>
+          <%= render "ui/button" do %>
+            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="mr-2"><path d="M5 12h14"/><path d="M12 5v14"/></svg>
+            Invite Members
+          <% end %>
+        <% end %>
+      <% end %>
+    <% end %>
+
+    <% example.phlex do %>
+      <%= render UI::Empty.new do %>
+        <%= render UI::EmptyHeader.new do %>
+          <%= render UI::EmptyMedia.new do %>
+            <div class="flex -space-x-4">
+              <%= render UI::Avatar.new(classes: "size-12 ring-2 ring-background grayscale") do %>
+                <%= render UI::AvatarImage.new(src: "https://github.com/shadcn.png", alt: "User 1") %>
+                <%= render UI::AvatarFallback.new { "U1" } %>
+              <% end %>
+              <%= render UI::Avatar.new(classes: "size-12 ring-2 ring-background grayscale") do %>
+                <%= render UI::AvatarImage.new(src: "https://github.com/vercel.png", alt: "User 2") %>
+                <%= render UI::AvatarFallback.new { "U2" } %>
+              <% end %>
+              <%= render UI::Avatar.new(classes: "size-12 ring-2 ring-background grayscale") do %>
+                <%= render UI::AvatarImage.new(src: "https://github.com/github.png", alt: "User 3") %>
+                <%= render UI::AvatarFallback.new { "U3" } %>
+              <% end %>
+            </div>
+          <% end %>
+          <%= render UI::EmptyTitle.new { "No Team Members" } %>
+          <%= render UI::EmptyDescription.new { "Invite your team to collaborate on this project." } %>
+        <% end %>
+        <%= render UI::EmptyContent.new do %>
+          <%= render UI::Button.new do %>
+            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="mr-2"><path d="M5 12h14"/><path d="M12 5v14"/></svg>
+            Invite Members
+          <% end %>
+        <% end %>
+      <% end %>
+    <% end %>
+
+    <% example.view_component do %>
+      <%= render UI::EmptyComponent.new do %>
+        <%= render UI::EmptyHeaderComponent.new do %>
+          <%= render UI::EmptyMediaComponent.new do %>
+            <div class="flex -space-x-4">
+              <%= render UI::AvatarComponent.new(classes: "size-12 ring-2 ring-background grayscale") do %>
+                <%= render UI::AvatarImageComponent.new(src: "https://github.com/shadcn.png", alt: "User 1") %>
+                <%= render(UI::AvatarFallbackComponent.new) { "U1" } %>
+              <% end %>
+              <%= render UI::AvatarComponent.new(classes: "size-12 ring-2 ring-background grayscale") do %>
+                <%= render UI::AvatarImageComponent.new(src: "https://github.com/vercel.png", alt: "User 2") %>
+                <%= render(UI::AvatarFallbackComponent.new) { "U2" } %>
+              <% end %>
+              <%= render UI::AvatarComponent.new(classes: "size-12 ring-2 ring-background grayscale") do %>
+                <%= render UI::AvatarImageComponent.new(src: "https://github.com/github.png", alt: "User 3") %>
+                <%= render(UI::AvatarFallbackComponent.new) { "U3" } %>
+              <% end %>
+            </div>
+          <% end %>
+          <%= render(UI::EmptyTitleComponent.new) { "No Team Members" } %>
+          <%= render(UI::EmptyDescriptionComponent.new) { "Invite your team to collaborate on this project." } %>
+        <% end %>
+        <%= render UI::EmptyContentComponent.new do %>
+          <%= render UI::ButtonComponent.new do %>
+            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="mr-2"><path d="M5 12h14"/><path d="M12 5v14"/></svg>
+            Invite Members
+          <% end %>
+        <% end %>
+      <% end %>
+    <% end %>
+  <% end %>
+
+  <%# 404 Not Found %>
+  <%= render Docs::Example.new(
+    name: "404 Not Found",
+    description: "Integrates search input functionality into empty state for 404 pages.",
+    view_context: self
+  ) do |example| %>
+    <% example.erb do %>
+      <%= render "ui/empty" do %>
+        <%= render "ui/empty/header" do %>
+          <%= render "ui/empty/title", content: "404 - Not Found" %>
+          <%= render "ui/empty/description", content: "The page you're looking for doesn't exist. Try searching for what you need below." %>
+        <% end %>
+        <%= render "ui/empty/content" do %>
+          <%= render "ui/input_group", classes: "max-w-sm" do %>
+            <%= render "ui/input_group/addon", side: :left do %>
+              <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="text-muted-foreground"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.3-4.3"/></svg>
+            <% end %>
+            <%= render "ui/input", placeholder: "Search...", classes: "pl-9 pr-12" %>
+            <%= render "ui/input_group/addon", side: :right do %>
+              <%= render "ui/kbd" do %>/<% end %>
+            <% end %>
+          <% end %>
+          <p class="text-sm text-muted-foreground">Need help? <a href="#" class="underline underline-offset-4 hover:text-foreground">Contact support</a></p>
+        <% end %>
+      <% end %>
+    <% end %>
+
+    <% example.phlex do %>
+      <%= render UI::Empty.new do %>
+        <%= render UI::EmptyHeader.new do %>
+          <%= render UI::EmptyTitle.new { "404 - Not Found" } %>
+          <%= render UI::EmptyDescription.new { "The page you're looking for doesn't exist. Try searching for what you need below." } %>
+        <% end %>
+        <%= render UI::EmptyContent.new do %>
+          <%= render UI::InputGroup.new(classes: "max-w-sm") do %>
+            <%= render UI::InputGroupAddon.new(side: :left) do %>
+              <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="text-muted-foreground"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.3-4.3"/></svg>
+            <% end %>
+            <%= render UI::Input.new(placeholder: "Search...", classes: "pl-9 pr-12") %>
+            <%= render UI::InputGroupAddon.new(side: :right) do %>
+              <%= render UI::Kbd.new { "/" } %>
+            <% end %>
+          <% end %>
+          <p class="text-sm text-muted-foreground">Need help? <a href="#" class="underline underline-offset-4 hover:text-foreground">Contact support</a></p>
+        <% end %>
+      <% end %>
+    <% end %>
+
+    <% example.view_component do %>
+      <%= render UI::EmptyComponent.new do %>
+        <%= render UI::EmptyHeaderComponent.new do %>
+          <%= render(UI::EmptyTitleComponent.new) { "404 - Not Found" } %>
+          <%= render(UI::EmptyDescriptionComponent.new) { "The page you're looking for doesn't exist. Try searching for what you need below." } %>
+        <% end %>
+        <%= render UI::EmptyContentComponent.new do %>
+          <%= render UI::InputGroupComponent.new(classes: "max-w-sm") do %>
+            <%= render UI::InputGroupAddonComponent.new(side: :left) do %>
+              <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="text-muted-foreground"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.3-4.3"/></svg>
+            <% end %>
+            <%= render UI::InputComponent.new(placeholder: "Search...", classes: "pl-9 pr-12") %>
+            <%= render UI::InputGroupAddonComponent.new(side: :right) do %>
+              <%= render(UI::KbdComponent.new) { "/" } %>
+            <% end %>
+          <% end %>
+          <p class="text-sm text-muted-foreground">Need help? <a href="#" class="underline underline-offset-4 hover:text-foreground">Contact support</a></p>
+        <% end %>
+      <% end %>
+    <% end %>
+  <% end %>
+
+<% end %>

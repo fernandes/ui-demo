@@ -1,0 +1,78 @@
+<%= render Docs::ComponentPage.new(component_name: "skeleton") do %>
+
+  <%# Default %>
+  <%= render Docs::Example.new(
+    name: "Default",
+    description: "Use to show a placeholder while content is loading.",
+    view_context: self
+  ) do |example| %>
+    <% example.erb do %>
+      <div class="flex items-center space-x-4">
+        <%= render "ui/skeleton", class: "h-12 w-12 rounded-full" %>
+        <div class="space-y-2">
+          <%= render "ui/skeleton", class: "h-4 w-[250px]" %>
+          <%= render "ui/skeleton", class: "h-4 w-[200px]" %>
+        </div>
+      </div>
+    <% end %>
+
+    <% example.phlex do %>
+      <div class="flex items-center space-x-4">
+        <%= render UI::Skeleton.new(classes: "h-12 w-12 rounded-full") %>
+        <div class="space-y-2">
+          <%= render UI::Skeleton.new(classes: "h-4 w-[250px]") %>
+          <%= render UI::Skeleton.new(classes: "h-4 w-[200px]") %>
+        </div>
+      </div>
+    <% end %>
+
+    <% example.view_component do %>
+      <div class="flex items-center space-x-4">
+        <%= render UI::SkeletonComponent.new(class: "h-12 w-12 rounded-full") %>
+        <div class="space-y-2">
+          <%= render UI::SkeletonComponent.new(class: "h-4 w-[250px]") %>
+          <%= render UI::SkeletonComponent.new(class: "h-4 w-[200px]") %>
+        </div>
+      </div>
+    <% end %>
+  <% end %>
+
+  <%# Card %>
+  <%= render Docs::Example.new(
+    name: "Card",
+    description: "A card skeleton with image and text placeholders.",
+    view_context: self
+  ) do |example| %>
+    <% example.erb do %>
+      <div class="flex flex-col space-y-3">
+        <%= render "ui/skeleton", class: "h-[125px] w-[250px] rounded-xl" %>
+        <div class="space-y-2">
+          <%= render "ui/skeleton", class: "h-4 w-[250px]" %>
+          <%= render "ui/skeleton", class: "h-4 w-[200px]" %>
+        </div>
+      </div>
+    <% end %>
+
+    <% example.phlex do %>
+      <div class="flex flex-col space-y-3">
+        <%= render UI::Skeleton.new(classes: "h-[125px] w-[250px] rounded-xl") %>
+        <div class="space-y-2">
+          <%= render UI::Skeleton.new(classes: "h-4 w-[250px]") %>
+          <%= render UI::Skeleton.new(classes: "h-4 w-[200px]") %>
+        </div>
+      </div>
+    <% end %>
+
+    <% example.view_component do %>
+      <div class="flex flex-col space-y-3">
+        <%= render UI::SkeletonComponent.new(class: "h-[125px] w-[250px] rounded-xl") %>
+        <div class="space-y-2">
+          <%= render UI::SkeletonComponent.new(class: "h-4 w-[250px]") %>
+          <%= render UI::SkeletonComponent.new(class: "h-4 w-[200px]") %>
+        </div>
+      </div>
+    <% end %>
+  <% end %>
+
+<% end %>
+

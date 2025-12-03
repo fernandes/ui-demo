@@ -1,0 +1,759 @@
+<%= render Docs::ComponentPage.new(component_name: "item") do %>
+
+  <%# Default %>
+  <%= render Docs::Example.new(
+    name: "Default",
+    description: "A versatile component for displaying content with title, description, and actions.",
+    view_context: self
+  ) do |example| %>
+    <% example.erb do %>
+      <div class="flex w-full max-w-md flex-col gap-6">
+        <%= render "ui/item", variant: "outline" do %>
+          <%= render "ui/item/content" do %>
+            <%= render "ui/item/title" do %>Basic Item<% end %>
+            <%= render "ui/item/description" do %>A simple item with title and description.<% end %>
+          <% end %>
+          <%= render "ui/item/actions" do %>
+            <%= render "ui/button", variant: "outline", size: "sm", content: "Action" %>
+          <% end %>
+        <% end %>
+
+        <%= render "ui/item", variant: "outline", size: "sm" do %>
+          <%= render "ui/item/media" do %>
+            <svg class="size-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
+            </svg>
+          <% end %>
+          <%= render "ui/item/content" do %>
+            <%= render "ui/item/title" do %>Your profile has been verified.<% end %>
+          <% end %>
+          <%= render "ui/item/actions" do %>
+            <svg class="size-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
+            </svg>
+          <% end %>
+        <% end %>
+      </div>
+    <% end %>
+
+    <% example.phlex do %>
+      <div class="flex w-full max-w-md flex-col gap-6">
+        <%= render UI::Item.new(variant: "outline") do %>
+          <%= render UI::ItemContent.new do %>
+            <%= render UI::ItemTitle.new { "Basic Item" } %>
+            <%= render UI::ItemDescription.new { "A simple item with title and description." } %>
+          <% end %>
+          <%= render UI::ItemActions.new do %>
+            <%= render UI::Button.new(variant: "outline", size: "sm") { "Action" } %>
+          <% end %>
+        <% end %>
+
+        <%= render UI::Item.new(variant: "outline", size: "sm", as_child: true) do |item_attrs| %>
+          <%= content_tag(:a, href: "#", **item_attrs) do %>
+            <%= render UI::ItemMedia.new do %>
+              <svg class="size-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
+              </svg>
+            <% end %>
+            <%= render UI::ItemContent.new do %>
+              <%= render UI::ItemTitle.new { "Your profile has been verified." } %>
+            <% end %>
+            <%= render UI::ItemActions.new do %>
+              <svg class="size-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
+              </svg>
+            <% end %>
+          <% end %>
+        <% end %>
+      </div>
+    <% end %>
+
+    <% example.view_component do %>
+      <div class="flex w-full max-w-md flex-col gap-6">
+        <%= render UI::ItemComponent.new(variant: "outline") do %>
+          <%= render UI::ItemContentComponent.new do %>
+            <%= render(UI::ItemTitleComponent.new) { "Basic Item" } %>
+            <%= render(UI::ItemDescriptionComponent.new) { "A simple item with title and description." } %>
+          <% end %>
+          <%= render UI::ItemActionsComponent.new do %>
+            <%= render(UI::ButtonComponent.new(variant: "outline", size: "sm")) { "Action" } %>
+          <% end %>
+        <% end %>
+
+        <%= render UI::ItemComponent.new(variant: "outline", size: "sm") do %>
+          <%= render UI::ItemMediaComponent.new do %>
+            <svg class="size-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
+            </svg>
+          <% end %>
+          <%= render UI::ItemContentComponent.new do %>
+            <%= render(UI::ItemTitleComponent.new) { "Your profile has been verified." } %>
+          <% end %>
+          <%= render UI::ItemActionsComponent.new do %>
+            <svg class="size-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
+            </svg>
+          <% end %>
+        <% end %>
+      </div>
+    <% end %>
+  <% end %>
+
+  <%# Variants %>
+  <%= render Docs::Example.new(
+    name: "Variants",
+    description: "Different visual variants: default, outline, and muted.",
+    view_context: self
+  ) do |example| %>
+    <% example.erb do %>
+      <div class="flex flex-col gap-6">
+        <%= render "ui/item" do %>
+          <%= render "ui/item/content" do %>
+            <%= render "ui/item/title" do %>Default Variant<% end %>
+            <%= render "ui/item/description" do %>Standard styling with subtle background and borders.<% end %>
+          <% end %>
+          <%= render "ui/item/actions" do %>
+            <%= render "ui/button", variant: "outline", size: "sm", content: "Open" %>
+          <% end %>
+        <% end %>
+
+        <%= render "ui/item", variant: "outline" do %>
+          <%= render "ui/item/content" do %>
+            <%= render "ui/item/title" do %>Outline Variant<% end %>
+            <%= render "ui/item/description" do %>Outlined style with clear borders and transparent background.<% end %>
+          <% end %>
+          <%= render "ui/item/actions" do %>
+            <%= render "ui/button", variant: "outline", size: "sm", content: "Open" %>
+          <% end %>
+        <% end %>
+
+        <%= render "ui/item", variant: "muted" do %>
+          <%= render "ui/item/content" do %>
+            <%= render "ui/item/title" do %>Muted Variant<% end %>
+            <%= render "ui/item/description" do %>Subdued appearance with muted colors for secondary content.<% end %>
+          <% end %>
+          <%= render "ui/item/actions" do %>
+            <%= render "ui/button", variant: "outline", size: "sm", content: "Open" %>
+          <% end %>
+        <% end %>
+      </div>
+    <% end %>
+
+    <% example.phlex do %>
+      <div class="flex flex-col gap-6">
+        <%= render UI::Item.new do %>
+          <%= render UI::ItemContent.new do %>
+            <%= render UI::ItemTitle.new { "Default Variant" } %>
+            <%= render UI::ItemDescription.new { "Standard styling with subtle background and borders." } %>
+          <% end %>
+          <%= render UI::ItemActions.new do %>
+            <%= render UI::Button.new(variant: "outline", size: "sm") { "Open" } %>
+          <% end %>
+        <% end %>
+
+        <%= render UI::Item.new(variant: "outline") do %>
+          <%= render UI::ItemContent.new do %>
+            <%= render UI::ItemTitle.new { "Outline Variant" } %>
+            <%= render UI::ItemDescription.new { "Outlined style with clear borders and transparent background." } %>
+          <% end %>
+          <%= render UI::ItemActions.new do %>
+            <%= render UI::Button.new(variant: "outline", size: "sm") { "Open" } %>
+          <% end %>
+        <% end %>
+
+        <%= render UI::Item.new(variant: "muted") do %>
+          <%= render UI::ItemContent.new do %>
+            <%= render UI::ItemTitle.new { "Muted Variant" } %>
+            <%= render UI::ItemDescription.new { "Subdued appearance with muted colors for secondary content." } %>
+          <% end %>
+          <%= render UI::ItemActions.new do %>
+            <%= render UI::Button.new(variant: "outline", size: "sm") { "Open" } %>
+          <% end %>
+        <% end %>
+      </div>
+    <% end %>
+
+    <% example.view_component do %>
+      <div class="flex flex-col gap-6">
+        <%= render UI::ItemComponent.new do %>
+          <%= render UI::ItemContentComponent.new do %>
+            <%= render(UI::ItemTitleComponent.new) { "Default Variant" } %>
+            <%= render(UI::ItemDescriptionComponent.new) { "Standard styling with subtle background and borders." } %>
+          <% end %>
+          <%= render UI::ItemActionsComponent.new do %>
+            <%= render(UI::ButtonComponent.new(variant: "outline", size: "sm")) { "Open" } %>
+          <% end %>
+        <% end %>
+
+        <%= render UI::ItemComponent.new(variant: "outline") do %>
+          <%= render UI::ItemContentComponent.new do %>
+            <%= render(UI::ItemTitleComponent.new) { "Outline Variant" } %>
+            <%= render(UI::ItemDescriptionComponent.new) { "Outlined style with clear borders and transparent background." } %>
+          <% end %>
+          <%= render UI::ItemActionsComponent.new do %>
+            <%= render(UI::ButtonComponent.new(variant: "outline", size: "sm")) { "Open" } %>
+          <% end %>
+        <% end %>
+
+        <%= render UI::ItemComponent.new(variant: "muted") do %>
+          <%= render UI::ItemContentComponent.new do %>
+            <%= render(UI::ItemTitleComponent.new) { "Muted Variant" } %>
+            <%= render(UI::ItemDescriptionComponent.new) { "Subdued appearance with muted colors for secondary content." } %>
+          <% end %>
+          <%= render UI::ItemActionsComponent.new do %>
+            <%= render(UI::ButtonComponent.new(variant: "outline", size: "sm")) { "Open" } %>
+          <% end %>
+        <% end %>
+      </div>
+    <% end %>
+  <% end %>
+
+  <%# Size %>
+  <%= render Docs::Example.new(
+    name: "Size",
+    description: "Items with different sizes for varying content density.",
+    view_context: self
+  ) do |example| %>
+    <% example.erb do %>
+      <div class="flex w-full max-w-md flex-col gap-6">
+        <%= render "ui/item", variant: "outline" do %>
+          <%= render "ui/item/content" do %>
+            <%= render "ui/item/title" do %>Default Size<% end %>
+            <%= render "ui/item/description" do %>Standard padding for comfortable content spacing.<% end %>
+          <% end %>
+          <%= render "ui/item/actions" do %>
+            <%= render "ui/button", variant: "outline", size: "sm", content: "Action" %>
+          <% end %>
+        <% end %>
+
+        <%= render "ui/item", variant: "outline", size: "sm" do %>
+          <%= render "ui/item/media" do %>
+            <svg class="size-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
+            </svg>
+          <% end %>
+          <%= render "ui/item/content" do %>
+            <%= render "ui/item/title" do %>Compact Size<% end %>
+          <% end %>
+          <%= render "ui/item/actions" do %>
+            <svg class="size-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
+            </svg>
+          <% end %>
+        <% end %>
+      </div>
+    <% end %>
+
+    <% example.phlex do %>
+      <div class="flex w-full max-w-md flex-col gap-6">
+        <%= render UI::Item.new(variant: "outline") do %>
+          <%= render UI::ItemContent.new do %>
+            <%= render UI::ItemTitle.new { "Default Size" } %>
+            <%= render UI::ItemDescription.new { "Standard padding for comfortable content spacing." } %>
+          <% end %>
+          <%= render UI::ItemActions.new do %>
+            <%= render UI::Button.new(variant: "outline", size: "sm") { "Action" } %>
+          <% end %>
+        <% end %>
+
+        <%= render UI::Item.new(variant: "outline", size: "sm") do %>
+          <%= render UI::ItemMedia.new do %>
+            <svg class="size-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
+            </svg>
+          <% end %>
+          <%= render UI::ItemContent.new do %>
+            <%= render UI::ItemTitle.new { "Compact Size" } %>
+          <% end %>
+          <%= render UI::ItemActions.new do %>
+            <svg class="size-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
+            </svg>
+          <% end %>
+        <% end %>
+      </div>
+    <% end %>
+
+    <% example.view_component do %>
+      <div class="flex w-full max-w-md flex-col gap-6">
+        <%= render UI::ItemComponent.new(variant: "outline") do %>
+          <%= render UI::ItemContentComponent.new do %>
+            <%= render(UI::ItemTitleComponent.new) { "Default Size" } %>
+            <%= render(UI::ItemDescriptionComponent.new) { "Standard padding for comfortable content spacing." } %>
+          <% end %>
+          <%= render UI::ItemActionsComponent.new do %>
+            <%= render(UI::ButtonComponent.new(variant: "outline", size: "sm")) { "Action" } %>
+          <% end %>
+        <% end %>
+
+        <%= render UI::ItemComponent.new(variant: "outline", size: "sm") do %>
+          <%= render UI::ItemMediaComponent.new do %>
+            <svg class="size-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
+            </svg>
+          <% end %>
+          <%= render UI::ItemContentComponent.new do %>
+            <%= render(UI::ItemTitleComponent.new) { "Compact Size" } %>
+          <% end %>
+          <%= render UI::ItemActionsComponent.new do %>
+            <svg class="size-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
+            </svg>
+          <% end %>
+        <% end %>
+      </div>
+    <% end %>
+  <% end %>
+
+  <%# With Icon %>
+  <%= render Docs::Example.new(
+    name: "With Icon",
+    description: "Item with an icon indicator for status or category.",
+    view_context: self
+  ) do |example| %>
+    <% example.erb do %>
+      <div class="flex w-full max-w-lg flex-col gap-6">
+        <%= render "ui/item", variant: "outline" do %>
+          <%= render "ui/item/media", variant: "icon" do %>
+            <svg fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z" />
+            </svg>
+          <% end %>
+          <%= render "ui/item/content" do %>
+            <%= render "ui/item/title" do %>Security Alert<% end %>
+            <%= render "ui/item/description" do %>New login detected from unknown device.<% end %>
+          <% end %>
+          <%= render "ui/item/actions" do %>
+            <%= render "ui/button", size: "sm", variant: "outline", content: "Review" %>
+          <% end %>
+        <% end %>
+      </div>
+    <% end %>
+
+    <% example.phlex do %>
+      <div class="flex w-full max-w-lg flex-col gap-6">
+        <%= render UI::Item.new(variant: "outline") do %>
+          <%= render UI::ItemMedia.new(variant: "icon") do %>
+            <svg fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z" />
+            </svg>
+          <% end %>
+          <%= render UI::ItemContent.new do %>
+            <%= render UI::ItemTitle.new { "Security Alert" } %>
+            <%= render UI::ItemDescription.new { "New login detected from unknown device." } %>
+          <% end %>
+          <%= render UI::ItemActions.new do %>
+            <%= render UI::Button.new(size: "sm", variant: "outline") { "Review" } %>
+          <% end %>
+        <% end %>
+      </div>
+    <% end %>
+
+    <% example.view_component do %>
+      <div class="flex w-full max-w-lg flex-col gap-6">
+        <%= render UI::ItemComponent.new(variant: "outline") do %>
+          <%= render UI::ItemMediaComponent.new(variant: "icon") do %>
+            <svg fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z" />
+            </svg>
+          <% end %>
+          <%= render UI::ItemContentComponent.new do %>
+            <%= render(UI::ItemTitleComponent.new) { "Security Alert" } %>
+            <%= render(UI::ItemDescriptionComponent.new) { "New login detected from unknown device." } %>
+          <% end %>
+          <%= render UI::ItemActionsComponent.new do %>
+            <%= render(UI::ButtonComponent.new(size: "sm", variant: "outline")) { "Review" } %>
+          <% end %>
+        <% end %>
+      </div>
+    <% end %>
+  <% end %>
+
+  <%# With Avatar %>
+  <%= render Docs::Example.new(
+    name: "With Avatar",
+    description: "Items with avatars for user-related content.",
+    view_context: self
+  ) do |example| %>
+    <% example.erb do %>
+      <div class="flex w-full max-w-lg flex-col gap-6">
+        <%= render "ui/item", variant: "outline" do %>
+          <%= render "ui/item/media" do %>
+            <%= render "ui/avatar", classes: "size-10" do %>
+              <%= render "ui/avatar/fallback" do %>ER<% end %>
+            <% end %>
+          <% end %>
+          <%= render "ui/item/content" do %>
+            <%= render "ui/item/title" do %>Evil Rabbit<% end %>
+            <%= render "ui/item/description" do %>Last seen 5 months ago<% end %>
+          <% end %>
+          <%= render "ui/item/actions" do %>
+            <%= render "ui/button", size: "sm", variant: "outline", classes: "rounded-full", content: "+" %>
+          <% end %>
+        <% end %>
+
+        <%= render "ui/item", variant: "outline" do %>
+          <%= render "ui/item/media" do %>
+            <div class="flex -space-x-2">
+              <%= render "ui/avatar", classes: "ring-2 ring-background grayscale" do %>
+                <%= render "ui/avatar/fallback" do %>CN<% end %>
+              <% end %>
+              <%= render "ui/avatar", classes: "ring-2 ring-background grayscale" do %>
+                <%= render "ui/avatar/fallback" do %>LR<% end %>
+              <% end %>
+              <%= render "ui/avatar", classes: "ring-2 ring-background grayscale" do %>
+                <%= render "ui/avatar/fallback" do %>ER<% end %>
+              <% end %>
+            </div>
+          <% end %>
+          <%= render "ui/item/content" do %>
+            <%= render "ui/item/title" do %>No Team Members<% end %>
+            <%= render "ui/item/description" do %>Invite your team to collaborate on this project.<% end %>
+          <% end %>
+          <%= render "ui/item/actions" do %>
+            <%= render "ui/button", size: "sm", variant: "outline", content: "Invite" %>
+          <% end %>
+        <% end %>
+      </div>
+    <% end %>
+
+    <% example.phlex do %>
+      <div class="flex w-full max-w-lg flex-col gap-6">
+        <%= render UI::Item.new(variant: "outline") do %>
+          <%= render UI::ItemMedia.new do %>
+            <%= render UI::Avatar.new(classes: "size-10") do %>
+              <%= render UI::AvatarFallback.new { "ER" } %>
+            <% end %>
+          <% end %>
+          <%= render UI::ItemContent.new do %>
+            <%= render UI::ItemTitle.new { "Evil Rabbit" } %>
+            <%= render UI::ItemDescription.new { "Last seen 5 months ago" } %>
+          <% end %>
+          <%= render UI::ItemActions.new do %>
+            <%= render UI::Button.new(size: "sm", variant: "outline", classes: "rounded-full") { "+" } %>
+          <% end %>
+        <% end %>
+
+        <%= render UI::Item.new(variant: "outline") do %>
+          <%= render UI::ItemMedia.new do %>
+            <div class="flex -space-x-2">
+              <%= render UI::Avatar.new(classes: "ring-2 ring-background grayscale") do %>
+                <%= render UI::AvatarFallback.new { "CN" } %>
+              <% end %>
+              <%= render UI::Avatar.new(classes: "ring-2 ring-background grayscale") do %>
+                <%= render UI::AvatarFallback.new { "LR" } %>
+              <% end %>
+              <%= render UI::Avatar.new(classes: "ring-2 ring-background grayscale") do %>
+                <%= render UI::AvatarFallback.new { "ER" } %>
+              <% end %>
+            </div>
+          <% end %>
+          <%= render UI::ItemContent.new do %>
+            <%= render UI::ItemTitle.new { "No Team Members" } %>
+            <%= render UI::ItemDescription.new { "Invite your team to collaborate on this project." } %>
+          <% end %>
+          <%= render UI::ItemActions.new do %>
+            <%= render UI::Button.new(size: "sm", variant: "outline") { "Invite" } %>
+          <% end %>
+        <% end %>
+      </div>
+    <% end %>
+
+    <% example.view_component do %>
+      <div class="flex w-full max-w-lg flex-col gap-6">
+        <%= render UI::ItemComponent.new(variant: "outline") do %>
+          <%= render UI::ItemMediaComponent.new do %>
+            <%= render UI::AvatarComponent.new(classes: "size-10") do %>
+              <%= render(UI::AvatarFallbackComponent.new) { "ER" } %>
+            <% end %>
+          <% end %>
+          <%= render UI::ItemContentComponent.new do %>
+            <%= render(UI::ItemTitleComponent.new) { "Evil Rabbit" } %>
+            <%= render(UI::ItemDescriptionComponent.new) { "Last seen 5 months ago" } %>
+          <% end %>
+          <%= render UI::ItemActionsComponent.new do %>
+            <%= render(UI::ButtonComponent.new(size: "sm", variant: "outline", classes: "rounded-full")) { "+" } %>
+          <% end %>
+        <% end %>
+
+        <%= render UI::ItemComponent.new(variant: "outline") do %>
+          <%= render UI::ItemMediaComponent.new do %>
+            <div class="flex -space-x-2">
+              <%= render UI::AvatarComponent.new(classes: "ring-2 ring-background grayscale") do %>
+                <%= render(UI::AvatarFallbackComponent.new) { "CN" } %>
+              <% end %>
+              <%= render UI::AvatarComponent.new(classes: "ring-2 ring-background grayscale") do %>
+                <%= render(UI::AvatarFallbackComponent.new) { "LR" } %>
+              <% end %>
+              <%= render UI::AvatarComponent.new(classes: "ring-2 ring-background grayscale") do %>
+                <%= render(UI::AvatarFallbackComponent.new) { "ER" } %>
+              <% end %>
+            </div>
+          <% end %>
+          <%= render UI::ItemContentComponent.new do %>
+            <%= render(UI::ItemTitleComponent.new) { "No Team Members" } %>
+            <%= render(UI::ItemDescriptionComponent.new) { "Invite your team to collaborate on this project." } %>
+          <% end %>
+          <%= render UI::ItemActionsComponent.new do %>
+            <%= render(UI::ButtonComponent.new(size: "sm", variant: "outline")) { "Invite" } %>
+          <% end %>
+        <% end %>
+      </div>
+    <% end %>
+  <% end %>
+
+  <%# Group %>
+  <%= render Docs::Example.new(
+    name: "Group",
+    description: "Multiple items grouped together with separators.",
+    view_context: self
+  ) do |example| %>
+    <% example.erb do %>
+      <div class="flex w-full max-w-md flex-col gap-6">
+        <%= render "ui/item/group" do %>
+          <% ["shadcn@vercel.com", "maxleiter@vercel.com", "evilrabbit@vercel.com"].each_with_index do |email, index| %>
+            <% username = email.split("@").first %>
+            <%= render "ui/item" do %>
+              <%= render "ui/item/media" do %>
+                <%= render "ui/avatar" do %>
+                  <%= render "ui/avatar/fallback", classes: "grayscale" do %><%= username[0].upcase %><% end %>
+                <% end %>
+              <% end %>
+              <%= render "ui/item/content", classes: "gap-1" do %>
+                <%= render "ui/item/title" do %><%= username %><% end %>
+                <%= render "ui/item/description" do %><%= email %><% end %>
+              <% end %>
+              <%= render "ui/item/actions" do %>
+                <%= render "ui/button", variant: "ghost", size: "sm", classes: "rounded-full", content: "+" %>
+              <% end %>
+            <% end %>
+            <% unless index == 2 %>
+              <%= render "ui/item/separator" %>
+            <% end %>
+          <% end %>
+        <% end %>
+      </div>
+    <% end %>
+
+    <% example.phlex do %>
+      <div class="flex w-full max-w-md flex-col gap-6">
+        <%= render UI::ItemGroup.new do %>
+          <% ["shadcn@vercel.com", "maxleiter@vercel.com", "evilrabbit@vercel.com"].each_with_index do |email, index| %>
+            <% username = email.split("@").first %>
+            <%= render UI::Item.new do %>
+              <%= render UI::ItemMedia.new do %>
+                <%= render UI::Avatar.new do %>
+                  <%= render UI::AvatarFallback.new(classes: "grayscale") { username[0].upcase } %>
+                <% end %>
+              <% end %>
+              <%= render UI::ItemContent.new(classes: "gap-1") do %>
+                <%= render UI::ItemTitle.new { username } %>
+                <%= render UI::ItemDescription.new { email } %>
+              <% end %>
+              <%= render UI::ItemActions.new do %>
+                <%= render UI::Button.new(variant: "ghost", size: "sm", classes: "rounded-full") { "+" } %>
+              <% end %>
+            <% end %>
+            <%= render UI::ItemSeparator.new unless index == 2 %>
+          <% end %>
+        <% end %>
+      </div>
+    <% end %>
+
+    <% example.view_component do %>
+      <div class="flex w-full max-w-md flex-col gap-6">
+        <%= render UI::ItemGroupComponent.new do %>
+          <% ["shadcn@vercel.com", "maxleiter@vercel.com", "evilrabbit@vercel.com"].each_with_index do |email, index| %>
+            <% username = email.split("@").first %>
+            <%= render UI::ItemComponent.new do %>
+              <%= render UI::ItemMediaComponent.new do %>
+                <%= render UI::AvatarComponent.new do %>
+                  <%= render(UI::AvatarFallbackComponent.new(classes: "grayscale")) { username[0].upcase } %>
+                <% end %>
+              <% end %>
+              <%= render UI::ItemContentComponent.new(classes: "gap-1") do %>
+                <%= render(UI::ItemTitleComponent.new) { username } %>
+                <%= render(UI::ItemDescriptionComponent.new) { email } %>
+              <% end %>
+              <%= render UI::ItemActionsComponent.new do %>
+                <%= render(UI::ButtonComponent.new(variant: "ghost", size: "sm", classes: "rounded-full")) { "+" } %>
+              <% end %>
+            <% end %>
+            <% unless index == 2 %>
+              <%= render UI::ItemSeparatorComponent.new %>
+            <% end %>
+          <% end %>
+        <% end %>
+      </div>
+    <% end %>
+  <% end %>
+
+  <%# With Header %>
+  <%= render Docs::Example.new(
+    name: "With Header",
+    description: "Items with a header section for media or featured content.",
+    view_context: self
+  ) do |example| %>
+    <% example.erb do %>
+      <div class="flex w-full max-w-xl flex-col gap-6">
+        <%= render "ui/item/group", classes: "grid grid-cols-3 gap-4" do %>
+          <% [
+            { name: "v0-1.5-sm", description: "Everyday tasks." },
+            { name: "v0-1.5-lg", description: "Advanced thinking." },
+            { name: "v0-2.0-mini", description: "Open Source model." }
+          ].each do |model| %>
+            <%= render "ui/item", variant: "outline" do %>
+              <%= render "ui/item/header" do %>
+                <div class="aspect-square w-full rounded-sm bg-muted"></div>
+              <% end %>
+              <%= render "ui/item/content" do %>
+                <%= render "ui/item/title" do %><%= model[:name] %><% end %>
+                <%= render "ui/item/description" do %><%= model[:description] %><% end %>
+              <% end %>
+            <% end %>
+          <% end %>
+        <% end %>
+      </div>
+    <% end %>
+
+    <% example.phlex do %>
+      <div class="flex w-full max-w-xl flex-col gap-6">
+        <%= render UI::ItemGroup.new(classes: "grid grid-cols-3 gap-4") do %>
+          <% [
+            { name: "v0-1.5-sm", description: "Everyday tasks." },
+            { name: "v0-1.5-lg", description: "Advanced thinking." },
+            { name: "v0-2.0-mini", description: "Open Source model." }
+          ].each do |model| %>
+            <%= render UI::Item.new(variant: "outline") do %>
+              <%= render UI::ItemHeader.new do %>
+                <div class="aspect-square w-full rounded-sm bg-muted"></div>
+              <% end %>
+              <%= render UI::ItemContent.new do %>
+                <%= render UI::ItemTitle.new { model[:name] } %>
+                <%= render UI::ItemDescription.new { model[:description] } %>
+              <% end %>
+            <% end %>
+          <% end %>
+        <% end %>
+      </div>
+    <% end %>
+
+    <% example.view_component do %>
+      <div class="flex w-full max-w-xl flex-col gap-6">
+        <%= render UI::ItemGroupComponent.new(classes: "grid grid-cols-3 gap-4") do %>
+          <% [
+            { name: "v0-1.5-sm", description: "Everyday tasks." },
+            { name: "v0-1.5-lg", description: "Advanced thinking." },
+            { name: "v0-2.0-mini", description: "Open Source model." }
+          ].each do |model| %>
+            <%= render UI::ItemComponent.new(variant: "outline") do %>
+              <%= render UI::ItemHeaderComponent.new do %>
+                <div class="aspect-square w-full rounded-sm bg-muted"></div>
+              <% end %>
+              <%= render UI::ItemContentComponent.new do %>
+                <%= render(UI::ItemTitleComponent.new) { model[:name] } %>
+                <%= render(UI::ItemDescriptionComponent.new) { model[:description] } %>
+              <% end %>
+            <% end %>
+          <% end %>
+        <% end %>
+      </div>
+    <% end %>
+  <% end %>
+
+  <%# As Link %>
+  <%= render Docs::Example.new(
+    name: "As Link",
+    description: "Items rendered as clickable links with navigation arrows.",
+    view_context: self
+  ) do |example| %>
+    <% example.erb do %>
+      <div class="flex w-full max-w-md flex-col gap-4">
+        <%= render "ui/item" do %>
+          <%= render "ui/item/content" do %>
+            <%= render "ui/item/title" do %>Visit our documentation<% end %>
+            <%= render "ui/item/description" do %>Learn how to get started with our components.<% end %>
+          <% end %>
+          <%= render "ui/item/actions" do %>
+            <svg class="size-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
+            </svg>
+          <% end %>
+        <% end %>
+
+        <%= render "ui/item", variant: "outline" do %>
+          <%= render "ui/item/content" do %>
+            <%= render "ui/item/title" do %>External resource<% end %>
+            <%= render "ui/item/description" do %>Opens in a new tab with security attributes.<% end %>
+          <% end %>
+          <%= render "ui/item/actions" do %>
+            <svg class="size-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
+            </svg>
+          <% end %>
+        <% end %>
+      </div>
+    <% end %>
+
+    <% example.phlex do %>
+      <div class="flex w-full max-w-md flex-col gap-4">
+        <%= render UI::Item.new(as_child: true) do |item_attrs| %>
+          <%= content_tag(:a, href: "#", **item_attrs) do %>
+            <%= render UI::ItemContent.new do %>
+              <%= render UI::ItemTitle.new { "Visit our documentation" } %>
+              <%= render UI::ItemDescription.new { "Learn how to get started with our components." } %>
+            <% end %>
+            <%= render UI::ItemActions.new do %>
+              <svg class="size-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
+              </svg>
+            <% end %>
+          <% end %>
+        <% end %>
+
+        <%= render UI::Item.new(variant: "outline", as_child: true) do |item_attrs| %>
+          <%= content_tag(:a, href: "#", target: "_blank", rel: "noopener noreferrer", **item_attrs) do %>
+            <%= render UI::ItemContent.new do %>
+              <%= render UI::ItemTitle.new { "External resource" } %>
+              <%= render UI::ItemDescription.new { "Opens in a new tab with security attributes." } %>
+            <% end %>
+            <%= render UI::ItemActions.new do %>
+              <svg class="size-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
+              </svg>
+            <% end %>
+          <% end %>
+        <% end %>
+      </div>
+    <% end %>
+
+    <% example.view_component do %>
+      <div class="flex w-full max-w-md flex-col gap-4">
+        <%= render UI::ItemComponent.new do %>
+          <%= render UI::ItemContentComponent.new do %>
+            <%= render(UI::ItemTitleComponent.new) { "Visit our documentation" } %>
+            <%= render(UI::ItemDescriptionComponent.new) { "Learn how to get started with our components." } %>
+          <% end %>
+          <%= render UI::ItemActionsComponent.new do %>
+            <svg class="size-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
+            </svg>
+          <% end %>
+        <% end %>
+
+        <%= render UI::ItemComponent.new(variant: "outline") do %>
+          <%= render UI::ItemContentComponent.new do %>
+            <%= render(UI::ItemTitleComponent.new) { "External resource" } %>
+            <%= render(UI::ItemDescriptionComponent.new) { "Opens in a new tab with security attributes." } %>
+          <% end %>
+          <%= render UI::ItemActionsComponent.new do %>
+            <svg class="size-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
+            </svg>
+          <% end %>
+        <% end %>
+      </div>
+    <% end %>
+  <% end %>
+
+<% end %>

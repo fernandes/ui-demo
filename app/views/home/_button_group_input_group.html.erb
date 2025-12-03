@@ -1,0 +1,17 @@
+<%= render "ui/button_group", classes: "[--radius:9999rem]" do %>
+  <%= render "ui/button_group" do %>
+    <%= render "ui/button", variant: :outline, size: :icon, "aria-label": "Add" do %>
+      <%= lucide_icon("plus", class: "size-4") %>
+    <% end %>
+  <% end %>
+  <%= render "ui/button_group", classes: "flex-1" do %>
+    <%= render "ui/input_group" do %>
+      <%= render "ui/input_group/input", placeholder: "Send a message..." %>
+      <%= render "ui/input_group/addon", align: "inline-end" do %>
+        <%= render "ui/button", variant: :ghost, size: :icon_xs, "aria-label": "Voice Mode" do %>
+          <%= lucide_icon("audio-lines", class: "size-4") %>
+        <% end %>
+      <% end %>
+    <% end %>
+  <% end %>
+<% end %>

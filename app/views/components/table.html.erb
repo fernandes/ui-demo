@@ -1,0 +1,313 @@
+<%= render Docs::ComponentPage.new(component_name: "table") do %>
+
+  <%# Default %>
+  <%= render Docs::Example.new(
+    name: "Default",
+    description: "A responsive table component with semantic HTML structure.",
+    view_context: self
+  ) do |example| %>
+    <% example.erb do %>
+      <%= render "ui/table" do %>
+        <%= render "ui/table/caption" do %>A list of your recent invoices.<% end %>
+        <%= render "ui/table/header" do %>
+          <%= render "ui/table/row" do %>
+            <%= render "ui/table/head", classes: "w-[100px]" do %>Invoice<% end %>
+            <%= render "ui/table/head" do %>Status<% end %>
+            <%= render "ui/table/head" do %>Method<% end %>
+            <%= render "ui/table/head", classes: "text-right" do %>Amount<% end %>
+          <% end %>
+        <% end %>
+        <%= render "ui/table/body" do %>
+          <%= render "ui/table/row" do %>
+            <%= render "ui/table/cell", classes: "font-medium" do %>INV001<% end %>
+            <%= render "ui/table/cell" do %>Paid<% end %>
+            <%= render "ui/table/cell" do %>Credit Card<% end %>
+            <%= render "ui/table/cell", classes: "text-right" do %>$250.00<% end %>
+          <% end %>
+          <%= render "ui/table/row" do %>
+            <%= render "ui/table/cell", classes: "font-medium" do %>INV002<% end %>
+            <%= render "ui/table/cell" do %>Pending<% end %>
+            <%= render "ui/table/cell" do %>PayPal<% end %>
+            <%= render "ui/table/cell", classes: "text-right" do %>$150.00<% end %>
+          <% end %>
+        <% end %>
+        <%= render "ui/table/footer" do %>
+          <%= render "ui/table/row" do %>
+            <%= render "ui/table/cell", attributes: { colspan: 3 } do %>Total<% end %>
+            <%= render "ui/table/cell", classes: "text-right" do %>$400.00<% end %>
+          <% end %>
+        <% end %>
+      <% end %>
+    <% end %>
+
+    <% example.phlex do %>
+      <%= render UI::Table.new do |t|
+        t.caption { "A list of your recent invoices." }
+        t.header do
+          t.row do
+            t.head(classes: "w-[100px]") { "Invoice" }
+            t.head { "Status" }
+            t.head { "Method" }
+            t.head(classes: "text-right") { "Amount" }
+          end
+        end
+        t.body do
+          t.row do
+            t.cell(classes: "font-medium") { "INV001" }
+            t.cell { "Paid" }
+            t.cell { "Credit Card" }
+            t.cell(classes: "text-right") { "$250.00" }
+          end
+          t.row do
+            t.cell(classes: "font-medium") { "INV002" }
+            t.cell { "Pending" }
+            t.cell { "PayPal" }
+            t.cell(classes: "text-right") { "$150.00" }
+          end
+        end
+        t.footer do
+          t.row do
+            t.cell(colspan: 3) { "Total" }
+            t.cell(classes: "text-right") { "$400.00" }
+          end
+        end
+      end %>
+    <% end %>
+
+    <% example.view_component do %>
+      <%= render UI::TableComponent.new do |t|
+        t.caption { "A list of your recent invoices." }
+        t.header do |h|
+          h.row do |r|
+            r.head(classes: "w-[100px]") { "Invoice" }
+            r.head { "Status" }
+            r.head { "Method" }
+            r.head(classes: "text-right") { "Amount" }
+          end
+        end
+        t.body do |b|
+          b.row do |r|
+            r.cell(classes: "font-medium") { "INV001" }
+            r.cell { "Paid" }
+            r.cell { "Credit Card" }
+            r.cell(classes: "text-right") { "$250.00" }
+          end
+          b.row do |r|
+            r.cell(classes: "font-medium") { "INV002" }
+            r.cell { "Pending" }
+            r.cell { "PayPal" }
+            r.cell(classes: "text-right") { "$150.00" }
+          end
+        end
+        t.footer do |f|
+          f.row do |r|
+            r.cell(colspan: 3) { "Total" }
+            r.cell(classes: "text-right") { "$400.00" }
+          end
+        end
+      end %>
+    <% end %>
+  <% end %>
+
+  <%# Simple %>
+  <%= render Docs::Example.new(
+    name: "Simple",
+    description: "A simple table without footer.",
+    view_context: self
+  ) do |example| %>
+    <% example.erb do %>
+      <%= render "ui/table" do %>
+        <%= render "ui/table/header" do %>
+          <%= render "ui/table/row" do %>
+            <%= render "ui/table/head" do %>Name<% end %>
+            <%= render "ui/table/head" do %>Email<% end %>
+            <%= render "ui/table/head" do %>Role<% end %>
+          <% end %>
+        <% end %>
+        <%= render "ui/table/body" do %>
+          <%= render "ui/table/row" do %>
+            <%= render "ui/table/cell" do %>John Doe<% end %>
+            <%= render "ui/table/cell" do %>john@example.com<% end %>
+            <%= render "ui/table/cell" do %>Admin<% end %>
+          <% end %>
+          <%= render "ui/table/row" do %>
+            <%= render "ui/table/cell" do %>Jane Smith<% end %>
+            <%= render "ui/table/cell" do %>jane@example.com<% end %>
+            <%= render "ui/table/cell" do %>Editor<% end %>
+          <% end %>
+          <%= render "ui/table/row" do %>
+            <%= render "ui/table/cell" do %>Bob Wilson<% end %>
+            <%= render "ui/table/cell" do %>bob@example.com<% end %>
+            <%= render "ui/table/cell" do %>Viewer<% end %>
+          <% end %>
+        <% end %>
+      <% end %>
+    <% end %>
+
+    <% example.phlex do %>
+      <%= render UI::Table.new do |t|
+        t.header do
+          t.row do
+            t.head { "Name" }
+            t.head { "Email" }
+            t.head { "Role" }
+          end
+        end
+        t.body do
+          t.row do
+            t.cell { "John Doe" }
+            t.cell { "john@example.com" }
+            t.cell { "Admin" }
+          end
+          t.row do
+            t.cell { "Jane Smith" }
+            t.cell { "jane@example.com" }
+            t.cell { "Editor" }
+          end
+          t.row do
+            t.cell { "Bob Wilson" }
+            t.cell { "bob@example.com" }
+            t.cell { "Viewer" }
+          end
+        end
+      end %>
+    <% end %>
+
+    <% example.view_component do %>
+      <%= render UI::TableComponent.new do |t|
+        t.header do |h|
+          h.row do |r|
+            r.head { "Name" }
+            r.head { "Email" }
+            r.head { "Role" }
+          end
+        end
+        t.body do |b|
+          b.row do |r|
+            r.cell { "John Doe" }
+            r.cell { "john@example.com" }
+            r.cell { "Admin" }
+          end
+          b.row do |r|
+            r.cell { "Jane Smith" }
+            r.cell { "jane@example.com" }
+            r.cell { "Editor" }
+          end
+          b.row do |r|
+            r.cell { "Bob Wilson" }
+            r.cell { "bob@example.com" }
+            r.cell { "Viewer" }
+          end
+        end
+      end %>
+    <% end %>
+  <% end %>
+
+  <%# With Badges %>
+  <%= render Docs::Example.new(
+    name: "With Badges",
+    description: "Table with status badges in cells.",
+    view_context: self
+  ) do |example| %>
+    <% example.erb do %>
+      <%= render "ui/table" do %>
+        <%= render "ui/table/header" do %>
+          <%= render "ui/table/row" do %>
+            <%= render "ui/table/head" do %>Task<% end %>
+            <%= render "ui/table/head" do %>Status<% end %>
+            <%= render "ui/table/head" do %>Priority<% end %>
+          <% end %>
+        <% end %>
+        <%= render "ui/table/body" do %>
+          <%= render "ui/table/row" do %>
+            <%= render "ui/table/cell" do %>Design homepage<% end %>
+            <%= render "ui/table/cell" do %><%= render "ui/badge", variant: :success do %>Done<% end %><% end %>
+            <%= render "ui/table/cell" do %><%= render "ui/badge", variant: :secondary do %>Low<% end %><% end %>
+          <% end %>
+          <%= render "ui/table/row" do %>
+            <%= render "ui/table/cell" do %>Fix navigation bug<% end %>
+            <%= render "ui/table/cell" do %><%= render "ui/badge", variant: :warning do %>In Progress<% end %><% end %>
+            <%= render "ui/table/cell" do %><%= render "ui/badge", variant: :destructive do %>High<% end %><% end %>
+          <% end %>
+          <%= render "ui/table/row" do %>
+            <%= render "ui/table/cell" do %>Write documentation<% end %>
+            <%= render "ui/table/cell" do %><%= render "ui/badge", variant: :outline do %>Todo<% end %><% end %>
+            <%= render "ui/table/cell" do %><%= render "ui/badge" do %>Medium<% end %><% end %>
+          <% end %>
+        <% end %>
+      <% end %>
+    <% end %>
+
+    <% example.phlex do %>
+      <%= render UI::Table.new do |t|
+        t.header do
+          t.row do
+            t.head { "Task" }
+            t.head { "Status" }
+            t.head { "Priority" }
+          end
+        end
+        t.body do
+          t.row do
+            t.cell { "Design homepage" }
+            t.cell { render UI::Badge.new(variant: :success) { "Done" } }
+            t.cell { render UI::Badge.new(variant: :secondary) { "Low" } }
+          end
+          t.row do
+            t.cell { "Fix navigation bug" }
+            t.cell { render UI::Badge.new(variant: :warning) { "In Progress" } }
+            t.cell { render UI::Badge.new(variant: :destructive) { "High" } }
+          end
+          t.row do
+            t.cell { "Write documentation" }
+            t.cell { render UI::Badge.new(variant: :outline) { "Todo" } }
+            t.cell { render UI::Badge.new { "Medium" } }
+          end
+        end
+      end %>
+    <% end %>
+
+    <% example.view_component do %>
+      <%= render UI::TableComponent.new do |t|
+        t.header do |h|
+          h.row do |r|
+            r.head { "Task" }
+            r.head { "Status" }
+            r.head { "Priority" }
+          end
+        end
+        t.body do |b|
+          b.row do |r|
+            r.cell { "Design homepage" }
+            r.cell do
+              render(UI::BadgeComponent.new(variant: :success)) { "Done" }
+            end
+            r.cell do
+              render(UI::BadgeComponent.new(variant: :secondary)) { "Low" }
+            end
+          end
+          b.row do |r|
+            r.cell { "Fix navigation bug" }
+            r.cell do
+              render(UI::BadgeComponent.new(variant: :warning)) { "In Progress" }
+            end
+            r.cell do
+              render(UI::BadgeComponent.new(variant: :destructive)) { "High" }
+            end
+          end
+          b.row do |r|
+            r.cell { "Write documentation" }
+            r.cell do
+              render(UI::BadgeComponent.new(variant: :outline)) { "Todo" }
+            end
+            r.cell do
+              render(UI::BadgeComponent.new) { "Medium" }
+            end
+          end
+        end
+      end %>
+    <% end %>
+  <% end %>
+
+<% end %>
+

@@ -1,0 +1,277 @@
+<%= render Docs::ComponentPage.new(component_name: "button") do %>
+
+  <%# Primary %>
+  <%= render Docs::Example.new(
+    name: "Primary",
+    description: "The default button style.",
+    view_context: self
+  ) do |example| %>
+    <% example.erb do %>
+      <%= render "ui/button", content: "Button" %>
+    <% end %>
+
+    <% example.phlex do %>
+      <%= render UI::Button.new { "Button" } %>
+    <% end %>
+
+    <% example.view_component do %>
+      <%= render(UI::ButtonComponent.new) { "Button" } %>
+    <% end %>
+  <% end %>
+
+  <%# Secondary %>
+  <%= render Docs::Example.new(
+    name: "Secondary",
+    description: "A secondary button style.",
+    view_context: self
+  ) do |example| %>
+    <% example.erb do %>
+      <%= render "ui/button", variant: "secondary", content: "Secondary" %>
+    <% end %>
+
+    <% example.phlex do %>
+      <%= render UI::Button.new(variant: "secondary") { "Secondary" } %>
+    <% end %>
+
+    <% example.view_component do %>
+      <%= render(UI::ButtonComponent.new(variant: "secondary")) { "Secondary" } %>
+    <% end %>
+  <% end %>
+
+  <%# Destructive %>
+  <%= render Docs::Example.new(
+    name: "Destructive",
+    description: "A destructive button for dangerous actions.",
+    view_context: self
+  ) do |example| %>
+    <% example.erb do %>
+      <%= render "ui/button", variant: "destructive", content: "Destructive" %>
+    <% end %>
+
+    <% example.phlex do %>
+      <%= render UI::Button.new(variant: "destructive") { "Destructive" } %>
+    <% end %>
+
+    <% example.view_component do %>
+      <%= render(UI::ButtonComponent.new(variant: "destructive")) { "Destructive" } %>
+    <% end %>
+  <% end %>
+
+  <%# Outline %>
+  <%= render Docs::Example.new(
+    name: "Outline",
+    description: "An outline button style.",
+    view_context: self
+  ) do |example| %>
+    <% example.erb do %>
+      <%= render "ui/button", variant: "outline", content: "Outline" %>
+    <% end %>
+
+    <% example.phlex do %>
+      <%= render UI::Button.new(variant: "outline") { "Outline" } %>
+    <% end %>
+
+    <% example.view_component do %>
+      <%= render(UI::ButtonComponent.new(variant: "outline")) { "Outline" } %>
+    <% end %>
+  <% end %>
+
+  <%# Ghost %>
+  <%= render Docs::Example.new(
+    name: "Ghost",
+    description: "A ghost button style.",
+    view_context: self
+  ) do |example| %>
+    <% example.erb do %>
+      <%= render "ui/button", variant: "ghost", content: "Ghost" %>
+    <% end %>
+
+    <% example.phlex do %>
+      <%= render UI::Button.new(variant: "ghost") { "Ghost" } %>
+    <% end %>
+
+    <% example.view_component do %>
+      <%= render(UI::ButtonComponent.new(variant: "ghost")) { "Ghost" } %>
+    <% end %>
+  <% end %>
+
+  <%# Link %>
+  <%= render Docs::Example.new(
+    name: "Link",
+    description: "A link-styled button.",
+    view_context: self
+  ) do |example| %>
+    <% example.erb do %>
+      <%= render "ui/button", variant: "link", content: "Link" %>
+    <% end %>
+
+    <% example.phlex do %>
+      <%= render UI::Button.new(variant: "link") { "Link" } %>
+    <% end %>
+
+    <% example.view_component do %>
+      <%= render(UI::ButtonComponent.new(variant: "link")) { "Link" } %>
+    <% end %>
+  <% end %>
+
+  <%# Sizes %>
+  <%= render Docs::Example.new(
+    name: "Sizes",
+    description: "Different button sizes.",
+    view_context: self
+  ) do |example| %>
+    <% example.erb do %>
+      <div class="flex flex-wrap items-center gap-4">
+        <%= render "ui/button", size: "sm", content: "Small" %>
+        <%= render "ui/button", size: "default", content: "Default" %>
+        <%= render "ui/button", size: "lg", content: "Large" %>
+      </div>
+    <% end %>
+
+    <% example.phlex do %>
+      <div class="flex flex-wrap items-center gap-4">
+        <%= render UI::Button.new(size: "sm") { "Small" } %>
+        <%= render UI::Button.new(size: "default") { "Default" } %>
+        <%= render UI::Button.new(size: "lg") { "Large" } %>
+      </div>
+    <% end %>
+
+    <% example.view_component do %>
+      <div class="flex flex-wrap items-center gap-4">
+        <%= render(UI::ButtonComponent.new(size: "sm")) { "Small" } %>
+        <%= render(UI::ButtonComponent.new(size: "default")) { "Default" } %>
+        <%= render(UI::ButtonComponent.new(size: "lg")) { "Large" } %>
+      </div>
+    <% end %>
+  <% end %>
+
+  <%# Disabled %>
+  <%= render Docs::Example.new(
+    name: "Disabled",
+    description: "A disabled button.",
+    view_context: self
+  ) do |example| %>
+    <% example.erb do %>
+      <%= render "ui/button", disabled: true, content: "Disabled" %>
+    <% end %>
+
+    <% example.phlex do %>
+      <%= render UI::Button.new(disabled: true) { "Disabled" } %>
+    <% end %>
+
+    <% example.view_component do %>
+      <%= render(UI::ButtonComponent.new(disabled: true)) { "Disabled" } %>
+    <% end %>
+  <% end %>
+
+  <%# Icon %>
+  <%= render Docs::Example.new(
+    name: "Icon",
+    description: "A button with only an icon.",
+    view_context: self
+  ) do |example| %>
+    <% example.erb do %>
+      <%= render "ui/button", variant: "outline", size: "icon" do %>
+        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m9 18 6-6-6-6"/></svg>
+      <% end %>
+    <% end %>
+
+    <% example.phlex do %>
+      <%= render UI::Button.new(variant: "outline", size: "icon") do %>
+        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m9 18 6-6-6-6"/></svg>
+      <% end %>
+    <% end %>
+
+    <% example.view_component do %>
+      <%= render(UI::ButtonComponent.new(variant: "outline", size: "icon")) do %>
+        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m9 18 6-6-6-6"/></svg>
+      <% end %>
+    <% end %>
+  <% end %>
+
+  <%# With Icon %>
+  <%= render Docs::Example.new(
+    name: "With Icon",
+    description: "A button with an icon and text.",
+    view_context: self
+  ) do |example| %>
+    <% example.erb do %>
+      <%= render "ui/button" do %>
+        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="17 8 12 3 7 8"/><line x1="12" x2="12" y1="3" y2="15"/></svg>
+        Upload
+      <% end %>
+    <% end %>
+
+    <% example.phlex do %>
+      <%= render UI::Button.new do %>
+        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="17 8 12 3 7 8"/><line x1="12" x2="12" y1="3" y2="15"/></svg>
+        Upload
+      <% end %>
+    <% end %>
+
+    <% example.view_component do %>
+      <%= render(UI::ButtonComponent.new) do %>
+        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="17 8 12 3 7 8"/><line x1="12" x2="12" y1="3" y2="15"/></svg>
+        Upload
+      <% end %>
+    <% end %>
+  <% end %>
+
+  <%# Rounded %>
+  <%= render Docs::Example.new(
+    name: "Rounded",
+    description: "A fully rounded button.",
+    view_context: self
+  ) do |example| %>
+    <% example.erb do %>
+      <%= render "ui/button", classes: "rounded-full", content: "Rounded" %>
+    <% end %>
+
+    <% example.phlex do %>
+      <%= render UI::Button.new(classes: "rounded-full") { "Rounded" } %>
+    <% end %>
+
+    <% example.view_component do %>
+      <%= render(UI::ButtonComponent.new(classes: "rounded-full")) { "Rounded" } %>
+    <% end %>
+  <% end %>
+
+  <%# Loading %>
+  <%= render Docs::Example.new(
+    name: "Loading",
+    description: "A button in loading state.",
+    view_context: self
+  ) do |example| %>
+    <% example.erb do %>
+      <%= render "ui/button", disabled: true do %>
+        <svg class="animate-spin -ml-1 mr-2 size-4" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
+          <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle>
+          <path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
+        </svg>
+        Please wait
+      <% end %>
+    <% end %>
+
+    <% example.phlex do %>
+      <%= render UI::Button.new(disabled: true) do %>
+        <svg class="animate-spin -ml-1 mr-2 size-4" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
+          <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle>
+          <path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
+        </svg>
+        Please wait
+      <% end %>
+    <% end %>
+
+    <% example.view_component do %>
+      <%= render(UI::ButtonComponent.new(disabled: true)) do %>
+        <svg class="animate-spin -ml-1 mr-2 size-4" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
+          <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle>
+          <path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
+        </svg>
+        Please wait
+      <% end %>
+    <% end %>
+  <% end %>
+
+<% end %>
+

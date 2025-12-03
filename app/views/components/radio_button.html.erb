@@ -1,0 +1,193 @@
+<%= render Docs::ComponentPage.new(component_name: "radio_button") do %>
+
+  <%# Default %>
+  <%= render Docs::Example.new(
+    name: "Default",
+    description: "A set of checkable buttons where only one can be checked at a time.",
+    view_context: self
+  ) do |example| %>
+    <% example.erb do %>
+      <div class="flex flex-col gap-2">
+        <div class="flex items-center space-x-2">
+          <%= render "ui/radio_button", id: "erb-r1", name: "erb-plan", value: "free", checked: true %>
+          <%= render "ui/label", for: "erb-r1" do %>Free<% end %>
+        </div>
+        <div class="flex items-center space-x-2">
+          <%= render "ui/radio_button", id: "erb-r2", name: "erb-plan", value: "pro" %>
+          <%= render "ui/label", for: "erb-r2" do %>Pro<% end %>
+        </div>
+      </div>
+    <% end %>
+
+    <% example.phlex do %>
+      <div class="flex flex-col gap-2">
+        <div class="flex items-center space-x-2">
+          <%= render UI::RadioButton.new(id: "phlex-r1", name: "phlex-plan", value: "free", checked: true) %>
+          <%= render UI::Label.new(for: "phlex-r1") { "Free" } %>
+        </div>
+        <div class="flex items-center space-x-2">
+          <%= render UI::RadioButton.new(id: "phlex-r2", name: "phlex-plan", value: "pro") %>
+          <%= render UI::Label.new(for: "phlex-r2") { "Pro" } %>
+        </div>
+      </div>
+    <% end %>
+
+    <% example.view_component do %>
+      <div class="flex flex-col gap-2">
+        <div class="flex items-center space-x-2">
+          <%= render UI::RadioButtonComponent.new(id: "vc-r1", name: "vc-plan", value: "free", checked: true) %>
+          <%= render(UI::LabelComponent.new(for: "vc-r1")) { "Free" } %>
+        </div>
+        <div class="flex items-center space-x-2">
+          <%= render UI::RadioButtonComponent.new(id: "vc-r2", name: "vc-plan", value: "pro") %>
+          <%= render(UI::LabelComponent.new(for: "vc-r2")) { "Pro" } %>
+        </div>
+      </div>
+    <% end %>
+  <% end %>
+
+  <%# With Description %>
+  <%= render Docs::Example.new(
+    name: "With Description",
+    description: "Radio buttons with descriptive text for each option.",
+    view_context: self
+  ) do |example| %>
+    <% example.erb do %>
+      <div class="flex flex-col gap-4">
+        <div class="flex items-start space-x-3">
+          <%= render "ui/radio_button", id: "erb-notify-all", name: "erb-notifications", value: "all", checked: true %>
+          <div class="grid gap-1.5 leading-none">
+            <%= render "ui/label", for: "erb-notify-all" do %>All notifications<% end %>
+            <p class="text-sm text-muted-foreground">Receive all notifications including marketing.</p>
+          </div>
+        </div>
+        <div class="flex items-start space-x-3">
+          <%= render "ui/radio_button", id: "erb-notify-mentions", name: "erb-notifications", value: "mentions" %>
+          <div class="grid gap-1.5 leading-none">
+            <%= render "ui/label", for: "erb-notify-mentions" do %>Mentions only<% end %>
+            <p class="text-sm text-muted-foreground">Only receive notifications when mentioned.</p>
+          </div>
+        </div>
+        <div class="flex items-start space-x-3">
+          <%= render "ui/radio_button", id: "erb-notify-none", name: "erb-notifications", value: "none" %>
+          <div class="grid gap-1.5 leading-none">
+            <%= render "ui/label", for: "erb-notify-none" do %>No notifications<% end %>
+            <p class="text-sm text-muted-foreground">Turn off all notifications.</p>
+          </div>
+        </div>
+      </div>
+    <% end %>
+
+    <% example.phlex do %>
+      <div class="flex flex-col gap-4">
+        <div class="flex items-start space-x-3">
+          <%= render UI::RadioButton.new(id: "phlex-notify-all", name: "phlex-notifications", value: "all", checked: true) %>
+          <div class="grid gap-1.5 leading-none">
+            <%= render UI::Label.new(for: "phlex-notify-all") { "All notifications" } %>
+            <p class="text-sm text-muted-foreground">Receive all notifications including marketing.</p>
+          </div>
+        </div>
+        <div class="flex items-start space-x-3">
+          <%= render UI::RadioButton.new(id: "phlex-notify-mentions", name: "phlex-notifications", value: "mentions") %>
+          <div class="grid gap-1.5 leading-none">
+            <%= render UI::Label.new(for: "phlex-notify-mentions") { "Mentions only" } %>
+            <p class="text-sm text-muted-foreground">Only receive notifications when mentioned.</p>
+          </div>
+        </div>
+        <div class="flex items-start space-x-3">
+          <%= render UI::RadioButton.new(id: "phlex-notify-none", name: "phlex-notifications", value: "none") %>
+          <div class="grid gap-1.5 leading-none">
+            <%= render UI::Label.new(for: "phlex-notify-none") { "No notifications" } %>
+            <p class="text-sm text-muted-foreground">Turn off all notifications.</p>
+          </div>
+        </div>
+      </div>
+    <% end %>
+
+    <% example.view_component do %>
+      <div class="flex flex-col gap-4">
+        <div class="flex items-start space-x-3">
+          <%= render UI::RadioButtonComponent.new(id: "vc-notify-all", name: "vc-notifications", value: "all", checked: true) %>
+          <div class="grid gap-1.5 leading-none">
+            <%= render(UI::LabelComponent.new(for: "vc-notify-all")) { "All notifications" } %>
+            <p class="text-sm text-muted-foreground">Receive all notifications including marketing.</p>
+          </div>
+        </div>
+        <div class="flex items-start space-x-3">
+          <%= render UI::RadioButtonComponent.new(id: "vc-notify-mentions", name: "vc-notifications", value: "mentions") %>
+          <div class="grid gap-1.5 leading-none">
+            <%= render(UI::LabelComponent.new(for: "vc-notify-mentions")) { "Mentions only" } %>
+            <p class="text-sm text-muted-foreground">Only receive notifications when mentioned.</p>
+          </div>
+        </div>
+        <div class="flex items-start space-x-3">
+          <%= render UI::RadioButtonComponent.new(id: "vc-notify-none", name: "vc-notifications", value: "none") %>
+          <div class="grid gap-1.5 leading-none">
+            <%= render(UI::LabelComponent.new(for: "vc-notify-none")) { "No notifications" } %>
+            <p class="text-sm text-muted-foreground">Turn off all notifications.</p>
+          </div>
+        </div>
+      </div>
+    <% end %>
+  <% end %>
+
+  <%# Horizontal Layout %>
+  <%= render Docs::Example.new(
+    name: "Horizontal Layout",
+    description: "Radio buttons arranged horizontally.",
+    view_context: self
+  ) do |example| %>
+    <% example.erb do %>
+      <div class="flex gap-6">
+        <div class="flex items-center space-x-2">
+          <%= render "ui/radio_button", id: "erb-size-sm", name: "erb-size", value: "sm" %>
+          <%= render "ui/label", for: "erb-size-sm" do %>Small<% end %>
+        </div>
+        <div class="flex items-center space-x-2">
+          <%= render "ui/radio_button", id: "erb-size-md", name: "erb-size", value: "md", checked: true %>
+          <%= render "ui/label", for: "erb-size-md" do %>Medium<% end %>
+        </div>
+        <div class="flex items-center space-x-2">
+          <%= render "ui/radio_button", id: "erb-size-lg", name: "erb-size", value: "lg" %>
+          <%= render "ui/label", for: "erb-size-lg" do %>Large<% end %>
+        </div>
+      </div>
+    <% end %>
+
+    <% example.phlex do %>
+      <div class="flex gap-6">
+        <div class="flex items-center space-x-2">
+          <%= render UI::RadioButton.new(id: "phlex-size-sm", name: "phlex-size", value: "sm") %>
+          <%= render UI::Label.new(for: "phlex-size-sm") { "Small" } %>
+        </div>
+        <div class="flex items-center space-x-2">
+          <%= render UI::RadioButton.new(id: "phlex-size-md", name: "phlex-size", value: "md", checked: true) %>
+          <%= render UI::Label.new(for: "phlex-size-md") { "Medium" } %>
+        </div>
+        <div class="flex items-center space-x-2">
+          <%= render UI::RadioButton.new(id: "phlex-size-lg", name: "phlex-size", value: "lg") %>
+          <%= render UI::Label.new(for: "phlex-size-lg") { "Large" } %>
+        </div>
+      </div>
+    <% end %>
+
+    <% example.view_component do %>
+      <div class="flex gap-6">
+        <div class="flex items-center space-x-2">
+          <%= render UI::RadioButtonComponent.new(id: "vc-size-sm", name: "vc-size", value: "sm") %>
+          <%= render(UI::LabelComponent.new(for: "vc-size-sm")) { "Small" } %>
+        </div>
+        <div class="flex items-center space-x-2">
+          <%= render UI::RadioButtonComponent.new(id: "vc-size-md", name: "vc-size", value: "md", checked: true) %>
+          <%= render(UI::LabelComponent.new(for: "vc-size-md")) { "Medium" } %>
+        </div>
+        <div class="flex items-center space-x-2">
+          <%= render UI::RadioButtonComponent.new(id: "vc-size-lg", name: "vc-size", value: "lg") %>
+          <%= render(UI::LabelComponent.new(for: "vc-size-lg")) { "Large" } %>
+        </div>
+      </div>
+    <% end %>
+  <% end %>
+
+<% end %>
+

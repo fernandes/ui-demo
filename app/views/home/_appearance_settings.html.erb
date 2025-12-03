@@ -1,0 +1,57 @@
+<%= render "ui/field/set" do %>
+  <%= render "ui/field/group" do %>
+    <%= render "ui/field/set" do %>
+      <%= render "ui/field/legend", variant: "legend" do %>Compute Environment<% end %>
+      <%= render "ui/field/description" do %>Select the compute environment for your cluster.<% end %>
+
+      <div class="grid gap-3 mt-4" role="radiogroup">
+        <label for="env-k8s" class="flex w-full cursor-pointer flex-col rounded-md border p-4 has-[:checked]:border-primary has-[:checked]:bg-primary/5 dark:has-[:checked]:bg-primary/10">
+          <div class="flex w-full items-center gap-3">
+            <div class="flex flex-1 flex-col gap-1">
+              <span class="text-sm font-medium">Kubernetes</span>
+              <span class="text-sm text-muted-foreground">Run GPU workloads on a K8s configured cluster. This is the default.</span>
+            </div>
+            <%= render "ui/radio_button", name: "compute_env", value: "kubernetes", id: "env-k8s", checked: true %>
+          </div>
+        </label>
+        <label for="env-vm" class="flex w-full cursor-pointer flex-col rounded-md border p-4 has-[:checked]:border-primary has-[:checked]:bg-primary/5 dark:has-[:checked]:bg-primary/10">
+          <div class="flex w-full items-center gap-3">
+            <div class="flex flex-1 flex-col gap-1">
+              <span class="text-sm font-medium">Virtual Machine</span>
+              <span class="text-sm text-muted-foreground">Access a VM configured cluster to run workloads.</span>
+            </div>
+            <%= render "ui/radio_button", name: "compute_env", value: "vm", id: "env-vm" %>
+          </div>
+        </label>
+      </div>
+    <% end %>
+
+    <%= render "ui/field/separator" %>
+
+    <%= render "ui/field", orientation: "horizontal", classes: "items-center justify-between" do %>
+      <div>
+        <%= render "ui/field/label", for_id: "number-of-gpus" do %>Number of GPUs<% end %>
+        <%= render "ui/field/description" do %>You can add more later.<% end %>
+      </div>
+      <%= render "ui/button_group" do %>
+        <%= render "ui/input", id: "number-of-gpus", value: "8", classes: "h-8 !w-14 font-mono text-center" %>
+        <%= render "ui/button", variant: :outline, size: :icon_sm, type: "button", "aria-label": "Decrement" do %>
+          <%= lucide_icon("minus", class: "size-4") %>
+        <% end %>
+        <%= render "ui/button", variant: :outline, size: :icon_sm, type: "button", "aria-label": "Increment" do %>
+          <%= lucide_icon("plus", class: "size-4") %>
+        <% end %>
+      <% end %>
+    <% end %>
+
+    <%= render "ui/field/separator" %>
+
+    <%= render "ui/field", orientation: "horizontal", classes: "items-center justify-between" do %>
+      <div>
+        <%= render "ui/field/label", for_id: "tinting" do %>Wallpaper Tinting<% end %>
+        <%= render "ui/field/description" do %>Allow the wallpaper to be tinted.<% end %>
+      </div>
+      <%= render "ui/switch", id: "tinting", checked: true %>
+    <% end %>
+  <% end %>
+<% end %>

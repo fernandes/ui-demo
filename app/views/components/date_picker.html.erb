@@ -1,0 +1,79 @@
+<%= render Docs::ComponentPage.new(component_name: "date_picker") do %>
+
+  <%# Default %>
+  <%= render Docs::Example.new(
+    name: "Default",
+    description: "A date picker component that combines a popover trigger with a calendar.",
+    view_context: self
+  ) do |example| %>
+    <% example.erb do %>
+      <%= render "ui/date_picker" do %>
+        <%= render "ui/date_picker/trigger", placeholder: "Pick a date" %>
+      <% end %>
+    <% end %>
+
+    <% example.phlex do %>
+      <%= render UI::DatePicker.new do |dp| %>
+        <% dp.trigger(placeholder: "Pick a date") %>
+      <% end %>
+    <% end %>
+
+    <% example.view_component do %>
+      <%= render UI::DatePickerComponent.new do |dp| %>
+        <% dp.trigger(placeholder: "Pick a date") %>
+      <% end %>
+    <% end %>
+  <% end %>
+
+  <%# With Label %>
+  <%= render Docs::Example.new(
+    name: "With Label",
+    description: "Date picker with an associated label.",
+    view_context: self
+  ) do |example| %>
+    <% example.erb do %>
+      <%= render "ui/date_picker", label: "Date of birth" do %>
+        <%= render "ui/date_picker/trigger", placeholder: "Select your birth date" %>
+      <% end %>
+    <% end %>
+
+    <% example.phlex do %>
+      <%= render UI::DatePicker.new(label: "Date of birth") do |dp| %>
+        <% dp.trigger(placeholder: "Select your birth date") %>
+      <% end %>
+    <% end %>
+
+    <% example.view_component do %>
+      <%= render UI::DatePickerComponent.new(label: "Date of birth") do |dp| %>
+        <% dp.trigger(placeholder: "Select your birth date") %>
+      <% end %>
+    <% end %>
+  <% end %>
+
+  <%# Date Range %>
+  <%= render Docs::Example.new(
+    name: "Date Range",
+    description: "Select a date range.",
+    view_context: self
+  ) do |example| %>
+    <% example.erb do %>
+      <%= render "ui/date_picker", mode: :range, label: "Trip dates" do %>
+        <%= render "ui/date_picker/trigger", placeholder: "Select dates", classes: "w-[320px]" %>
+      <% end %>
+    <% end %>
+
+    <% example.phlex do %>
+      <%= render UI::DatePicker.new(mode: :range, label: "Trip dates") do |dp| %>
+        <% dp.trigger(placeholder: "Select dates", classes: "w-[320px]") %>
+      <% end %>
+    <% end %>
+
+    <% example.view_component do %>
+      <%= render UI::DatePickerComponent.new(mode: :range, label: "Trip dates") do |dp| %>
+        <% dp.trigger(placeholder: "Select dates", classes: "w-[320px]") %>
+      <% end %>
+    <% end %>
+  <% end %>
+
+<% end %>
+

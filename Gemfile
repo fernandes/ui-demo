@@ -74,3 +74,6 @@ gem "fernandes-ui"
 gem "phlex-rails"
 gem "view_component", "~> 3"
 
+# Syntax highlighting for code blocks
+gem "rouge"
+

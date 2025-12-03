@@ -1,0 +1,191 @@
+<%= render Docs::ComponentPage.new(component_name: "slider") do %>
+
+  <%# Default %>
+  <%= render Docs::Example.new(
+    name: "Default",
+    description: "An input where the user selects a value from within a given range.",
+    view_context: self
+  ) do |example| %>
+    <% example.erb do %>
+      <%= render "ui/slider", default_value: [50], max: 100, step: 1 do %>
+        <%= render "ui/slider/track" do %>
+          <%= render "ui/slider/range" %>
+        <% end %>
+        <%= render "ui/slider/thumb" %>
+      <% end %>
+    <% end %>
+
+    <% example.phlex do %>
+      <%= render UI::Slider.new(default_value: [50], max: 100, step: 1) do %>
+        <%= render UI::SliderTrack.new do %>
+          <%= render UI::SliderRange.new %>
+        <% end %>
+        <%= render UI::SliderThumb.new %>
+      <% end %>
+    <% end %>
+
+    <% example.view_component do %>
+      <%= render UI::SliderComponent.new(default_value: [50], max: 100, step: 1) do %>
+        <%= render UI::SliderTrackComponent.new do %>
+          <%= render UI::SliderRangeComponent.new %>
+        <% end %>
+        <%= render UI::SliderThumbComponent.new %>
+      <% end %>
+    <% end %>
+  <% end %>
+
+  <%# With Label %>
+  <%= render Docs::Example.new(
+    name: "With Label",
+    description: "Slider with a label showing the current value.",
+    view_context: self
+  ) do |example| %>
+    <% example.erb do %>
+      <div class="w-full max-w-md space-y-2">
+        <div class="flex justify-between">
+          <%= render "ui/label" do %>Volume<% end %>
+          <span class="text-sm text-muted-foreground">75%</span>
+        </div>
+        <%= render "ui/slider", default_value: [75], max: 100, step: 1 do %>
+          <%= render "ui/slider/track" do %>
+            <%= render "ui/slider/range" %>
+          <% end %>
+          <%= render "ui/slider/thumb" %>
+        <% end %>
+      </div>
+    <% end %>
+
+    <% example.phlex do %>
+      <div class="w-full max-w-md space-y-2">
+        <div class="flex justify-between">
+          <%= render UI::Label.new { "Volume" } %>
+          <span class="text-sm text-muted-foreground">75%</span>
+        </div>
+        <%= render UI::Slider.new(default_value: [75], max: 100, step: 1) do %>
+          <%= render UI::SliderTrack.new do %>
+            <%= render UI::SliderRange.new %>
+          <% end %>
+          <%= render UI::SliderThumb.new %>
+        <% end %>
+      </div>
+    <% end %>
+
+    <% example.view_component do %>
+      <div class="w-full max-w-md space-y-2">
+        <div class="flex justify-between">
+          <%= render(UI::LabelComponent.new) { "Volume" } %>
+          <span class="text-sm text-muted-foreground">75%</span>
+        </div>
+        <%= render UI::SliderComponent.new(default_value: [75], max: 100, step: 1) do %>
+          <%= render UI::SliderTrackComponent.new do %>
+            <%= render UI::SliderRangeComponent.new %>
+          <% end %>
+          <%= render UI::SliderThumbComponent.new %>
+        <% end %>
+      </div>
+    <% end %>
+  <% end %>
+
+  <%# Range Slider %>
+  <%= render Docs::Example.new(
+    name: "Range Slider",
+    description: "A slider with two thumbs for selecting a range.",
+    view_context: self
+  ) do |example| %>
+    <% example.erb do %>
+      <div class="w-full max-w-md space-y-2">
+        <%= render "ui/label" do %>Price Range<% end %>
+        <%= render "ui/slider", default_value: [25, 75], max: 100, step: 1 do %>
+          <%= render "ui/slider/track" do %>
+            <%= render "ui/slider/range" %>
+          <% end %>
+          <%= render "ui/slider/thumb" %>
+          <%= render "ui/slider/thumb" %>
+        <% end %>
+        <div class="flex justify-between text-sm text-muted-foreground">
+          <span>$25</span>
+          <span>$75</span>
+        </div>
+      </div>
+    <% end %>
+
+    <% example.phlex do %>
+      <div class="w-full max-w-md space-y-2">
+        <%= render UI::Label.new { "Price Range" } %>
+        <%= render UI::Slider.new(default_value: [25, 75], max: 100, step: 1) do %>
+          <%= render UI::SliderTrack.new do %>
+            <%= render UI::SliderRange.new %>
+          <% end %>
+          <%= render UI::SliderThumb.new %>
+          <%= render UI::SliderThumb.new %>
+        <% end %>
+        <div class="flex justify-between text-sm text-muted-foreground">
+          <span>$25</span>
+          <span>$75</span>
+        </div>
+      </div>
+    <% end %>
+
+    <% example.view_component do %>
+      <div class="w-full max-w-md space-y-2">
+        <%= render(UI::LabelComponent.new) { "Price Range" } %>
+        <%= render UI::SliderComponent.new(default_value: [25, 75], max: 100, step: 1) do %>
+          <%= render UI::SliderTrackComponent.new do %>
+            <%= render UI::SliderRangeComponent.new %>
+          <% end %>
+          <%= render UI::SliderThumbComponent.new %>
+          <%= render UI::SliderThumbComponent.new %>
+        <% end %>
+        <div class="flex justify-between text-sm text-muted-foreground">
+          <span>$25</span>
+          <span>$75</span>
+        </div>
+      </div>
+    <% end %>
+  <% end %>
+
+  <%# Step Values %>
+  <%= render Docs::Example.new(
+    name: "Step Values",
+    description: "Slider with larger step increments.",
+    view_context: self
+  ) do |example| %>
+    <% example.erb do %>
+      <div class="w-full max-w-md space-y-2">
+        <%= render "ui/label" do %>Quantity (step: 10)<% end %>
+        <%= render "ui/slider", default_value: [50], max: 100, step: 10 do %>
+          <%= render "ui/slider/track" do %>
+            <%= render "ui/slider/range" %>
+          <% end %>
+          <%= render "ui/slider/thumb" %>
+        <% end %>
+      </div>
+    <% end %>
+
+    <% example.phlex do %>
+      <div class="w-full max-w-md space-y-2">
+        <%= render UI::Label.new { "Quantity (step: 10)" } %>
+        <%= render UI::Slider.new(default_value: [50], max: 100, step: 10) do %>
+          <%= render UI::SliderTrack.new do %>
+            <%= render UI::SliderRange.new %>
+          <% end %>
+          <%= render UI::SliderThumb.new %>
+        <% end %>
+      </div>
+    <% end %>
+
+    <% example.view_component do %>
+      <div class="w-full max-w-md space-y-2">
+        <%= render(UI::LabelComponent.new) { "Quantity (step: 10)" } %>
+        <%= render UI::SliderComponent.new(default_value: [50], max: 100, step: 10) do %>
+          <%= render UI::SliderTrackComponent.new do %>
+            <%= render UI::SliderRangeComponent.new %>
+          <% end %>
+          <%= render UI::SliderThumbComponent.new %>
+        <% end %>
+      </div>
+    <% end %>
+  <% end %>
+
+<% end %>
+

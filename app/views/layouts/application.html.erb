@@ -29,5 +29,17 @@
 
       <%= render "layouts/footer" %>
     </div>
+
+    <%# Sonner Toaster - container for toast notifications %>
+    <ol class="toaster group"
+        data-controller="ui--sonner"
+        data-ui--sonner-position-value="bottom-right"
+        data-ui--sonner-theme-value="system"
+        data-ui--sonner-rich-colors-value="false"
+        data-ui--sonner-expand-value="false"
+        data-ui--sonner-duration-value="4000"
+        data-ui--sonner-close-button-value="false"
+        data-ui--sonner-visible-toasts-value="3">
+    </ol>
   </body>
 </html>

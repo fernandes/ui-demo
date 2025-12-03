@@ -1,0 +1,13 @@
+<div class="w-full max-w-md">
+  <%= render "ui/field" do %>
+    <%= render "ui/field/label" do %>Price Range<% end %>
+    <%= render "ui/field/description" do %>Set your budget range ($<span class="font-medium tabular-nums">200</span> - <span class="font-medium tabular-nums">800</span>).<% end %>
+    <%= render "ui/slider", default_value: [200, 800], min: 0, max: 1000, step: 10, classes: "mt-2 w-full" do %>
+      <%= render "ui/slider/track" do %>
+        <%= render "ui/slider/range" %>
+      <% end %>
+      <%= render "ui/slider/thumb" %>
+      <%= render "ui/slider/thumb" %>
+    <% end %>
+  <% end %>
+</div>

@@ -1,0 +1,347 @@
+<%= render Docs::ComponentPage.new(component_name: "carousel") do %>
+
+  <%# Default %>
+  <%= render Docs::Example.new(
+    name: "Default",
+    description: "A carousel built with Embla Carousel.",
+    view_context: self
+  ) do |example| %>
+    <% example.erb do %>
+      <div class="mx-auto w-full max-w-xs">
+        <%= render "ui/carousel" do %>
+          <%= render "ui/carousel/content" do %>
+            <% 5.times do |i| %>
+              <%= render "ui/carousel/item" do %>
+                <div class="p-1">
+                  <div class="flex aspect-square items-center justify-center p-6 border rounded-lg">
+                    <span class="text-4xl font-semibold"><%= i + 1 %></span>
+                  </div>
+                </div>
+              <% end %>
+            <% end %>
+          <% end %>
+          <%= render "ui/carousel/previous" %>
+          <%= render "ui/carousel/next" %>
+        <% end %>
+      </div>
+    <% end %>
+
+    <% example.phlex do %>
+      <div class="mx-auto w-full max-w-xs">
+        <%= render UI::Carousel.new do %>
+          <%= render UI::CarouselContent.new do %>
+            <% 5.times do |i| %>
+              <%= render UI::CarouselItem.new do %>
+                <div class="p-1">
+                  <div class="flex aspect-square items-center justify-center p-6 border rounded-lg">
+                    <span class="text-4xl font-semibold"><%= i + 1 %></span>
+                  </div>
+                </div>
+              <% end %>
+            <% end %>
+          <% end %>
+          <%= render UI::CarouselPrevious.new %>
+          <%= render UI::CarouselNext.new %>
+        <% end %>
+      </div>
+    <% end %>
+
+    <% example.view_component do %>
+      <div class="mx-auto w-full max-w-xs">
+        <%= render UI::CarouselComponent.new do %>
+          <%= render UI::CarouselContentComponent.new do %>
+            <% 5.times do |i| %>
+              <%= render UI::CarouselItemComponent.new do %>
+                <div class="p-1">
+                  <div class="flex aspect-square items-center justify-center p-6 border rounded-lg">
+                    <span class="text-4xl font-semibold"><%= i + 1 %></span>
+                  </div>
+                </div>
+              <% end %>
+            <% end %>
+          <% end %>
+          <%= render UI::CarouselPreviousComponent.new %>
+          <%= render UI::CarouselNextComponent.new %>
+        <% end %>
+      </div>
+    <% end %>
+  <% end %>
+
+  <%# Sizes %>
+  <%= render Docs::Example.new(
+    name: "Sizes",
+    description: "Set the size of an item using the classes prop.",
+    view_context: self
+  ) do |example| %>
+    <% example.erb do %>
+      <div class="mx-auto w-full max-w-sm">
+        <%= render "ui/carousel" do %>
+          <%= render "ui/carousel/content" do %>
+            <% 5.times do |i| %>
+              <%= render "ui/carousel/item", classes: "md:basis-1/2 lg:basis-1/3" do %>
+                <div class="p-1">
+                  <div class="flex aspect-square items-center justify-center p-6 border rounded-lg">
+                    <span class="text-3xl font-semibold"><%= i + 1 %></span>
+                  </div>
+                </div>
+              <% end %>
+            <% end %>
+          <% end %>
+          <%= render "ui/carousel/previous" %>
+          <%= render "ui/carousel/next" %>
+        <% end %>
+      </div>
+    <% end %>
+
+    <% example.phlex do %>
+      <div class="mx-auto w-full max-w-sm">
+        <%= render UI::Carousel.new do %>
+          <%= render UI::CarouselContent.new do %>
+            <% 5.times do |i| %>
+              <%= render UI::CarouselItem.new(classes: "md:basis-1/2 lg:basis-1/3") do %>
+                <div class="p-1">
+                  <div class="flex aspect-square items-center justify-center p-6 border rounded-lg">
+                    <span class="text-3xl font-semibold"><%= i + 1 %></span>
+                  </div>
+                </div>
+              <% end %>
+            <% end %>
+          <% end %>
+          <%= render UI::CarouselPrevious.new %>
+          <%= render UI::CarouselNext.new %>
+        <% end %>
+      </div>
+    <% end %>
+
+    <% example.view_component do %>
+      <div class="mx-auto w-full max-w-sm">
+        <%= render UI::CarouselComponent.new do %>
+          <%= render UI::CarouselContentComponent.new do %>
+            <% 5.times do |i| %>
+              <%= render UI::CarouselItemComponent.new(classes: "md:basis-1/2 lg:basis-1/3") do %>
+                <div class="p-1">
+                  <div class="flex aspect-square items-center justify-center p-6 border rounded-lg">
+                    <span class="text-3xl font-semibold"><%= i + 1 %></span>
+                  </div>
+                </div>
+              <% end %>
+            <% end %>
+          <% end %>
+          <%= render UI::CarouselPreviousComponent.new %>
+          <%= render UI::CarouselNextComponent.new %>
+        <% end %>
+      </div>
+    <% end %>
+  <% end %>
+
+  <%# Spacing %>
+  <%= render Docs::Example.new(
+    name: "Spacing",
+    description: "Set the spacing between items using the content classes.",
+    view_context: self
+  ) do |example| %>
+    <% example.erb do %>
+      <div class="mx-auto w-full max-w-sm">
+        <%= render "ui/carousel" do %>
+          <%= render "ui/carousel/content", classes: "-ml-4" do %>
+            <% 5.times do |i| %>
+              <%= render "ui/carousel/item", classes: "pl-4 md:basis-1/2 lg:basis-1/3" do %>
+                <div class="flex aspect-square items-center justify-center p-6 border rounded-lg">
+                  <span class="text-3xl font-semibold"><%= i + 1 %></span>
+                </div>
+              <% end %>
+            <% end %>
+          <% end %>
+          <%= render "ui/carousel/previous" %>
+          <%= render "ui/carousel/next" %>
+        <% end %>
+      </div>
+    <% end %>
+
+    <% example.phlex do %>
+      <div class="mx-auto w-full max-w-sm">
+        <%= render UI::Carousel.new do %>
+          <%= render UI::CarouselContent.new(classes: "-ml-4") do %>
+            <% 5.times do |i| %>
+              <%= render UI::CarouselItem.new(classes: "pl-4 md:basis-1/2 lg:basis-1/3") do %>
+                <div class="flex aspect-square items-center justify-center p-6 border rounded-lg">
+                  <span class="text-3xl font-semibold"><%= i + 1 %></span>
+                </div>
+              <% end %>
+            <% end %>
+          <% end %>
+          <%= render UI::CarouselPrevious.new %>
+          <%= render UI::CarouselNext.new %>
+        <% end %>
+      </div>
+    <% end %>
+
+    <% example.view_component do %>
+      <div class="mx-auto w-full max-w-sm">
+        <%= render UI::CarouselComponent.new do %>
+          <%= render UI::CarouselContentComponent.new(classes: "-ml-4") do %>
+            <% 5.times do |i| %>
+              <%= render UI::CarouselItemComponent.new(classes: "pl-4 md:basis-1/2 lg:basis-1/3") do %>
+                <div class="flex aspect-square items-center justify-center p-6 border rounded-lg">
+                  <span class="text-3xl font-semibold"><%= i + 1 %></span>
+                </div>
+              <% end %>
+            <% end %>
+          <% end %>
+          <%= render UI::CarouselPreviousComponent.new %>
+          <%= render UI::CarouselNextComponent.new %>
+        <% end %>
+      </div>
+    <% end %>
+  <% end %>
+
+  <%# Orientation Vertical %>
+  <%= render Docs::Example.new(
+    name: "Orientation Vertical",
+    description: "Use the orientation prop to set a vertical carousel.",
+    view_context: self
+  ) do |example| %>
+    <% example.erb do %>
+      <div class="mx-auto w-full max-w-xs py-16">
+        <%= render "ui/carousel", orientation: "vertical", classes: "w-full max-w-xs", opts: { align: "start" } do %>
+          <%= render "ui/carousel/content", classes: "-mt-1 h-[200px]" do %>
+            <% 5.times do |i| %>
+              <%= render "ui/carousel/item", classes: "pt-1 md:basis-1/2" do %>
+                <div class="p-1">
+                  <div class="flex items-center justify-center p-6 border rounded-lg min-h-[120px]">
+                    <span class="text-3xl font-semibold"><%= i + 1 %></span>
+                  </div>
+                </div>
+              <% end %>
+            <% end %>
+          <% end %>
+          <%= render "ui/carousel/previous" %>
+          <%= render "ui/carousel/next" %>
+        <% end %>
+      </div>
+    <% end %>
+
+    <% example.phlex do %>
+      <div class="mx-auto w-full max-w-xs py-16">
+        <%= render UI::Carousel.new(orientation: "vertical", classes: "w-full max-w-xs", opts: { align: "start" }) do %>
+          <%= render UI::CarouselContent.new(classes: "-mt-1 h-[200px]") do %>
+            <% 5.times do |i| %>
+              <%= render UI::CarouselItem.new(classes: "pt-1 md:basis-1/2") do %>
+                <div class="p-1">
+                  <div class="flex items-center justify-center p-6 border rounded-lg min-h-[120px]">
+                    <span class="text-3xl font-semibold"><%= i + 1 %></span>
+                  </div>
+                </div>
+              <% end %>
+            <% end %>
+          <% end %>
+          <%= render UI::CarouselPrevious.new %>
+          <%= render UI::CarouselNext.new %>
+        <% end %>
+      </div>
+    <% end %>
+
+    <% example.view_component do %>
+      <div class="mx-auto w-full max-w-xs py-16">
+        <%= render UI::CarouselComponent.new(orientation: "vertical", classes: "w-full max-w-xs", opts: { align: "start" }) do %>
+          <%= render UI::CarouselContentComponent.new(classes: "-mt-1 h-[200px]") do %>
+            <% 5.times do |i| %>
+              <%= render UI::CarouselItemComponent.new(classes: "pt-1 md:basis-1/2") do %>
+                <div class="p-1">
+                  <div class="flex items-center justify-center p-6 border rounded-lg min-h-[120px]">
+                    <span class="text-3xl font-semibold"><%= i + 1 %></span>
+                  </div>
+                </div>
+              <% end %>
+            <% end %>
+          <% end %>
+          <%= render UI::CarouselPreviousComponent.new %>
+          <%= render UI::CarouselNextComponent.new %>
+        <% end %>
+      </div>
+    <% end %>
+  <% end %>
+
+  <%# Autoplay with Loop %>
+  <%= render Docs::Example.new(
+    name: "Autoplay with Loop",
+    description: "Use plugins to enable autoplay and loop functionality.",
+    view_context: self
+  ) do |example| %>
+    <% example.erb do %>
+      <div class="mx-auto w-full max-w-xs">
+        <%= render "ui/carousel",
+          opts: { loop: true },
+          plugins: [
+            { name: "autoplay", options: { delay: 2000, stopOnInteraction: false } }
+          ] do %>
+          <%= render "ui/carousel/content" do %>
+            <% 5.times do |i| %>
+              <%= render "ui/carousel/item" do %>
+                <div class="p-1">
+                  <div class="flex aspect-square items-center justify-center p-6 border rounded-lg bg-gradient-to-br from-purple-500 to-pink-500">
+                    <span class="text-4xl font-semibold text-white"><%= i + 1 %></span>
+                  </div>
+                </div>
+              <% end %>
+            <% end %>
+          <% end %>
+          <%= render "ui/carousel/previous" %>
+          <%= render "ui/carousel/next" %>
+        <% end %>
+      </div>
+    <% end %>
+
+    <% example.phlex do %>
+      <div class="mx-auto w-full max-w-xs">
+        <%= render UI::Carousel.new(
+          opts: { loop: true },
+          plugins: [
+            { name: "autoplay", options: { delay: 2000, stopOnInteraction: false } }
+          ]
+        ) do %>
+          <%= render UI::CarouselContent.new do %>
+            <% 5.times do |i| %>
+              <%= render UI::CarouselItem.new do %>
+                <div class="p-1">
+                  <div class="flex aspect-square items-center justify-center p-6 border rounded-lg bg-gradient-to-br from-purple-500 to-pink-500">
+                    <span class="text-4xl font-semibold text-white"><%= i + 1 %></span>
+                  </div>
+                </div>
+              <% end %>
+            <% end %>
+          <% end %>
+          <%= render UI::CarouselPrevious.new %>
+          <%= render UI::CarouselNext.new %>
+        <% end %>
+      </div>
+    <% end %>
+
+    <% example.view_component do %>
+      <div class="mx-auto w-full max-w-xs">
+        <%= render UI::CarouselComponent.new(
+          opts: { loop: true },
+          plugins: [
+            { name: "autoplay", options: { delay: 2000, stopOnInteraction: false } }
+          ]
+        ) do %>
+          <%= render UI::CarouselContentComponent.new do %>
+            <% 5.times do |i| %>
+              <%= render UI::CarouselItemComponent.new do %>
+                <div class="p-1">
+                  <div class="flex aspect-square items-center justify-center p-6 border rounded-lg bg-gradient-to-br from-purple-500 to-pink-500">
+                    <span class="text-4xl font-semibold text-white"><%= i + 1 %></span>
+                  </div>
+                </div>
+              <% end %>
+            <% end %>
+          <% end %>
+          <%= render UI::CarouselPreviousComponent.new %>
+          <%= render UI::CarouselNextComponent.new %>
+        <% end %>
+      </div>
+    <% end %>
+  <% end %>
+
+<% end %>
+

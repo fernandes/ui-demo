@@ -1,0 +1,53 @@
+<div class="grid w-full max-w-sm gap-6">
+  <%= render "ui/input_group" do %>
+    <%= render "ui/input_group/addon", align: "inline-start" do %>
+      <%= lucide_icon("search", class: "size-4") %>
+    <% end %>
+    <%= render "ui/input_group/input", placeholder: "Search..." %>
+    <%= render "ui/input_group/addon", align: "inline-end" do %>
+      12 results
+    <% end %>
+  <% end %>
+
+  <%= render "ui/input_group" do %>
+    <%= render "ui/input_group/addon", align: "inline-start" do %>
+      <span class="text-muted-foreground text-sm">https://</span>
+    <% end %>
+    <%= render "ui/input_group/input", placeholder: "example.com", classes: "!pl-1" %>
+    <%= render "ui/input_group/addon", align: "inline-end" do %>
+      <%= render "ui/tooltip" do %>
+        <%= render "ui/tooltip/trigger", as_child: true do |trigger_attrs| %>
+          <%= render "ui/input_group/button", size: :icon_xs, "aria-label": "Info", classes: "rounded-full", attributes: trigger_attrs do %>
+            <%= lucide_icon("info", class: "size-4") %>
+          <% end %>
+        <% end %>
+        <%= render "ui/tooltip/content" do %>This is content in a tooltip.<% end %>
+      <% end %>
+    <% end %>
+  <% end %>
+
+  <%= render "ui/input_group" do %>
+    <%= render "ui/input_group/textarea", placeholder: "Ask, Search or Chat..." %>
+    <%= render "ui/input_group/addon", align: "block-end" do %>
+      <%= render "ui/input_group/button", variant: :outline, size: :icon_xs, "aria-label": "Add", classes: "rounded-full" do %>
+        <%= lucide_icon("plus", class: "size-4") %>
+      <% end %>
+      <%= render "ui/input_group/button", variant: :ghost, size: :xs do %>Auto<% end %>
+      <span class="text-muted-foreground text-sm ml-auto">52% used</span>
+      <%= render "ui/separator", orientation: :vertical, classes: "!h-4" %>
+      <%= render "ui/input_group/button", variant: :default, size: :icon_xs, classes: "rounded-full" do %>
+        <%= lucide_icon("arrow-up", class: "size-4") %>
+        <span class="sr-only">Send</span>
+      <% end %>
+    <% end %>
+  <% end %>
+
+  <%= render "ui/input_group" do %>
+    <%= render "ui/input_group/input", placeholder: "@shadcn" %>
+    <%= render "ui/input_group/addon", align: "inline-end" do %>
+      <div class="bg-primary flex size-4 items-center justify-center rounded-full">
+        <%= lucide_icon("check", class: "size-3 text-white") %>
+      </div>
+    <% end %>
+  <% end %>
+</div>

@@ -1,0 +1,185 @@
+<%= render Docs::ComponentPage.new(component_name: "avatar") do %>
+
+  <%# Default %>
+  <%= render Docs::Example.new(
+    name: "Default",
+    description: "An image element with a fallback for representing users.",
+    view_context: self
+  ) do |example| %>
+    <% example.erb do %>
+      <%= render "ui/avatar" do %>
+        <%= render "ui/avatar/image", src: "https://github.com/fernandes.png", alt: "@fernandes" %>
+        <%= render "ui/avatar/fallback" do %>F<% end %>
+      <% end %>
+    <% end %>
+
+    <% example.phlex do %>
+      <%= render UI::Avatar.new do %>
+        <%= render UI::AvatarImage.new(src: "https://github.com/fernandes.png", alt: "@fernandes") %>
+        <%= render UI::AvatarFallback.new { "F" } %>
+      <% end %>
+    <% end %>
+
+    <% example.view_component do %>
+      <%= render UI::AvatarComponent.new do %>
+        <%= render UI::AvatarImageComponent.new(src: "https://github.com/fernandes.png", alt: "@fernandes") %>
+        <%= render(UI::AvatarFallbackComponent.new) { "F" } %>
+      <% end %>
+    <% end %>
+  <% end %>
+
+  <%# Rounded Square %>
+  <%= render Docs::Example.new(
+    name: "Rounded Square",
+    description: "Avatar with rounded-lg class for a softer square shape.",
+    view_context: self
+  ) do |example| %>
+    <% example.erb do %>
+      <%= render "ui/avatar", classes: "rounded-lg" do %>
+        <%= render "ui/avatar/image", src: "https://github.com/fernandes.png", alt: "@fernandes" %>
+        <%= render "ui/avatar/fallback", classes: "rounded-lg" do %>F<% end %>
+      <% end %>
+    <% end %>
+
+    <% example.phlex do %>
+      <%= render UI::Avatar.new(classes: "rounded-lg") do %>
+        <%= render UI::AvatarImage.new(src: "https://github.com/fernandes.png", alt: "@fernandes") %>
+        <%= render UI::AvatarFallback.new(classes: "rounded-lg") { "F" } %>
+      <% end %>
+    <% end %>
+
+    <% example.view_component do %>
+      <%= render UI::AvatarComponent.new(classes: "rounded-lg") do %>
+        <%= render UI::AvatarImageComponent.new(src: "https://github.com/fernandes.png", alt: "@fernandes") %>
+        <%= render(UI::AvatarFallbackComponent.new(classes: "rounded-lg")) { "F" } %>
+      <% end %>
+    <% end %>
+  <% end %>
+
+  <%# Avatar Group %>
+  <%= render Docs::Example.new(
+    name: "Avatar Group",
+    description: "Stack multiple avatars with overlapping effect.",
+    view_context: self
+  ) do |example| %>
+    <% example.erb do %>
+      <div class="flex -space-x-2">
+        <% (1..4).each do |i| %>
+          <%= render "ui/avatar", classes: "ring-2 ring-background" do %>
+            <%= render "ui/avatar/image", src: "https://i.pravatar.cc/150?img=#{i}", alt: "User #{i}" %>
+            <%= render "ui/avatar/fallback" do %>U<%= i %><% end %>
+          <% end %>
+        <% end %>
+      </div>
+    <% end %>
+
+    <% example.phlex do %>
+      <div class="flex -space-x-2">
+        <% (1..4).each do |i| %>
+          <%= render UI::Avatar.new(classes: "ring-2 ring-background") do %>
+            <%= render UI::AvatarImage.new(src: "https://i.pravatar.cc/150?img=#{i}", alt: "User #{i}") %>
+            <%= render UI::AvatarFallback.new { "U#{i}" } %>
+          <% end %>
+        <% end %>
+      </div>
+    <% end %>
+
+    <% example.view_component do %>
+      <div class="flex -space-x-2">
+        <% (1..4).each do |i| %>
+          <%= render UI::AvatarComponent.new(classes: "ring-2 ring-background") do %>
+            <%= render UI::AvatarImageComponent.new(src: "https://i.pravatar.cc/150?img=#{i}", alt: "User #{i}") %>
+            <%= render(UI::AvatarFallbackComponent.new) { "U#{i}" } %>
+          <% end %>
+        <% end %>
+      </div>
+    <% end %>
+  <% end %>
+
+  <%# With Status Indicator %>
+  <%= render Docs::Example.new(
+    name: "With Status Indicator",
+    description: "Avatar with online, away, or offline status indicators.",
+    view_context: self
+  ) do |example| %>
+    <% example.erb do %>
+      <div class="flex items-center gap-4">
+        <div class="relative">
+          <%= render "ui/avatar" do %>
+            <%= render "ui/avatar/image", src: "https://github.com/fernandes.png", alt: "Online user" %>
+            <%= render "ui/avatar/fallback" do %>F<% end %>
+          <% end %>
+          <span class="absolute bottom-0 right-0 block size-3 rounded-full bg-green-500 ring-2 ring-background"></span>
+        </div>
+        <div class="relative">
+          <%= render "ui/avatar" do %>
+            <%= render "ui/avatar/image", src: "https://github.com/fernandes.png", alt: "Away user" %>
+            <%= render "ui/avatar/fallback" do %>F<% end %>
+          <% end %>
+          <span class="absolute bottom-0 right-0 block size-3 rounded-full bg-yellow-500 ring-2 ring-background"></span>
+        </div>
+        <div class="relative">
+          <%= render "ui/avatar" do %>
+            <%= render "ui/avatar/image", src: "https://github.com/fernandes.png", alt: "Offline user" %>
+            <%= render "ui/avatar/fallback" do %>F<% end %>
+          <% end %>
+          <span class="absolute bottom-0 right-0 block size-3 rounded-full bg-muted ring-2 ring-background"></span>
+        </div>
+      </div>
+    <% end %>
+
+    <% example.phlex do %>
+      <div class="flex items-center gap-4">
+        <div class="relative">
+          <%= render UI::Avatar.new do %>
+            <%= render UI::AvatarImage.new(src: "https://github.com/fernandes.png", alt: "Online user") %>
+            <%= render UI::AvatarFallback.new { "F" } %>
+          <% end %>
+          <span class="absolute bottom-0 right-0 block size-3 rounded-full bg-green-500 ring-2 ring-background"></span>
+        </div>
+        <div class="relative">
+          <%= render UI::Avatar.new do %>
+            <%= render UI::AvatarImage.new(src: "https://github.com/fernandes.png", alt: "Away user") %>
+            <%= render UI::AvatarFallback.new { "F" } %>
+          <% end %>
+          <span class="absolute bottom-0 right-0 block size-3 rounded-full bg-yellow-500 ring-2 ring-background"></span>
+        </div>
+        <div class="relative">
+          <%= render UI::Avatar.new do %>
+            <%= render UI::AvatarImage.new(src: "https://github.com/fernandes.png", alt: "Offline user") %>
+            <%= render UI::AvatarFallback.new { "F" } %>
+          <% end %>
+          <span class="absolute bottom-0 right-0 block size-3 rounded-full bg-muted ring-2 ring-background"></span>
+        </div>
+      </div>
+    <% end %>
+
+    <% example.view_component do %>
+      <div class="flex items-center gap-4">
+        <div class="relative">
+          <%= render UI::AvatarComponent.new do %>
+            <%= render UI::AvatarImageComponent.new(src: "https://github.com/fernandes.png", alt: "Online user") %>
+            <%= render(UI::AvatarFallbackComponent.new) { "F" } %>
+          <% end %>
+          <span class="absolute bottom-0 right-0 block size-3 rounded-full bg-green-500 ring-2 ring-background"></span>
+        </div>
+        <div class="relative">
+          <%= render UI::AvatarComponent.new do %>
+            <%= render UI::AvatarImageComponent.new(src: "https://github.com/fernandes.png", alt: "Away user") %>
+            <%= render(UI::AvatarFallbackComponent.new) { "F" } %>
+          <% end %>
+          <span class="absolute bottom-0 right-0 block size-3 rounded-full bg-yellow-500 ring-2 ring-background"></span>
+        </div>
+        <div class="relative">
+          <%= render UI::AvatarComponent.new do %>
+            <%= render UI::AvatarImageComponent.new(src: "https://github.com/fernandes.png", alt: "Offline user") %>
+            <%= render(UI::AvatarFallbackComponent.new) { "F" } %>
+          <% end %>
+          <span class="absolute bottom-0 right-0 block size-3 rounded-full bg-muted ring-2 ring-background"></span>
+        </div>
+      </div>
+    <% end %>
+  <% end %>
+
+<% end %>
+

@@ -1,0 +1,62 @@
+<%= render "ui/button_group" do %>
+  <%= render "ui/button_group", classes: "hidden sm:flex" do %>
+    <%= render "ui/button", variant: :outline, size: :icon_sm, "aria-label": "Go Back" do %>
+      <%= lucide_icon("arrow-left", class: "size-4") %>
+    <% end %>
+  <% end %>
+  <%= render "ui/button_group" do %>
+    <%= render "ui/button", variant: :outline, size: :sm do %>Archive<% end %>
+    <%= render "ui/button", variant: :outline, size: :sm do %>Report<% end %>
+  <% end %>
+  <%= render "ui/dropdown_menu", as_child: true do |dropdown_attrs| %>
+    <%= render "ui/button_group", **dropdown_attrs do %>
+      <%= render "ui/button", variant: :outline, size: :sm do %>Snooze<% end %>
+      <%= render "ui/dropdown_menu/trigger", as_child: true do |trigger_attrs| %>
+        <%= render "ui/button", variant: :outline, size: :icon_sm, "aria-label": "More Options", attributes: trigger_attrs do %>
+          <%= lucide_icon("ellipsis", class: "size-4") %>
+        <% end %>
+      <% end %>
+      <%= render "ui/dropdown_menu/content", align: "end", classes: "w-48 [--radius:1rem]" do %>
+        <%= render "ui/dropdown_menu/item" do %>
+          <%= lucide_icon("mail-check", class: "size-4") %>
+          Mark as Read
+        <% end %>
+        <%= render "ui/dropdown_menu/item" do %>
+          <%= lucide_icon("archive", class: "size-4") %>
+          Archive
+        <% end %>
+        <%= render "ui/dropdown_menu/separator" %>
+        <%= render "ui/dropdown_menu/item" do %>
+          <%= lucide_icon("clock", class: "size-4") %>
+          Snooze
+        <% end %>
+        <%= render "ui/dropdown_menu/item" do %>
+          <%= lucide_icon("calendar-plus", class: "size-4") %>
+          Add to Calendar
+        <% end %>
+        <%= render "ui/dropdown_menu/item" do %>
+          <%= lucide_icon("list-filter", class: "size-4") %>
+          Add to List
+        <% end %>
+        <%= render "ui/dropdown_menu/sub" do %>
+          <%= render "ui/dropdown_menu/sub_trigger" do %>
+            <%= lucide_icon("tag", class: "size-4") %>
+            Label As...
+          <% end %>
+          <%= render "ui/dropdown_menu/sub_content" do %>
+            <%= render "ui/dropdown_menu/radio_group" do %>
+              <%= render "ui/dropdown_menu/radio_item", value: "personal", checked: true do %>Personal<% end %>
+              <%= render "ui/dropdown_menu/radio_item", value: "work" do %>Work<% end %>
+              <%= render "ui/dropdown_menu/radio_item", value: "other" do %>Other<% end %>
+            <% end %>
+          <% end %>
+        <% end %>
+        <%= render "ui/dropdown_menu/separator" %>
+        <%= render "ui/dropdown_menu/item", variant: :destructive do %>
+          <%= lucide_icon("trash-2", class: "size-4") %>
+          Trash
+        <% end %>
+      <% end %>
+    <% end %>
+  <% end %>
+<% end %>

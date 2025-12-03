@@ -11,4 +11,10 @@ Rails.application.routes.draw do
 
   # Defines the root path route ("/")
   root "home#index"
+
+  # Documentation routes
+  scope "docs" do
+    get "components", to: "components#index", as: :components
+    get "components/:slug", to: "components#show", as: :component
+  end
 end

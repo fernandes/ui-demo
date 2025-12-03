@@ -1,0 +1,132 @@
+<%= render Docs::ComponentPage.new(component_name: "toggle") do %>
+
+  <%# Default %>
+  <%= render Docs::Example.new(
+    name: "Default",
+    description: "A two-state button that can be either on or off.",
+    view_context: self
+  ) do |example| %>
+    <% example.erb do %>
+      <%= render "ui/toggle", variant: "outline" do %>B<% end %>
+    <% end %>
+
+    <% example.phlex do %>
+      <%= render UI::Toggle.new(variant: "outline") { "B" } %>
+    <% end %>
+
+    <% example.view_component do %>
+      <%= render(UI::ToggleComponent.new(variant: "outline")) { "B" } %>
+    <% end %>
+  <% end %>
+
+  <%# Outline %>
+  <%= render Docs::Example.new(
+    name: "Outline",
+    description: "Toggle with outline variant.",
+    view_context: self
+  ) do |example| %>
+    <% example.erb do %>
+      <%= render "ui/toggle", variant: "outline" do %>I<% end %>
+    <% end %>
+
+    <% example.phlex do %>
+      <%= render UI::Toggle.new(variant: "outline") { "I" } %>
+    <% end %>
+
+    <% example.view_component do %>
+      <%= render(UI::ToggleComponent.new(variant: "outline")) { "I" } %>
+    <% end %>
+  <% end %>
+
+  <%# With Text %>
+  <%= render Docs::Example.new(
+    name: "With Text",
+    description: "Toggle with text content.",
+    view_context: self
+  ) do |example| %>
+    <% example.erb do %>
+      <%= render "ui/toggle", variant: "outline" do %>
+        Italic
+      <% end %>
+    <% end %>
+
+    <% example.phlex do %>
+      <%= render UI::Toggle.new(variant: "outline") { "Italic" } %>
+    <% end %>
+
+    <% example.view_component do %>
+      <%= render(UI::ToggleComponent.new(variant: "outline")) { "Italic" } %>
+    <% end %>
+  <% end %>
+
+  <%# Disabled %>
+  <%= render Docs::Example.new(
+    name: "Disabled",
+    description: "A disabled toggle.",
+    view_context: self
+  ) do |example| %>
+    <% example.erb do %>
+      <%= render "ui/toggle", variant: "outline", disabled: true do %>I<% end %>
+    <% end %>
+
+    <% example.phlex do %>
+      <%= render UI::Toggle.new(variant: "outline", disabled: true) { "I" } %>
+    <% end %>
+
+    <% example.view_component do %>
+      <%= render(UI::ToggleComponent.new(variant: "outline", disabled: true)) { "I" } %>
+    <% end %>
+  <% end %>
+
+  <%# Small %>
+  <%= render Docs::Example.new(
+    name: "Small",
+    description: "A small toggle.",
+    view_context: self
+  ) do |example| %>
+    <% example.erb do %>
+      <%= render "ui/toggle", variant: "outline", size: "sm" do %>
+        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 6h16"/><path d="M4 12h16"/><path d="M4 18h16"/></svg>
+      <% end %>
+    <% end %>
+
+    <% example.phlex do %>
+      <%= render UI::Toggle.new(variant: "outline", size: "sm") do %>
+        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 6h16"/><path d="M4 12h16"/><path d="M4 18h16"/></svg>
+      <% end %>
+    <% end %>
+
+    <% example.view_component do %>
+      <%= render(UI::ToggleComponent.new(variant: "outline", size: "sm")) do %>
+        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 6h16"/><path d="M4 12h16"/><path d="M4 18h16"/></svg>
+      <% end %>
+    <% end %>
+  <% end %>
+
+  <%# Large %>
+  <%= render Docs::Example.new(
+    name: "Large",
+    description: "A large toggle.",
+    view_context: self
+  ) do |example| %>
+    <% example.erb do %>
+      <%= render "ui/toggle", variant: "outline", size: "lg" do %>
+        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 6h16"/><path d="M4 12h16"/><path d="M4 18h16"/></svg>
+      <% end %>
+    <% end %>
+
+    <% example.phlex do %>
+      <%= render UI::Toggle.new(variant: "outline", size: "lg") do %>
+        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 6h16"/><path d="M4 12h16"/><path d="M4 18h16"/></svg>
+      <% end %>
+    <% end %>
+
+    <% example.view_component do %>
+      <%= render(UI::ToggleComponent.new(variant: "outline", size: "lg")) do %>
+        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 6h16"/><path d="M4 12h16"/><path d="M4 18h16"/></svg>
+      <% end %>
+    <% end %>
+  <% end %>
+
+<% end %>
+

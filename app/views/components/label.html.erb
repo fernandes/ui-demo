@@ -1,0 +1,79 @@
+<%= render Docs::ComponentPage.new(component_name: "label") do %>
+
+  <%# Default %>
+  <%= render Docs::Example.new(
+    name: "Default",
+    description: "An accessible label for form inputs.",
+    view_context: self
+  ) do |example| %>
+    <% example.erb do %>
+      <%= render "ui/label", for: "email" do %>Your email address<% end %>
+    <% end %>
+
+    <% example.phlex do %>
+      <%= render UI::Label.new(for: "email") { "Your email address" } %>
+    <% end %>
+
+    <% example.view_component do %>
+      <%= render(UI::LabelComponent.new(for: "email")) { "Your email address" } %>
+    <% end %>
+  <% end %>
+
+  <%# With Input %>
+  <%= render Docs::Example.new(
+    name: "With Input",
+    description: "Label paired with an input field.",
+    view_context: self
+  ) do |example| %>
+    <% example.erb do %>
+      <div class="grid w-full max-w-sm items-center gap-1.5">
+        <%= render "ui/label", for: "email-input" do %>Email<% end %>
+        <%= render "ui/input", type: "email", id: "email-input", placeholder: "Email" %>
+      </div>
+    <% end %>
+
+    <% example.phlex do %>
+      <div class="grid w-full max-w-sm items-center gap-1.5">
+        <%= render UI::Label.new(for: "email-input") { "Email" } %>
+        <%= render UI::Input.new(type: "email", id: "email-input", placeholder: "Email") %>
+      </div>
+    <% end %>
+
+    <% example.view_component do %>
+      <div class="grid w-full max-w-sm items-center gap-1.5">
+        <%= render(UI::LabelComponent.new(for: "email-input")) { "Email" } %>
+        <%= render UI::InputComponent.new(type: "email", id: "email-input", placeholder: "Email") %>
+      </div>
+    <% end %>
+  <% end %>
+
+  <%# With Checkbox %>
+  <%= render Docs::Example.new(
+    name: "With Checkbox",
+    description: "Label used with a checkbox for terms acceptance.",
+    view_context: self
+  ) do |example| %>
+    <% example.erb do %>
+      <div class="flex items-center space-x-2">
+        <%= render "ui/checkbox", id: "terms" %>
+        <%= render "ui/label", for: "terms" do %>Accept terms and conditions<% end %>
+      </div>
+    <% end %>
+
+    <% example.phlex do %>
+      <div class="flex items-center space-x-2">
+        <%= render UI::Checkbox.new(id: "terms") %>
+        <%= render UI::Label.new(for: "terms") { "Accept terms and conditions" } %>
+      </div>
+    <% end %>
+
+    <% example.view_component do %>
+      <div class="flex items-center space-x-2">
+        <%= render UI::CheckboxComponent.new(id: "terms") %>
+        <%= render(UI::LabelComponent.new(for: "terms")) { "Accept terms and conditions" } %>
+      </div>
+    <% end %>
+  <% end %>
+
+<% end %>
+

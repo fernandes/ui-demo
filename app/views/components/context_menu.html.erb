@@ -1,0 +1,120 @@
+<%= render Docs::ComponentPage.new(component_name: "context_menu") do %>
+
+  <%# Default %>
+  <%= render Docs::Example.new(
+    name: "Default",
+    description: "Displays a menu to the user triggered by a right click.",
+    view_context: self
+  ) do |example| %>
+    <% example.erb do %>
+      <%= render "ui/context_menu" do %>
+        <%= render "ui/context_menu/trigger" do %>
+          Right click this area
+        <% end %>
+        <%= render "ui/context_menu/content", classes: "w-48" do %>
+          <%= render "ui/context_menu/item" do %>Edit<% end %>
+          <%= render "ui/context_menu/item" do %>Duplicate<% end %>
+          <%= render "ui/context_menu/separator" %>
+          <%= render "ui/context_menu/item", variant: "destructive" do %>Delete<% end %>
+        <% end %>
+      <% end %>
+    <% end %>
+
+    <% example.phlex do %>
+      <%= render UI::ContextMenu.new do %>
+        <%= render UI::ContextMenuTrigger.new do %>
+          Right click here
+        <% end %>
+        <%= render UI::ContextMenuContent.new(classes: "w-48") do %>
+          <%= render UI::ContextMenuItem.new { "Edit" } %>
+          <%= render UI::ContextMenuItem.new { "Duplicate" } %>
+          <%= render UI::ContextMenuSeparator.new %>
+          <%= render UI::ContextMenuItem.new(variant: "destructive") { "Delete" } %>
+        <% end %>
+      <% end %>
+    <% end %>
+
+    <% example.view_component do %>
+      <%= render UI::ContextMenuComponent.new do %>
+        <%= render UI::ContextMenuTriggerComponent.new do %>
+          Right click this box
+        <% end %>
+        <%= render UI::ContextMenuContentComponent.new(classes: "w-48") do %>
+          <%= render(UI::ContextMenuItemComponent.new) { "Edit" } %>
+          <%= render(UI::ContextMenuItemComponent.new) { "Duplicate" } %>
+          <%= render UI::ContextMenuSeparatorComponent.new %>
+          <%= render(UI::ContextMenuItemComponent.new(variant: "destructive")) { "Delete" } %>
+        <% end %>
+      <% end %>
+    <% end %>
+  <% end %>
+
+  <%# With Shortcuts %>
+  <%= render Docs::Example.new(
+    name: "With Shortcuts",
+    description: "Context menu with keyboard shortcuts.",
+    view_context: self
+  ) do |example| %>
+    <% example.erb do %>
+      <%= render "ui/context_menu" do %>
+        <%= render "ui/context_menu/trigger" do %>
+          Right click for file options
+        <% end %>
+        <%= render "ui/context_menu/content", classes: "w-56" do %>
+          <%= render "ui/context_menu/label" do %>File<% end %>
+          <%= render "ui/context_menu/separator" %>
+          <%= render "ui/context_menu/item" do %>
+            New File
+            <%= render "ui/context_menu/shortcut" do %>⌘N<% end %>
+          <% end %>
+          <%= render "ui/context_menu/item" do %>
+            Save
+            <%= render "ui/context_menu/shortcut" do %>⌘S<% end %>
+          <% end %>
+        <% end %>
+      <% end %>
+    <% end %>
+
+    <% example.phlex do %>
+      <%= render UI::ContextMenu.new do %>
+        <%= render UI::ContextMenuTrigger.new do %>
+          Right click here
+        <% end %>
+        <%= render UI::ContextMenuContent.new(classes: "w-56") do %>
+          <%= render UI::ContextMenuLabel.new { "File" } %>
+          <%= render UI::ContextMenuSeparator.new %>
+          <%= render UI::ContextMenuItem.new do %>
+            New File
+            <%= render UI::ContextMenuShortcut.new { "⌘N" } %>
+          <% end %>
+          <%= render UI::ContextMenuItem.new do %>
+            Save
+            <%= render UI::ContextMenuShortcut.new { "⌘S" } %>
+          <% end %>
+        <% end %>
+      <% end %>
+    <% end %>
+
+    <% example.view_component do %>
+      <%= render UI::ContextMenuComponent.new do %>
+        <%= render UI::ContextMenuTriggerComponent.new do %>
+          Right click this box
+        <% end %>
+        <%= render UI::ContextMenuContentComponent.new(classes: "w-56") do %>
+          <%= render(UI::ContextMenuLabelComponent.new) { "File" } %>
+          <%= render UI::ContextMenuSeparatorComponent.new %>
+          <%= render UI::ContextMenuItemComponent.new do %>
+            New File
+            <%= render(UI::ContextMenuShortcutComponent.new) { "⌘N" } %>
+          <% end %>
+          <%= render UI::ContextMenuItemComponent.new do %>
+            Save
+            <%= render(UI::ContextMenuShortcutComponent.new) { "⌘S" } %>
+          <% end %>
+        <% end %>
+      <% end %>
+    <% end %>
+  <% end %>
+
+<% end %>
+

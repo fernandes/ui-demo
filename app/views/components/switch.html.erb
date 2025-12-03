@@ -1,0 +1,125 @@
+<%= render Docs::ComponentPage.new(component_name: "switch") do %>
+
+  <%# Default %>
+  <%= render Docs::Example.new(
+    name: "Default",
+    description: "A control that allows the user to toggle between two states.",
+    view_context: self
+  ) do |example| %>
+    <% example.erb do %>
+      <div class="flex items-center space-x-2">
+        <%= render "ui/switch", id: "airplane-mode" %>
+        <%= render "ui/label", for: "airplane-mode" do %>Airplane Mode<% end %>
+      </div>
+    <% end %>
+
+    <% example.phlex do %>
+      <div class="flex items-center space-x-2">
+        <%= render UI::Switch.new(id: "airplane-mode") %>
+        <%= render UI::Label.new(for: "airplane-mode") { "Airplane Mode" } %>
+      </div>
+    <% end %>
+
+    <% example.view_component do %>
+      <div class="flex items-center space-x-2">
+        <%= render UI::SwitchComponent.new(id: "airplane-mode") %>
+        <%= render(UI::LabelComponent.new(for: "airplane-mode")) { "Airplane Mode" } %>
+      </div>
+    <% end %>
+  <% end %>
+
+  <%# Checked by Default %>
+  <%= render Docs::Example.new(
+    name: "Checked by Default",
+    description: "Switch that starts in the on state.",
+    view_context: self
+  ) do |example| %>
+    <% example.erb do %>
+      <div class="flex items-center space-x-2">
+        <%= render "ui/switch", id: "notifications", checked: true %>
+        <%= render "ui/label", for: "notifications" do %>Enable Notifications<% end %>
+      </div>
+    <% end %>
+
+    <% example.phlex do %>
+      <div class="flex items-center space-x-2">
+        <%= render UI::Switch.new(id: "notifications", checked: true) %>
+        <%= render UI::Label.new(for: "notifications") { "Enable Notifications" } %>
+      </div>
+    <% end %>
+
+    <% example.view_component do %>
+      <div class="flex items-center space-x-2">
+        <%= render UI::SwitchComponent.new(id: "notifications", checked: true) %>
+        <%= render(UI::LabelComponent.new(for: "notifications")) { "Enable Notifications" } %>
+      </div>
+    <% end %>
+  <% end %>
+
+  <%# With Description %>
+  <%= render Docs::Example.new(
+    name: "With Description",
+    description: "Switch with additional descriptive text.",
+    view_context: self
+  ) do |example| %>
+    <% example.erb do %>
+      <div class="flex items-start space-x-4">
+        <%= render "ui/switch", id: "marketing" %>
+        <div class="space-y-0.5">
+          <%= render "ui/label", for: "marketing" do %>Marketing emails<% end %>
+          <p class="text-sm text-muted-foreground">Receive emails about new products, features, and more.</p>
+        </div>
+      </div>
+    <% end %>
+
+    <% example.phlex do %>
+      <div class="flex items-start space-x-4">
+        <%= render UI::Switch.new(id: "marketing") %>
+        <div class="space-y-0.5">
+          <%= render UI::Label.new(for: "marketing") { "Marketing emails" } %>
+          <p class="text-sm text-muted-foreground">Receive emails about new products, features, and more.</p>
+        </div>
+      </div>
+    <% end %>
+
+    <% example.view_component do %>
+      <div class="flex items-start space-x-4">
+        <%= render UI::SwitchComponent.new(id: "marketing") %>
+        <div class="space-y-0.5">
+          <%= render(UI::LabelComponent.new(for: "marketing")) { "Marketing emails" } %>
+          <p class="text-sm text-muted-foreground">Receive emails about new products, features, and more.</p>
+        </div>
+      </div>
+    <% end %>
+  <% end %>
+
+  <%# Disabled %>
+  <%= render Docs::Example.new(
+    name: "Disabled",
+    description: "Switch in a disabled state.",
+    view_context: self
+  ) do |example| %>
+    <% example.erb do %>
+      <div class="flex items-center space-x-2">
+        <%= render "ui/switch", id: "disabled-switch", disabled: true %>
+        <%= render "ui/label", for: "disabled-switch" do %>Disabled<% end %>
+      </div>
+    <% end %>
+
+    <% example.phlex do %>
+      <div class="flex items-center space-x-2">
+        <%= render UI::Switch.new(id: "disabled-switch", disabled: true) %>
+        <%= render UI::Label.new(for: "disabled-switch") { "Disabled" } %>
+      </div>
+    <% end %>
+
+    <% example.view_component do %>
+      <div class="flex items-center space-x-2">
+        <%= render UI::SwitchComponent.new(id: "disabled-switch", disabled: true) %>
+        <%= render(UI::LabelComponent.new(for: "disabled-switch")) { "Disabled" } %>
+      </div>
+    <% end %>
+  <% end %>
+
+<% end %>
+

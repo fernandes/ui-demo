@@ -1,0 +1,24 @@
+<div class="grid w-full max-w-sm gap-6">
+  <%= render "ui/input_group", classes: "[--radius:9999px]" do %>
+    <%= render "ui/popover", as_child: true do |popover_attrs| %>
+      <%= render "ui/input_group/addon", attributes: popover_attrs do %>
+        <%= render "ui/popover/trigger", as_child: true do |trigger_attrs| %>
+          <%= render "ui/input_group/button", size: :icon_xs, attributes: trigger_attrs do %>
+            <%= lucide_icon("info", class: "size-3.5") %>
+          <% end %>
+        <% end %>
+        <%= render "ui/popover/content", align: "start", classes: "flex flex-col gap-1 rounded-xl text-sm" do %>
+          <p class="font-medium">Your connection is not secure.</p>
+          <p>You should not enter any sensitive information on this site.</p>
+        <% end %>
+      <% end %>
+    <% end %>
+    <%= render "ui/input_group/addon", classes: "text-muted-foreground pl-1.5" do %>https://<% end %>
+    <%= render "ui/input_group/input" %>
+    <%= render "ui/input_group/addon", align: "inline-end" do %>
+      <%= render "ui/input_group/button", size: :icon_xs do %>
+        <%= lucide_icon("star", class: "size-3.5") %>
+      <% end %>
+    <% end %>
+  <% end %>
+</div>

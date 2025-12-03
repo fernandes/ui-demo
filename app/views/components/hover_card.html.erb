@@ -1,0 +1,120 @@
+<%= render Docs::ComponentPage.new(component_name: "hover_card") do %>
+
+  <%# Default %>
+  <%= render Docs::Example.new(
+    name: "Default",
+    description: "For sighted users to preview content available behind a link.",
+    view_context: self
+  ) do |example| %>
+    <% example.erb do %>
+      <%= render "ui/hover_card" do %>
+        <%= render "ui/hover_card/trigger", as_child: true do |attrs| %>
+          <%= render "ui/button", variant: :link, classes: "px-0", attributes: attrs do %>@nextjs<% end %>
+        <% end %>
+        <%= render "ui/hover_card/content", classes: "w-80" do %>
+          <div class="space-y-2">
+            <h4 class="text-sm font-semibold">@nextjs</h4>
+            <p class="text-sm">The React Framework – created and maintained by @vercel.</p>
+          </div>
+        <% end %>
+      <% end %>
+    <% end %>
+
+    <% example.phlex do %>
+      <%= render UI::HoverCard.new do %>
+        <%= render UI::HoverCardTrigger.new(as_child: true) do |trigger_attrs| %>
+          <%= render UI::Button.new(**trigger_attrs, variant: :link, classes: "px-0") { "@nextjs" } %>
+        <% end %>
+        <%= render UI::HoverCardContent.new(classes: "w-80") do %>
+          <div class="space-y-2">
+            <h4 class="text-sm font-semibold">@nextjs</h4>
+            <p class="text-sm">The React Framework – created and maintained by @vercel.</p>
+          </div>
+        <% end %>
+      <% end %>
+    <% end %>
+
+    <% example.view_component do %>
+      <%= render UI::HoverCardComponent.new do %>
+        <%= render UI::HoverCardTriggerComponent.new(as_child: true) do |trigger_attrs| %>
+          <%= render(UI::ButtonComponent.new(**trigger_attrs, variant: :link, classes: "px-0")) { "@nextjs" } %>
+        <% end %>
+        <%= render UI::HoverCardContentComponent.new(classes: "w-80") do %>
+          <div class="space-y-2">
+            <h4 class="text-sm font-semibold">@nextjs</h4>
+            <p class="text-sm">The React Framework – created and maintained by @vercel.</p>
+          </div>
+        <% end %>
+      <% end %>
+    <% end %>
+  <% end %>
+
+  <%# With Avatar %>
+  <%= render Docs::Example.new(
+    name: "With Avatar",
+    description: "Hover card with user profile information.",
+    view_context: self
+  ) do |example| %>
+    <% example.erb do %>
+      <%= render "ui/hover_card" do %>
+        <%= render "ui/hover_card/trigger", as_child: true do |attrs| %>
+          <%= render "ui/button", variant: :link, classes: "px-0", attributes: attrs do %>@shadcn<% end %>
+        <% end %>
+        <%= render "ui/hover_card/content", classes: "w-80" do %>
+          <div class="flex gap-4">
+            <%= render "ui/avatar" do %>
+              <%= render "ui/avatar/image", src: "https://github.com/shadcn.png", alt: "@shadcn" %>
+              <%= render "ui/avatar/fallback" do %>SC<% end %>
+            <% end %>
+            <div class="space-y-1">
+              <h4 class="text-sm font-semibold">shadcn</h4>
+              <p class="text-sm text-muted-foreground">Creator of shadcn/ui.</p>
+            </div>
+          </div>
+        <% end %>
+      <% end %>
+    <% end %>
+
+    <% example.phlex do %>
+      <%= render UI::HoverCard.new do %>
+        <%= render UI::HoverCardTrigger.new(as_child: true) do |trigger_attrs| %>
+          <%= render UI::Button.new(**trigger_attrs, variant: :link, classes: "px-0") { "@shadcn" } %>
+        <% end %>
+        <%= render UI::HoverCardContent.new(classes: "w-80") do %>
+          <div class="flex gap-4">
+            <%= render UI::Avatar.new do %>
+              <%= render UI::AvatarImage.new(src: "https://github.com/shadcn.png", alt: "@shadcn") %>
+              <%= render UI::AvatarFallback.new { "SC" } %>
+            <% end %>
+            <div class="space-y-1">
+              <h4 class="text-sm font-semibold">shadcn</h4>
+              <p class="text-sm text-muted-foreground">Creator of shadcn/ui.</p>
+            </div>
+          </div>
+        <% end %>
+      <% end %>
+    <% end %>
+
+    <% example.view_component do %>
+      <%= render UI::HoverCardComponent.new do %>
+        <%= render UI::HoverCardTriggerComponent.new(as_child: true) do |trigger_attrs| %>
+          <%= render(UI::ButtonComponent.new(**trigger_attrs, variant: :link, classes: "px-0")) { "@shadcn" } %>
+        <% end %>
+        <%= render UI::HoverCardContentComponent.new(classes: "w-80") do %>
+          <div class="flex gap-4">
+            <%= render UI::AvatarComponent.new do %>
+              <%= render UI::AvatarImageComponent.new(src: "https://github.com/shadcn.png", alt: "@shadcn") %>
+              <%= render(UI::AvatarFallbackComponent.new) { "SC" } %>
+            <% end %>
+            <div class="space-y-1">
+              <h4 class="text-sm font-semibold">shadcn</h4>
+              <p class="text-sm text-muted-foreground">Creator of shadcn/ui.</p>
+            </div>
+          </div>
+        <% end %>
+      <% end %>
+    <% end %>
+  <% end %>
+
+<% end %>
+

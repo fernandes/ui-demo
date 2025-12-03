@@ -1,0 +1,25 @@
+<div class="container mx-auto px-4 py-8">
+  <div class="max-w-3xl mx-auto">
+    <h1 class="text-4xl font-bold tracking-tight mb-4">Components</h1>
+    <p class="text-lg text-muted-foreground mb-8">
+      Beautifully designed components built with Tailwind CSS. Available in ERB, Phlex, and ViewComponent.
+    </p>
+
+    <% if @components.any? %>
+      <div class="grid gap-4">
+        <% @components.each do |component| %>
+          <%= link_to component_path(slug: component[:slug]),
+                      class: "block p-4 rounded-lg border hover:border-primary transition-colors" do %>
+            <h3 class="font-semibold text-lg"><%= component[:name] %></h3>
+            <p class="text-sm text-muted-foreground mt-1"><%= component[:description] %></p>
+          <% end %>
+        <% end %>
+      </div>
+    <% else %>
+      <div class="text-center py-12 text-muted-foreground">
+        <p>No components documented yet.</p>
+        <p class="text-sm mt-2">Add YAML files to <code>~/src/ui/docs/components/</code></p>
+      </div>
+    <% end %>
+  </div>
+</div>

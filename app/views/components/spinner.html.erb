@@ -1,0 +1,85 @@
+<%= render Docs::ComponentPage.new(component_name: "spinner") do %>
+
+  <%# Default %>
+  <%= render Docs::Example.new(
+    name: "Default",
+    description: "An indicator that can be used to show a loading state.",
+    view_context: self
+  ) do |example| %>
+    <% example.erb do %>
+      <%= render "ui/spinner" %>
+    <% end %>
+
+    <% example.phlex do %>
+      <%= render UI::Spinner.new %>
+    <% end %>
+
+    <% example.view_component do %>
+      <%= render UI::SpinnerComponent.new %>
+    <% end %>
+  <% end %>
+
+  <%# Sizes %>
+  <%= render Docs::Example.new(
+    name: "Sizes",
+    description: "Available size variants.",
+    view_context: self
+  ) do |example| %>
+    <% example.erb do %>
+      <div class="flex items-center gap-6">
+        <%= render "ui/spinner", size: "sm" %>
+        <%= render "ui/spinner", size: "default" %>
+        <%= render "ui/spinner", size: "lg" %>
+        <%= render "ui/spinner", size: "xl" %>
+      </div>
+    <% end %>
+
+    <% example.phlex do %>
+      <div class="flex items-center gap-6">
+        <%= render UI::Spinner.new(size: "sm") %>
+        <%= render UI::Spinner.new(size: "default") %>
+        <%= render UI::Spinner.new(size: "lg") %>
+        <%= render UI::Spinner.new(size: "xl") %>
+      </div>
+    <% end %>
+
+    <% example.view_component do %>
+      <div class="flex items-center gap-6">
+        <%= render UI::SpinnerComponent.new(size: "sm") %>
+        <%= render UI::SpinnerComponent.new(size: "default") %>
+        <%= render UI::SpinnerComponent.new(size: "lg") %>
+        <%= render UI::SpinnerComponent.new(size: "xl") %>
+      </div>
+    <% end %>
+  <% end %>
+
+  <%# In Button %>
+  <%= render Docs::Example.new(
+    name: "In Button",
+    description: "Spinner used in a button loading state.",
+    view_context: self
+  ) do |example| %>
+    <% example.erb do %>
+      <%= render "ui/button", disabled: true do %>
+        <%= render "ui/spinner", size: "sm" %>
+        <span class="ml-2">Loading...</span>
+      <% end %>
+    <% end %>
+
+    <% example.phlex do %>
+      <%= render UI::Button.new(disabled: true) do %>
+        <%= render UI::Spinner.new(size: "sm") %>
+        <span class="ml-2">Loading...</span>
+      <% end %>
+    <% end %>
+
+    <% example.view_component do %>
+      <%= render UI::ButtonComponent.new(disabled: true) do %>
+        <%= render UI::SpinnerComponent.new(size: "sm") %>
+        <span class="ml-2">Loading...</span>
+      <% end %>
+    <% end %>
+  <% end %>
+
+<% end %>
+

@@ -1,0 +1,27 @@
+<form class="[--radius:1.2rem]">
+  <%= render "ui/field" do %>
+    <%= render "ui/field/label", for_id: "notion-prompt", classes: "sr-only" do %>Prompt<% end %>
+    <%= render "ui/input_group" do %>
+      <%= render "ui/input_group/textarea", id: "notion-prompt", placeholder: "Ask, search, or make anything..." %>
+      <%= render "ui/input_group/addon", align: "block-start" do %>
+        <%= render "ui/button", variant: :outline, size: :sm, classes: "rounded-full" do %>
+          <%= lucide_icon("at-sign", class: "size-4") %>
+          Add context
+        <% end %>
+      <% end %>
+      <%= render "ui/input_group/addon", align: "block-end", classes: "gap-1" do %>
+        <%= render "ui/button", size: :icon_sm, variant: :ghost, classes: "rounded-full", "aria-label": "Attach file" do %>
+          <%= lucide_icon("paperclip", class: "size-4") %>
+        <% end %>
+        <%= render "ui/button", size: :sm, classes: "rounded-full", variant: :ghost do %>Auto<% end %>
+        <%= render "ui/button", size: :sm, classes: "rounded-full", variant: :ghost do %>
+          <%= lucide_icon("globe", class: "size-4") %>
+          All Sources
+        <% end %>
+        <%= render "ui/button", variant: :default, size: :icon_sm, classes: "ml-auto rounded-full", "aria-label": "Send" do %>
+          <%= lucide_icon("arrow-up", class: "size-4") %>
+        <% end %>
+      <% end %>
+    <% end %>
+  <% end %>
+</form>

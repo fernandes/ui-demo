@@ -1,0 +1,292 @@
+<%= render Docs::ComponentPage.new(component_name: "tabs") do %>
+
+  <%# Default %>
+  <%= render Docs::Example.new(
+    name: "Default",
+    description: "A set of layered sections of content shown one at a time.",
+    view_context: self
+  ) do |example| %>
+    <% example.erb do %>
+      <%= render "ui/tabs", default_value: "account" do %>
+        <%= render "ui/tabs/list" do %>
+          <%= render "ui/tabs/trigger", value: "account", content: "Account" %>
+          <%= render "ui/tabs/trigger", value: "password", content: "Password" %>
+        <% end %>
+        <%= render "ui/tabs/content", value: "account" do %>
+          <p class="text-sm text-muted-foreground">Make changes to your account here.</p>
+        <% end %>
+        <%= render "ui/tabs/content", value: "password" do %>
+          <p class="text-sm text-muted-foreground">Change your password here.</p>
+        <% end %>
+      <% end %>
+    <% end %>
+
+    <% example.phlex do %>
+      <%= render UI::Tabs.new(default_value: "account") do %>
+        <%= render UI::TabsList.new do %>
+          <%= render UI::TabsTrigger.new(value: "account", default_value: "account") { "Account" } %>
+          <%= render UI::TabsTrigger.new(value: "password", default_value: "account") { "Password" } %>
+        <% end %>
+        <%= render UI::TabsContent.new(value: "account", default_value: "account") do %>
+          <p class="text-sm text-muted-foreground">Make changes to your account here.</p>
+        <% end %>
+        <%= render UI::TabsContent.new(value: "password", default_value: "account") do %>
+          <p class="text-sm text-muted-foreground">Change your password here.</p>
+        <% end %>
+      <% end %>
+    <% end %>
+
+    <% example.view_component do %>
+      <%= render UI::TabsComponent.new(default_value: "account") do %>
+        <%= render UI::TabsListComponent.new do %>
+          <%= render(UI::TabsTriggerComponent.new(value: "account", default_value: "account")) { "Account" } %>
+          <%= render(UI::TabsTriggerComponent.new(value: "password", default_value: "account")) { "Password" } %>
+        <% end %>
+        <%= render UI::TabsContentComponent.new(value: "account", default_value: "account") do %>
+          <p class="text-sm text-muted-foreground">Make changes to your account here.</p>
+        <% end %>
+        <%= render UI::TabsContentComponent.new(value: "password", default_value: "account") do %>
+          <p class="text-sm text-muted-foreground">Change your password here.</p>
+        <% end %>
+      <% end %>
+    <% end %>
+  <% end %>
+
+  <%# With Cards %>
+  <%= render Docs::Example.new(
+    name: "With Cards",
+    description: "Tabs containing card content with forms.",
+    view_context: self
+  ) do |example| %>
+    <% example.erb do %>
+      <%= render "ui/tabs", default_value: "account", classes: "w-[400px]" do %>
+        <%= render "ui/tabs/list", classes: "grid w-full grid-cols-2" do %>
+          <%= render "ui/tabs/trigger", value: "account", content: "Account" %>
+          <%= render "ui/tabs/trigger", value: "password", content: "Password" %>
+        <% end %>
+        <%= render "ui/tabs/content", value: "account" do %>
+          <%= render "ui/card" do %>
+            <%= render "ui/card/header" do %>
+              <%= render "ui/card/title" do %>Account<% end %>
+              <%= render "ui/card/description" do %>Make changes to your account here.<% end %>
+            <% end %>
+            <%= render "ui/card/content", classes: "space-y-2" do %>
+              <div class="space-y-1">
+                <%= render "ui/label", for: "name" do %>Name<% end %>
+                <%= render "ui/input", id: "name", value: "Pedro Duarte" %>
+              </div>
+              <div class="space-y-1">
+                <%= render "ui/label", for: "username" do %>Username<% end %>
+                <%= render "ui/input", id: "username", value: "@peduarte" %>
+              </div>
+            <% end %>
+            <%= render "ui/card/footer" do %>
+              <%= render "ui/button" do %>Save changes<% end %>
+            <% end %>
+          <% end %>
+        <% end %>
+        <%= render "ui/tabs/content", value: "password" do %>
+          <%= render "ui/card" do %>
+            <%= render "ui/card/header" do %>
+              <%= render "ui/card/title" do %>Password<% end %>
+              <%= render "ui/card/description" do %>Change your password here.<% end %>
+            <% end %>
+            <%= render "ui/card/content", classes: "space-y-2" do %>
+              <div class="space-y-1">
+                <%= render "ui/label", for: "current" do %>Current password<% end %>
+                <%= render "ui/input", id: "current", type: "password" %>
+              </div>
+              <div class="space-y-1">
+                <%= render "ui/label", for: "new" do %>New password<% end %>
+                <%= render "ui/input", id: "new", type: "password" %>
+              </div>
+            <% end %>
+            <%= render "ui/card/footer" do %>
+              <%= render "ui/button" do %>Save password<% end %>
+            <% end %>
+          <% end %>
+        <% end %>
+      <% end %>
+    <% end %>
+
+    <% example.phlex do %>
+      <%= render UI::Tabs.new(default_value: "account", classes: "w-[400px]") do %>
+        <%= render UI::TabsList.new(classes: "grid w-full grid-cols-2") do %>
+          <%= render UI::TabsTrigger.new(value: "account", default_value: "account") { "Account" } %>
+          <%= render UI::TabsTrigger.new(value: "password", default_value: "account") { "Password" } %>
+        <% end %>
+        <%= render UI::TabsContent.new(value: "account", default_value: "account") do %>
+          <%= render UI::Card.new do %>
+            <%= render UI::CardHeader.new do %>
+              <%= render UI::CardTitle.new { "Account" } %>
+              <%= render UI::CardDescription.new { "Make changes to your account here." } %>
+            <% end %>
+            <%= render UI::CardContent.new(classes: "space-y-2") do %>
+              <div class="space-y-1">
+                <%= render UI::Label.new(for: "name") { "Name" } %>
+                <%= render UI::Input.new(id: "name", value: "Pedro Duarte") %>
+              </div>
+              <div class="space-y-1">
+                <%= render UI::Label.new(for: "username") { "Username" } %>
+                <%= render UI::Input.new(id: "username", value: "@peduarte") %>
+              </div>
+            <% end %>
+            <%= render UI::CardFooter.new do %>
+              <%= render UI::Button.new { "Save changes" } %>
+            <% end %>
+          <% end %>
+        <% end %>
+        <%= render UI::TabsContent.new(value: "password", default_value: "account") do %>
+          <%= render UI::Card.new do %>
+            <%= render UI::CardHeader.new do %>
+              <%= render UI::CardTitle.new { "Password" } %>
+              <%= render UI::CardDescription.new { "Change your password here." } %>
+            <% end %>
+            <%= render UI::CardContent.new(classes: "space-y-2") do %>
+              <div class="space-y-1">
+                <%= render UI::Label.new(for: "current") { "Current password" } %>
+                <%= render UI::Input.new(id: "current", type: "password") %>
+              </div>
+              <div class="space-y-1">
+                <%= render UI::Label.new(for: "new") { "New password" } %>
+                <%= render UI::Input.new(id: "new", type: "password") %>
+              </div>
+            <% end %>
+            <%= render UI::CardFooter.new do %>
+              <%= render UI::Button.new { "Save password" } %>
+            <% end %>
+          <% end %>
+        <% end %>
+      <% end %>
+    <% end %>
+
+    <% example.view_component do %>
+      <%= render UI::TabsComponent.new(default_value: "account", classes: "w-[400px]") do %>
+        <%= render UI::TabsListComponent.new(classes: "grid w-full grid-cols-2") do %>
+          <%= render(UI::TabsTriggerComponent.new(value: "account", default_value: "account")) { "Account" } %>
+          <%= render(UI::TabsTriggerComponent.new(value: "password", default_value: "account")) { "Password" } %>
+        <% end %>
+        <%= render UI::TabsContentComponent.new(value: "account", default_value: "account") do %>
+          <%= render UI::CardComponent.new do %>
+            <%= render UI::CardHeaderComponent.new do %>
+              <%= render(UI::CardTitleComponent.new) { "Account" } %>
+              <%= render(UI::CardDescriptionComponent.new) { "Make changes to your account here." } %>
+            <% end %>
+            <%= render UI::CardContentComponent.new(classes: "space-y-2") do %>
+              <div class="space-y-1">
+                <%= render(UI::LabelComponent.new(for: "name")) { "Name" } %>
+                <%= render UI::InputComponent.new(id: "name", value: "Pedro Duarte") %>
+              </div>
+              <div class="space-y-1">
+                <%= render(UI::LabelComponent.new(for: "username")) { "Username" } %>
+                <%= render UI::InputComponent.new(id: "username", value: "@peduarte") %>
+              </div>
+            <% end %>
+            <%= render UI::CardFooterComponent.new do %>
+              <%= render(UI::ButtonComponent.new) { "Save changes" } %>
+            <% end %>
+          <% end %>
+        <% end %>
+        <%= render UI::TabsContentComponent.new(value: "password", default_value: "account") do %>
+          <%= render UI::CardComponent.new do %>
+            <%= render UI::CardHeaderComponent.new do %>
+              <%= render(UI::CardTitleComponent.new) { "Password" } %>
+              <%= render(UI::CardDescriptionComponent.new) { "Change your password here." } %>
+            <% end %>
+            <%= render UI::CardContentComponent.new(classes: "space-y-2") do %>
+              <div class="space-y-1">
+                <%= render(UI::LabelComponent.new(for: "current")) { "Current password" } %>
+                <%= render UI::InputComponent.new(id: "current", type: "password") %>
+              </div>
+              <div class="space-y-1">
+                <%= render(UI::LabelComponent.new(for: "new")) { "New password" } %>
+                <%= render UI::InputComponent.new(id: "new", type: "password") %>
+              </div>
+            <% end %>
+            <%= render UI::CardFooterComponent.new do %>
+              <%= render(UI::ButtonComponent.new) { "Save password" } %>
+            <% end %>
+          <% end %>
+        <% end %>
+      <% end %>
+    <% end %>
+  <% end %>
+
+  <%# Multiple Tabs %>
+  <%= render Docs::Example.new(
+    name: "Multiple Tabs",
+    description: "Tabs with more than two options.",
+    view_context: self
+  ) do |example| %>
+    <% example.erb do %>
+      <%= render "ui/tabs", default_value: "overview" do %>
+        <%= render "ui/tabs/list" do %>
+          <%= render "ui/tabs/trigger", value: "overview", content: "Overview" %>
+          <%= render "ui/tabs/trigger", value: "analytics", content: "Analytics" %>
+          <%= render "ui/tabs/trigger", value: "reports", content: "Reports" %>
+          <%= render "ui/tabs/trigger", value: "notifications", content: "Notifications" %>
+        <% end %>
+        <%= render "ui/tabs/content", value: "overview" do %>
+          <p class="text-sm text-muted-foreground">Overview of your dashboard and key metrics.</p>
+        <% end %>
+        <%= render "ui/tabs/content", value: "analytics" do %>
+          <p class="text-sm text-muted-foreground">Detailed analytics and performance data.</p>
+        <% end %>
+        <%= render "ui/tabs/content", value: "reports" do %>
+          <p class="text-sm text-muted-foreground">Generate and view reports.</p>
+        <% end %>
+        <%= render "ui/tabs/content", value: "notifications" do %>
+          <p class="text-sm text-muted-foreground">Manage your notification preferences.</p>
+        <% end %>
+      <% end %>
+    <% end %>
+
+    <% example.phlex do %>
+      <%= render UI::Tabs.new(default_value: "overview") do %>
+        <%= render UI::TabsList.new do %>
+          <%= render UI::TabsTrigger.new(value: "overview", default_value: "overview") { "Overview" } %>
+          <%= render UI::TabsTrigger.new(value: "analytics", default_value: "overview") { "Analytics" } %>
+          <%= render UI::TabsTrigger.new(value: "reports", default_value: "overview") { "Reports" } %>
+          <%= render UI::TabsTrigger.new(value: "notifications", default_value: "overview") { "Notifications" } %>
+        <% end %>
+        <%= render UI::TabsContent.new(value: "overview", default_value: "overview") do %>
+          <p class="text-sm text-muted-foreground">Overview of your dashboard and key metrics.</p>
+        <% end %>
+        <%= render UI::TabsContent.new(value: "analytics", default_value: "overview") do %>
+          <p class="text-sm text-muted-foreground">Detailed analytics and performance data.</p>
+        <% end %>
+        <%= render UI::TabsContent.new(value: "reports", default_value: "overview") do %>
+          <p class="text-sm text-muted-foreground">Generate and view reports.</p>
+        <% end %>
+        <%= render UI::TabsContent.new(value: "notifications", default_value: "overview") do %>
+          <p class="text-sm text-muted-foreground">Manage your notification preferences.</p>
+        <% end %>
+      <% end %>
+    <% end %>
+
+    <% example.view_component do %>
+      <%= render UI::TabsComponent.new(default_value: "overview") do %>
+        <%= render UI::TabsListComponent.new do %>
+          <%= render(UI::TabsTriggerComponent.new(value: "overview", default_value: "overview")) { "Overview" } %>
+          <%= render(UI::TabsTriggerComponent.new(value: "analytics", default_value: "overview")) { "Analytics" } %>
+          <%= render(UI::TabsTriggerComponent.new(value: "reports", default_value: "overview")) { "Reports" } %>
+          <%= render(UI::TabsTriggerComponent.new(value: "notifications", default_value: "overview")) { "Notifications" } %>
+        <% end %>
+        <%= render UI::TabsContentComponent.new(value: "overview", default_value: "overview") do %>
+          <p class="text-sm text-muted-foreground">Overview of your dashboard and key metrics.</p>
+        <% end %>
+        <%= render UI::TabsContentComponent.new(value: "analytics", default_value: "overview") do %>
+          <p class="text-sm text-muted-foreground">Detailed analytics and performance data.</p>
+        <% end %>
+        <%= render UI::TabsContentComponent.new(value: "reports", default_value: "overview") do %>
+          <p class="text-sm text-muted-foreground">Generate and view reports.</p>
+        <% end %>
+        <%= render UI::TabsContentComponent.new(value: "notifications", default_value: "overview") do %>
+          <p class="text-sm text-muted-foreground">Manage your notification preferences.</p>
+        <% end %>
+      <% end %>
+    <% end %>
+  <% end %>
+
+<% end %>
+

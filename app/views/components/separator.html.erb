@@ -1,0 +1,169 @@
+<%= render Docs::ComponentPage.new(component_name: "separator") do %>
+
+  <%# Default %>
+  <%= render Docs::Example.new(
+    name: "Default",
+    description: "Visually or semantically separates content.",
+    view_context: self
+  ) do |example| %>
+    <% example.erb do %>
+      <div>
+        <div class="space-y-1">
+          <h4 class="text-sm font-medium leading-none">Radix Primitives</h4>
+          <p class="text-sm text-muted-foreground">An open-source UI component library.</p>
+        </div>
+        <%= render "ui/separator", classes: "my-4" %>
+        <div class="flex h-5 items-center space-x-4 text-sm">
+          <div>Blog</div>
+          <%= render "ui/separator", orientation: :vertical %>
+          <div>Docs</div>
+          <%= render "ui/separator", orientation: :vertical %>
+          <div>Source</div>
+        </div>
+      </div>
+    <% end %>
+
+    <% example.phlex do %>
+      <div>
+        <div class="space-y-1">
+          <h4 class="text-sm font-medium leading-none">Radix Primitives</h4>
+          <p class="text-sm text-muted-foreground">An open-source UI component library.</p>
+        </div>
+        <%= render UI::Separator.new(classes: "my-4") %>
+        <div class="flex h-5 items-center space-x-4 text-sm">
+          <div>Blog</div>
+          <%= render UI::Separator.new(orientation: :vertical) %>
+          <div>Docs</div>
+          <%= render UI::Separator.new(orientation: :vertical) %>
+          <div>Source</div>
+        </div>
+      </div>
+    <% end %>
+
+    <% example.view_component do %>
+      <div>
+        <div class="space-y-1">
+          <h4 class="text-sm font-medium leading-none">Radix Primitives</h4>
+          <p class="text-sm text-muted-foreground">An open-source UI component library.</p>
+        </div>
+        <%= render UI::SeparatorComponent.new(classes: "my-4") %>
+        <div class="flex h-5 items-center space-x-4 text-sm">
+          <div>Blog</div>
+          <%= render UI::SeparatorComponent.new(orientation: :vertical) %>
+          <div>Docs</div>
+          <%= render UI::SeparatorComponent.new(orientation: :vertical) %>
+          <div>Source</div>
+        </div>
+      </div>
+    <% end %>
+  <% end %>
+
+  <%# Horizontal %>
+  <%= render Docs::Example.new(
+    name: "Horizontal",
+    description: "Horizontal separator between content sections.",
+    view_context: self
+  ) do |example| %>
+    <% example.erb do %>
+      <div class="space-y-4 max-w-md">
+        <div>
+          <h3 class="text-lg font-medium">Section 1</h3>
+          <p class="text-sm text-muted-foreground">This is the first section content.</p>
+        </div>
+        <%= render "ui/separator" %>
+        <div>
+          <h3 class="text-lg font-medium">Section 2</h3>
+          <p class="text-sm text-muted-foreground">This is the second section content.</p>
+        </div>
+        <%= render "ui/separator" %>
+        <div>
+          <h3 class="text-lg font-medium">Section 3</h3>
+          <p class="text-sm text-muted-foreground">This is the third section content.</p>
+        </div>
+      </div>
+    <% end %>
+
+    <% example.phlex do %>
+      <div class="space-y-4 max-w-md">
+        <div>
+          <h3 class="text-lg font-medium">Section 1</h3>
+          <p class="text-sm text-muted-foreground">This is the first section content.</p>
+        </div>
+        <%= render UI::Separator.new %>
+        <div>
+          <h3 class="text-lg font-medium">Section 2</h3>
+          <p class="text-sm text-muted-foreground">This is the second section content.</p>
+        </div>
+        <%= render UI::Separator.new %>
+        <div>
+          <h3 class="text-lg font-medium">Section 3</h3>
+          <p class="text-sm text-muted-foreground">This is the third section content.</p>
+        </div>
+      </div>
+    <% end %>
+
+    <% example.view_component do %>
+      <div class="space-y-4 max-w-md">
+        <div>
+          <h3 class="text-lg font-medium">Section 1</h3>
+          <p class="text-sm text-muted-foreground">This is the first section content.</p>
+        </div>
+        <%= render UI::SeparatorComponent.new %>
+        <div>
+          <h3 class="text-lg font-medium">Section 2</h3>
+          <p class="text-sm text-muted-foreground">This is the second section content.</p>
+        </div>
+        <%= render UI::SeparatorComponent.new %>
+        <div>
+          <h3 class="text-lg font-medium">Section 3</h3>
+          <p class="text-sm text-muted-foreground">This is the third section content.</p>
+        </div>
+      </div>
+    <% end %>
+  <% end %>
+
+  <%# Vertical %>
+  <%= render Docs::Example.new(
+    name: "Vertical",
+    description: "Vertical separator between inline elements.",
+    view_context: self
+  ) do |example| %>
+    <% example.erb do %>
+      <div class="flex h-5 items-center space-x-4 text-sm">
+        <span>Terms</span>
+        <%= render "ui/separator", orientation: :vertical %>
+        <span>Privacy</span>
+        <%= render "ui/separator", orientation: :vertical %>
+        <span>Contact</span>
+        <%= render "ui/separator", orientation: :vertical %>
+        <span>About</span>
+      </div>
+    <% end %>
+
+    <% example.phlex do %>
+      <div class="flex h-5 items-center space-x-4 text-sm">
+        <span>Terms</span>
+        <%= render UI::Separator.new(orientation: :vertical) %>
+        <span>Privacy</span>
+        <%= render UI::Separator.new(orientation: :vertical) %>
+        <span>Contact</span>
+        <%= render UI::Separator.new(orientation: :vertical) %>
+        <span>About</span>
+      </div>
+    <% end %>
+
+    <% example.view_component do %>
+      <div class="flex h-5 items-center space-x-4 text-sm">
+        <span>Terms</span>
+        <%= render UI::SeparatorComponent.new(orientation: :vertical) %>
+        <span>Privacy</span>
+        <%= render UI::SeparatorComponent.new(orientation: :vertical) %>
+        <span>Contact</span>
+        <%= render UI::SeparatorComponent.new(orientation: :vertical) %>
+        <span>About</span>
+      </div>
+    <% end %>
+  <% end %>
+
+<% end %>
+

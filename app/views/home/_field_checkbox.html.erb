@@ -1,0 +1,6 @@
+<%= render "ui/label", for_id: "terms-checkbox", classes: "hover:bg-accent/50 flex items-start gap-3 rounded-lg border p-3 has-[[aria-checked=true]]:border-primary has-[[aria-checked=true]]:bg-primary/5 dark:has-[[aria-checked=true]]:bg-primary/10" do %>
+  <%= render "ui/checkbox", id: "terms-checkbox", checked: true %>
+  <div class="grid gap-1 font-normal">
+    <p class="text-sm leading-none font-medium">I agree to the terms and conditions</p>
+  </div>
+<% end %>

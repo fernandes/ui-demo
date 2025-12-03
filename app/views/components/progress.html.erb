@@ -1,0 +1,142 @@
+<%= render Docs::ComponentPage.new(component_name: "progress") do %>
+
+  <%# Default %>
+  <%= render Docs::Example.new(
+    name: "Default",
+    description: "Displays an indicator showing the completion progress of a task.",
+    view_context: self
+  ) do |example| %>
+    <% example.erb do %>
+      <%= render "ui/progress", value: 60 %>
+    <% end %>
+
+    <% example.phlex do %>
+      <%= render UI::Progress.new(value: 60) %>
+    <% end %>
+
+    <% example.view_component do %>
+      <%= render UI::ProgressComponent.new(value: 60) %>
+    <% end %>
+  <% end %>
+
+  <%# Different Values %>
+  <%= render Docs::Example.new(
+    name: "Different Values",
+    description: "Progress bars at different completion states.",
+    view_context: self
+  ) do |example| %>
+    <% example.erb do %>
+      <div class="space-y-4 w-full max-w-md">
+        <div class="space-y-1">
+          <p class="text-sm text-muted-foreground">0%</p>
+          <%= render "ui/progress", value: 0 %>
+        </div>
+        <div class="space-y-1">
+          <p class="text-sm text-muted-foreground">25%</p>
+          <%= render "ui/progress", value: 25 %>
+        </div>
+        <div class="space-y-1">
+          <p class="text-sm text-muted-foreground">50%</p>
+          <%= render "ui/progress", value: 50 %>
+        </div>
+        <div class="space-y-1">
+          <p class="text-sm text-muted-foreground">75%</p>
+          <%= render "ui/progress", value: 75 %>
+        </div>
+        <div class="space-y-1">
+          <p class="text-sm text-muted-foreground">100%</p>
+          <%= render "ui/progress", value: 100 %>
+        </div>
+      </div>
+    <% end %>
+
+    <% example.phlex do %>
+      <div class="space-y-4 w-full max-w-md">
+        <div class="space-y-1">
+          <p class="text-sm text-muted-foreground">0%</p>
+          <%= render UI::Progress.new(value: 0) %>
+        </div>
+        <div class="space-y-1">
+          <p class="text-sm text-muted-foreground">25%</p>
+          <%= render UI::Progress.new(value: 25) %>
+        </div>
+        <div class="space-y-1">
+          <p class="text-sm text-muted-foreground">50%</p>
+          <%= render UI::Progress.new(value: 50) %>
+        </div>
+        <div class="space-y-1">
+          <p class="text-sm text-muted-foreground">75%</p>
+          <%= render UI::Progress.new(value: 75) %>
+        </div>
+        <div class="space-y-1">
+          <p class="text-sm text-muted-foreground">100%</p>
+          <%= render UI::Progress.new(value: 100) %>
+        </div>
+      </div>
+    <% end %>
+
+    <% example.view_component do %>
+      <div class="space-y-4 w-full max-w-md">
+        <div class="space-y-1">
+          <p class="text-sm text-muted-foreground">0%</p>
+          <%= render UI::ProgressComponent.new(value: 0) %>
+        </div>
+        <div class="space-y-1">
+          <p class="text-sm text-muted-foreground">25%</p>
+          <%= render UI::ProgressComponent.new(value: 25) %>
+        </div>
+        <div class="space-y-1">
+          <p class="text-sm text-muted-foreground">50%</p>
+          <%= render UI::ProgressComponent.new(value: 50) %>
+        </div>
+        <div class="space-y-1">
+          <p class="text-sm text-muted-foreground">75%</p>
+          <%= render UI::ProgressComponent.new(value: 75) %>
+        </div>
+        <div class="space-y-1">
+          <p class="text-sm text-muted-foreground">100%</p>
+          <%= render UI::ProgressComponent.new(value: 100) %>
+        </div>
+      </div>
+    <% end %>
+  <% end %>
+
+  <%# With Label %>
+  <%= render Docs::Example.new(
+    name: "With Label",
+    description: "Progress bar with a descriptive label.",
+    view_context: self
+  ) do |example| %>
+    <% example.erb do %>
+      <div class="w-full max-w-md space-y-2">
+        <div class="flex justify-between text-sm">
+          <span>Uploading...</span>
+          <span class="text-muted-foreground">75%</span>
+        </div>
+        <%= render "ui/progress", value: 75 %>
+      </div>
+    <% end %>
+
+    <% example.phlex do %>
+      <div class="w-full max-w-md space-y-2">
+        <div class="flex justify-between text-sm">
+          <span>Uploading...</span>
+          <span class="text-muted-foreground">75%</span>
+        </div>
+        <%= render UI::Progress.new(value: 75) %>
+      </div>
+    <% end %>
+
+    <% example.view_component do %>
+      <div class="w-full max-w-md space-y-2">
+        <div class="flex justify-between text-sm">
+          <span>Uploading...</span>
+          <span class="text-muted-foreground">75%</span>
+        </div>
+        <%= render UI::ProgressComponent.new(value: 75) %>
+      </div>
+    <% end %>
+  <% end %>
+
+<% end %>
+

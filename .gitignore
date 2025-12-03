@@ -39,3 +39,4 @@
 
 # AI
 /.mcp.json
+/.playwright-mcp

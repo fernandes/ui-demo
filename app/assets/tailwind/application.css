@@ -1,2 +1,12 @@
 @import "tailwindcss";
+@import "./tw-animate.css";
 @import "./ui.css";
+
+/* Source paths for Tailwind to scan for classes */
+@source "../../../views";
+@source "../../../components";
+/* UI Engine source paths (path-based gem at ~/src/ui) */
+@source "../../../../ui/app/behaviors";
+@source "../../../../ui/app/components";
+@source "../../../../ui/app/views";
+@source "../../../../ui/app/view_components";

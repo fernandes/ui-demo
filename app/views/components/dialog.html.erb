@@ -1,0 +1,172 @@
+<%= render Docs::ComponentPage.new(component_name: "dialog") do %>
+
+  <%# Basic Example %>
+  <%= render Docs::Example.new(
+    name: "Default",
+    description: "A window overlaid on either the primary window or another dialog window.",
+    view_context: self
+  ) do |example| %>
+    <% example.erb do %>
+      <%= render "ui/dialog", attributes: { id: "edit-profile" } do %>
+        <%= render "ui/dialog/trigger" do %>Edit Profile<% end %>
+        <%= render "ui/dialog/overlay" do %>
+          <%= render "ui/dialog/content", classes: "sm:max-w-[425px]" do %>
+            <%= render "ui/dialog/header" do %>
+              <%= render "ui/dialog/title" do %>Edit profile<% end %>
+              <%= render "ui/dialog/description" do %>Make changes to your profile here. Click save when you're done.<% end %>
+            <% end %>
+            <div class="grid gap-4 py-4">
+              <div class="grid grid-cols-4 items-center gap-4">
+                <label for="name" class="text-right text-sm font-medium">Name</label>
+                <input id="name" type="text" value="Pedro Duarte" class="col-span-3 flex h-9 w-full rounded-md border bg-transparent px-3 py-1 text-sm" />
+              </div>
+              <div class="grid grid-cols-4 items-center gap-4">
+                <label for="username" class="text-right text-sm font-medium">Username</label>
+                <input id="username" type="text" value="@peduarte" class="col-span-3 flex h-9 w-full rounded-md border bg-transparent px-3 py-1 text-sm" />
+              </div>
+            </div>
+            <%= render "ui/dialog/footer" do %>
+              <%= render "ui/dialog/close", variant: :default do %>Save changes<% end %>
+            <% end %>
+          <% end %>
+        <% end %>
+      <% end %>
+    <% end %>
+
+    <% example.phlex do %>
+      <%= render UI::Dialog.new(attributes: { id: "phlex-edit-profile" }) do %>
+        <%= render UI::DialogTrigger.new { "Edit Profile" } %>
+        <%= render UI::DialogOverlay.new do %>
+          <%= render UI::DialogContent.new(classes: "sm:max-w-[425px]") do %>
+            <%= render UI::DialogHeader.new do %>
+              <%= render UI::DialogTitle.new { "Edit profile" } %>
+              <%= render UI::DialogDescription.new { "Make changes to your profile here. Click save when you're done." } %>
+            <% end %>
+            <div class="grid gap-4 py-4">
+              <div class="grid grid-cols-4 items-center gap-4">
+                <label for="phlex-name" class="text-right text-sm font-medium">Name</label>
+                <input id="phlex-name" type="text" value="Pedro Duarte" class="col-span-3 flex h-9 w-full rounded-md border bg-transparent px-3 py-1 text-sm" />
+              </div>
+            </div>
+            <%= render UI::DialogFooter.new do %>
+              <%= render UI::DialogClose.new(variant: :default) { "Save changes" } %>
+            <% end %>
+          <% end %>
+        <% end %>
+      <% end %>
+    <% end %>
+
+    <% example.view_component do %>
+      <%= render UI::DialogComponent.new(attributes: { id: "vc-edit-profile" }) do %>
+        <%= render(UI::DialogTriggerComponent.new) { "Edit Profile" } %>
+        <%= render UI::DialogOverlayComponent.new do %>
+          <%= render UI::DialogContentComponent.new(classes: "sm:max-w-[425px]") do %>
+            <%= render UI::DialogHeaderComponent.new do %>
+              <%= render(UI::DialogTitleComponent.new) { "Edit profile" } %>
+              <%= render(UI::DialogDescriptionComponent.new) { "Make changes to your profile here. Click save when you're done." } %>
+            <% end %>
+            <div class="grid gap-4 py-4">
+              <div class="grid grid-cols-4 items-center gap-4">
+                <label for="vc-name" class="text-right text-sm font-medium">Name</label>
+                <input id="vc-name" type="text" value="Pedro Duarte" class="col-span-3 flex h-9 w-full rounded-md border bg-transparent px-3 py-1 text-sm" />
+              </div>
+            </div>
+            <%= render UI::DialogFooterComponent.new do %>
+              <%= render(UI::DialogCloseComponent.new(variant: :default)) { "Save changes" } %>
+            <% end %>
+          <% end %>
+        <% end %>
+      <% end %>
+    <% end %>
+  <% end %>
+
+  <%# Custom Close Button %>
+  <%= render Docs::Example.new(
+    name: "Custom Close Button",
+    description: "A dialog with a custom close button.",
+    view_context: self
+  ) do |example| %>
+    <% example.erb do %>
+      <%= render "ui/dialog", attributes: { id: "custom-close" } do %>
+        <%= render "ui/dialog/trigger" do %>Share<% end %>
+        <%= render "ui/dialog/overlay" do %>
+          <%= render "ui/dialog/content", classes: "sm:max-w-md" do %>
+            <%= render "ui/dialog/header" do %>
+              <%= render "ui/dialog/title" do %>Share link<% end %>
+              <%= render "ui/dialog/description" do %>Anyone who has this link will be able to view this.<% end %>
+            <% end %>
+            <div class="flex items-center space-x-2">
+              <div class="grid flex-1 gap-2">
+                <%= render "ui/label", for: "link", classes: "sr-only" do %>Link<% end %>
+                <%= render "ui/input", id: "link", value: "https://ui.shadcn.com/docs/installation", attributes: { readonly: true } %>
+              </div>
+              <%= render "ui/button", size: "icon", variant: "secondary" do %>
+                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect width="14" height="14" x="8" y="8" rx="2" ry="2"/><path d="M4 16c-1.1 0-2-.9-2-2V4c0-1.1.9-2 2-2h10c1.1 0 2 .9 2 2"/></svg>
+                <span class="sr-only">Copy</span>
+              <% end %>
+            </div>
+            <%= render "ui/dialog/footer", classes: "sm:justify-start" do %>
+              <%= render "ui/dialog/close", variant: :secondary do %>Close<% end %>
+            <% end %>
+          <% end %>
+        <% end %>
+      <% end %>
+    <% end %>
+
+    <% example.phlex do %>
+      <%= render UI::Dialog.new(attributes: { id: "phlex-custom-close" }) do %>
+        <%= render UI::DialogTrigger.new { "Share" } %>
+        <%= render UI::DialogOverlay.new do %>
+          <%= render UI::DialogContent.new(classes: "sm:max-w-md") do %>
+            <%= render UI::DialogHeader.new do %>
+              <%= render UI::DialogTitle.new { "Share link" } %>
+              <%= render UI::DialogDescription.new { "Anyone who has this link will be able to view this." } %>
+            <% end %>
+            <div class="flex items-center space-x-2">
+              <div class="grid flex-1 gap-2">
+                <%= render UI::Label.new(for: "phlex-link", classes: "sr-only") { "Link" } %>
+                <%= render UI::Input.new(id: "phlex-link", value: "https://ui.shadcn.com/docs/installation", readonly: true) %>
+              </div>
+              <%= render UI::Button.new(size: "icon", variant: "secondary") do %>
+                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect width="14" height="14" x="8" y="8" rx="2" ry="2"/><path d="M4 16c-1.1 0-2-.9-2-2V4c0-1.1.9-2 2-2h10c1.1 0 2 .9 2 2"/></svg>
+                <span class="sr-only">Copy</span>
+              <% end %>
+            </div>
+            <%= render UI::DialogFooter.new(classes: "sm:justify-start") do %>
+              <%= render UI::DialogClose.new(variant: :secondary) { "Close" } %>
+            <% end %>
+          <% end %>
+        <% end %>
+      <% end %>
+    <% end %>
+
+    <% example.view_component do %>
+      <%= render UI::DialogComponent.new(attributes: { id: "vc-custom-close" }) do %>
+        <%= render(UI::DialogTriggerComponent.new) { "Share" } %>
+        <%= render UI::DialogOverlayComponent.new do %>
+          <%= render UI::DialogContentComponent.new(classes: "sm:max-w-md") do %>
+            <%= render UI::DialogHeaderComponent.new do %>
+              <%= render(UI::DialogTitleComponent.new) { "Share link" } %>
+              <%= render(UI::DialogDescriptionComponent.new) { "Anyone who has this link will be able to view this." } %>
+            <% end %>
+            <div class="flex items-center space-x-2">
+              <div class="grid flex-1 gap-2">
+                <%= render(UI::LabelComponent.new(for: "vc-link", classes: "sr-only")) { "Link" } %>
+                <%= render UI::InputComponent.new(id: "vc-link", value: "https://ui.shadcn.com/docs/installation", readonly: true) %>
+              </div>
+              <%= render(UI::ButtonComponent.new(size: "icon", variant: "secondary")) do %>
+                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect width="14" height="14" x="8" y="8" rx="2" ry="2"/><path d="M4 16c-1.1 0-2-.9-2-2V4c0-1.1.9-2 2-2h10c1.1 0 2 .9 2 2"/></svg>
+                <span class="sr-only">Copy</span>
+              <% end %>
+            </div>
+            <%= render UI::DialogFooterComponent.new(classes: "sm:justify-start") do %>
+              <%= render(UI::DialogCloseComponent.new(variant: :secondary)) { "Close" } %>
+            <% end %>
+          <% end %>
+        <% end %>
+      <% end %>
+    <% end %>
+  <% end %>
+
+<% end %>
+

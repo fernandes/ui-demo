@@ -1,0 +1,27 @@
+<%= render "ui/popover", as_child: true do |popover_attrs| %>
+  <%= render "ui/button_group", **popover_attrs do %>
+    <%= render "ui/button", variant: :outline, size: :sm do %>
+      <%= lucide_icon("bot", class: "size-4") %>
+      Copilot
+    <% end %>
+    <%= render "ui/popover/trigger", as_child: true do |trigger_attrs| %>
+      <%= render "ui/button", variant: :outline, size: :icon_sm, "aria-label": "Open Popover", attributes: trigger_attrs do %>
+        <%= lucide_icon("chevron-down", class: "size-4") %>
+      <% end %>
+    <% end %>
+    <%= render "ui/popover/content", align: "end", classes: "rounded-xl p-0 text-sm" do %>
+      <div class="px-4 py-3">
+        <div class="text-sm font-medium">Agent Tasks</div>
+      </div>
+      <%= render "ui/separator" %>
+      <div class="p-4 text-sm *:[p:not(:last-child)]:mb-2">
+        <%= render "ui/textarea", placeholder: "Describe your task in natural language.", classes: "mb-4 resize-none" %>
+        <p class="font-medium">Start a new task with Copilot</p>
+        <p class="text-muted-foreground">
+          Describe your task in natural language. Copilot will work in the
+          background and open a pull request for your review.
+        </p>
+      </div>
+    <% end %>
+  <% end %>
+<% end %>

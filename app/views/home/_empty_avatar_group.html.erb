@@ -1,0 +1,28 @@
+<%= render "ui/empty", classes: "flex-none border" do %>
+  <%= render "ui/empty/header" do %>
+    <%= render "ui/empty/media", variant: "default" do %>
+      <div class="*:data-[slot=avatar]:ring-background flex -space-x-2 *:data-[slot=avatar]:size-12 *:data-[slot=avatar]:ring-2 *:data-[slot=avatar]:grayscale">
+        <%= render "ui/avatar", classes: "border-1 bg-white" do %>
+          <%= render "ui/avatar/image", src: "https://github.com/phlex-ruby.png", alt: "@phlex-ruby" %>
+          <%= render "ui/avatar/fallback" do %>PR<% end %>
+        <% end %>
+        <%= render "ui/avatar", classes: "border-1 bg-white" do %>
+          <%= render "ui/avatar/image", src: "https://github.com/hotwired.png", alt: "@hotwired" %>
+          <%= render "ui/avatar/fallback" do %>HW<% end %>
+        <% end %>
+        <%= render "ui/avatar", classes: "border-1 bg-white" do %>
+          <%= render "ui/avatar/image", src: "https://github.com/rails.png", alt: "@rails" %>
+          <%= render "ui/avatar/fallback" do %>RL<% end %>
+        <% end %>
+      </div>
+    <% end %>
+    <%= render "ui/empty/title" do %>No Team Members<% end %>
+    <%= render "ui/empty/description" do %>Invite your team to collaborate on this project.<% end %>
+  <% end %>
+  <%= render "ui/empty/content" do %>
+    <%= render "ui/button", size: :sm do %>
+      <%= lucide_icon("plus", class: "size-4") %>
+      Invite Members
+    <% end %>
+  <% end %>
+<% end %>

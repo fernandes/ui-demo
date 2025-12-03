@@ -1,0 +1,134 @@
+<%= render Docs::ComponentPage.new(component_name: "sheet") do %>
+
+  <%# Default %>
+  <%= render Docs::Example.new(
+    name: "Default",
+    description: "Extends the Dialog component to display content that complements the main content of the screen.",
+    view_context: self
+  ) do |example| %>
+    <% example.erb do %>
+      <%= render "ui/sheet" do %>
+        <%= render "ui/sheet/trigger", as_child: true do |attrs| %>
+          <%= render "ui/button", variant: :outline, attributes: attrs do %>Open<% end %>
+        <% end %>
+        <%= render "ui/sheet/overlay" do %>
+          <%= render "ui/sheet/content" do %>
+            <%= render "ui/sheet/header" do %>
+              <%= render "ui/sheet/title" do %>Edit profile<% end %>
+              <%= render "ui/sheet/description" do %>Make changes to your profile here.<% end %>
+            <% end %>
+            <div class="p-4">Content goes here.</div>
+            <%= render "ui/sheet/footer" do %>
+              <%= render "ui/sheet/close" do %>Close<% end %>
+            <% end %>
+          <% end %>
+        <% end %>
+      <% end %>
+    <% end %>
+
+    <% example.phlex do %>
+      <%= render UI::Sheet.new do %>
+        <%= render UI::SheetTrigger.new(as_child: true) do |attrs| %>
+          <%= render UI::Button.new(**attrs, variant: :outline) { "Open" } %>
+        <% end %>
+        <%= render UI::SheetOverlay.new do %>
+          <%= render UI::SheetContent.new do %>
+            <%= render UI::SheetHeader.new do %>
+              <%= render UI::SheetTitle.new { "Edit profile" } %>
+              <%= render UI::SheetDescription.new { "Make changes to your profile here." } %>
+            <% end %>
+            <div class="p-4">Content goes here.</div>
+            <%= render UI::SheetFooter.new do %>
+              <%= render UI::SheetClose.new { "Close" } %>
+            <% end %>
+          <% end %>
+        <% end %>
+      <% end %>
+    <% end %>
+
+    <% example.view_component do %>
+      <%= render UI::SheetComponent.new do %>
+        <%= render UI::SheetTriggerComponent.new(as_child: true) do %>
+          <%= render(UI::ButtonComponent.new(variant: :outline)) { "Open" } %>
+        <% end %>
+        <%= render UI::SheetOverlayComponent.new do %>
+          <%= render UI::SheetContentComponent.new do %>
+            <%= render UI::SheetHeaderComponent.new do %>
+              <%= render(UI::SheetTitleComponent.new) { "Edit profile" } %>
+              <%= render(UI::SheetDescriptionComponent.new) { "Make changes to your profile here." } %>
+            <% end %>
+            <div class="p-4">Content goes here.</div>
+            <%= render UI::SheetFooterComponent.new do %>
+              <%= render(UI::SheetCloseComponent.new) { "Close" } %>
+            <% end %>
+          <% end %>
+        <% end %>
+      <% end %>
+    <% end %>
+  <% end %>
+
+  <%# Side Variants %>
+  <%= render Docs::Example.new(
+    name: "Side",
+    description: "Use the side property to position the sheet.",
+    view_context: self
+  ) do |example| %>
+    <% example.erb do %>
+      <div class="flex gap-2">
+        <% %w[top right bottom left].each do |side| %>
+          <%= render "ui/sheet" do %>
+            <%= render "ui/sheet/trigger", as_child: true do |attrs| %>
+              <%= render "ui/button", variant: :outline, attributes: attrs do %><%= side.capitalize %><% end %>
+            <% end %>
+            <%= render "ui/sheet/overlay" do %>
+              <%= render "ui/sheet/content", side: side do %>
+                <%= render "ui/sheet/header" do %>
+                  <%= render "ui/sheet/title" do %><%= side.capitalize %> Sheet<% end %>
+                <% end %>
+                <div class="p-4">Content</div>
+              <% end %>
+            <% end %>
+          <% end %>
+        <% end %>
+      </div>
+    <% end %>
+
+    <% example.phlex do %>
+      <div class="flex gap-2">
+        <%= render UI::Sheet.new do %>
+          <%= render UI::SheetTrigger.new(as_child: true) do |attrs| %>
+            <%= render UI::Button.new(**attrs, variant: :outline) { "Right" } %>
+          <% end %>
+          <%= render UI::SheetOverlay.new do %>
+            <%= render UI::SheetContent.new(side: "right") do %>
+              <%= render UI::SheetHeader.new do %>
+                <%= render UI::SheetTitle.new { "Right Sheet" } %>
+              <% end %>
+              <div class="p-4">Content</div>
+            <% end %>
+          <% end %>
+        <% end %>
+      </div>
+    <% end %>
+
+    <% example.view_component do %>
+      <div class="flex gap-2">
+        <%= render UI::SheetComponent.new do %>
+          <%= render UI::SheetTriggerComponent.new(as_child: true) do %>
+            <%= render(UI::ButtonComponent.new(variant: :outline)) { "Right" } %>
+          <% end %>
+          <%= render UI::SheetOverlayComponent.new do %>
+            <%= render UI::SheetContentComponent.new(side: "right") do %>
+              <%= render UI::SheetHeaderComponent.new do %>
+                <%= render(UI::SheetTitleComponent.new) { "Right Sheet" } %>
+              <% end %>
+              <div class="p-4">Content</div>
+            <% end %>
+          <% end %>
+        <% end %>
+      </div>
+    <% end %>
+  <% end %>
+
+<% end %>
+

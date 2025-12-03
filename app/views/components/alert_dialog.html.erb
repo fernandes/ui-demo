@@ -1,0 +1,57 @@
+<%= render Docs::ComponentPage.new(component_name: "alert_dialog") do %>
+
+  <%# Basic Example %>
+  <%= render Docs::Example.new(
+    name: "Default",
+    description: "A modal dialog that interrupts the user with important content and expects a response.",
+    view_context: self
+  ) do |example| %>
+    <% example.phlex do %>
+      <%= render UI::AlertDialog.new(id: "phlex-dialog") do %>
+        <%= render UI::AlertDialogTrigger.new do %>
+          <%= render UI::Button.new { "Show Dialog" } %>
+        <% end %>
+        <%= render UI::AlertDialogOverlay.new do %>
+          <%= render UI::AlertDialogContent.new do %>
+            <%= render UI::AlertDialogHeader.new do %>
+              <%= render UI::AlertDialogTitle.new { "Are you absolutely sure?" } %>
+              <%= render UI::AlertDialogDescription.new { "This action cannot be undone. This will permanently delete your account and remove your data from our servers." } %>
+            <% end %>
+            <%= render UI::AlertDialogFooter.new do %>
+              <%= render UI::AlertDialogCancel.new { "Cancel" } %>
+              <%= render UI::AlertDialogAction.new { "Continue" } %>
+            <% end %>
+          <% end %>
+        <% end %>
+      <% end %>
+    <% end %>
+  <% end %>
+
+  <%# Destructive Action %>
+  <%= render Docs::Example.new(
+    name: "Destructive",
+    description: "Alert dialog with a destructive action button.",
+    view_context: self
+  ) do |example| %>
+    <% example.phlex do %>
+      <%= render UI::AlertDialog.new(id: "destructive-phlex") do %>
+        <%= render UI::AlertDialogTrigger.new do %>
+          <%= render UI::Button.new(variant: :destructive) { "Delete Account" } %>
+        <% end %>
+        <%= render UI::AlertDialogOverlay.new do %>
+          <%= render UI::AlertDialogContent.new do %>
+            <%= render UI::AlertDialogHeader.new do %>
+              <%= render UI::AlertDialogTitle.new { "Delete Account" } %>
+              <%= render UI::AlertDialogDescription.new { "Are you sure you want to delete your account? All of your data will be permanently removed." } %>
+            <% end %>
+            <%= render UI::AlertDialogFooter.new do %>
+              <%= render UI::AlertDialogCancel.new { "Cancel" } %>
+              <%= render UI::AlertDialogAction.new(variant: :destructive) { "Delete" } %>
+            <% end %>
+          <% end %>
+        <% end %>
+      <% end %>
+    <% end %>
+  <% end %>
+
+<% end %>

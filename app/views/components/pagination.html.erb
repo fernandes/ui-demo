@@ -1,0 +1,168 @@
+<%= render Docs::ComponentPage.new(component_name: "pagination") do %>
+
+  <%# Default %>
+  <%= render Docs::Example.new(
+    name: "Default",
+    description: "Display navigation controls for paginated content.",
+    view_context: self
+  ) do |example| %>
+    <% example.erb do %>
+      <%= render "ui/pagination" do %>
+        <%= render "ui/pagination/content" do %>
+          <%= render "ui/pagination/item" do %>
+            <%= render "ui/pagination/previous", href: "#" %>
+          <% end %>
+          <%= render "ui/pagination/item" do %>
+            <%= render "ui/pagination/link", href: "#" do %>1<% end %>
+          <% end %>
+          <%= render "ui/pagination/item" do %>
+            <%= render "ui/pagination/link", href: "#", active: true do %>2<% end %>
+          <% end %>
+          <%= render "ui/pagination/item" do %>
+            <%= render "ui/pagination/link", href: "#" do %>3<% end %>
+          <% end %>
+          <%= render "ui/pagination/item" do %>
+            <%= render "ui/pagination/next", href: "#" %>
+          <% end %>
+        <% end %>
+      <% end %>
+    <% end %>
+
+    <% example.phlex do %>
+      <%= render UI::Pagination.new do %>
+        <%= render UI::PaginationContent.new do %>
+          <%= render UI::PaginationItem.new do %>
+            <%= render UI::PaginationPrevious.new(href: "#") %>
+          <% end %>
+          <%= render UI::PaginationItem.new do %>
+            <%= render UI::PaginationLink.new(href: "#") { "1" } %>
+          <% end %>
+          <%= render UI::PaginationItem.new do %>
+            <%= render UI::PaginationLink.new(href: "#", active: true) { "2" } %>
+          <% end %>
+          <%= render UI::PaginationItem.new do %>
+            <%= render UI::PaginationLink.new(href: "#") { "3" } %>
+          <% end %>
+          <%= render UI::PaginationItem.new do %>
+            <%= render UI::PaginationNext.new(href: "#") %>
+          <% end %>
+        <% end %>
+      <% end %>
+    <% end %>
+
+    <% example.view_component do %>
+      <%= render UI::PaginationComponent.new do %>
+        <%= render UI::PaginationContentComponent.new do %>
+          <%= render UI::PaginationItemComponent.new do %>
+            <%= render UI::PaginationPreviousComponent.new(href: "#") %>
+          <% end %>
+          <%= render UI::PaginationItemComponent.new do %>
+            <%= render(UI::PaginationLinkComponent.new(href: "#")) { "1" } %>
+          <% end %>
+          <%= render UI::PaginationItemComponent.new do %>
+            <%= render(UI::PaginationLinkComponent.new(href: "#", active: true)) { "2" } %>
+          <% end %>
+          <%= render UI::PaginationItemComponent.new do %>
+            <%= render(UI::PaginationLinkComponent.new(href: "#")) { "3" } %>
+          <% end %>
+          <%= render UI::PaginationItemComponent.new do %>
+            <%= render UI::PaginationNextComponent.new(href: "#") %>
+          <% end %>
+        <% end %>
+      <% end %>
+    <% end %>
+  <% end %>
+
+  <%# With Ellipsis %>
+  <%= render Docs::Example.new(
+    name: "With Ellipsis",
+    description: "Pagination with ellipsis for many pages.",
+    view_context: self
+  ) do |example| %>
+    <% example.erb do %>
+      <%= render "ui/pagination" do %>
+        <%= render "ui/pagination/content" do %>
+          <%= render "ui/pagination/item" do %>
+            <%= render "ui/pagination/previous", href: "#" %>
+          <% end %>
+          <%= render "ui/pagination/item" do %>
+            <%= render "ui/pagination/link", href: "#" do %>1<% end %>
+          <% end %>
+          <%= render "ui/pagination/item" do %>
+            <%= render "ui/pagination/ellipsis" %>
+          <% end %>
+          <%= render "ui/pagination/item" do %>
+            <%= render "ui/pagination/link", href: "#", active: true do %>6<% end %>
+          <% end %>
+          <%= render "ui/pagination/item" do %>
+            <%= render "ui/pagination/ellipsis" %>
+          <% end %>
+          <%= render "ui/pagination/item" do %>
+            <%= render "ui/pagination/link", href: "#" do %>20<% end %>
+          <% end %>
+          <%= render "ui/pagination/item" do %>
+            <%= render "ui/pagination/next", href: "#" %>
+          <% end %>
+        <% end %>
+      <% end %>
+    <% end %>
+
+    <% example.phlex do %>
+      <%= render UI::Pagination.new do %>
+        <%= render UI::PaginationContent.new do %>
+          <%= render UI::PaginationItem.new do %>
+            <%= render UI::PaginationPrevious.new(href: "#") %>
+          <% end %>
+          <%= render UI::PaginationItem.new do %>
+            <%= render UI::PaginationLink.new(href: "#") { "1" } %>
+          <% end %>
+          <%= render UI::PaginationItem.new do %>
+            <%= render UI::PaginationEllipsis.new %>
+          <% end %>
+          <%= render UI::PaginationItem.new do %>
+            <%= render UI::PaginationLink.new(href: "#", active: true) { "6" } %>
+          <% end %>
+          <%= render UI::PaginationItem.new do %>
+            <%= render UI::PaginationEllipsis.new %>
+          <% end %>
+          <%= render UI::PaginationItem.new do %>
+            <%= render UI::PaginationLink.new(href: "#") { "20" } %>
+          <% end %>
+          <%= render UI::PaginationItem.new do %>
+            <%= render UI::PaginationNext.new(href: "#") %>
+          <% end %>
+        <% end %>
+      <% end %>
+    <% end %>
+
+    <% example.view_component do %>
+      <%= render UI::PaginationComponent.new do %>
+        <%= render UI::PaginationContentComponent.new do %>
+          <%= render UI::PaginationItemComponent.new do %>
+            <%= render UI::PaginationPreviousComponent.new(href: "#") %>
+          <% end %>
+          <%= render UI::PaginationItemComponent.new do %>
+            <%= render(UI::PaginationLinkComponent.new(href: "#")) { "1" } %>
+          <% end %>
+          <%= render UI::PaginationItemComponent.new do %>
+            <%= render UI::PaginationEllipsisComponent.new %>
+          <% end %>
+          <%= render UI::PaginationItemComponent.new do %>
+            <%= render(UI::PaginationLinkComponent.new(href: "#", active: true)) { "6" } %>
+          <% end %>
+          <%= render UI::PaginationItemComponent.new do %>
+            <%= render UI::PaginationEllipsisComponent.new %>
+          <% end %>
+          <%= render UI::PaginationItemComponent.new do %>
+            <%= render(UI::PaginationLinkComponent.new(href: "#")) { "20" } %>
+          <% end %>
+          <%= render UI::PaginationItemComponent.new do %>
+            <%= render UI::PaginationNextComponent.new(href: "#") %>
+          <% end %>
+        <% end %>
+      <% end %>
+    <% end %>
+  <% end %>
+
+<% end %>
+

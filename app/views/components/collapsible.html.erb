@@ -1,0 +1,422 @@
+<%= render Docs::ComponentPage.new(component_name: "collapsible") do %>
+
+  <%# Default %>
+  <%= render Docs::Example.new(
+    name: "Default",
+    description: "An interactive component which expands/collapses a panel.",
+    view_context: self
+  ) do |example| %>
+    <% example.erb do %>
+      <%= render "ui/collapsible", classes: "w-[350px] space-y-2" do %>
+        <div class="flex items-center justify-between space-x-4 px-4">
+          <h4 class="text-sm font-semibold">@peduarte starred 3 repositories</h4>
+          <%= render "ui/collapsible/trigger" do %>
+            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="h-4 w-4"><path d="m7 15 5 5 5-5"/><path d="m7 9 5-5 5 5"/></svg>
+            <span class="sr-only">Toggle</span>
+          <% end %>
+        </div>
+        <div class="rounded-md border px-4 py-3 font-mono text-sm">
+          @radix-ui/primitives
+        </div>
+        <%= render "ui/collapsible/content", classes: "space-y-2" do %>
+          <div class="rounded-md border px-4 py-3 font-mono text-sm">
+            @radix-ui/colors
+          </div>
+          <div class="rounded-md border px-4 py-3 font-mono text-sm">
+            @stitches/react
+          </div>
+        <% end %>
+      <% end %>
+    <% end %>
+
+    <% example.phlex do %>
+      <%= render UI::Collapsible.new(classes: "w-[350px] space-y-2") do %>
+        <div class="flex items-center justify-between space-x-4 px-4">
+          <h4 class="text-sm font-semibold">@peduarte starred 3 repositories</h4>
+          <%= render UI::CollapsibleTrigger.new(as_child: true) do |trigger_attrs| %>
+            <%= render UI::Button.new(**trigger_attrs, variant: :ghost, size: :sm, classes: "w-9 p-0") do %>
+              <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="h-4 w-4"><path d="m7 15 5 5 5-5"/><path d="m7 9 5-5 5 5"/></svg>
+              <span class="sr-only">Toggle</span>
+            <% end %>
+          <% end %>
+        </div>
+        <div class="rounded-md border px-4 py-3 font-mono text-sm">
+          @radix-ui/primitives
+        </div>
+        <%= render UI::CollapsibleContent.new(classes: "space-y-2") do %>
+          <div class="rounded-md border px-4 py-3 font-mono text-sm">
+            @radix-ui/colors
+          </div>
+          <div class="rounded-md border px-4 py-3 font-mono text-sm">
+            @stitches/react
+          </div>
+        <% end %>
+      <% end %>
+    <% end %>
+
+    <% example.view_component do %>
+      <%= render UI::CollapsibleComponent.new(classes: "w-[350px] space-y-2") do %>
+        <div class="flex items-center justify-between space-x-4 px-4">
+          <h4 class="text-sm font-semibold">@peduarte starred 3 repositories</h4>
+          <%= render UI::ButtonComponent.new(variant: :ghost, size: :sm, classes: "w-9 p-0", data: { slot: "collapsible-trigger", "ui--collapsible-target": "trigger", action: "click->ui--collapsible#toggle" }) do %>
+            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="h-4 w-4"><path d="m7 15 5 5 5-5"/><path d="m7 9 5-5 5 5"/></svg>
+            <span class="sr-only">Toggle</span>
+          <% end %>
+        </div>
+        <div class="rounded-md border px-4 py-3 font-mono text-sm">
+          @radix-ui/primitives
+        </div>
+        <%= render UI::CollapsibleContentComponent.new(classes: "space-y-2") do %>
+          <div class="rounded-md border px-4 py-3 font-mono text-sm">
+            @radix-ui/colors
+          </div>
+          <div class="rounded-md border px-4 py-3 font-mono text-sm">
+            @stitches/react
+          </div>
+        <% end %>
+      <% end %>
+    <% end %>
+  <% end %>
+
+  <%# Initially Open %>
+  <%= render Docs::Example.new(
+    name: "Initially Open",
+    description: "Collapsible that starts in the open state.",
+    view_context: self
+  ) do |example| %>
+    <% example.erb do %>
+      <%= render "ui/collapsible", open: true, classes: "w-[350px] space-y-2" do %>
+        <div class="flex items-center justify-between space-x-4 px-4">
+          <h4 class="text-sm font-semibold">Favorite Frameworks</h4>
+          <%= render "ui/collapsible/trigger" do %>
+            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="h-4 w-4"><path d="m7 15 5 5 5-5"/><path d="m7 9 5-5 5 5"/></svg>
+            <span class="sr-only">Toggle</span>
+          <% end %>
+        </div>
+        <%= render "ui/collapsible/content", classes: "space-y-2" do %>
+          <div class="rounded-md border px-4 py-3 font-mono text-sm">
+            Ruby on Rails
+          </div>
+          <div class="rounded-md border px-4 py-3 font-mono text-sm">
+            Hotwire / Stimulus
+          </div>
+          <div class="rounded-md border px-4 py-3 font-mono text-sm">
+            Tailwind CSS
+          </div>
+        <% end %>
+      <% end %>
+    <% end %>
+
+    <% example.phlex do %>
+      <%= render UI::Collapsible.new(open: true, classes: "w-[350px] space-y-2") do %>
+        <div class="flex items-center justify-between space-x-4 px-4">
+          <h4 class="text-sm font-semibold">Favorite Frameworks</h4>
+          <%= render UI::CollapsibleTrigger.new(as_child: true) do |trigger_attrs| %>
+            <%= render UI::Button.new(**trigger_attrs, variant: :ghost, size: :sm, classes: "w-9 p-0") do %>
+              <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="h-4 w-4"><path d="m7 15 5 5 5-5"/><path d="m7 9 5-5 5 5"/></svg>
+              <span class="sr-only">Toggle</span>
+            <% end %>
+          <% end %>
+        </div>
+        <%= render UI::CollapsibleContent.new(classes: "space-y-2") do %>
+          <div class="rounded-md border px-4 py-3 font-mono text-sm">
+            Ruby on Rails
+          </div>
+          <div class="rounded-md border px-4 py-3 font-mono text-sm">
+            Hotwire / Stimulus
+          </div>
+          <div class="rounded-md border px-4 py-3 font-mono text-sm">
+            Tailwind CSS
+          </div>
+        <% end %>
+      <% end %>
+    <% end %>
+
+    <% example.view_component do %>
+      <%= render UI::CollapsibleComponent.new(open: true, classes: "w-[350px] space-y-2") do %>
+        <div class="flex items-center justify-between space-x-4 px-4">
+          <h4 class="text-sm font-semibold">Favorite Frameworks</h4>
+          <%= render UI::ButtonComponent.new(variant: :ghost, size: :sm, classes: "w-9 p-0", data: { slot: "collapsible-trigger", "ui--collapsible-target": "trigger", action: "click->ui--collapsible#toggle" }) do %>
+            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="h-4 w-4"><path d="m7 15 5 5 5-5"/><path d="m7 9 5-5 5 5"/></svg>
+            <span class="sr-only">Toggle</span>
+          <% end %>
+        </div>
+        <%= render UI::CollapsibleContentComponent.new(classes: "space-y-2") do %>
+          <div class="rounded-md border px-4 py-3 font-mono text-sm">
+            Ruby on Rails
+          </div>
+          <div class="rounded-md border px-4 py-3 font-mono text-sm">
+            Hotwire / Stimulus
+          </div>
+          <div class="rounded-md border px-4 py-3 font-mono text-sm">
+            Tailwind CSS
+          </div>
+        <% end %>
+      <% end %>
+    <% end %>
+  <% end %>
+
+  <%# Multiple Collapsibles %>
+  <%= render Docs::Example.new(
+    name: "Multiple Collapsibles",
+    description: "Multiple independent collapsible sections.",
+    view_context: self
+  ) do |example| %>
+    <% example.erb do %>
+      <div class="w-[350px] space-y-4">
+        <%= render "ui/collapsible", classes: "space-y-2" do %>
+          <div class="flex items-center justify-between px-4">
+            <h4 class="text-sm font-semibold">Section 1: Introduction</h4>
+            <%= render "ui/collapsible/trigger", variant: :outline, size: :sm do %>
+              <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="h-4 w-4"><path d="M5 12h14"/><path d="M12 5v14"/></svg>
+            <% end %>
+          </div>
+          <%= render "ui/collapsible/content" do %>
+            <div class="rounded-md border bg-muted px-4 py-3 text-sm">
+              This is the introduction section. It contains preliminary information about the topic at hand.
+            </div>
+          <% end %>
+        <% end %>
+
+        <%= render "ui/collapsible", classes: "space-y-2" do %>
+          <div class="flex items-center justify-between px-4">
+            <h4 class="text-sm font-semibold">Section 2: Details</h4>
+            <%= render "ui/collapsible/trigger", variant: :outline, size: :sm do %>
+              <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="h-4 w-4"><path d="M5 12h14"/><path d="M12 5v14"/></svg>
+            <% end %>
+          </div>
+          <%= render "ui/collapsible/content" do %>
+            <div class="rounded-md border bg-muted px-4 py-3 text-sm">
+              This section provides detailed information. You can include longer content here with multiple paragraphs.
+            </div>
+          <% end %>
+        <% end %>
+
+        <%= render "ui/collapsible", classes: "space-y-2" do %>
+          <div class="flex items-center justify-between px-4">
+            <h4 class="text-sm font-semibold">Section 3: Conclusion</h4>
+            <%= render "ui/collapsible/trigger", variant: :outline, size: :sm do %>
+              <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="h-4 w-4"><path d="M5 12h14"/><path d="M12 5v14"/></svg>
+            <% end %>
+          </div>
+          <%= render "ui/collapsible/content" do %>
+            <div class="rounded-md border bg-muted px-4 py-3 text-sm">
+              The conclusion wraps up all the key points discussed in the previous sections.
+            </div>
+          <% end %>
+        <% end %>
+      </div>
+    <% end %>
+
+    <% example.phlex do %>
+      <div class="w-[350px] space-y-4">
+        <%= render UI::Collapsible.new(classes: "space-y-2") do %>
+          <div class="flex items-center justify-between px-4">
+            <h4 class="text-sm font-semibold">Section 1: Introduction</h4>
+            <%= render UI::CollapsibleTrigger.new(as_child: true) do |trigger_attrs| %>
+              <%= render UI::Button.new(**trigger_attrs, variant: :outline, size: :sm) do %>
+                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="h-4 w-4"><path d="M5 12h14"/><path d="M12 5v14"/></svg>
+              <% end %>
+            <% end %>
+          </div>
+          <%= render UI::CollapsibleContent.new do %>
+            <div class="rounded-md border bg-muted px-4 py-3 text-sm">
+              This is the introduction section. It contains preliminary information about the topic at hand.
+            </div>
+          <% end %>
+        <% end %>
+
+        <%= render UI::Collapsible.new(classes: "space-y-2") do %>
+          <div class="flex items-center justify-between px-4">
+            <h4 class="text-sm font-semibold">Section 2: Details</h4>
+            <%= render UI::CollapsibleTrigger.new(as_child: true) do |trigger_attrs| %>
+              <%= render UI::Button.new(**trigger_attrs, variant: :outline, size: :sm) do %>
+                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="h-4 w-4"><path d="M5 12h14"/><path d="M12 5v14"/></svg>
+              <% end %>
+            <% end %>
+          </div>
+          <%= render UI::CollapsibleContent.new do %>
+            <div class="rounded-md border bg-muted px-4 py-3 text-sm">
+              This section provides detailed information. You can include longer content here with multiple paragraphs.
+            </div>
+          <% end %>
+        <% end %>
+
+        <%= render UI::Collapsible.new(classes: "space-y-2") do %>
+          <div class="flex items-center justify-between px-4">
+            <h4 class="text-sm font-semibold">Section 3: Conclusion</h4>
+            <%= render UI::CollapsibleTrigger.new(as_child: true) do |trigger_attrs| %>
+              <%= render UI::Button.new(**trigger_attrs, variant: :outline, size: :sm) do %>
+                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="h-4 w-4"><path d="M5 12h14"/><path d="M12 5v14"/></svg>
+              <% end %>
+            <% end %>
+          </div>
+          <%= render UI::CollapsibleContent.new do %>
+            <div class="rounded-md border bg-muted px-4 py-3 text-sm">
+              The conclusion wraps up all the key points discussed in the previous sections.
+            </div>
+          <% end %>
+        <% end %>
+      </div>
+    <% end %>
+
+    <% example.view_component do %>
+      <div class="w-[350px] space-y-4">
+        <%= render UI::CollapsibleComponent.new(classes: "space-y-2") do %>
+          <div class="flex items-center justify-between px-4">
+            <h4 class="text-sm font-semibold">Section 1: Introduction</h4>
+            <%= render UI::ButtonComponent.new(variant: :outline, size: :sm, data: { slot: "collapsible-trigger", "ui--collapsible-target": "trigger", action: "click->ui--collapsible#toggle" }) do %>
+              <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="h-4 w-4"><path d="M5 12h14"/><path d="M12 5v14"/></svg>
+            <% end %>
+          </div>
+          <%= render UI::CollapsibleContentComponent.new do %>
+            <div class="rounded-md border bg-muted px-4 py-3 text-sm">
+              This is the introduction section. It contains preliminary information about the topic at hand.
+            </div>
+          <% end %>
+        <% end %>
+
+        <%= render UI::CollapsibleComponent.new(classes: "space-y-2") do %>
+          <div class="flex items-center justify-between px-4">
+            <h4 class="text-sm font-semibold">Section 2: Details</h4>
+            <%= render UI::ButtonComponent.new(variant: :outline, size: :sm, data: { slot: "collapsible-trigger", "ui--collapsible-target": "trigger", action: "click->ui--collapsible#toggle" }) do %>
+              <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="h-4 w-4"><path d="M5 12h14"/><path d="M12 5v14"/></svg>
+            <% end %>
+          </div>
+          <%= render UI::CollapsibleContentComponent.new do %>
+            <div class="rounded-md border bg-muted px-4 py-3 text-sm">
+              This section provides detailed information. You can include longer content here with multiple paragraphs.
+            </div>
+          <% end %>
+        <% end %>
+
+        <%= render UI::CollapsibleComponent.new(classes: "space-y-2") do %>
+          <div class="flex items-center justify-between px-4">
+            <h4 class="text-sm font-semibold">Section 3: Conclusion</h4>
+            <%= render UI::ButtonComponent.new(variant: :outline, size: :sm, data: { slot: "collapsible-trigger", "ui--collapsible-target": "trigger", action: "click->ui--collapsible#toggle" }) do %>
+              <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="h-4 w-4"><path d="M5 12h14"/><path d="M12 5v14"/></svg>
+            <% end %>
+          </div>
+          <%= render UI::CollapsibleContentComponent.new do %>
+            <div class="rounded-md border bg-muted px-4 py-3 text-sm">
+              The conclusion wraps up all the key points discussed in the previous sections.
+            </div>
+          <% end %>
+        <% end %>
+      </div>
+    <% end %>
+  <% end %>
+
+  <%# With Card %>
+  <%= render Docs::Example.new(
+    name: "With Card",
+    description: "Collapsible content inside a card component.",
+    view_context: self
+  ) do |example| %>
+    <% example.erb do %>
+      <%= render "ui/card", classes: "w-[350px]" do %>
+        <%= render "ui/collapsible" do %>
+          <%= render "ui/card/header" do %>
+            <div class="flex items-center justify-between">
+              <%= render "ui/card/title", content: "Notifications" %>
+              <%= render "ui/collapsible/trigger", variant: :ghost, size: :icon do %>
+                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="h-4 w-4 transition-transform data-[state=open]:rotate-180"><path d="m6 9 6 6 6-6"/></svg>
+              <% end %>
+            </div>
+            <%= render "ui/card/description", content: "Manage your notification preferences." %>
+          <% end %>
+          <%= render "ui/collapsible/content" do %>
+            <%= render "ui/card/content" do %>
+              <div class="space-y-4">
+                <div class="flex items-center justify-between">
+                  <span class="text-sm">Push Notifications</span>
+                  <%= render "ui/checkbox", checked: true %>
+                </div>
+                <div class="flex items-center justify-between">
+                  <span class="text-sm">Email Notifications</span>
+                  <%= render "ui/checkbox", checked: true %>
+                </div>
+                <div class="flex items-center justify-between">
+                  <span class="text-sm">SMS Notifications</span>
+                  <%= render "ui/checkbox" %>
+                </div>
+              </div>
+            <% end %>
+          <% end %>
+        <% end %>
+      <% end %>
+    <% end %>
+
+    <% example.phlex do %>
+      <%= render UI::Card.new(classes: "w-[350px]") do %>
+        <%= render UI::Collapsible.new do %>
+          <%= render UI::CardHeader.new do %>
+            <div class="flex items-center justify-between">
+              <%= render(UI::CardTitle.new) { "Notifications" } %>
+              <%= render UI::CollapsibleTrigger.new(as_child: true) do |trigger_attrs| %>
+                <%= render UI::Button.new(**trigger_attrs, variant: :ghost, size: :icon) do %>
+                  <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="h-4 w-4 transition-transform data-[state=open]:rotate-180"><path d="m6 9 6 6 6-6"/></svg>
+                <% end %>
+              <% end %>
+            </div>
+            <%= render(UI::CardDescription.new) { "Manage your notification preferences." } %>
+          <% end %>
+          <%= render UI::CollapsibleContent.new do %>
+            <%= render UI::CardContent.new do %>
+              <div class="space-y-4">
+                <div class="flex items-center justify-between">
+                  <span class="text-sm">Push Notifications</span>
+                  <%= render UI::Checkbox.new(checked: true) %>
+                </div>
+                <div class="flex items-center justify-between">
+                  <span class="text-sm">Email Notifications</span>
+                  <%= render UI::Checkbox.new(checked: true) %>
+                </div>
+                <div class="flex items-center justify-between">
+                  <span class="text-sm">SMS Notifications</span>
+                  <%= render UI::Checkbox.new %>
+                </div>
+              </div>
+            <% end %>
+          <% end %>
+        <% end %>
+      <% end %>
+    <% end %>
+
+    <% example.view_component do %>
+      <%= render UI::CardComponent.new(classes: "w-[350px]") do %>
+        <%= render UI::CollapsibleComponent.new do %>
+          <%= render UI::CardHeaderComponent.new do %>
+            <div class="flex items-center justify-between">
+              <%= render(UI::CardTitleComponent.new) { "Notifications" } %>
+              <%= render UI::ButtonComponent.new(variant: :ghost, size: :icon, data: { slot: "collapsible-trigger", "ui--collapsible-target": "trigger", action: "click->ui--collapsible#toggle" }) do %>
+                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="h-4 w-4 transition-transform data-[state=open]:rotate-180"><path d="m6 9 6 6 6-6"/></svg>
+              <% end %>
+            </div>
+            <%= render(UI::CardDescriptionComponent.new) { "Manage your notification preferences." } %>
+          <% end %>
+          <%= render UI::CollapsibleContentComponent.new do %>
+            <%= render UI::CardContentComponent.new do %>
+              <div class="space-y-4">
+                <div class="flex items-center justify-between">
+                  <span class="text-sm">Push Notifications</span>
+                  <%= render UI::CheckboxComponent.new(checked: true) %>
+                </div>
+                <div class="flex items-center justify-between">
+                  <span class="text-sm">Email Notifications</span>
+                  <%= render UI::CheckboxComponent.new(checked: true) %>
+                </div>
+                <div class="flex items-center justify-between">
+                  <span class="text-sm">SMS Notifications</span>
+                  <%= render UI::CheckboxComponent.new %>
+                </div>
+              </div>
+            <% end %>
+          <% end %>
+        <% end %>
+      <% end %>
+    <% end %>
+  <% end %>
+
+<% end %>
+

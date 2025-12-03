@@ -1,0 +1,129 @@
+<%= render Docs::ComponentPage.new(component_name: "textarea") do %>
+
+  <%# Default %>
+  <%= render Docs::Example.new(
+    name: "Default",
+    description: "Displays a form textarea or a component that looks like a textarea.",
+    view_context: self
+  ) do |example| %>
+    <% example.erb do %>
+      <%= render "ui/textarea", placeholder: "Type your message here." %>
+    <% end %>
+
+    <% example.phlex do %>
+      <%= render UI::Textarea.new(placeholder: "Type your message here.") %>
+    <% end %>
+
+    <% example.view_component do %>
+      <%= render UI::TextareaComponent.new(placeholder: "Type your message here.") %>
+    <% end %>
+  <% end %>
+
+  <%# Disabled %>
+  <%= render Docs::Example.new(
+    name: "Disabled",
+    description: "A disabled textarea.",
+    view_context: self
+  ) do |example| %>
+    <% example.erb do %>
+      <%= render "ui/textarea", placeholder: "Type your message here.", attributes: { disabled: true } %>
+    <% end %>
+
+    <% example.phlex do %>
+      <%= render UI::Textarea.new(placeholder: "Type your message here.", disabled: true) %>
+    <% end %>
+
+    <% example.view_component do %>
+      <%= render UI::TextareaComponent.new(placeholder: "Type your message here.", disabled: true) %>
+    <% end %>
+  <% end %>
+
+  <%# With Label %>
+  <%= render Docs::Example.new(
+    name: "With Label",
+    description: "Textarea with an associated label.",
+    view_context: self
+  ) do |example| %>
+    <% example.erb do %>
+      <div class="grid w-full gap-1.5">
+        <%= render "ui/label", for: "message" do %>Your message<% end %>
+        <%= render "ui/textarea", id: "message", placeholder: "Type your message here." %>
+      </div>
+    <% end %>
+
+    <% example.phlex do %>
+      <div class="grid w-full gap-1.5">
+        <%= render UI::Label.new(for: "message") { "Your message" } %>
+        <%= render UI::Textarea.new(id: "message", placeholder: "Type your message here.") %>
+      </div>
+    <% end %>
+
+    <% example.view_component do %>
+      <div class="grid w-full gap-1.5">
+        <%= render(UI::LabelComponent.new(for: "message")) { "Your message" } %>
+        <%= render UI::TextareaComponent.new(id: "message", placeholder: "Type your message here.") %>
+      </div>
+    <% end %>
+  <% end %>
+
+  <%# With Text %>
+  <%= render Docs::Example.new(
+    name: "With Text",
+    description: "Textarea with helper text.",
+    view_context: self
+  ) do |example| %>
+    <% example.erb do %>
+      <div class="grid w-full gap-1.5">
+        <%= render "ui/label", for: "message-2" do %>Your message<% end %>
+        <%= render "ui/textarea", id: "message-2", placeholder: "Type your message here." %>
+        <p class="text-sm text-muted-foreground">Your message will be copied to the support team.</p>
+      </div>
+    <% end %>
+
+    <% example.phlex do %>
+      <div class="grid w-full gap-1.5">
+        <%= render UI::Label.new(for: "message-2") { "Your message" } %>
+        <%= render UI::Textarea.new(id: "message-2", placeholder: "Type your message here.") %>
+        <p class="text-sm text-muted-foreground">Your message will be copied to the support team.</p>
+      </div>
+    <% end %>
+
+    <% example.view_component do %>
+      <div class="grid w-full gap-1.5">
+        <%= render(UI::LabelComponent.new(for: "message-2")) { "Your message" } %>
+        <%= render UI::TextareaComponent.new(id: "message-2", placeholder: "Type your message here.") %>
+        <p class="text-sm text-muted-foreground">Your message will be copied to the support team.</p>
+      </div>
+    <% end %>
+  <% end %>
+
+  <%# With Button %>
+  <%= render Docs::Example.new(
+    name: "With Button",
+    description: "Textarea with a button.",
+    view_context: self
+  ) do |example| %>
+    <% example.erb do %>
+      <div class="grid w-full gap-2">
+        <%= render "ui/textarea", placeholder: "Type your message here." %>
+        <%= render "ui/button", content: "Send message" %>
+      </div>
+    <% end %>
+
+    <% example.phlex do %>
+      <div class="grid w-full gap-2">
+        <%= render UI::Textarea.new(placeholder: "Type your message here.") %>
+        <%= render UI::Button.new { "Send message" } %>
+      </div>
+    <% end %>
+
+    <% example.view_component do %>
+      <div class="grid w-full gap-2">
+        <%= render UI::TextareaComponent.new(placeholder: "Type your message here.") %>
+        <%= render(UI::ButtonComponent.new) { "Send message" } %>
+      </div>
+    <% end %>
+  <% end %>
+
+<% end %>
+

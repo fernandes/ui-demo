@@ -1,0 +1,86 @@
+<div class="w-full max-w-md rounded-lg border p-6">
+  <form>
+    <%= render "ui/field/group" do %>
+      <%= render "ui/field/set" do %>
+        <%= render "ui/field/legend", variant: "legend" do %>Payment Method<% end %>
+        <%= render "ui/field/description" do %>All transactions are secure and encrypted<% end %>
+
+        <%= render "ui/field/group" do %>
+          <%= render "ui/field" do %>
+            <%= render "ui/field/label", for_id: "card-name" do %>Name on Card<% end %>
+            <%= render "ui/input", id: "card-name", placeholder: "John Doe", required: true %>
+          <% end %>
+
+          <div class="grid grid-cols-3 gap-4">
+            <%= render "ui/field", classes: "col-span-2" do %>
+              <%= render "ui/field/label", for_id: "card-number" do %>Card Number<% end %>
+              <%= render "ui/input", id: "card-number", placeholder: "1234 5678 9012 3456", required: true %>
+              <%= render "ui/field/description" do %>Enter your 16-digit number.<% end %>
+            <% end %>
+
+            <%= render "ui/field", classes: "col-span-1" do %>
+              <%= render "ui/field/label", for_id: "cvv" do %>CVV<% end %>
+              <%= render "ui/input", id: "cvv", placeholder: "123", required: true %>
+            <% end %>
+          </div>
+
+          <div class="grid grid-cols-2 gap-4">
+            <%= render "ui/field" do %>
+              <%= render "ui/field/label", for_id: "exp-month" do %>Month<% end %>
+              <%= render "ui/select", value: "" do %>
+                <%= render "ui/select/trigger", placeholder: "MM", id: "exp-month" %>
+                <%= render "ui/select/content" do %>
+                  <% (1..12).each do |month| %>
+                    <%= render "ui/select/item", value: month.to_s.rjust(2, '0') do %><%= month.to_s.rjust(2, '0') %><% end %>
+                  <% end %>
+                <% end %>
+              <% end %>
+            <% end %>
+
+            <%= render "ui/field" do %>
+              <%= render "ui/field/label", for_id: "exp-year" do %>Year<% end %>
+              <%= render "ui/select", value: "" do %>
+                <%= render "ui/select/trigger", placeholder: "YYYY", id: "exp-year" %>
+                <%= render "ui/select/content" do %>
+                  <% (2024..2029).each do |year| %>
+                    <%= render "ui/select/item", value: year.to_s do %><%= year %><% end %>
+                  <% end %>
+                <% end %>
+              <% end %>
+            <% end %>
+          </div>
+        <% end %>
+      <% end %>
+
+      <%= render "ui/field/separator" %>
+
+      <%= render "ui/field/set" do %>
+        <%= render "ui/field/legend", variant: "legend" do %>Billing Address<% end %>
+        <%= render "ui/field/description" do %>The billing address associated with your payment method<% end %>
+
+        <%= render "ui/field/group" do %>
+          <%= render "ui/field", orientation: "horizontal" do %>
+            <%= render "ui/checkbox", id: "same-address", name: "same_address", value: "yes", checked: true %>
+            <%= render "ui/label", for_id: "same-address", classes: "font-normal" do %>Same as shipping address<% end %>
+          <% end %>
+        <% end %>
+      <% end %>
+
+      <%= render "ui/field/separator" %>
+
+      <%= render "ui/field/set" do %>
+        <%= render "ui/field/group" do %>
+          <%= render "ui/field" do %>
+            <%= render "ui/field/label", for_id: "comments" do %>Comments<% end %>
+            <%= render "ui/textarea", id: "comments", placeholder: "Add any additional comments" %>
+          <% end %>
+        <% end %>
+      <% end %>
+
+      <%= render "ui/field", orientation: "horizontal" do %>
+        <%= render "ui/button", type: "submit" do %>Submit<% end %>
+        <%= render "ui/button", variant: :outline, type: "button" do %>Cancel<% end %>
+      <% end %>
+    <% end %>
+  </form>
+</div>

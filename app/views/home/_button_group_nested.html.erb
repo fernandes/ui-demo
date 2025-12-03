@@ -1,0 +1,15 @@
+<%= render "ui/button_group" do %>
+  <%= render "ui/button_group" do %>
+    <%= render "ui/button", variant: :outline, size: :sm do %>1<% end %>
+    <%= render "ui/button", variant: :outline, size: :sm do %>2<% end %>
+    <%= render "ui/button", variant: :outline, size: :sm do %>3<% end %>
+  <% end %>
+  <%= render "ui/button_group" do %>
+    <%= render "ui/button", variant: :outline, size: :icon_sm, "aria-label": "Previous" do %>
+      <%= lucide_icon("arrow-left", class: "size-4") %>
+    <% end %>
+    <%= render "ui/button", variant: :outline, size: :icon_sm, "aria-label": "Next" do %>
+      <%= lucide_icon("arrow-right", class: "size-4") %>
+    <% end %>
+  <% end %>
+<% end %>

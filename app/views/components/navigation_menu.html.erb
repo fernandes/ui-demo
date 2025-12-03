@@ -1,0 +1,777 @@
+<%= render Docs::ComponentPage.new(component_name: "navigation_menu") do %>
+
+  <%# Showcase - Complete example like shadcn %>
+  <%= render Docs::Example.new(
+    name: "Showcase",
+    description: "A comprehensive navigation menu with multiple dropdown styles.",
+    view_context: self
+  ) do |example| %>
+    <% example.erb do %>
+      <%= render "ui/navigation_menu", viewport: false do %>
+        <%= render "ui/navigation_menu/list" do %>
+          <%# Home - Featured card with list items %>
+          <%= render "ui/navigation_menu/item" do %>
+            <%= render "ui/navigation_menu/trigger" do %>Home<% end %>
+            <%= render "ui/navigation_menu/content", viewport: false do %>
+              <ul class="grid gap-2 md:w-[400px] lg:w-[500px] lg:grid-cols-[.75fr_1fr]">
+                <li class="row-span-3">
+                  <%= render "ui/navigation_menu/link", href: "#", classes: "from-muted/50 to-muted flex h-full w-full flex-col justify-end rounded-md bg-linear-to-b p-4 no-underline outline-hidden select-none focus:shadow-md md:p-6" do %>
+                    <div class="mb-2 text-lg font-medium sm:mt-4">UI</div>
+                    <p class="text-muted-foreground text-sm leading-tight">Beautifully designed components built with Tailwind CSS.</p>
+                  <% end %>
+                </li>
+                <li>
+                  <%= render "ui/navigation_menu/link", href: "#" do %>
+                    <div class="text-sm leading-none font-medium">Introduction</div>
+                    <p class="text-muted-foreground line-clamp-2 text-sm leading-snug">Re-usable components built using Radix UI and Tailwind CSS.</p>
+                  <% end %>
+                </li>
+                <li>
+                  <%= render "ui/navigation_menu/link", href: "#" do %>
+                    <div class="text-sm leading-none font-medium">Installation</div>
+                    <p class="text-muted-foreground line-clamp-2 text-sm leading-snug">How to install dependencies and structure your app.</p>
+                  <% end %>
+                </li>
+                <li>
+                  <%= render "ui/navigation_menu/link", href: "#" do %>
+                    <div class="text-sm leading-none font-medium">Typography</div>
+                    <p class="text-muted-foreground line-clamp-2 text-sm leading-snug">Styles for headings, paragraphs, lists...etc</p>
+                  <% end %>
+                </li>
+              </ul>
+            <% end %>
+          <% end %>
+
+          <%# Components - 2 column grid %>
+          <%= render "ui/navigation_menu/item" do %>
+            <%= render "ui/navigation_menu/trigger" do %>Components<% end %>
+            <%= render "ui/navigation_menu/content", viewport: false do %>
+              <ul class="grid gap-2 sm:w-[400px] md:w-[500px] md:grid-cols-2 lg:w-[600px]">
+                <li>
+                  <%= render "ui/navigation_menu/link", href: "#" do %>
+                    <div class="text-sm leading-none font-medium">Alert Dialog</div>
+                    <p class="text-muted-foreground line-clamp-2 text-sm leading-snug">A modal dialog that interrupts the user with important content.</p>
+                  <% end %>
+                </li>
+                <li>
+                  <%= render "ui/navigation_menu/link", href: "#" do %>
+                    <div class="text-sm leading-none font-medium">Hover Card</div>
+                    <p class="text-muted-foreground line-clamp-2 text-sm leading-snug">For sighted users to preview content available behind a link.</p>
+                  <% end %>
+                </li>
+                <li>
+                  <%= render "ui/navigation_menu/link", href: "#" do %>
+                    <div class="text-sm leading-none font-medium">Progress</div>
+                    <p class="text-muted-foreground line-clamp-2 text-sm leading-snug">Displays an indicator showing the completion progress of a task.</p>
+                  <% end %>
+                </li>
+                <li>
+                  <%= render "ui/navigation_menu/link", href: "#" do %>
+                    <div class="text-sm leading-none font-medium">Scroll Area</div>
+                    <p class="text-muted-foreground line-clamp-2 text-sm leading-snug">Visually or semantically separates content.</p>
+                  <% end %>
+                </li>
+                <li>
+                  <%= render "ui/navigation_menu/link", href: "#" do %>
+                    <div class="text-sm leading-none font-medium">Tabs</div>
+                    <p class="text-muted-foreground line-clamp-2 text-sm leading-snug">A set of layered sections of content displayed one at a time.</p>
+                  <% end %>
+                </li>
+                <li>
+                  <%= render "ui/navigation_menu/link", href: "#" do %>
+                    <div class="text-sm leading-none font-medium">Tooltip</div>
+                    <p class="text-muted-foreground line-clamp-2 text-sm leading-snug">A popup that displays information when element receives focus.</p>
+                  <% end %>
+                </li>
+              </ul>
+            <% end %>
+          <% end %>
+
+          <%# Docs - Simple link %>
+          <%= render "ui/navigation_menu/item" do %>
+            <%= render "ui/navigation_menu/link", href: "#", trigger_style: true do %>Docs<% end %>
+          <% end %>
+
+          <%# List - Title with description %>
+          <%= render "ui/navigation_menu/item" do %>
+            <%= render "ui/navigation_menu/trigger" do %>List<% end %>
+            <%= render "ui/navigation_menu/content", viewport: false do %>
+              <ul class="grid w-[300px] gap-4">
+                <li>
+                  <%= render "ui/navigation_menu/link", href: "#" do %>
+                    <div class="font-medium">Components</div>
+                    <div class="text-muted-foreground">Browse all components in the library.</div>
+                  <% end %>
+                  <%= render "ui/navigation_menu/link", href: "#" do %>
+                    <div class="font-medium">Documentation</div>
+                    <div class="text-muted-foreground">Learn how to use the library.</div>
+                  <% end %>
+                  <%= render "ui/navigation_menu/link", href: "#" do %>
+                    <div class="font-medium">Blog</div>
+                    <div class="text-muted-foreground">Read our latest blog posts.</div>
+                  <% end %>
+                </li>
+              </ul>
+            <% end %>
+          <% end %>
+
+          <%# Simple - Just text links %>
+          <%= render "ui/navigation_menu/item" do %>
+            <%= render "ui/navigation_menu/trigger" do %>Simple<% end %>
+            <%= render "ui/navigation_menu/content", viewport: false do %>
+              <ul class="grid w-[200px] gap-4">
+                <li>
+                  <%= render "ui/navigation_menu/link", href: "#" do %>Components<% end %>
+                  <%= render "ui/navigation_menu/link", href: "#" do %>Documentation<% end %>
+                  <%= render "ui/navigation_menu/link", href: "#" do %>Blocks<% end %>
+                </li>
+              </ul>
+            <% end %>
+          <% end %>
+
+          <%# With Icon %>
+          <%= render "ui/navigation_menu/item" do %>
+            <%= render "ui/navigation_menu/trigger" do %>With Icon<% end %>
+            <%= render "ui/navigation_menu/content", viewport: false do %>
+              <ul class="grid w-[200px] gap-4">
+                <li>
+                  <%= render "ui/navigation_menu/link", href: "#", classes: "flex-row items-center gap-2" do %>
+                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="text-muted-foreground"><circle cx="12" cy="12" r="10"/><path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3"/><path d="M12 17h.01"/></svg>
+                    Backlog
+                  <% end %>
+                  <%= render "ui/navigation_menu/link", href: "#", classes: "flex-row items-center gap-2" do %>
+                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="text-muted-foreground"><circle cx="12" cy="12" r="10"/></svg>
+                    To Do
+                  <% end %>
+                  <%= render "ui/navigation_menu/link", href: "#", classes: "flex-row items-center gap-2" do %>
+                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="text-muted-foreground"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
+                    Done
+                  <% end %>
+                </li>
+              </ul>
+            <% end %>
+          <% end %>
+        <% end %>
+      <% end %>
+    <% end %>
+
+    <% example.phlex do %>
+      <%= render UI::NavigationMenu.new(viewport: false) do %>
+        <%= render UI::NavigationMenuList.new do %>
+          <%# Home - Featured card with list items %>
+          <%= render UI::NavigationMenuItem.new do %>
+            <%= render UI::NavigationMenuTrigger.new { "Home" } %>
+            <%= render UI::NavigationMenuContent.new(viewport: false) do %>
+              <ul class="grid gap-2 md:w-[400px] lg:w-[500px] lg:grid-cols-[.75fr_1fr]">
+                <li class="row-span-3">
+                  <%= render UI::NavigationMenuLink.new(as_child: true) do |link_attrs| %>
+                    <%= link_to "#", class: "#{link_attrs[:class]} from-muted/50 to-muted flex h-full w-full flex-col justify-end rounded-md bg-linear-to-b p-4 no-underline outline-hidden select-none focus:shadow-md md:p-6", data: link_attrs[:data] do %>
+                      <div class="mb-2 text-lg font-medium sm:mt-4">UI</div>
+                      <p class="text-muted-foreground text-sm leading-tight">Beautifully designed components built with Tailwind CSS.</p>
+                    <% end %>
+                  <% end %>
+                </li>
+                <li>
+                  <%= render UI::NavigationMenuLink.new(as_child: true) do |link_attrs| %>
+                    <%= link_to "#", **link_attrs do %>
+                      <div class="text-sm leading-none font-medium">Introduction</div>
+                      <p class="text-muted-foreground line-clamp-2 text-sm leading-snug">Re-usable components built using Radix UI and Tailwind CSS.</p>
+                    <% end %>
+                  <% end %>
+                </li>
+                <li>
+                  <%= render UI::NavigationMenuLink.new(as_child: true) do |link_attrs| %>
+                    <%= link_to "#", **link_attrs do %>
+                      <div class="text-sm leading-none font-medium">Installation</div>
+                      <p class="text-muted-foreground line-clamp-2 text-sm leading-snug">How to install dependencies and structure your app.</p>
+                    <% end %>
+                  <% end %>
+                </li>
+                <li>
+                  <%= render UI::NavigationMenuLink.new(as_child: true) do |link_attrs| %>
+                    <%= link_to "#", **link_attrs do %>
+                      <div class="text-sm leading-none font-medium">Typography</div>
+                      <p class="text-muted-foreground line-clamp-2 text-sm leading-snug">Styles for headings, paragraphs, lists...etc</p>
+                    <% end %>
+                  <% end %>
+                </li>
+              </ul>
+            <% end %>
+          <% end %>
+
+          <%# Components - 2 column grid %>
+          <%= render UI::NavigationMenuItem.new do %>
+            <%= render UI::NavigationMenuTrigger.new { "Components" } %>
+            <%= render UI::NavigationMenuContent.new(viewport: false) do %>
+              <ul class="grid gap-2 sm:w-[400px] md:w-[500px] md:grid-cols-2 lg:w-[600px]">
+                <li>
+                  <%= render UI::NavigationMenuLink.new(as_child: true) do |link_attrs| %>
+                    <%= link_to "#", **link_attrs do %>
+                      <div class="text-sm leading-none font-medium">Alert Dialog</div>
+                      <p class="text-muted-foreground line-clamp-2 text-sm leading-snug">A modal dialog that interrupts the user with important content.</p>
+                    <% end %>
+                  <% end %>
+                </li>
+                <li>
+                  <%= render UI::NavigationMenuLink.new(as_child: true) do |link_attrs| %>
+                    <%= link_to "#", **link_attrs do %>
+                      <div class="text-sm leading-none font-medium">Hover Card</div>
+                      <p class="text-muted-foreground line-clamp-2 text-sm leading-snug">For sighted users to preview content available behind a link.</p>
+                    <% end %>
+                  <% end %>
+                </li>
+                <li>
+                  <%= render UI::NavigationMenuLink.new(as_child: true) do |link_attrs| %>
+                    <%= link_to "#", **link_attrs do %>
+                      <div class="text-sm leading-none font-medium">Progress</div>
+                      <p class="text-muted-foreground line-clamp-2 text-sm leading-snug">Displays an indicator showing the completion progress of a task.</p>
+                    <% end %>
+                  <% end %>
+                </li>
+                <li>
+                  <%= render UI::NavigationMenuLink.new(as_child: true) do |link_attrs| %>
+                    <%= link_to "#", **link_attrs do %>
+                      <div class="text-sm leading-none font-medium">Scroll Area</div>
+                      <p class="text-muted-foreground line-clamp-2 text-sm leading-snug">Visually or semantically separates content.</p>
+                    <% end %>
+                  <% end %>
+                </li>
+                <li>
+                  <%= render UI::NavigationMenuLink.new(as_child: true) do |link_attrs| %>
+                    <%= link_to "#", **link_attrs do %>
+                      <div class="text-sm leading-none font-medium">Tabs</div>
+                      <p class="text-muted-foreground line-clamp-2 text-sm leading-snug">A set of layered sections of content displayed one at a time.</p>
+                    <% end %>
+                  <% end %>
+                </li>
+                <li>
+                  <%= render UI::NavigationMenuLink.new(as_child: true) do |link_attrs| %>
+                    <%= link_to "#", **link_attrs do %>
+                      <div class="text-sm leading-none font-medium">Tooltip</div>
+                      <p class="text-muted-foreground line-clamp-2 text-sm leading-snug">A popup that displays information when element receives focus.</p>
+                    <% end %>
+                  <% end %>
+                </li>
+              </ul>
+            <% end %>
+          <% end %>
+
+          <%# Docs - Simple link %>
+          <%= render UI::NavigationMenuItem.new do %>
+            <%= render UI::NavigationMenuLink.new(as_child: true, trigger_style: true) do |link_attrs| %>
+              <%= link_to "Docs", "#", **link_attrs %>
+            <% end %>
+          <% end %>
+
+          <%# List - Title with description %>
+          <%= render UI::NavigationMenuItem.new do %>
+            <%= render UI::NavigationMenuTrigger.new { "List" } %>
+            <%= render UI::NavigationMenuContent.new(viewport: false) do %>
+              <ul class="grid w-[300px] gap-4">
+                <li>
+                  <%= render UI::NavigationMenuLink.new(as_child: true) do |link_attrs| %>
+                    <%= link_to "#", **link_attrs do %>
+                      <div class="font-medium">Components</div>
+                      <div class="text-muted-foreground">Browse all components in the library.</div>
+                    <% end %>
+                  <% end %>
+                  <%= render UI::NavigationMenuLink.new(as_child: true) do |link_attrs| %>
+                    <%= link_to "#", **link_attrs do %>
+                      <div class="font-medium">Documentation</div>
+                      <div class="text-muted-foreground">Learn how to use the library.</div>
+                    <% end %>
+                  <% end %>
+                  <%= render UI::NavigationMenuLink.new(as_child: true) do |link_attrs| %>
+                    <%= link_to "#", **link_attrs do %>
+                      <div class="font-medium">Blog</div>
+                      <div class="text-muted-foreground">Read our latest blog posts.</div>
+                    <% end %>
+                  <% end %>
+                </li>
+              </ul>
+            <% end %>
+          <% end %>
+
+          <%# Simple - Just text links %>
+          <%= render UI::NavigationMenuItem.new do %>
+            <%= render UI::NavigationMenuTrigger.new { "Simple" } %>
+            <%= render UI::NavigationMenuContent.new(viewport: false) do %>
+              <ul class="grid w-[200px] gap-4">
+                <li>
+                  <%= render UI::NavigationMenuLink.new(as_child: true) do |link_attrs| %>
+                    <%= link_to "Components", "#", **link_attrs %>
+                  <% end %>
+                  <%= render UI::NavigationMenuLink.new(as_child: true) do |link_attrs| %>
+                    <%= link_to "Documentation", "#", **link_attrs %>
+                  <% end %>
+                  <%= render UI::NavigationMenuLink.new(as_child: true) do |link_attrs| %>
+                    <%= link_to "Blocks", "#", **link_attrs %>
+                  <% end %>
+                </li>
+              </ul>
+            <% end %>
+          <% end %>
+
+          <%# With Icon %>
+          <%= render UI::NavigationMenuItem.new do %>
+            <%= render UI::NavigationMenuTrigger.new { "With Icon" } %>
+            <%= render UI::NavigationMenuContent.new(viewport: false) do %>
+              <ul class="grid w-[200px] gap-4">
+                <li>
+                  <%= render UI::NavigationMenuLink.new(as_child: true) do |link_attrs| %>
+                    <%= link_to "#", class: "#{link_attrs[:class]} flex-row items-center gap-2", data: link_attrs[:data] do %>
+                      <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="text-muted-foreground"><circle cx="12" cy="12" r="10"/><path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3"/><path d="M12 17h.01"/></svg>
+                      Backlog
+                    <% end %>
+                  <% end %>
+                  <%= render UI::NavigationMenuLink.new(as_child: true) do |link_attrs| %>
+                    <%= link_to "#", class: "#{link_attrs[:class]} flex-row items-center gap-2", data: link_attrs[:data] do %>
+                      <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="text-muted-foreground"><circle cx="12" cy="12" r="10"/></svg>
+                      To Do
+                    <% end %>
+                  <% end %>
+                  <%= render UI::NavigationMenuLink.new(as_child: true) do |link_attrs| %>
+                    <%= link_to "#", class: "#{link_attrs[:class]} flex-row items-center gap-2", data: link_attrs[:data] do %>
+                      <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="text-muted-foreground"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
+                      Done
+                    <% end %>
+                  <% end %>
+                </li>
+              </ul>
+            <% end %>
+          <% end %>
+        <% end %>
+      <% end %>
+    <% end %>
+
+    <% example.view_component do %>
+      <%= render UI::NavigationMenuComponent.new(viewport: false) do %>
+        <%= render UI::NavigationMenuListComponent.new do %>
+          <%# Home - Featured card with list items %>
+          <%= render UI::NavigationMenuItemComponent.new do %>
+            <%= render UI::NavigationMenuTriggerComponent.new do %>Home<% end %>
+            <%= render UI::NavigationMenuContentComponent.new(viewport: false) do %>
+              <ul class="grid gap-2 md:w-[400px] lg:w-[500px] lg:grid-cols-[.75fr_1fr]">
+                <li class="row-span-3">
+                  <%= render UI::NavigationMenuLinkComponent.new(href: "#", classes: "from-muted/50 to-muted flex h-full w-full flex-col justify-end rounded-md bg-linear-to-b p-4 no-underline outline-hidden select-none focus:shadow-md md:p-6") do %>
+                    <div class="mb-2 text-lg font-medium sm:mt-4">UI</div>
+                    <p class="text-muted-foreground text-sm leading-tight">Beautifully designed components built with Tailwind CSS.</p>
+                  <% end %>
+                </li>
+                <li>
+                  <%= render UI::NavigationMenuLinkComponent.new(href: "#") do %>
+                    <div class="text-sm leading-none font-medium">Introduction</div>
+                    <p class="text-muted-foreground line-clamp-2 text-sm leading-snug">Re-usable components built using Radix UI and Tailwind CSS.</p>
+                  <% end %>
+                </li>
+                <li>
+                  <%= render UI::NavigationMenuLinkComponent.new(href: "#") do %>
+                    <div class="text-sm leading-none font-medium">Installation</div>
+                    <p class="text-muted-foreground line-clamp-2 text-sm leading-snug">How to install dependencies and structure your app.</p>
+                  <% end %>
+                </li>
+                <li>
+                  <%= render UI::NavigationMenuLinkComponent.new(href: "#") do %>
+                    <div class="text-sm leading-none font-medium">Typography</div>
+                    <p class="text-muted-foreground line-clamp-2 text-sm leading-snug">Styles for headings, paragraphs, lists...etc</p>
+                  <% end %>
+                </li>
+              </ul>
+            <% end %>
+          <% end %>
+
+          <%# Components - 2 column grid %>
+          <%= render UI::NavigationMenuItemComponent.new do %>
+            <%= render UI::NavigationMenuTriggerComponent.new do %>Components<% end %>
+            <%= render UI::NavigationMenuContentComponent.new(viewport: false) do %>
+              <ul class="grid gap-2 sm:w-[400px] md:w-[500px] md:grid-cols-2 lg:w-[600px]">
+                <li>
+                  <%= render UI::NavigationMenuLinkComponent.new(href: "#") do %>
+                    <div class="text-sm leading-none font-medium">Alert Dialog</div>
+                    <p class="text-muted-foreground line-clamp-2 text-sm leading-snug">A modal dialog that interrupts the user with important content.</p>
+                  <% end %>
+                </li>
+                <li>
+                  <%= render UI::NavigationMenuLinkComponent.new(href: "#") do %>
+                    <div class="text-sm leading-none font-medium">Hover Card</div>
+                    <p class="text-muted-foreground line-clamp-2 text-sm leading-snug">For sighted users to preview content available behind a link.</p>
+                  <% end %>
+                </li>
+                <li>
+                  <%= render UI::NavigationMenuLinkComponent.new(href: "#") do %>
+                    <div class="text-sm leading-none font-medium">Progress</div>
+                    <p class="text-muted-foreground line-clamp-2 text-sm leading-snug">Displays an indicator showing the completion progress of a task.</p>
+                  <% end %>
+                </li>
+                <li>
+                  <%= render UI::NavigationMenuLinkComponent.new(href: "#") do %>
+                    <div class="text-sm leading-none font-medium">Scroll Area</div>
+                    <p class="text-muted-foreground line-clamp-2 text-sm leading-snug">Visually or semantically separates content.</p>
+                  <% end %>
+                </li>
+                <li>
+                  <%= render UI::NavigationMenuLinkComponent.new(href: "#") do %>
+                    <div class="text-sm leading-none font-medium">Tabs</div>
+                    <p class="text-muted-foreground line-clamp-2 text-sm leading-snug">A set of layered sections of content displayed one at a time.</p>
+                  <% end %>
+                </li>
+                <li>
+                  <%= render UI::NavigationMenuLinkComponent.new(href: "#") do %>
+                    <div class="text-sm leading-none font-medium">Tooltip</div>
+                    <p class="text-muted-foreground line-clamp-2 text-sm leading-snug">A popup that displays information when element receives focus.</p>
+                  <% end %>
+                </li>
+              </ul>
+            <% end %>
+          <% end %>
+
+          <%# Docs - Simple link %>
+          <%= render UI::NavigationMenuItemComponent.new do %>
+            <%= render UI::NavigationMenuLinkComponent.new(href: "#", trigger_style: true) do %>Docs<% end %>
+          <% end %>
+
+          <%# List - Title with description %>
+          <%= render UI::NavigationMenuItemComponent.new do %>
+            <%= render UI::NavigationMenuTriggerComponent.new do %>List<% end %>
+            <%= render UI::NavigationMenuContentComponent.new(viewport: false) do %>
+              <ul class="grid w-[300px] gap-4">
+                <li>
+                  <%= render UI::NavigationMenuLinkComponent.new(href: "#") do %>
+                    <div class="font-medium">Components</div>
+                    <div class="text-muted-foreground">Browse all components in the library.</div>
+                  <% end %>
+                  <%= render UI::NavigationMenuLinkComponent.new(href: "#") do %>
+                    <div class="font-medium">Documentation</div>
+                    <div class="text-muted-foreground">Learn how to use the library.</div>
+                  <% end %>
+                  <%= render UI::NavigationMenuLinkComponent.new(href: "#") do %>
+                    <div class="font-medium">Blog</div>
+                    <div class="text-muted-foreground">Read our latest blog posts.</div>
+                  <% end %>
+                </li>
+              </ul>
+            <% end %>
+          <% end %>
+
+          <%# Simple - Just text links %>
+          <%= render UI::NavigationMenuItemComponent.new do %>
+            <%= render UI::NavigationMenuTriggerComponent.new do %>Simple<% end %>
+            <%= render UI::NavigationMenuContentComponent.new(viewport: false) do %>
+              <ul class="grid w-[200px] gap-4">
+                <li>
+                  <%= render UI::NavigationMenuLinkComponent.new(href: "#") do %>Components<% end %>
+                  <%= render UI::NavigationMenuLinkComponent.new(href: "#") do %>Documentation<% end %>
+                  <%= render UI::NavigationMenuLinkComponent.new(href: "#") do %>Blocks<% end %>
+                </li>
+              </ul>
+            <% end %>
+          <% end %>
+
+          <%# With Icon %>
+          <%= render UI::NavigationMenuItemComponent.new do %>
+            <%= render UI::NavigationMenuTriggerComponent.new do %>With Icon<% end %>
+            <%= render UI::NavigationMenuContentComponent.new(viewport: false) do %>
+              <ul class="grid w-[200px] gap-4">
+                <li>
+                  <%= render UI::NavigationMenuLinkComponent.new(href: "#", classes: "flex-row items-center gap-2") do %>
+                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="text-muted-foreground"><circle cx="12" cy="12" r="10"/><path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3"/><path d="M12 17h.01"/></svg>
+                    Backlog
+                  <% end %>
+                  <%= render UI::NavigationMenuLinkComponent.new(href: "#", classes: "flex-row items-center gap-2") do %>
+                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="text-muted-foreground"><circle cx="12" cy="12" r="10"/></svg>
+                    To Do
+                  <% end %>
+                  <%= render UI::NavigationMenuLinkComponent.new(href: "#", classes: "flex-row items-center gap-2") do %>
+                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="text-muted-foreground"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
+                    Done
+                  <% end %>
+                </li>
+              </ul>
+            <% end %>
+          <% end %>
+        <% end %>
+      <% end %>
+    <% end %>
+  <% end %>
+
+  <%# Default %>
+  <%= render Docs::Example.new(
+    name: "Default",
+    description: "A collection of links for navigating websites.",
+    view_context: self
+  ) do |example| %>
+    <% example.erb do %>
+      <%= render "ui/navigation_menu", viewport: false do %>
+        <%= render "ui/navigation_menu/list" do %>
+          <%= render "ui/navigation_menu/item" do %>
+            <%= render "ui/navigation_menu/trigger" do %>Getting Started<% end %>
+            <%= render "ui/navigation_menu/content", viewport: false do %>
+              <ul class="grid gap-2 w-[400px]">
+                <li>
+                  <%= render "ui/navigation_menu/link", href: "#" do %>
+                    <div class="text-sm font-medium">Introduction</div>
+                    <p class="text-muted-foreground text-sm">Re-usable components built using Radix UI and Tailwind CSS.</p>
+                  <% end %>
+                </li>
+                <li>
+                  <%= render "ui/navigation_menu/link", href: "#" do %>
+                    <div class="text-sm font-medium">Installation</div>
+                    <p class="text-muted-foreground text-sm">How to install dependencies and structure your app.</p>
+                  <% end %>
+                </li>
+              </ul>
+            <% end %>
+          <% end %>
+          <%= render "ui/navigation_menu/item" do %>
+            <%= render "ui/navigation_menu/link", href: "#", trigger_style: true do %>Documentation<% end %>
+          <% end %>
+        <% end %>
+      <% end %>
+    <% end %>
+
+    <% example.phlex do %>
+      <%= render UI::NavigationMenu.new(viewport: false) do %>
+        <%= render UI::NavigationMenuList.new do %>
+          <%= render UI::NavigationMenuItem.new do %>
+            <%= render UI::NavigationMenuTrigger.new { "Getting Started" } %>
+            <%= render UI::NavigationMenuContent.new(viewport: false) do %>
+              <ul class="grid gap-2 w-[400px]">
+                <li>
+                  <%= render UI::NavigationMenuLink.new(as_child: true) do |link_attrs| %>
+                    <%= link_to "#", **link_attrs do %>
+                      <div class="text-sm font-medium">Introduction</div>
+                      <p class="text-muted-foreground text-sm">Re-usable components built using Radix UI and Tailwind CSS.</p>
+                    <% end %>
+                  <% end %>
+                </li>
+                <li>
+                  <%= render UI::NavigationMenuLink.new(as_child: true) do |link_attrs| %>
+                    <%= link_to "#", **link_attrs do %>
+                      <div class="text-sm font-medium">Installation</div>
+                      <p class="text-muted-foreground text-sm">How to install dependencies and structure your app.</p>
+                    <% end %>
+                  <% end %>
+                </li>
+              </ul>
+            <% end %>
+          <% end %>
+          <%= render UI::NavigationMenuItem.new do %>
+            <%= render UI::NavigationMenuLink.new(as_child: true, trigger_style: true) do |link_attrs| %>
+              <%= link_to "Documentation", "#", **link_attrs %>
+            <% end %>
+          <% end %>
+        <% end %>
+      <% end %>
+    <% end %>
+
+    <% example.view_component do %>
+      <%= render UI::NavigationMenuComponent.new(viewport: false) do %>
+        <%= render UI::NavigationMenuListComponent.new do %>
+          <%= render UI::NavigationMenuItemComponent.new do %>
+            <%= render UI::NavigationMenuTriggerComponent.new do %>Getting Started<% end %>
+            <%= render UI::NavigationMenuContentComponent.new(viewport: false) do %>
+              <ul class="grid gap-2 w-[400px]">
+                <li>
+                  <%= render UI::NavigationMenuLinkComponent.new(href: "#") do %>
+                    <div class="text-sm font-medium">Introduction</div>
+                    <p class="text-muted-foreground text-sm">Re-usable components built using Radix UI and Tailwind CSS.</p>
+                  <% end %>
+                </li>
+                <li>
+                  <%= render UI::NavigationMenuLinkComponent.new(href: "#") do %>
+                    <div class="text-sm font-medium">Installation</div>
+                    <p class="text-muted-foreground text-sm">How to install dependencies and structure your app.</p>
+                  <% end %>
+                </li>
+              </ul>
+            <% end %>
+          <% end %>
+          <%= render UI::NavigationMenuItemComponent.new do %>
+            <%= render UI::NavigationMenuLinkComponent.new(href: "#", trigger_style: true) do %>Documentation<% end %>
+          <% end %>
+        <% end %>
+      <% end %>
+    <% end %>
+  <% end %>
+
+  <%# With Icons %>
+  <%= render Docs::Example.new(
+    name: "With Icons",
+    description: "Navigation menu items with icons for better visual cues.",
+    view_context: self
+  ) do |example| %>
+    <% example.erb do %>
+      <%= render "ui/navigation_menu", viewport: false do %>
+        <%= render "ui/navigation_menu/list" do %>
+          <%= render "ui/navigation_menu/item" do %>
+            <%= render "ui/navigation_menu/trigger" do %>Components<% end %>
+            <%= render "ui/navigation_menu/content", viewport: false do %>
+              <ul class="grid w-[400px] gap-2 md:grid-cols-2">
+                <li>
+                  <%= render "ui/navigation_menu/link", href: "#" do %>
+                    <div class="flex items-center gap-2">
+                      <svg class="size-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"/></svg>
+                      <span class="text-sm font-medium">Alert Dialog</span>
+                    </div>
+                    <p class="text-muted-foreground text-sm">A modal dialog that interrupts the user.</p>
+                  <% end %>
+                </li>
+                <li>
+                  <%= render "ui/navigation_menu/link", href: "#" do %>
+                    <div class="flex items-center gap-2">
+                      <svg class="size-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+                      <span class="text-sm font-medium">Hover Card</span>
+                    </div>
+                    <p class="text-muted-foreground text-sm">Preview content on hover.</p>
+                  <% end %>
+                </li>
+              </ul>
+            <% end %>
+          <% end %>
+        <% end %>
+      <% end %>
+    <% end %>
+
+    <% example.phlex do %>
+      <%= render UI::NavigationMenu.new(viewport: false) do %>
+        <%= render UI::NavigationMenuList.new do %>
+          <%= render UI::NavigationMenuItem.new do %>
+            <%= render UI::NavigationMenuTrigger.new { "Components" } %>
+            <%= render UI::NavigationMenuContent.new(viewport: false) do %>
+              <ul class="grid w-[400px] gap-2 md:grid-cols-2">
+                <li>
+                  <%= render UI::NavigationMenuLink.new(as_child: true) do |link_attrs| %>
+                    <%= link_to "#", **link_attrs do %>
+                      <div class="flex items-center gap-2">
+                        <svg class="size-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"/></svg>
+                        <span class="text-sm font-medium">Alert Dialog</span>
+                      </div>
+                      <p class="text-muted-foreground text-sm">A modal dialog that interrupts the user.</p>
+                    <% end %>
+                  <% end %>
+                </li>
+                <li>
+                  <%= render UI::NavigationMenuLink.new(as_child: true) do |link_attrs| %>
+                    <%= link_to "#", **link_attrs do %>
+                      <div class="flex items-center gap-2">
+                        <svg class="size-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+                        <span class="text-sm font-medium">Hover Card</span>
+                      </div>
+                      <p class="text-muted-foreground text-sm">Preview content on hover.</p>
+                    <% end %>
+                  <% end %>
+                </li>
+              </ul>
+            <% end %>
+          <% end %>
+        <% end %>
+      <% end %>
+    <% end %>
+
+    <% example.view_component do %>
+      <%= render UI::NavigationMenuComponent.new(viewport: false) do %>
+        <%= render UI::NavigationMenuListComponent.new do %>
+          <%= render UI::NavigationMenuItemComponent.new do %>
+            <%= render UI::NavigationMenuTriggerComponent.new do %>Components<% end %>
+            <%= render UI::NavigationMenuContentComponent.new(viewport: false) do %>
+              <ul class="grid w-[400px] gap-2 md:grid-cols-2">
+                <li>
+                  <%= render UI::NavigationMenuLinkComponent.new(href: "#") do %>
+                    <div class="flex items-center gap-2">
+                      <svg class="size-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"/></svg>
+                      <span class="text-sm font-medium">Alert Dialog</span>
+                    </div>
+                    <p class="text-muted-foreground text-sm">A modal dialog that interrupts the user.</p>
+                  <% end %>
+                </li>
+                <li>
+                  <%= render UI::NavigationMenuLinkComponent.new(href: "#") do %>
+                    <div class="flex items-center gap-2">
+                      <svg class="size-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+                      <span class="text-sm font-medium">Hover Card</span>
+                    </div>
+                    <p class="text-muted-foreground text-sm">Preview content on hover.</p>
+                  <% end %>
+                </li>
+              </ul>
+            <% end %>
+          <% end %>
+        <% end %>
+      <% end %>
+    <% end %>
+  <% end %>
+
+  <%# Simple Links %>
+  <%= render Docs::Example.new(
+    name: "Simple Links",
+    description: "Navigation menu with simple link items without dropdowns.",
+    view_context: self
+  ) do |example| %>
+    <% example.erb do %>
+      <%= render "ui/navigation_menu", viewport: false do %>
+        <%= render "ui/navigation_menu/list" do %>
+          <%= render "ui/navigation_menu/item" do %>
+            <%= render "ui/navigation_menu/link", href: "#", trigger_style: true do %>Home<% end %>
+          <% end %>
+          <%= render "ui/navigation_menu/item" do %>
+            <%= render "ui/navigation_menu/link", href: "#", trigger_style: true do %>About<% end %>
+          <% end %>
+          <%= render "ui/navigation_menu/item" do %>
+            <%= render "ui/navigation_menu/link", href: "#", trigger_style: true do %>Services<% end %>
+          <% end %>
+          <%= render "ui/navigation_menu/item" do %>
+            <%= render "ui/navigation_menu/link", href: "#", trigger_style: true do %>Contact<% end %>
+          <% end %>
+        <% end %>
+      <% end %>
+    <% end %>
+
+    <% example.phlex do %>
+      <%= render UI::NavigationMenu.new(viewport: false) do %>
+        <%= render UI::NavigationMenuList.new do %>
+          <%= render UI::NavigationMenuItem.new do %>
+            <%= render UI::NavigationMenuLink.new(as_child: true, trigger_style: true) do |link_attrs| %>
+              <%= link_to "Home", "#", **link_attrs %>
+            <% end %>
+          <% end %>
+          <%= render UI::NavigationMenuItem.new do %>
+            <%= render UI::NavigationMenuLink.new(as_child: true, trigger_style: true) do |link_attrs| %>
+              <%= link_to "About", "#", **link_attrs %>
+            <% end %>
+          <% end %>
+          <%= render UI::NavigationMenuItem.new do %>
+            <%= render UI::NavigationMenuLink.new(as_child: true, trigger_style: true) do |link_attrs| %>
+              <%= link_to "Services", "#", **link_attrs %>
+            <% end %>
+          <% end %>
+          <%= render UI::NavigationMenuItem.new do %>
+            <%= render UI::NavigationMenuLink.new(as_child: true, trigger_style: true) do |link_attrs| %>
+              <%= link_to "Contact", "#", **link_attrs %>
+            <% end %>
+          <% end %>
+        <% end %>
+      <% end %>
+    <% end %>
+
+    <% example.view_component do %>
+      <%= render UI::NavigationMenuComponent.new(viewport: false) do %>
+        <%= render UI::NavigationMenuListComponent.new do %>
+          <%= render UI::NavigationMenuItemComponent.new do %>
+            <%= render UI::NavigationMenuLinkComponent.new(href: "#", trigger_style: true) do %>Home<% end %>
+          <% end %>
+          <%= render UI::NavigationMenuItemComponent.new do %>
+            <%= render UI::NavigationMenuLinkComponent.new(href: "#", trigger_style: true) do %>About<% end %>
+          <% end %>
+          <%= render UI::NavigationMenuItemComponent.new do %>
+            <%= render UI::NavigationMenuLinkComponent.new(href: "#", trigger_style: true) do %>Services<% end %>
+          <% end %>
+          <%= render UI::NavigationMenuItemComponent.new do %>
+            <%= render UI::NavigationMenuLinkComponent.new(href: "#", trigger_style: true) do %>Contact<% end %>
+          <% end %>
+        <% end %>
+      <% end %>
+    <% end %>
+  <% end %>
+
+<% end %>
+

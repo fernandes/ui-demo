@@ -1,0 +1,637 @@
+<%= render Docs::ComponentPage.new(component_name: "card") do %>
+
+  <%# Basic Card %>
+  <%= render Docs::Example.new(
+    name: "Default",
+    description: "A container component for displaying content in a structured format.",
+    view_context: self
+  ) do |example| %>
+    <% example.erb do %>
+      <%= render "ui/card" do %>
+        <%= render "ui/card/header" do %>
+          <%= render "ui/card/title", content: "Card Title" %>
+          <%= render "ui/card/description", content: "Card description goes here." %>
+        <% end %>
+        <%= render "ui/card/content" do %>
+          <p>Card content goes here. You can add any content you need.</p>
+        <% end %>
+        <%= render "ui/card/footer" do %>
+          <%= render "ui/button", variant: "outline", content: "Cancel" %>
+          <%= render "ui/button", content: "Submit" %>
+        <% end %>
+      <% end %>
+    <% end %>
+
+    <% example.phlex do %>
+      <%= render UI::Card.new do %>
+        <%= render UI::CardHeader.new do %>
+          <%= render UI::CardTitle.new { "Card Title" } %>
+          <%= render UI::CardDescription.new { "Card description goes here." } %>
+        <% end %>
+        <%= render UI::CardContent.new do %>
+          <p>Card content goes here. You can add any content you need.</p>
+        <% end %>
+        <%= render UI::CardFooter.new do %>
+          <%= render UI::Button.new(variant: :outline) { "Cancel" } %>
+          <%= render UI::Button.new { "Submit" } %>
+        <% end %>
+      <% end %>
+    <% end %>
+
+    <% example.view_component do %>
+      <%= render UI::CardComponent.new do %>
+        <%= render UI::CardHeaderComponent.new do %>
+          <%= render(UI::CardTitleComponent.new) { "Card Title" } %>
+          <%= render(UI::CardDescriptionComponent.new) { "Card description goes here." } %>
+        <% end %>
+        <%= render UI::CardContentComponent.new do %>
+          <p>Card content goes here. You can add any content you need.</p>
+        <% end %>
+        <%= render UI::CardFooterComponent.new do %>
+          <%= render(UI::ButtonComponent.new(variant: :outline)) { "Cancel" } %>
+          <%= render(UI::ButtonComponent.new) { "Submit" } %>
+        <% end %>
+      <% end %>
+    <% end %>
+  <% end %>
+
+  <%# Login Card Example %>
+  <%= render Docs::Example.new(
+    name: "Login Card Example",
+    description: "A login form card with email, password fields and action links.",
+    view_context: self
+  ) do |example| %>
+    <% example.erb do %>
+      <div class="max-w-sm">
+        <%= render "ui/card" do %>
+          <%= render "ui/card/header" do %>
+            <%= render "ui/card/title", content: "Login to your account" %>
+            <%= render "ui/card/description", content: "Enter your email and password to login." %>
+            <%= render "ui/card/action" do %>
+              <%= render "ui/button", variant: :link, classes: "text-sm", content: "Sign up" %>
+            <% end %>
+          <% end %>
+          <%= render "ui/card/content" do %>
+            <div class="space-y-4">
+              <%= render "ui/label", for: "email", content: "Email" %>
+              <%= render "ui/input", type: "email", id: "email", placeholder: "m@example.com" %>
+              <div class="space-y-2">
+                <div class="flex items-center justify-between">
+                  <%= render "ui/label", for: "password", content: "Password" %>
+                  <%= render "ui/button", variant: :link, classes: "px-0 h-auto text-sm text-muted-foreground", content: "Forgot your password?" %>
+                </div>
+                <%= render "ui/input", type: "password", id: "password" %>
+              </div>
+            </div>
+          <% end %>
+          <%= render "ui/card/footer", classes: "flex-col gap-2" do %>
+            <%= render "ui/button", classes: "w-full", content: "Login" %>
+            <%= render "ui/button", variant: :outline, classes: "w-full" do %>
+              <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="mr-2"><rect width="20" height="16" x="2" y="4" rx="2"/><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/></svg>
+              Login with Google
+            <% end %>
+          <% end %>
+        <% end %>
+      </div>
+    <% end %>
+
+    <% example.phlex do %>
+      <div class="max-w-sm">
+        <%= render UI::Card.new do %>
+          <%= render UI::CardHeader.new do %>
+            <%= render UI::CardTitle.new { "Login to your account" } %>
+            <%= render UI::CardDescription.new { "Enter your email and password to login." } %>
+            <%= render UI::CardAction.new do %>
+              <%= render UI::Button.new(variant: :link, classes: "text-sm") { "Sign up" } %>
+            <% end %>
+          <% end %>
+          <%= render UI::CardContent.new do %>
+            <div class="space-y-4">
+              <%= render UI::Label.new(for: "email") { "Email" } %>
+              <%= render UI::Input.new(type: "email", id: "email", placeholder: "m@example.com") %>
+              <div class="space-y-2">
+                <div class="flex items-center justify-between">
+                  <%= render UI::Label.new(for: "password") { "Password" } %>
+                  <%= render UI::Button.new(variant: :link, classes: "px-0 h-auto text-sm text-muted-foreground") { "Forgot your password?" } %>
+                </div>
+                <%= render UI::Input.new(type: "password", id: "password") %>
+              </div>
+            </div>
+          <% end %>
+          <%= render UI::CardFooter.new(classes: "flex-col gap-2") do %>
+            <%= render UI::Button.new(classes: "w-full") { "Login" } %>
+            <%= render UI::Button.new(variant: :outline, classes: "w-full") do %>
+              <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="mr-2"><rect width="20" height="16" x="2" y="4" rx="2"/><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/></svg>
+              Login with Google
+            <% end %>
+          <% end %>
+        <% end %>
+      </div>
+    <% end %>
+
+    <% example.view_component do %>
+      <div class="max-w-sm">
+        <%= render UI::CardComponent.new do %>
+          <%= render UI::CardHeaderComponent.new do %>
+            <%= render(UI::CardTitleComponent.new) { "Login to your account" } %>
+            <%= render(UI::CardDescriptionComponent.new) { "Enter your email and password to login." } %>
+            <%= render UI::CardActionComponent.new do %>
+              <%= render(UI::ButtonComponent.new(variant: :link, classes: "text-sm")) { "Sign up" } %>
+            <% end %>
+          <% end %>
+          <%= render UI::CardContentComponent.new do %>
+            <div class="space-y-4">
+              <%= render(UI::LabelComponent.new(for: "email")) { "Email" } %>
+              <%= render UI::InputComponent.new(type: "email", id: "email", placeholder: "m@example.com") %>
+              <div class="space-y-2">
+                <div class="flex items-center justify-between">
+                  <%= render(UI::LabelComponent.new(for: "password")) { "Password" } %>
+                  <%= render(UI::ButtonComponent.new(variant: :link, classes: "px-0 h-auto text-sm text-muted-foreground")) { "Forgot your password?" } %>
+                </div>
+                <%= render UI::InputComponent.new(type: "password", id: "password") %>
+              </div>
+            </div>
+          <% end %>
+          <%= render UI::CardFooterComponent.new(classes: "flex-col gap-2") do %>
+            <%= render(UI::ButtonComponent.new(classes: "w-full")) { "Login" } %>
+            <%= render UI::ButtonComponent.new(variant: :outline, classes: "w-full") do %>
+              <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="mr-2"><rect width="20" height="16" x="2" y="4" rx="2"/><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/></svg>
+              Login with Google
+            <% end %>
+          <% end %>
+        <% end %>
+      </div>
+    <% end %>
+  <% end %>
+
+  <%# Notification Card %>
+  <%= render Docs::Example.new(
+    name: "Notification Card",
+    description: "A card displaying notification items with unread indicators.",
+    view_context: self
+  ) do |example| %>
+    <% example.erb do %>
+      <div class="max-w-sm">
+        <%= render "ui/card" do %>
+          <%= render "ui/card/header" do %>
+            <%= render "ui/card/title", content: "Notifications" %>
+            <%= render "ui/card/description", content: "You have 3 unread messages." %>
+          <% end %>
+          <%= render "ui/card/content" do %>
+            <div class="space-y-4">
+              <div class="flex items-start gap-4">
+                <span class="flex h-2 w-2 translate-y-1 rounded-full bg-sky-500"></span>
+                <div class="space-y-1">
+                  <p class="text-sm font-medium leading-none">Your call has been confirmed.</p>
+                  <p class="text-sm text-muted-foreground">1 hour ago</p>
+                </div>
+              </div>
+              <div class="flex items-start gap-4">
+                <span class="flex h-2 w-2 translate-y-1 rounded-full bg-sky-500"></span>
+                <div class="space-y-1">
+                  <p class="text-sm font-medium leading-none">You have a new message!</p>
+                  <p class="text-sm text-muted-foreground">1 hour ago</p>
+                </div>
+              </div>
+              <div class="flex items-start gap-4">
+                <span class="flex h-2 w-2 translate-y-1 rounded-full bg-sky-500"></span>
+                <div class="space-y-1">
+                  <p class="text-sm font-medium leading-none">Your subscription is expiring soon!</p>
+                  <p class="text-sm text-muted-foreground">2 hours ago</p>
+                </div>
+              </div>
+            </div>
+          <% end %>
+          <%= render "ui/card/footer" do %>
+            <%= render "ui/button", classes: "w-full" do %>
+              <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="mr-2"><path d="M20 6 9 17l-5-5"/></svg>
+              Mark all as read
+            <% end %>
+          <% end %>
+        <% end %>
+      </div>
+    <% end %>
+
+    <% example.phlex do %>
+      <div class="max-w-sm">
+        <%= render UI::Card.new do %>
+          <%= render UI::CardHeader.new do %>
+            <%= render UI::CardTitle.new { "Notifications" } %>
+            <%= render UI::CardDescription.new { "You have 3 unread messages." } %>
+          <% end %>
+          <%= render UI::CardContent.new do %>
+            <div class="space-y-4">
+              <div class="flex items-start gap-4">
+                <span class="flex h-2 w-2 translate-y-1 rounded-full bg-sky-500"></span>
+                <div class="space-y-1">
+                  <p class="text-sm font-medium leading-none">Your call has been confirmed.</p>
+                  <p class="text-sm text-muted-foreground">1 hour ago</p>
+                </div>
+              </div>
+              <div class="flex items-start gap-4">
+                <span class="flex h-2 w-2 translate-y-1 rounded-full bg-sky-500"></span>
+                <div class="space-y-1">
+                  <p class="text-sm font-medium leading-none">You have a new message!</p>
+                  <p class="text-sm text-muted-foreground">1 hour ago</p>
+                </div>
+              </div>
+              <div class="flex items-start gap-4">
+                <span class="flex h-2 w-2 translate-y-1 rounded-full bg-sky-500"></span>
+                <div class="space-y-1">
+                  <p class="text-sm font-medium leading-none">Your subscription is expiring soon!</p>
+                  <p class="text-sm text-muted-foreground">2 hours ago</p>
+                </div>
+              </div>
+            </div>
+          <% end %>
+          <%= render UI::CardFooter.new do %>
+            <%= render UI::Button.new(classes: "w-full") do %>
+              <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="mr-2"><path d="M20 6 9 17l-5-5"/></svg>
+              Mark all as read
+            <% end %>
+          <% end %>
+        <% end %>
+      </div>
+    <% end %>
+
+    <% example.view_component do %>
+      <div class="max-w-sm">
+        <%= render UI::CardComponent.new do %>
+          <%= render UI::CardHeaderComponent.new do %>
+            <%= render(UI::CardTitleComponent.new) { "Notifications" } %>
+            <%= render(UI::CardDescriptionComponent.new) { "You have 3 unread messages." } %>
+          <% end %>
+          <%= render UI::CardContentComponent.new do %>
+            <div class="space-y-4">
+              <div class="flex items-start gap-4">
+                <span class="flex h-2 w-2 translate-y-1 rounded-full bg-sky-500"></span>
+                <div class="space-y-1">
+                  <p class="text-sm font-medium leading-none">Your call has been confirmed.</p>
+                  <p class="text-sm text-muted-foreground">1 hour ago</p>
+                </div>
+              </div>
+              <div class="flex items-start gap-4">
+                <span class="flex h-2 w-2 translate-y-1 rounded-full bg-sky-500"></span>
+                <div class="space-y-1">
+                  <p class="text-sm font-medium leading-none">You have a new message!</p>
+                  <p class="text-sm text-muted-foreground">1 hour ago</p>
+                </div>
+              </div>
+              <div class="flex items-start gap-4">
+                <span class="flex h-2 w-2 translate-y-1 rounded-full bg-sky-500"></span>
+                <div class="space-y-1">
+                  <p class="text-sm font-medium leading-none">Your subscription is expiring soon!</p>
+                  <p class="text-sm text-muted-foreground">2 hours ago</p>
+                </div>
+              </div>
+            </div>
+          <% end %>
+          <%= render UI::CardFooterComponent.new do %>
+            <%= render UI::ButtonComponent.new(classes: "w-full") do %>
+              <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="mr-2"><path d="M20 6 9 17l-5-5"/></svg>
+              Mark all as read
+            <% end %>
+          <% end %>
+        <% end %>
+      </div>
+    <% end %>
+  <% end %>
+
+  <%# Stats Cards %>
+  <%= render Docs::Example.new(
+    name: "Stats Cards",
+    description: "A grid of stat cards showing key metrics.",
+    view_context: self
+  ) do |example| %>
+    <% example.erb do %>
+      <div class="grid gap-4 md:grid-cols-3">
+        <%= render "ui/card" do %>
+          <%= render "ui/card/header" do %>
+            <%= render "ui/card/description", content: "Total Revenue" %>
+            <%= render "ui/card/title", classes: "text-2xl", content: "$45,231.89" %>
+          <% end %>
+          <%= render "ui/card/content" do %>
+            <p class="text-xs text-muted-foreground">+20.1% from last month</p>
+          <% end %>
+        <% end %>
+        <%= render "ui/card" do %>
+          <%= render "ui/card/header" do %>
+            <%= render "ui/card/description", content: "Subscriptions" %>
+            <%= render "ui/card/title", classes: "text-2xl", content: "+2350" %>
+          <% end %>
+          <%= render "ui/card/content" do %>
+            <p class="text-xs text-muted-foreground">+180.1% from last month</p>
+          <% end %>
+        <% end %>
+        <%= render "ui/card" do %>
+          <%= render "ui/card/header" do %>
+            <%= render "ui/card/description", content: "Active Now" %>
+            <%= render "ui/card/title", classes: "text-2xl", content: "+573" %>
+          <% end %>
+          <%= render "ui/card/content" do %>
+            <p class="text-xs text-muted-foreground">+201 since last hour</p>
+          <% end %>
+        <% end %>
+      </div>
+    <% end %>
+
+    <% example.phlex do %>
+      <div class="grid gap-4 md:grid-cols-3">
+        <%= render UI::Card.new do %>
+          <%= render UI::CardHeader.new do %>
+            <%= render UI::CardDescription.new { "Total Revenue" } %>
+            <%= render UI::CardTitle.new(classes: "text-2xl") { "$45,231.89" } %>
+          <% end %>
+          <%= render UI::CardContent.new do %>
+            <p class="text-xs text-muted-foreground">+20.1% from last month</p>
+          <% end %>
+        <% end %>
+        <%= render UI::Card.new do %>
+          <%= render UI::CardHeader.new do %>
+            <%= render UI::CardDescription.new { "Subscriptions" } %>
+            <%= render UI::CardTitle.new(classes: "text-2xl") { "+2350" } %>
+          <% end %>
+          <%= render UI::CardContent.new do %>
+            <p class="text-xs text-muted-foreground">+180.1% from last month</p>
+          <% end %>
+        <% end %>
+        <%= render UI::Card.new do %>
+          <%= render UI::CardHeader.new do %>
+            <%= render UI::CardDescription.new { "Active Now" } %>
+            <%= render UI::CardTitle.new(classes: "text-2xl") { "+573" } %>
+          <% end %>
+          <%= render UI::CardContent.new do %>
+            <p class="text-xs text-muted-foreground">+201 since last hour</p>
+          <% end %>
+        <% end %>
+      </div>
+    <% end %>
+
+    <% example.view_component do %>
+      <div class="grid gap-4 md:grid-cols-3">
+        <%= render UI::CardComponent.new do %>
+          <%= render UI::CardHeaderComponent.new do %>
+            <%= render(UI::CardDescriptionComponent.new) { "Total Revenue" } %>
+            <%= render(UI::CardTitleComponent.new(classes: "text-2xl")) { "$45,231.89" } %>
+          <% end %>
+          <%= render UI::CardContentComponent.new do %>
+            <p class="text-xs text-muted-foreground">+20.1% from last month</p>
+          <% end %>
+        <% end %>
+        <%= render UI::CardComponent.new do %>
+          <%= render UI::CardHeaderComponent.new do %>
+            <%= render(UI::CardDescriptionComponent.new) { "Subscriptions" } %>
+            <%= render(UI::CardTitleComponent.new(classes: "text-2xl")) { "+2350" } %>
+          <% end %>
+          <%= render UI::CardContentComponent.new do %>
+            <p class="text-xs text-muted-foreground">+180.1% from last month</p>
+          <% end %>
+        <% end %>
+        <%= render UI::CardComponent.new do %>
+          <%= render UI::CardHeaderComponent.new do %>
+            <%= render(UI::CardDescriptionComponent.new) { "Active Now" } %>
+            <%= render(UI::CardTitleComponent.new(classes: "text-2xl")) { "+573" } %>
+          <% end %>
+          <%= render UI::CardContentComponent.new do %>
+            <p class="text-xs text-muted-foreground">+201 since last hour</p>
+          <% end %>
+        <% end %>
+      </div>
+    <% end %>
+  <% end %>
+
+  <%# Card With Actions %>
+  <%= render Docs::Example.new(
+    name: "Card With Actions",
+    description: "A card with header action button for team management.",
+    view_context: self
+  ) do |example| %>
+    <% example.erb do %>
+      <div class="max-w-md">
+        <%= render "ui/card" do %>
+          <%= render "ui/card/header" do %>
+            <%= render "ui/card/title", content: "Team Settings" %>
+            <%= render "ui/card/description", content: "Manage your team members and their permissions." %>
+            <%= render "ui/card/action" do %>
+              <%= render "ui/button", variant: :ghost, size: :icon do %>
+                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="1"/><circle cx="19" cy="12" r="1"/><circle cx="5" cy="12" r="1"/></svg>
+              <% end %>
+            <% end %>
+          <% end %>
+          <%= render "ui/card/content" do %>
+            <div class="space-y-4">
+              <div class="flex items-center gap-4">
+                <%= render "ui/avatar" do %>
+                  <%= render "ui/avatar/image", src: "https://github.com/fernandes.png", alt: "fernandes" %>
+                  <%= render "ui/avatar/fallback" do %>F<% end %>
+                <% end %>
+                <div class="flex-1">
+                  <p class="text-sm font-medium">Sofia Davis</p>
+                  <p class="text-sm text-muted-foreground">sofia@example.com</p>
+                </div>
+                <%= render "ui/button", variant: :outline, size: :sm, content: "Remove" %>
+              </div>
+              <div class="flex items-center gap-4">
+                <%= render "ui/avatar" do %>
+                  <%= render "ui/avatar/fallback" do %>JD<% end %>
+                <% end %>
+                <div class="flex-1">
+                  <p class="text-sm font-medium">John Doe</p>
+                  <p class="text-sm text-muted-foreground">john@example.com</p>
+                </div>
+                <%= render "ui/button", variant: :outline, size: :sm, content: "Remove" %>
+              </div>
+            </div>
+          <% end %>
+        <% end %>
+      </div>
+    <% end %>
+
+    <% example.phlex do %>
+      <div class="max-w-md">
+        <%= render UI::Card.new do %>
+          <%= render UI::CardHeader.new do %>
+            <%= render UI::CardTitle.new { "Team Settings" } %>
+            <%= render UI::CardDescription.new { "Manage your team members and their permissions." } %>
+            <%= render UI::CardAction.new do %>
+              <%= render UI::Button.new(variant: :ghost, size: :icon) do %>
+                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="1"/><circle cx="19" cy="12" r="1"/><circle cx="5" cy="12" r="1"/></svg>
+              <% end %>
+            <% end %>
+          <% end %>
+          <%= render UI::CardContent.new do %>
+            <div class="space-y-4">
+              <div class="flex items-center gap-4">
+                <%= render UI::Avatar.new do %>
+                  <%= render UI::AvatarImage.new(src: "https://github.com/fernandes.png", alt: "fernandes") %>
+                  <%= render UI::AvatarFallback.new { "F" } %>
+                <% end %>
+                <div class="flex-1">
+                  <p class="text-sm font-medium">Sofia Davis</p>
+                  <p class="text-sm text-muted-foreground">sofia@example.com</p>
+                </div>
+                <%= render UI::Button.new(variant: :outline, size: :sm) { "Remove" } %>
+              </div>
+              <div class="flex items-center gap-4">
+                <%= render UI::Avatar.new do %>
+                  <%= render UI::AvatarFallback.new { "JD" } %>
+                <% end %>
+                <div class="flex-1">
+                  <p class="text-sm font-medium">John Doe</p>
+                  <p class="text-sm text-muted-foreground">john@example.com</p>
+                </div>
+                <%= render UI::Button.new(variant: :outline, size: :sm) { "Remove" } %>
+              </div>
+            </div>
+          <% end %>
+        <% end %>
+      </div>
+    <% end %>
+
+    <% example.view_component do %>
+      <div class="max-w-md">
+        <%= render UI::CardComponent.new do %>
+          <%= render UI::CardHeaderComponent.new do %>
+            <%= render(UI::CardTitleComponent.new) { "Team Settings" } %>
+            <%= render(UI::CardDescriptionComponent.new) { "Manage your team members and their permissions." } %>
+            <%= render UI::CardActionComponent.new do %>
+              <%= render UI::ButtonComponent.new(variant: :ghost, size: :icon) do %>
+                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="1"/><circle cx="19" cy="12" r="1"/><circle cx="5" cy="12" r="1"/></svg>
+              <% end %>
+            <% end %>
+          <% end %>
+          <%= render UI::CardContentComponent.new do %>
+            <div class="space-y-4">
+              <div class="flex items-center gap-4">
+                <%= render UI::AvatarComponent.new do %>
+                  <%= render UI::AvatarImageComponent.new(src: "https://github.com/fernandes.png", alt: "fernandes") %>
+                  <%= render(UI::AvatarFallbackComponent.new) { "F" } %>
+                <% end %>
+                <div class="flex-1">
+                  <p class="text-sm font-medium">Sofia Davis</p>
+                  <p class="text-sm text-muted-foreground">sofia@example.com</p>
+                </div>
+                <%= render(UI::ButtonComponent.new(variant: :outline, size: :sm)) { "Remove" } %>
+              </div>
+              <div class="flex items-center gap-4">
+                <%= render UI::AvatarComponent.new do %>
+                  <%= render(UI::AvatarFallbackComponent.new) { "JD" } %>
+                <% end %>
+                <div class="flex-1">
+                  <p class="text-sm font-medium">John Doe</p>
+                  <p class="text-sm text-muted-foreground">john@example.com</p>
+                </div>
+                <%= render(UI::ButtonComponent.new(variant: :outline, size: :sm)) { "Remove" } %>
+              </div>
+            </div>
+          <% end %>
+        <% end %>
+      </div>
+    <% end %>
+  <% end %>
+
+  <%# Card With Border Header %>
+  <%= render Docs::Example.new(
+    name: "Card With Border Header",
+    description: "A card with bordered header and footer sections.",
+    view_context: self
+  ) do |example| %>
+    <% example.erb do %>
+      <div class="max-w-md">
+        <%= render "ui/card" do %>
+          <%= render "ui/card/header", classes: "border-b" do %>
+            <%= render "ui/card/title", content: "Payment Method" %>
+            <%= render "ui/card/description", content: "Add a new payment method to your account." %>
+          <% end %>
+          <%= render "ui/card/content", classes: "pt-6" do %>
+            <div class="grid gap-4">
+              <div class="flex items-center gap-4 p-4 border rounded-lg">
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect width="20" height="14" x="2" y="5" rx="2"/><line x1="2" x2="22" y1="10" y2="10"/></svg>
+                <div class="flex-1">
+                  <p class="text-sm font-medium">Card</p>
+                  <p class="text-xs text-muted-foreground">Pay with credit or debit card</p>
+                </div>
+              </div>
+              <div class="flex items-center gap-4 p-4 border rounded-lg">
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect width="20" height="12" x="2" y="6" rx="2"/><circle cx="12" cy="12" r="2"/><path d="M6 12h.01M18 12h.01"/></svg>
+                <div class="flex-1">
+                  <p class="text-sm font-medium">Bank Transfer</p>
+                  <p class="text-xs text-muted-foreground">Pay directly from your bank account</p>
+                </div>
+              </div>
+            </div>
+          <% end %>
+          <%= render "ui/card/footer", classes: "border-t pt-6" do %>
+            <%= render "ui/button", classes: "w-full", content: "Continue" %>
+          <% end %>
+        <% end %>
+      </div>
+    <% end %>
+
+    <% example.phlex do %>
+      <div class="max-w-md">
+        <%= render UI::Card.new do %>
+          <%= render UI::CardHeader.new(classes: "border-b") do %>
+            <%= render UI::CardTitle.new { "Payment Method" } %>
+            <%= render UI::CardDescription.new { "Add a new payment method to your account." } %>
+          <% end %>
+          <%= render UI::CardContent.new(classes: "pt-6") do %>
+            <div class="grid gap-4">
+              <div class="flex items-center gap-4 p-4 border rounded-lg">
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect width="20" height="14" x="2" y="5" rx="2"/><line x1="2" x2="22" y1="10" y2="10"/></svg>
+                <div class="flex-1">
+                  <p class="text-sm font-medium">Card</p>
+                  <p class="text-xs text-muted-foreground">Pay with credit or debit card</p>
+                </div>
+              </div>
+              <div class="flex items-center gap-4 p-4 border rounded-lg">
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect width="20" height="12" x="2" y="6" rx="2"/><circle cx="12" cy="12" r="2"/><path d="M6 12h.01M18 12h.01"/></svg>
+                <div class="flex-1">
+                  <p class="text-sm font-medium">Bank Transfer</p>
+                  <p class="text-xs text-muted-foreground">Pay directly from your bank account</p>
+                </div>
+              </div>
+            </div>
+          <% end %>
+          <%= render UI::CardFooter.new(classes: "border-t pt-6") do %>
+            <%= render UI::Button.new(classes: "w-full") { "Continue" } %>
+          <% end %>
+        <% end %>
+      </div>
+    <% end %>
+
+    <% example.view_component do %>
+      <div class="max-w-md">
+        <%= render UI::CardComponent.new do %>
+          <%= render UI::CardHeaderComponent.new(classes: "border-b") do %>
+            <%= render(UI::CardTitleComponent.new) { "Payment Method" } %>
+            <%= render(UI::CardDescriptionComponent.new) { "Add a new payment method to your account." } %>
+          <% end %>
+          <%= render UI::CardContentComponent.new(classes: "pt-6") do %>
+            <div class="grid gap-4">
+              <div class="flex items-center gap-4 p-4 border rounded-lg">
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect width="20" height="14" x="2" y="5" rx="2"/><line x1="2" x2="22" y1="10" y2="10"/></svg>
+                <div class="flex-1">
+                  <p class="text-sm font-medium">Card</p>
+                  <p class="text-xs text-muted-foreground">Pay with credit or debit card</p>
+                </div>
+              </div>
+              <div class="flex items-center gap-4 p-4 border rounded-lg">
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect width="20" height="12" x="2" y="6" rx="2"/><circle cx="12" cy="12" r="2"/><path d="M6 12h.01M18 12h.01"/></svg>
+                <div class="flex-1">
+                  <p class="text-sm font-medium">Bank Transfer</p>
+                  <p class="text-xs text-muted-foreground">Pay directly from your bank account</p>
+                </div>
+              </div>
+            </div>
+          <% end %>
+          <%= render UI::CardFooterComponent.new(classes: "border-t pt-6") do %>
+            <%= render(UI::ButtonComponent.new(classes: "w-full")) { "Continue" } %>
+          <% end %>
+        <% end %>
+      </div>
+    <% end %>
+  <% end %>
+
+<% end %>
+

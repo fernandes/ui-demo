@@ -1,0 +1,783 @@
+<%= render Docs::ComponentPage.new(component_name: "field") do %>
+
+  <%# Default - Complete Form %>
+  <%= render Docs::Example.new(
+    name: "Default",
+    description: "A complete form demonstrating various field types including inputs, checkboxes, select, and grouped fields.",
+    view_context: self
+  ) do |example| %>
+    <% example.erb do %>
+      <div class="w-full max-w-md">
+        <%= render "ui/field/group" do %>
+          <%= render "ui/field/set" do %>
+            <%= render "ui/field/legend" do %>Payment Method<% end %>
+            <%= render "ui/field/description" do %>All transactions are secure and encrypted<% end %>
+            <%= render "ui/field/group" do %>
+              <%= render "ui/field" do %>
+                <%= render "ui/label", for_id: "card-name", content: "Name on Card", attributes: { data: { slot: "field-label" } } %>
+                <%= render "ui/input", id: "card-name", placeholder: "Evil Rabbit", required: true %>
+              <% end %>
+              <%= render "ui/field" do %>
+                <%= render "ui/label", for_id: "card-number", content: "Card Number", attributes: { data: { slot: "field-label" } } %>
+                <%= render "ui/input", id: "card-number", placeholder: "1234 5678 9012 3456", required: true %>
+                <%= render "ui/field/description" do %>Enter your 16-digit card number<% end %>
+              <% end %>
+              <div class="grid grid-cols-3 gap-4">
+                <%= render "ui/field" do %>
+                  <%= render "ui/label", for_id: "exp-month", content: "Month", attributes: { data: { slot: "field-label" } } %>
+                  <%= render "ui/input", id: "exp-month", placeholder: "MM", required: true %>
+                <% end %>
+                <%= render "ui/field" do %>
+                  <%= render "ui/label", for_id: "exp-year", content: "Year", attributes: { data: { slot: "field-label" } } %>
+                  <%= render "ui/input", id: "exp-year", placeholder: "YYYY", required: true %>
+                <% end %>
+                <%= render "ui/field" do %>
+                  <%= render "ui/label", for_id: "cvv", content: "CVV", attributes: { data: { slot: "field-label" } } %>
+                  <%= render "ui/input", id: "cvv", placeholder: "123", required: true %>
+                <% end %>
+              </div>
+            <% end %>
+          <% end %>
+          <%= render "ui/field/separator" %>
+          <%= render "ui/field/set" do %>
+            <%= render "ui/field/legend" do %>Billing Address<% end %>
+            <%= render "ui/field/description" do %>The billing address associated with your payment method<% end %>
+            <%= render "ui/field/group" do %>
+              <%= render "ui/field", orientation: "horizontal" do %>
+                <%= render "ui/checkbox", id: "same-shipping", checked: true %>
+                <%= render "ui/label", for_id: "same-shipping", content: "Same as shipping address", classes: "font-normal", attributes: { data: { slot: "field-label" } } %>
+              <% end %>
+            <% end %>
+          <% end %>
+        <% end %>
+      </div>
+    <% end %>
+
+    <% example.phlex do %>
+      <div class="w-full max-w-md">
+        <%= render UI::FieldGroup.new do %>
+          <%= render UI::FieldSet.new do %>
+            <%= render UI::FieldLegend.new { "Payment Method" } %>
+            <%= render UI::FieldDescription.new { "All transactions are secure and encrypted" } %>
+            <%= render UI::FieldGroup.new do %>
+              <%= render UI::Field.new do %>
+                <%= render UI::Label.new(for: "card-name-phlex", data: { slot: "field-label" }) { "Name on Card" } %>
+                <%= render UI::Input.new(id: "card-name-phlex", placeholder: "Evil Rabbit", required: true) %>
+              <% end %>
+              <%= render UI::Field.new do %>
+                <%= render UI::Label.new(for: "card-number-phlex", data: { slot: "field-label" }) { "Card Number" } %>
+                <%= render UI::Input.new(id: "card-number-phlex", placeholder: "1234 5678 9012 3456", required: true) %>
+                <%= render UI::FieldDescription.new { "Enter your 16-digit card number" } %>
+              <% end %>
+              <div class="grid grid-cols-3 gap-4">
+                <%= render UI::Field.new do %>
+                  <%= render UI::Label.new(for: "exp-month-phlex", data: { slot: "field-label" }) { "Month" } %>
+                  <%= render UI::Input.new(id: "exp-month-phlex", placeholder: "MM", required: true) %>
+                <% end %>
+                <%= render UI::Field.new do %>
+                  <%= render UI::Label.new(for: "exp-year-phlex", data: { slot: "field-label" }) { "Year" } %>
+                  <%= render UI::Input.new(id: "exp-year-phlex", placeholder: "YYYY", required: true) %>
+                <% end %>
+                <%= render UI::Field.new do %>
+                  <%= render UI::Label.new(for: "cvv-phlex", data: { slot: "field-label" }) { "CVV" } %>
+                  <%= render UI::Input.new(id: "cvv-phlex", placeholder: "123", required: true) %>
+                <% end %>
+              </div>
+            <% end %>
+          <% end %>
+          <%= render UI::FieldSeparator.new %>
+          <%= render UI::FieldSet.new do %>
+            <%= render UI::FieldLegend.new { "Billing Address" } %>
+            <%= render UI::FieldDescription.new { "The billing address associated with your payment method" } %>
+            <%= render UI::FieldGroup.new do %>
+              <%= render UI::Field.new(orientation: "horizontal") do %>
+                <%= render UI::Checkbox.new(id: "same-shipping-phlex", checked: true) %>
+                <%= render UI::Label.new(for: "same-shipping-phlex", classes: "font-normal", data: { slot: "field-label" }) { "Same as shipping address" } %>
+              <% end %>
+            <% end %>
+          <% end %>
+        <% end %>
+      </div>
+    <% end %>
+
+    <% example.view_component do %>
+      <div class="w-full max-w-md">
+        <%= render UI::FieldGroupComponent.new do %>
+          <%= render UI::FieldSetComponent.new do %>
+            <%= render(UI::FieldLegendComponent.new) { "Payment Method" } %>
+            <%= render(UI::FieldDescriptionComponent.new) { "All transactions are secure and encrypted" } %>
+            <%= render UI::FieldGroupComponent.new do %>
+              <%= render UI::FieldComponent.new do %>
+                <%= render(UI::LabelComponent.new(for: "card-name-vc", data: { slot: "field-label" })) { "Name on Card" } %>
+                <%= render UI::InputComponent.new(id: "card-name-vc", placeholder: "Evil Rabbit", required: true) %>
+              <% end %>
+              <%= render UI::FieldComponent.new do %>
+                <%= render(UI::LabelComponent.new(for: "card-number-vc", data: { slot: "field-label" })) { "Card Number" } %>
+                <%= render UI::InputComponent.new(id: "card-number-vc", placeholder: "1234 5678 9012 3456", required: true) %>
+                <%= render(UI::FieldDescriptionComponent.new) { "Enter your 16-digit card number" } %>
+              <% end %>
+              <div class="grid grid-cols-3 gap-4">
+                <%= render UI::FieldComponent.new do %>
+                  <%= render(UI::LabelComponent.new(for: "exp-month-vc", data: { slot: "field-label" })) { "Month" } %>
+                  <%= render UI::InputComponent.new(id: "exp-month-vc", placeholder: "MM", required: true) %>
+                <% end %>
+                <%= render UI::FieldComponent.new do %>
+                  <%= render(UI::LabelComponent.new(for: "exp-year-vc", data: { slot: "field-label" })) { "Year" } %>
+                  <%= render UI::InputComponent.new(id: "exp-year-vc", placeholder: "YYYY", required: true) %>
+                <% end %>
+                <%= render UI::FieldComponent.new do %>
+                  <%= render(UI::LabelComponent.new(for: "cvv-vc", data: { slot: "field-label" })) { "CVV" } %>
+                  <%= render UI::InputComponent.new(id: "cvv-vc", placeholder: "123", required: true) %>
+                <% end %>
+              </div>
+            <% end %>
+          <% end %>
+          <%= render UI::FieldSeparatorComponent.new %>
+          <%= render UI::FieldSetComponent.new do %>
+            <%= render(UI::FieldLegendComponent.new) { "Billing Address" } %>
+            <%= render(UI::FieldDescriptionComponent.new) { "The billing address associated with your payment method" } %>
+            <%= render UI::FieldGroupComponent.new do %>
+              <%= render UI::FieldComponent.new(orientation: "horizontal") do %>
+                <%= render UI::CheckboxComponent.new(id: "same-shipping-vc", checked: true) %>
+                <%= render(UI::LabelComponent.new(for: "same-shipping-vc", classes: "font-normal", data: { slot: "field-label" })) { "Same as shipping address" } %>
+              <% end %>
+            <% end %>
+          <% end %>
+        <% end %>
+      </div>
+    <% end %>
+  <% end %>
+
+  <%# Input %>
+  <%= render Docs::Example.new(
+    name: "Input",
+    description: "Basic text inputs with labels and helper descriptions.",
+    view_context: self
+  ) do |example| %>
+    <% example.erb do %>
+      <div class="w-full max-w-md">
+        <%= render "ui/field/set" do %>
+          <%= render "ui/field/group" do %>
+            <%= render "ui/field" do %>
+              <%= render "ui/label", for_id: "username", content: "Username", attributes: { data: { slot: "field-label" } } %>
+              <%= render "ui/input", id: "username", type: "text", placeholder: "Max Leiter" %>
+              <%= render "ui/field/description" do %>Choose a unique username for your account.<% end %>
+            <% end %>
+            <%= render "ui/field" do %>
+              <%= render "ui/label", for_id: "password", content: "Password", attributes: { data: { slot: "field-label" } } %>
+              <%= render "ui/field/description" do %>Must be at least 8 characters long.<% end %>
+              <%= render "ui/input", id: "password", type: "password", placeholder: "••••••••" %>
+            <% end %>
+          <% end %>
+        <% end %>
+      </div>
+    <% end %>
+
+    <% example.phlex do %>
+      <div class="w-full max-w-md">
+        <%= render UI::FieldSet.new do %>
+          <%= render UI::FieldGroup.new do %>
+            <%= render UI::Field.new do %>
+              <%= render UI::Label.new(for: "username-phlex", data: { slot: "field-label" }) { "Username" } %>
+              <%= render UI::Input.new(id: "username-phlex", type: "text", placeholder: "Max Leiter") %>
+              <%= render UI::FieldDescription.new { "Choose a unique username for your account." } %>
+            <% end %>
+            <%= render UI::Field.new do %>
+              <%= render UI::Label.new(for: "password-phlex", data: { slot: "field-label" }) { "Password" } %>
+              <%= render UI::FieldDescription.new { "Must be at least 8 characters long." } %>
+              <%= render UI::Input.new(id: "password-phlex", type: "password", placeholder: "••••••••") %>
+            <% end %>
+          <% end %>
+        <% end %>
+      </div>
+    <% end %>
+
+    <% example.view_component do %>
+      <div class="w-full max-w-md">
+        <%= render UI::FieldSetComponent.new do %>
+          <%= render UI::FieldGroupComponent.new do %>
+            <%= render UI::FieldComponent.new do %>
+              <%= render(UI::LabelComponent.new(for: "username-vc", data: { slot: "field-label" })) { "Username" } %>
+              <%= render UI::InputComponent.new(id: "username-vc", type: "text", placeholder: "Max Leiter") %>
+              <%= render(UI::FieldDescriptionComponent.new) { "Choose a unique username for your account." } %>
+            <% end %>
+            <%= render UI::FieldComponent.new do %>
+              <%= render(UI::LabelComponent.new(for: "password-vc", data: { slot: "field-label" })) { "Password" } %>
+              <%= render(UI::FieldDescriptionComponent.new) { "Must be at least 8 characters long." } %>
+              <%= render UI::InputComponent.new(id: "password-vc", type: "password", placeholder: "••••••••") %>
+            <% end %>
+          <% end %>
+        <% end %>
+      </div>
+    <% end %>
+  <% end %>
+
+  <%# Textarea %>
+  <%= render Docs::Example.new(
+    name: "Textarea",
+    description: "Multi-line text input with label and description.",
+    view_context: self
+  ) do |example| %>
+    <% example.erb do %>
+      <div class="w-full max-w-md">
+        <%= render "ui/field/set" do %>
+          <%= render "ui/field/group" do %>
+            <%= render "ui/field" do %>
+              <%= render "ui/label", for_id: "feedback", content: "Feedback", attributes: { data: { slot: "field-label" } } %>
+              <%= render "ui/textarea", id: "feedback", placeholder: "Your feedback helps us improve...", rows: 4 %>
+              <%= render "ui/field/description" do %>Share your thoughts about our service.<% end %>
+            <% end %>
+          <% end %>
+        <% end %>
+      </div>
+    <% end %>
+
+    <% example.phlex do %>
+      <div class="w-full max-w-md">
+        <%= render UI::FieldSet.new do %>
+          <%= render UI::FieldGroup.new do %>
+            <%= render UI::Field.new do %>
+              <%= render UI::Label.new(for: "feedback-phlex", data: { slot: "field-label" }) { "Feedback" } %>
+              <%= render UI::Textarea.new(id: "feedback-phlex", placeholder: "Your feedback helps us improve...", rows: 4) %>
+              <%= render UI::FieldDescription.new { "Share your thoughts about our service." } %>
+            <% end %>
+          <% end %>
+        <% end %>
+      </div>
+    <% end %>
+
+    <% example.view_component do %>
+      <div class="w-full max-w-md">
+        <%= render UI::FieldSetComponent.new do %>
+          <%= render UI::FieldGroupComponent.new do %>
+            <%= render UI::FieldComponent.new do %>
+              <%= render(UI::LabelComponent.new(for: "feedback-vc", data: { slot: "field-label" })) { "Feedback" } %>
+              <%= render UI::TextareaComponent.new(id: "feedback-vc", placeholder: "Your feedback helps us improve...", rows: 4) %>
+              <%= render(UI::FieldDescriptionComponent.new) { "Share your thoughts about our service." } %>
+            <% end %>
+          <% end %>
+        <% end %>
+      </div>
+    <% end %>
+  <% end %>
+
+  <%# Select %>
+  <%= render Docs::Example.new(
+    name: "Select",
+    description: "Dropdown select field with label and description.",
+    view_context: self
+  ) do |example| %>
+    <% example.erb do %>
+      <div class="w-full max-w-md">
+        <%= render "ui/field" do %>
+          <%= render "ui/label", for_id: "department", content: "Department", attributes: { data: { slot: "field-label" } } %>
+          <%= render "ui/select", value: "engineering" do %>
+            <%= render "ui/select/trigger", id: "department", placeholder: "Choose department" %>
+            <%= render "ui/select/content" do %>
+              <%= render "ui/select/item", value: "engineering" do %>Engineering<% end %>
+              <%= render "ui/select/item", value: "design" do %>Design<% end %>
+              <%= render "ui/select/item", value: "marketing" do %>Marketing<% end %>
+              <%= render "ui/select/item", value: "sales" do %>Sales<% end %>
+            <% end %>
+          <% end %>
+          <%= render "ui/field/description" do %>Select your department or area of work.<% end %>
+        <% end %>
+      </div>
+    <% end %>
+
+    <% example.phlex do %>
+      <div class="w-full max-w-md">
+        <%= render UI::Field.new do %>
+          <%= render UI::Label.new(for: "department-phlex", data: { slot: "field-label" }) { "Department" } %>
+          <%= render UI::Select.new(value: "engineering") do %>
+            <%= render UI::SelectTrigger.new(id: "department-phlex", placeholder: "Choose department") %>
+            <%= render UI::SelectContent.new do %>
+              <%= render UI::SelectItem.new(value: "engineering") { "Engineering" } %>
+              <%= render UI::SelectItem.new(value: "design") { "Design" } %>
+              <%= render UI::SelectItem.new(value: "marketing") { "Marketing" } %>
+              <%= render UI::SelectItem.new(value: "sales") { "Sales" } %>
+            <% end %>
+          <% end %>
+          <%= render UI::FieldDescription.new { "Select your department or area of work." } %>
+        <% end %>
+      </div>
+    <% end %>
+
+    <% example.view_component do %>
+      <div class="w-full max-w-md">
+        <%= render UI::FieldComponent.new do %>
+          <%= render(UI::LabelComponent.new(for: "department-vc", data: { slot: "field-label" })) { "Department" } %>
+          <%= render UI::SelectComponent.new(value: "engineering") do %>
+            <%= render UI::SelectTriggerComponent.new(id: "department-vc", placeholder: "Choose department") %>
+            <%= render UI::SelectContentComponent.new do %>
+              <%= render(UI::SelectItemComponent.new(value: "engineering")) { "Engineering" } %>
+              <%= render(UI::SelectItemComponent.new(value: "design")) { "Design" } %>
+              <%= render(UI::SelectItemComponent.new(value: "marketing")) { "Marketing" } %>
+              <%= render(UI::SelectItemComponent.new(value: "sales")) { "Sales" } %>
+            <% end %>
+          <% end %>
+          <%= render(UI::FieldDescriptionComponent.new) { "Select your department or area of work." } %>
+        <% end %>
+      </div>
+    <% end %>
+  <% end %>
+
+  <%# Slider %>
+  <%= render Docs::Example.new(
+    name: "Slider",
+    description: "Slider field with dynamic value display.",
+    view_context: self
+  ) do |example| %>
+    <% example.erb do %>
+      <div class="w-full max-w-md">
+        <%= render "ui/field" do %>
+          <%= render "ui/field/title" do %>Price Range<% end %>
+          <%= render "ui/field/description" do %>Set your budget range for the search.<% end %>
+          <%= render "ui/slider", default_value: [200, 800], min: 0, max: 1000, step: 50 do %>
+            <%= render "ui/slider/track" do %>
+              <%= render "ui/slider/range" %>
+            <% end %>
+            <%= render "ui/slider/thumb" %>
+            <%= render "ui/slider/thumb" %>
+          <% end %>
+        <% end %>
+      </div>
+    <% end %>
+
+    <% example.phlex do %>
+      <div class="w-full max-w-md">
+        <%= render UI::Field.new do %>
+          <%= render UI::FieldTitle.new { "Price Range" } %>
+          <%= render UI::FieldDescription.new { "Set your budget range for the search." } %>
+          <%= render UI::Slider.new(default_value: [200, 800], min: 0, max: 1000, step: 50) do %>
+            <%= render UI::SliderTrack.new do %>
+              <%= render UI::SliderRange.new %>
+            <% end %>
+            <%= render UI::SliderThumb.new %>
+            <%= render UI::SliderThumb.new %>
+          <% end %>
+        <% end %>
+      </div>
+    <% end %>
+
+    <% example.view_component do %>
+      <div class="w-full max-w-md">
+        <%= render UI::FieldComponent.new do %>
+          <%= render(UI::FieldTitleComponent.new) { "Price Range" } %>
+          <%= render(UI::FieldDescriptionComponent.new) { "Set your budget range for the search." } %>
+          <%= render UI::SliderComponent.new(default_value: [200, 800], min: 0, max: 1000, step: 50) do %>
+            <%= render UI::SliderTrackComponent.new do %>
+              <%= render UI::SliderRangeComponent.new %>
+            <% end %>
+            <%= render UI::SliderThumbComponent.new %>
+            <%= render UI::SliderThumbComponent.new %>
+          <% end %>
+        <% end %>
+      </div>
+    <% end %>
+  <% end %>
+
+  <%# Fieldset %>
+  <%= render Docs::Example.new(
+    name: "Fieldset",
+    description: "Grouped fields under a legend with address information.",
+    view_context: self
+  ) do |example| %>
+    <% example.erb do %>
+      <div class="w-full max-w-md">
+        <%= render "ui/field/set" do %>
+          <%= render "ui/field/legend" do %>Address Information<% end %>
+          <%= render "ui/field/description" do %>We need your address to deliver your order.<% end %>
+          <%= render "ui/field/group" do %>
+            <%= render "ui/field" do %>
+              <%= render "ui/label", for_id: "street", content: "Street Address", attributes: { data: { slot: "field-label" } } %>
+              <%= render "ui/input", id: "street", type: "text", placeholder: "123 Main St" %>
+            <% end %>
+            <div class="grid grid-cols-2 gap-4">
+              <%= render "ui/field" do %>
+                <%= render "ui/label", for_id: "city", content: "City", attributes: { data: { slot: "field-label" } } %>
+                <%= render "ui/input", id: "city", type: "text", placeholder: "New York" %>
+              <% end %>
+              <%= render "ui/field" do %>
+                <%= render "ui/label", for_id: "zip", content: "Postal Code", attributes: { data: { slot: "field-label" } } %>
+                <%= render "ui/input", id: "zip", type: "text", placeholder: "90502" %>
+              <% end %>
+            </div>
+          <% end %>
+        <% end %>
+      </div>
+    <% end %>
+
+    <% example.phlex do %>
+      <div class="w-full max-w-md">
+        <%= render UI::FieldSet.new do %>
+          <%= render UI::FieldLegend.new { "Address Information" } %>
+          <%= render UI::FieldDescription.new { "We need your address to deliver your order." } %>
+          <%= render UI::FieldGroup.new do %>
+            <%= render UI::Field.new do %>
+              <%= render UI::Label.new(for: "street-phlex", data: { slot: "field-label" }) { "Street Address" } %>
+              <%= render UI::Input.new(id: "street-phlex", type: "text", placeholder: "123 Main St") %>
+            <% end %>
+            <div class="grid grid-cols-2 gap-4">
+              <%= render UI::Field.new do %>
+                <%= render UI::Label.new(for: "city-phlex", data: { slot: "field-label" }) { "City" } %>
+                <%= render UI::Input.new(id: "city-phlex", type: "text", placeholder: "New York") %>
+              <% end %>
+              <%= render UI::Field.new do %>
+                <%= render UI::Label.new(for: "zip-phlex", data: { slot: "field-label" }) { "Postal Code" } %>
+                <%= render UI::Input.new(id: "zip-phlex", type: "text", placeholder: "90502") %>
+              <% end %>
+            </div>
+          <% end %>
+        <% end %>
+      </div>
+    <% end %>
+
+    <% example.view_component do %>
+      <div class="w-full max-w-md">
+        <%= render UI::FieldSetComponent.new do %>
+          <%= render(UI::FieldLegendComponent.new) { "Address Information" } %>
+          <%= render(UI::FieldDescriptionComponent.new) { "We need your address to deliver your order." } %>
+          <%= render UI::FieldGroupComponent.new do %>
+            <%= render UI::FieldComponent.new do %>
+              <%= render(UI::LabelComponent.new(for: "street-vc", data: { slot: "field-label" })) { "Street Address" } %>
+              <%= render UI::InputComponent.new(id: "street-vc", type: "text", placeholder: "123 Main St") %>
+            <% end %>
+            <div class="grid grid-cols-2 gap-4">
+              <%= render UI::FieldComponent.new do %>
+                <%= render(UI::LabelComponent.new(for: "city-vc", data: { slot: "field-label" })) { "City" } %>
+                <%= render UI::InputComponent.new(id: "city-vc", type: "text", placeholder: "New York") %>
+              <% end %>
+              <%= render UI::FieldComponent.new do %>
+                <%= render(UI::LabelComponent.new(for: "zip-vc", data: { slot: "field-label" })) { "Postal Code" } %>
+                <%= render UI::InputComponent.new(id: "zip-vc", type: "text", placeholder: "90502") %>
+              <% end %>
+            </div>
+          <% end %>
+        <% end %>
+      </div>
+    <% end %>
+  <% end %>
+
+  <%# Checkbox %>
+  <%= render Docs::Example.new(
+    name: "Checkbox",
+    description: "Checkbox group with labels and a separate checkbox with description.",
+    view_context: self
+  ) do |example| %>
+    <% example.erb do %>
+      <div class="w-full max-w-md">
+        <%= render "ui/field/group" do %>
+          <%= render "ui/field/set" do %>
+            <%= render "ui/field/legend", variant: "label" do %>Show these items on the desktop<% end %>
+            <%= render "ui/field/description" do %>Select the items you want to show on the desktop.<% end %>
+            <%= render "ui/field/group", classes: "gap-3" do %>
+              <%= render "ui/field", orientation: "horizontal" do %>
+                <%= render "ui/checkbox", id: "hard-disks", checked: true %>
+                <%= render "ui/label", for_id: "hard-disks", content: "Hard disks", classes: "font-normal", attributes: { data: { slot: "field-label" } } %>
+              <% end %>
+              <%= render "ui/field", orientation: "horizontal" do %>
+                <%= render "ui/checkbox", id: "external-disks" %>
+                <%= render "ui/label", for_id: "external-disks", content: "External disks", classes: "font-normal", attributes: { data: { slot: "field-label" } } %>
+              <% end %>
+              <%= render "ui/field", orientation: "horizontal" do %>
+                <%= render "ui/checkbox", id: "cds-dvds" %>
+                <%= render "ui/label", for_id: "cds-dvds", content: "CDs, DVDs, and iPods", classes: "font-normal", attributes: { data: { slot: "field-label" } } %>
+              <% end %>
+              <%= render "ui/field", orientation: "horizontal" do %>
+                <%= render "ui/checkbox", id: "servers" %>
+                <%= render "ui/label", for_id: "servers", content: "Connected servers", classes: "font-normal", attributes: { data: { slot: "field-label" } } %>
+              <% end %>
+            <% end %>
+          <% end %>
+          <%= render "ui/field/separator" %>
+          <%= render "ui/field", orientation: "horizontal" do %>
+            <%= render "ui/checkbox", id: "sync-folders", checked: true %>
+            <%= render "ui/field/content" do %>
+              <%= render "ui/label", for_id: "sync-folders", content: "Sync Desktop & Documents folders", attributes: { data: { slot: "field-label" } } %>
+              <%= render "ui/field/description" do %>Your Desktop & Documents folders are being synced with iCloud Drive.<% end %>
+            <% end %>
+          <% end %>
+        <% end %>
+      </div>
+    <% end %>
+
+    <% example.phlex do %>
+      <div class="w-full max-w-md">
+        <%= render UI::FieldGroup.new do %>
+          <%= render UI::FieldSet.new do %>
+            <%= render UI::FieldLegend.new(variant: "label") { "Show these items on the desktop" } %>
+            <%= render UI::FieldDescription.new { "Select the items you want to show on the desktop." } %>
+            <%= render UI::FieldGroup.new(classes: "gap-3") do %>
+              <%= render UI::Field.new(orientation: "horizontal") do %>
+                <%= render UI::Checkbox.new(id: "hard-disks-phlex", checked: true) %>
+                <%= render UI::Label.new(for: "hard-disks-phlex", classes: "font-normal", data: { slot: "field-label" }) { "Hard disks" } %>
+              <% end %>
+              <%= render UI::Field.new(orientation: "horizontal") do %>
+                <%= render UI::Checkbox.new(id: "external-disks-phlex") %>
+                <%= render UI::Label.new(for: "external-disks-phlex", classes: "font-normal", data: { slot: "field-label" }) { "External disks" } %>
+              <% end %>
+              <%= render UI::Field.new(orientation: "horizontal") do %>
+                <%= render UI::Checkbox.new(id: "cds-dvds-phlex") %>
+                <%= render UI::Label.new(for: "cds-dvds-phlex", classes: "font-normal", data: { slot: "field-label" }) { "CDs, DVDs, and iPods" } %>
+              <% end %>
+              <%= render UI::Field.new(orientation: "horizontal") do %>
+                <%= render UI::Checkbox.new(id: "servers-phlex") %>
+                <%= render UI::Label.new(for: "servers-phlex", classes: "font-normal", data: { slot: "field-label" }) { "Connected servers" } %>
+              <% end %>
+            <% end %>
+          <% end %>
+          <%= render UI::FieldSeparator.new %>
+          <%= render UI::Field.new(orientation: "horizontal") do %>
+            <%= render UI::Checkbox.new(id: "sync-folders-phlex", checked: true) %>
+            <%= render UI::FieldContent.new do %>
+              <%= render UI::Label.new(for: "sync-folders-phlex", data: { slot: "field-label" }) { "Sync Desktop & Documents folders" } %>
+              <%= render UI::FieldDescription.new { "Your Desktop & Documents folders are being synced with iCloud Drive." } %>
+            <% end %>
+          <% end %>
+        <% end %>
+      </div>
+    <% end %>
+
+    <% example.view_component do %>
+      <div class="w-full max-w-md">
+        <%= render UI::FieldGroupComponent.new do %>
+          <%= render UI::FieldSetComponent.new do %>
+            <%= render(UI::FieldLegendComponent.new(variant: "label")) { "Show these items on the desktop" } %>
+            <%= render(UI::FieldDescriptionComponent.new) { "Select the items you want to show on the desktop." } %>
+            <%= render UI::FieldGroupComponent.new(classes: "gap-3") do %>
+              <%= render UI::FieldComponent.new(orientation: "horizontal") do %>
+                <%= render UI::CheckboxComponent.new(id: "hard-disks-vc", checked: true) %>
+                <%= render(UI::LabelComponent.new(for: "hard-disks-vc", classes: "font-normal", data: { slot: "field-label" })) { "Hard disks" } %>
+              <% end %>
+              <%= render UI::FieldComponent.new(orientation: "horizontal") do %>
+                <%= render UI::CheckboxComponent.new(id: "external-disks-vc") %>
+                <%= render(UI::LabelComponent.new(for: "external-disks-vc", classes: "font-normal", data: { slot: "field-label" })) { "External disks" } %>
+              <% end %>
+              <%= render UI::FieldComponent.new(orientation: "horizontal") do %>
+                <%= render UI::CheckboxComponent.new(id: "cds-dvds-vc") %>
+                <%= render(UI::LabelComponent.new(for: "cds-dvds-vc", classes: "font-normal", data: { slot: "field-label" })) { "CDs, DVDs, and iPods" } %>
+              <% end %>
+              <%= render UI::FieldComponent.new(orientation: "horizontal") do %>
+                <%= render UI::CheckboxComponent.new(id: "servers-vc") %>
+                <%= render(UI::LabelComponent.new(for: "servers-vc", classes: "font-normal", data: { slot: "field-label" })) { "Connected servers" } %>
+              <% end %>
+            <% end %>
+          <% end %>
+          <%= render UI::FieldSeparatorComponent.new %>
+          <%= render UI::FieldComponent.new(orientation: "horizontal") do %>
+            <%= render UI::CheckboxComponent.new(id: "sync-folders-vc", checked: true) %>
+            <%= render UI::FieldContentComponent.new do %>
+              <%= render(UI::LabelComponent.new(for: "sync-folders-vc", data: { slot: "field-label" })) { "Sync Desktop & Documents folders" } %>
+              <%= render(UI::FieldDescriptionComponent.new) { "Your Desktop & Documents folders are being synced with iCloud Drive." } %>
+            <% end %>
+          <% end %>
+        <% end %>
+      </div>
+    <% end %>
+  <% end %>
+
+  <%# Choice Card %>
+  <%= render Docs::Example.new(
+    name: "Choice Card",
+    description: "Wrap Field components inside Label to create selectable card-style field groups.",
+    view_context: self
+  ) do |example| %>
+    <% example.erb do %>
+      <div class="w-full max-w-md">
+        <%= render "ui/field/group" do %>
+          <%= render "ui/field/set" do %>
+            <%= render "ui/label", content: "Compute Environment", attributes: { data: { slot: "field-label" } } %>
+            <%= render "ui/field/description" do %>Select the compute environment for your cluster.<% end %>
+            <div class="grid gap-3" role="radiogroup">
+              <label for="kubernetes" class="flex w-full cursor-pointer flex-col rounded-md border p-4 has-[:checked]:border-primary has-[:checked]:bg-primary/5 dark:has-[:checked]:bg-primary/10">
+                <div class="flex w-full items-center gap-3">
+                  <div class="flex flex-1 flex-col gap-1">
+                    <span class="text-sm font-medium">Kubernetes</span>
+                    <span class="text-sm text-muted-foreground">Run GPU workloads on a K8s configured cluster.</span>
+                  </div>
+                  <%= render "ui/radio_button", name: "compute", value: "kubernetes", id: "kubernetes", checked: true %>
+                </div>
+              </label>
+              <label for="vm" class="flex w-full cursor-pointer flex-col rounded-md border p-4 has-[:checked]:border-primary has-[:checked]:bg-primary/5 dark:has-[:checked]:bg-primary/10">
+                <div class="flex w-full items-center gap-3">
+                  <div class="flex flex-1 flex-col gap-1">
+                    <span class="text-sm font-medium">Virtual Machine</span>
+                    <span class="text-sm text-muted-foreground">Access a VM configured cluster to run GPU workloads.</span>
+                  </div>
+                  <%= render "ui/radio_button", name: "compute", value: "vm", id: "vm" %>
+                </div>
+              </label>
+            </div>
+          <% end %>
+        <% end %>
+      </div>
+    <% end %>
+
+    <% example.phlex do %>
+      <div class="w-full max-w-md">
+        <%= render UI::FieldGroup.new do %>
+          <%= render UI::FieldSet.new do %>
+            <%= render UI::Label.new(data: { slot: "field-label" }) { "Compute Environment" } %>
+            <%= render UI::FieldDescription.new { "Select the compute environment for your cluster." } %>
+            <div class="grid gap-3" role="radiogroup">
+              <label for="kubernetes-phlex" class="flex w-full cursor-pointer flex-col rounded-md border p-4 has-[:checked]:border-primary has-[:checked]:bg-primary/5 dark:has-[:checked]:bg-primary/10">
+                <div class="flex w-full items-center gap-3">
+                  <div class="flex flex-1 flex-col gap-1">
+                    <span class="text-sm font-medium">Kubernetes</span>
+                    <span class="text-sm text-muted-foreground">Run GPU workloads on a K8s configured cluster.</span>
+                  </div>
+                  <%= render UI::RadioButton.new(name: "compute-phlex", value: "kubernetes", id: "kubernetes-phlex", checked: true) %>
+                </div>
+              </label>
+              <label for="vm-phlex" class="flex w-full cursor-pointer flex-col rounded-md border p-4 has-[:checked]:border-primary has-[:checked]:bg-primary/5 dark:has-[:checked]:bg-primary/10">
+                <div class="flex w-full items-center gap-3">
+                  <div class="flex flex-1 flex-col gap-1">
+                    <span class="text-sm font-medium">Virtual Machine</span>
+                    <span class="text-sm text-muted-foreground">Access a VM configured cluster to run GPU workloads.</span>
+                  </div>
+                  <%= render UI::RadioButton.new(name: "compute-phlex", value: "vm", id: "vm-phlex") %>
+                </div>
+              </label>
+            </div>
+          <% end %>
+        <% end %>
+      </div>
+    <% end %>
+
+    <% example.view_component do %>
+      <div class="w-full max-w-md">
+        <%= render UI::FieldGroupComponent.new do %>
+          <%= render UI::FieldSetComponent.new do %>
+            <%= render(UI::LabelComponent.new(data: { slot: "field-label" })) { "Compute Environment" } %>
+            <%= render(UI::FieldDescriptionComponent.new) { "Select the compute environment for your cluster." } %>
+            <div class="grid gap-3" role="radiogroup">
+              <label for="kubernetes-vc" class="flex w-full cursor-pointer flex-col rounded-md border p-4 has-[:checked]:border-primary has-[:checked]:bg-primary/5 dark:has-[:checked]:bg-primary/10">
+                <div class="flex w-full items-center gap-3">
+                  <div class="flex flex-1 flex-col gap-1">
+                    <span class="text-sm font-medium">Kubernetes</span>
+                    <span class="text-sm text-muted-foreground">Run GPU workloads on a K8s configured cluster.</span>
+                  </div>
+                  <%= render UI::RadioButtonComponent.new(name: "compute-vc", value: "kubernetes", id: "kubernetes-vc", checked: true) %>
+                </div>
+              </label>
+              <label for="vm-vc" class="flex w-full cursor-pointer flex-col rounded-md border p-4 has-[:checked]:border-primary has-[:checked]:bg-primary/5 dark:has-[:checked]:bg-primary/10">
+                <div class="flex w-full items-center gap-3">
+                  <div class="flex flex-1 flex-col gap-1">
+                    <span class="text-sm font-medium">Virtual Machine</span>
+                    <span class="text-sm text-muted-foreground">Access a VM configured cluster to run GPU workloads.</span>
+                  </div>
+                  <%= render UI::RadioButtonComponent.new(name: "compute-vc", value: "vm", id: "vm-vc") %>
+                </div>
+              </label>
+            </div>
+          <% end %>
+        <% end %>
+      </div>
+    <% end %>
+  <% end %>
+
+  <%# Field Group %>
+  <%= render Docs::Example.new(
+    name: "Field Group",
+    description: "Stacks related field sets separated by dividers for organizing notification preferences.",
+    view_context: self
+  ) do |example| %>
+    <% example.erb do %>
+      <div class="w-full max-w-md">
+        <%= render "ui/field/group" do %>
+          <%= render "ui/field/set" do %>
+            <%= render "ui/label", content: "Responses", attributes: { data: { slot: "field-label" } } %>
+            <%= render "ui/field/description" do %>Get notified when ChatGPT responds to requests that take time.<% end %>
+            <%= render "ui/field/group", data: { slot: "checkbox-group" } do %>
+              <%= render "ui/field", orientation: "horizontal" do %>
+                <%= render "ui/checkbox", id: "push-responses", checked: true, disabled: true %>
+                <%= render "ui/label", for_id: "push-responses", content: "Push notifications", classes: "font-normal", attributes: { data: { slot: "field-label" } } %>
+              <% end %>
+            <% end %>
+          <% end %>
+          <%= render "ui/field/separator" %>
+          <%= render "ui/field/set" do %>
+            <%= render "ui/label", content: "Tasks", attributes: { data: { slot: "field-label" } } %>
+            <%= render "ui/field/description" do %>Get notified when tasks you've created have updates.<% end %>
+            <%= render "ui/field/group", data: { slot: "checkbox-group" } do %>
+              <%= render "ui/field", orientation: "horizontal" do %>
+                <%= render "ui/checkbox", id: "push-tasks" %>
+                <%= render "ui/label", for_id: "push-tasks", content: "Push notifications", classes: "font-normal", attributes: { data: { slot: "field-label" } } %>
+              <% end %>
+              <%= render "ui/field", orientation: "horizontal" do %>
+                <%= render "ui/checkbox", id: "email-tasks" %>
+                <%= render "ui/label", for_id: "email-tasks", content: "Email notifications", classes: "font-normal", attributes: { data: { slot: "field-label" } } %>
+              <% end %>
+            <% end %>
+          <% end %>
+        <% end %>
+      </div>
+    <% end %>
+
+    <% example.phlex do %>
+      <div class="w-full max-w-md">
+        <%= render UI::FieldGroup.new do %>
+          <%= render UI::FieldSet.new do %>
+            <%= render UI::Label.new(data: { slot: "field-label" }) { "Responses" } %>
+            <%= render UI::FieldDescription.new { "Get notified when ChatGPT responds to requests that take time." } %>
+            <%= render UI::FieldGroup.new(data: { slot: "checkbox-group" }) do %>
+              <%= render UI::Field.new(orientation: "horizontal") do %>
+                <%= render UI::Checkbox.new(id: "push-responses-phlex", checked: true, disabled: true) %>
+                <%= render UI::Label.new(for: "push-responses-phlex", classes: "font-normal", data: { slot: "field-label" }) { "Push notifications" } %>
+              <% end %>
+            <% end %>
+          <% end %>
+          <%= render UI::FieldSeparator.new %>
+          <%= render UI::FieldSet.new do %>
+            <%= render UI::Label.new(data: { slot: "field-label" }) { "Tasks" } %>
+            <%= render UI::FieldDescription.new { "Get notified when tasks you've created have updates." } %>
+            <%= render UI::FieldGroup.new(data: { slot: "checkbox-group" }) do %>
+              <%= render UI::Field.new(orientation: "horizontal") do %>
+                <%= render UI::Checkbox.new(id: "push-tasks-phlex") %>
+                <%= render UI::Label.new(for: "push-tasks-phlex", classes: "font-normal", data: { slot: "field-label" }) { "Push notifications" } %>
+              <% end %>
+              <%= render UI::Field.new(orientation: "horizontal") do %>
+                <%= render UI::Checkbox.new(id: "email-tasks-phlex") %>
+                <%= render UI::Label.new(for: "email-tasks-phlex", classes: "font-normal", data: { slot: "field-label" }) { "Email notifications" } %>
+              <% end %>
+            <% end %>
+          <% end %>
+        <% end %>
+      </div>
+    <% end %>
+
+    <% example.view_component do %>
+      <div class="w-full max-w-md">
+        <%= render UI::FieldGroupComponent.new do %>
+          <%= render UI::FieldSetComponent.new do %>
+            <%= render(UI::LabelComponent.new(data: { slot: "field-label" })) { "Responses" } %>
+            <%= render(UI::FieldDescriptionComponent.new) { "Get notified when ChatGPT responds to requests that take time." } %>
+            <%= render UI::FieldGroupComponent.new(data: { slot: "checkbox-group" }) do %>
+              <%= render UI::FieldComponent.new(orientation: "horizontal") do %>
+                <%= render UI::CheckboxComponent.new(id: "push-responses-vc", checked: true, disabled: true) %>
+                <%= render(UI::LabelComponent.new(for: "push-responses-vc", classes: "font-normal", data: { slot: "field-label" })) { "Push notifications" } %>
+              <% end %>
+            <% end %>
+          <% end %>
+          <%= render UI::FieldSeparatorComponent.new %>
+          <%= render UI::FieldSetComponent.new do %>
+            <%= render(UI::LabelComponent.new(data: { slot: "field-label" })) { "Tasks" } %>
+            <%= render(UI::FieldDescriptionComponent.new) { "Get notified when tasks you've created have updates." } %>
+            <%= render UI::FieldGroupComponent.new(data: { slot: "checkbox-group" }) do %>
+              <%= render UI::FieldComponent.new(orientation: "horizontal") do %>
+                <%= render UI::CheckboxComponent.new(id: "push-tasks-vc") %>
+                <%= render(UI::LabelComponent.new(for: "push-tasks-vc", classes: "font-normal", data: { slot: "field-label" })) { "Push notifications" } %>
+              <% end %>
+              <%= render UI::FieldComponent.new(orientation: "horizontal") do %>
+                <%= render UI::CheckboxComponent.new(id: "email-tasks-vc") %>
+                <%= render(UI::LabelComponent.new(for: "email-tasks-vc", classes: "font-normal", data: { slot: "field-label" })) { "Email notifications" } %>
+              <% end %>
+            <% end %>
+          <% end %>
+        <% end %>
+      </div>
+    <% end %>
+  <% end %>
+
+<% end %>
