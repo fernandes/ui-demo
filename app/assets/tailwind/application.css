@@ -5,8 +5,8 @@
 /* Source paths for Tailwind to scan for classes */
 @source "../../../views";
 @source "../../../components";
-/* UI Engine source paths (path-based gem at ~/src/ui) */
-@source "../../../../ui/app/behaviors";
-@source "../../../../ui/app/components";
-@source "../../../../ui/app/views";
-@source "../../../../ui/app/view_components";
+/* UI Engine source paths (gem in vendor/bundle) */
+@source "../../../vendor/bundle/ruby/3.4.0/gems/fernandes-ui-0.1.5/app/behaviors";
+@source "../../../vendor/bundle/ruby/3.4.0/gems/fernandes-ui-0.1.5/app/components";
+@source "../../../vendor/bundle/ruby/3.4.0/gems/fernandes-ui-0.1.5/app/views";
+@source "../../../vendor/bundle/ruby/3.4.0/gems/fernandes-ui-0.1.5/app/view_components";
