@@ -6,12 +6,12 @@
 @source "../../../views";
 @source "../../../components";
 /* UI Engine source paths - Local development (vendor/bundle) */
-@source "../../../vendor/bundle/ruby/3.4.0/gems/fernandes-ui-0.1.5/app/behaviors";
-@source "../../../vendor/bundle/ruby/3.4.0/gems/fernandes-ui-0.1.5/app/components";
-@source "../../../vendor/bundle/ruby/3.4.0/gems/fernandes-ui-0.1.5/app/views";
-@source "../../../vendor/bundle/ruby/3.4.0/gems/fernandes-ui-0.1.5/app/view_components";
+@source "../../../vendor/bundle/ruby/3.4.0/gems/fernandes-ui-0.1.6/app/behaviors";
+@source "../../../vendor/bundle/ruby/3.4.0/gems/fernandes-ui-0.1.6/app/components";
+@source "../../../vendor/bundle/ruby/3.4.0/gems/fernandes-ui-0.1.6/app/views";
+@source "../../../vendor/bundle/ruby/3.4.0/gems/fernandes-ui-0.1.6/app/view_components";
 /* UI Engine source paths - Docker production (/usr/local/bundle) */
-@source "/usr/local/bundle/ruby/3.4.0/gems/fernandes-ui-0.1.5/app/behaviors";
-@source "/usr/local/bundle/ruby/3.4.0/gems/fernandes-ui-0.1.5/app/components";
-@source "/usr/local/bundle/ruby/3.4.0/gems/fernandes-ui-0.1.5/app/views";
-@source "/usr/local/bundle/ruby/3.4.0/gems/fernandes-ui-0.1.5/app/view_components";
+@source "/usr/local/bundle/ruby/3.4.0/gems/fernandes-ui-0.1.6/app/behaviors";
+@source "/usr/local/bundle/ruby/3.4.0/gems/fernandes-ui-0.1.6/app/components";
+@source "/usr/local/bundle/ruby/3.4.0/gems/fernandes-ui-0.1.6/app/views";
+@source "/usr/local/bundle/ruby/3.4.0/gems/fernandes-ui-0.1.6/app/view_components";

@@ -1,15 +1,25 @@
-<%= render "ui/button_group", classes: "[--radius:9999rem]" do %>
+<%= render "ui/button_group", classes: "[--radius:9999rem] gap-2" do %>
   <%= render "ui/button_group" do %>
-    <%= render "ui/button", variant: :outline, size: :icon, "aria-label": "Add" do %>
-      <%= lucide_icon("plus", class: "size-4") %>
+    <%= render "ui/tooltip" do %>
+      <%= render "ui/tooltip/trigger", as_child: true do |trigger_attrs| %>
+        <%= render "ui/button", variant: :outline, size: :icon, "aria-label": "Attach file", attributes: trigger_attrs do %>
+          <%= lucide_icon("plus", class: "size-4") %>
+        <% end %>
+      <% end %>
+      <%= render "ui/tooltip/content" do %>Attach file<% end %>
     <% end %>
   <% end %>
   <%= render "ui/button_group", classes: "flex-1" do %>
     <%= render "ui/input_group" do %>
       <%= render "ui/input_group/input", placeholder: "Send a message..." %>
       <%= render "ui/input_group/addon", align: "inline-end" do %>
-        <%= render "ui/button", variant: :ghost, size: :icon_xs, "aria-label": "Voice Mode" do %>
-          <%= lucide_icon("audio-lines", class: "size-4") %>
+        <%= render "ui/tooltip" do %>
+          <%= render "ui/tooltip/trigger", as_child: true do |trigger_attrs| %>
+            <%= render "ui/input_group/button", variant: :ghost, size: :icon_xs, "aria-label": "Voice Mode", classes: "rounded-full", attributes: trigger_attrs do %>
+              <%= lucide_icon("audio-lines", class: "size-4") %>
+            <% end %>
+          <% end %>
+          <%= render "ui/tooltip/content" do %>Voice Mode<% end %>
         <% end %>
       <% end %>
     <% end %>
