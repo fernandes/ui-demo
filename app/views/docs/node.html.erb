@@ -6,10 +6,10 @@
     <div class="flex-1 min-w-0 py-6 lg:py-8">
       <h1 class="text-3xl font-bold tracking-tight mb-2">Node</h1>
       <p class="text-muted-foreground mb-8">
-        Install and configure UI for Rails with Node.js and a JavaScript bundler.
+        Install and configure UI for Rails with Node.js and a JavaScript bundler (Bun, esbuild, or Webpack).
       </p>
 
-      <div class="space-y-8">
+      <div class="space-y-8 max-w-2xl">
         <section>
           <h3 class="text-lg font-semibold mb-3">Add the gem</h3>
           <p class="text-muted-foreground mb-3">
@@ -25,7 +25,7 @@
         </section>
 
         <section>
-          <h3 class="text-lg font-semibold mb-3">Install dependencies</h3>
+          <h3 class="text-lg font-semibold mb-3">Install Ruby dependencies</h3>
           <p class="text-muted-foreground mb-3">Run bundle install:</p>
           <figure class="relative rounded-lg border">
             <pre class="overflow-x-auto p-4"><code class="text-sm">bundle install</code></pre>
@@ -36,61 +36,64 @@
           <h3 class="text-lg font-semibold mb-3">Install npm package</h3>
           <p class="text-muted-foreground mb-3">Install the UI JavaScript package:</p>
           <figure class="relative rounded-lg border">
-            <pre class="overflow-x-auto p-4"><code class="text-sm">npm install @nickel-case/fernandes-ui
+            <pre class="overflow-x-auto p-4"><code class="text-sm">bun add @fernandes/ui
 # or
-yarn add @nickel-case/fernandes-ui</code></pre>
+npm install @fernandes/ui</code></pre>
           </figure>
         </section>
 
         <section>
-          <h3 class="text-lg font-semibold mb-3">Import in your application</h3>
+          <h3 class="text-lg font-semibold mb-3">Register Stimulus controllers</h3>
           <p class="text-muted-foreground mb-3">
-            Import UI in your JavaScript entry point:
+            Import and register UI controllers in your JavaScript entry point:
           </p>
           <figure class="relative rounded-lg border">
             <div class="flex items-center gap-2 border-b px-4 py-2 text-sm text-muted-foreground">
               <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V7Z"/><path d="M14 2v4a2 2 0 0 0 2 2h4"/></svg>
               app/javascript/application.js
             </div>
-            <pre class="overflow-x-auto p-4"><code class="text-sm">import "@nickel-case/fernandes-ui"</code></pre>
+            <pre class="overflow-x-auto p-4"><code class="text-sm">import { Application } from "@hotwired/stimulus"
+import * as UI from "@fernandes/ui"
+
+const application = Application.start()
+UI.registerControllers(application)</code></pre>
+          </figure>
+        </section>
+
+        <section>
+          <h3 class="text-lg font-semibold mb-3">Install animations</h3>
+          <p class="text-muted-foreground mb-3">
+            Install the tw-animate-css package for component animations:
+          </p>
+          <figure class="relative rounded-lg border">
+            <pre class="overflow-x-auto p-4"><code class="text-sm">bun add -D tw-animate-css
+# or
+npm install -D tw-animate-css</code></pre>
+          </figure>
+          <p class="text-muted-foreground mt-3 mb-3">
+            Then import it in your stylesheet:
+          </p>
+          <figure class="relative rounded-lg border">
+            <div class="flex items-center gap-2 border-b px-4 py-2 text-sm text-muted-foreground">
+              <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V7Z"/><path d="M14 2v4a2 2 0 0 0 2 2h4"/></svg>
+              app/assets/stylesheets/application.tailwind.css
+            </div>
+            <pre class="overflow-x-auto p-4"><code class="text-sm">@import "tw-animate-css";</code></pre>
           </figure>
         </section>
 
         <section>
           <h3 class="text-lg font-semibold mb-3">Configure Tailwind CSS</h3>
           <p class="text-muted-foreground mb-3">
-            Add the UI paths to your Tailwind configuration:
+            Run the provided generators to configure styles:
           </p>
           <figure class="relative rounded-lg border">
-            <div class="flex items-center gap-2 border-b px-4 py-2 text-sm text-muted-foreground">
-              <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V7Z"/><path d="M14 2v4a2 2 0 0 0 2 2h4"/></svg>
-              tailwind.config.js
-            </div>
-            <pre class="overflow-x-auto p-4"><code class="text-sm">module.exports = {
-  content: [
-    // ... your paths
-    "./node_modules/@nickel-case/fernandes-ui/**/*.js"
-  ]
-}</code></pre>
+            <pre class="overflow-x-auto p-4"><code class="text-sm">rails generate ui:css
+rails generate ui:install</code></pre>
           </figure>
-        </section>
-
-        <section>
-          <h3 class="text-lg font-semibold mb-3">Configure your bundler</h3>
-          <p class="text-muted-foreground mb-3">
-            Make sure your bundler is configured to process the UI package. For esbuild with Rails:
+          <p class="text-muted-foreground mt-3 text-sm">
+            These commands automatically configure and import engine styles into your stylesheet pipeline.
           </p>
-          <figure class="relative rounded-lg border">
-            <div class="flex items-center gap-2 border-b px-4 py-2 text-sm text-muted-foreground">
-              <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V7Z"/><path d="M14 2v4a2 2 0 0 0 2 2h4"/></svg>
-              package.json
-            </div>
-            <pre class="overflow-x-auto p-4"><code class="text-sm">{
-  "scripts": {
-    "build": "esbuild app/javascript/*.* --bundle --sourcemap --outdir=app/assets/builds"
-  }
-}</code></pre>
-          </figure>
         </section>
 
         <section>
@@ -103,7 +106,7 @@ yarn add @nickel-case/fernandes-ui</code></pre>
               <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V7Z"/><path d="M14 2v4a2 2 0 0 0 2 2h4"/></svg>
               app/views/example.html.erb
             </div>
-            <pre class="overflow-x-auto p-4"><code class="text-sm">&lt;%= ui_button do %&gt;
+            <pre class="overflow-x-auto p-4"><code class="text-sm">&lt;%= render "ui/button" do %&gt;
   Click me
 &lt;% end %&gt;</code></pre>
           </figure>
@@ -111,13 +114,13 @@ yarn add @nickel-case/fernandes-ui</code></pre>
       </div>
 
       <%# Navigation %>
-      <div class="mt-12 flex items-center justify-between">
+      <div class="mt-12 flex items-center justify-between max-w-2xl">
         <%= link_to docs_installation_importmap_path, class: "inline-flex items-center gap-1 text-sm text-muted-foreground hover:text-foreground" do %>
           <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m15 18-6-6 6-6"/></svg>
           Importmap
         <% end %>
-        <%= link_to docs_installation_path, class: "inline-flex items-center gap-1 text-sm text-muted-foreground hover:text-foreground" do %>
-          Installation
+        <%= link_to components_path, class: "inline-flex items-center gap-1 text-sm text-muted-foreground hover:text-foreground" do %>
+          Components
           <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m9 18 6-6-6-6"/></svg>
         <% end %>
       </div>

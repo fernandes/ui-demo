@@ -9,7 +9,7 @@
         Install and configure UI for Rails with Importmap.
       </p>
 
-      <div class="space-y-8">
+      <div class="space-y-8 max-w-2xl">
         <section>
           <h3 class="text-lg font-semibold mb-3">Add the gem</h3>
           <p class="text-muted-foreground mb-3">
@@ -33,43 +33,70 @@
         </section>
 
         <section>
-          <h3 class="text-lg font-semibold mb-3">Pin JavaScript dependencies</h3>
-          <p class="text-muted-foreground mb-3">Add the UI JavaScript to your importmap:</p>
-          <figure class="relative rounded-lg border">
-            <pre class="overflow-x-auto p-4"><code class="text-sm">bin/importmap pin ui --from fernandes-ui</code></pre>
-          </figure>
-        </section>
-
-        <section>
-          <h3 class="text-lg font-semibold mb-3">Import in your application</h3>
+          <h3 class="text-lg font-semibold mb-3">Configure Importmap</h3>
           <p class="text-muted-foreground mb-3">
-            Import UI in your JavaScript entry point:
+            Add the UI pins to your <code class="bg-muted px-1.5 py-0.5 rounded text-sm">config/importmap.rb</code>:
           </p>
           <figure class="relative rounded-lg border">
             <div class="flex items-center gap-2 border-b px-4 py-2 text-sm text-muted-foreground">
               <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V7Z"/><path d="M14 2v4a2 2 0 0 0 2 2h4"/></svg>
-              app/javascript/application.js
+              config/importmap.rb
             </div>
-            <pre class="overflow-x-auto p-4"><code class="text-sm">import "ui"</code></pre>
+            <pre class="overflow-x-auto p-4"><code class="text-sm">pin "ui", to: "ui.esm.js", preload: true
+pin_all_from "ui/controllers", under: "ui/controllers"</code></pre>
+          </figure>
+        </section>
+
+        <section>
+          <h3 class="text-lg font-semibold mb-3">Register Stimulus controllers</h3>
+          <p class="text-muted-foreground mb-3">
+            Register the UI controllers in your JavaScript entry point:
+          </p>
+          <figure class="relative rounded-lg border">
+            <div class="flex items-center gap-2 border-b px-4 py-2 text-sm text-muted-foreground">
+              <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V7Z"/><path d="M14 2v4a2 2 0 0 0 2 2h4"/></svg>
+              app/javascript/controllers/index.js
+            </div>
+            <pre class="overflow-x-auto p-4"><code class="text-sm">import { registerControllers } from "ui"
+registerControllers(application)</code></pre>
+          </figure>
+        </section>
+
+        <section>
+          <h3 class="text-lg font-semibold mb-3">Install animations</h3>
+          <p class="text-muted-foreground mb-3">
+            Download the <code class="bg-muted px-1.5 py-0.5 rounded text-sm">tw-animate.css</code> file and place it in your stylesheets folder:
+          </p>
+          <figure class="relative rounded-lg border">
+            <pre class="overflow-x-auto p-4"><code class="text-sm">curl -o app/assets/stylesheets/tw-animate.css \
+  https://raw.githubusercontent.com/Wombosvideo/tw-animate-css/main/src/tw-animate.css</code></pre>
+          </figure>
+          <p class="text-muted-foreground mt-3 mb-3">
+            Then import it in your stylesheet:
+          </p>
+          <figure class="relative rounded-lg border">
+            <div class="flex items-center gap-2 border-b px-4 py-2 text-sm text-muted-foreground">
+              <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V7Z"/><path d="M14 2v4a2 2 0 0 0 2 2h4"/></svg>
+              app/assets/stylesheets/application.tailwind.css
+            </div>
+            <pre class="overflow-x-auto p-4"><code class="text-sm">@import "./tw-animate.css";</code></pre>
           </figure>
         </section>
 
         <section>
           <h3 class="text-lg font-semibold mb-3">Configure Tailwind CSS</h3>
           <p class="text-muted-foreground mb-3">
-            Add the UI paths to your Tailwind configuration:
+            Configure your Tailwind stylesheet:
           </p>
           <figure class="relative rounded-lg border">
             <div class="flex items-center gap-2 border-b px-4 py-2 text-sm text-muted-foreground">
               <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V7Z"/><path d="M14 2v4a2 2 0 0 0 2 2h4"/></svg>
-              config/tailwind.config.js
+              app/assets/stylesheets/application.tailwind.css
             </div>
-            <pre class="overflow-x-auto p-4"><code class="text-sm">module.exports = {
-  content: [
-    // ... your paths
-    require("fernandes-ui").tailwindSource
-  ]
-}</code></pre>
+            <pre class="overflow-x-auto p-4"><code class="text-sm">@import "tailwindcss";
+@import "ui/application.css";
+
+@source "../../../.bundle/ruby/*/gems/fernandes-ui-*/app/**/*.{erb,rb,js}";</code></pre>
           </figure>
         </section>
 
@@ -83,7 +110,7 @@
               <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V7Z"/><path d="M14 2v4a2 2 0 0 0 2 2h4"/></svg>
               app/views/example.html.erb
             </div>
-            <pre class="overflow-x-auto p-4"><code class="text-sm">&lt;%= ui_button do %&gt;
+            <pre class="overflow-x-auto p-4"><code class="text-sm">&lt;%= render "ui/button" do %&gt;
   Click me
 &lt;% end %&gt;</code></pre>
           </figure>
@@ -91,7 +118,7 @@
       </div>
 
       <%# Navigation %>
-      <div class="mt-12 flex items-center justify-between">
+      <div class="mt-12 flex items-center justify-between max-w-2xl">
         <%= link_to docs_installation_path, class: "inline-flex items-center gap-1 text-sm text-muted-foreground hover:text-foreground" do %>
           <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m15 18-6-6 6-6"/></svg>
           Installation
