@@ -6,7 +6,7 @@
     component_view = "components/#{@component_name}"
     if lookup_context.exists?(component_view, [], false)
   %>
-    <%= render template: component_view %>
+    <% cache "components/#{@component_name}" do %><%= render template: component_view %><% end %>
   <% else %>
     <div class="text-center py-12">
       <h1 class="text-3xl font-bold tracking-tight mb-4"><%= @component_name.titleize %></h1>

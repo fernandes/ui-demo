@@ -54,37 +54,37 @@
 
           <%# Column 1 - FieldDemo %>
           <div class="flex flex-col gap-6 *:[div]:w-full *:[div]:max-w-full">
-            <%= render "home/field_demo" %>
+            <% cache "home/field_demo" do %><%= render "home/field_demo" %><% end %>
           </div>
 
           <%# Column 2 - EmptyAvatarGroup, SpinnerBadge, ButtonGroupInputGroup, FieldSlider, InputGroupDemo %>
           <div class="flex flex-col gap-6 *:[div]:w-full *:[div]:max-w-full">
-            <%= render "home/empty_avatar_group" %>
-            <%= render "home/spinner_badge" %>
-            <%= render "home/button_group_input_group" %>
-            <%= render "home/field_slider" %>
-            <%= render "home/input_group_demo" %>
+            <% cache "home/empty_avatar_group" do %><%= render "home/empty_avatar_group" %><% end %>
+            <% cache "home/spinner_badge" do %><%= render "home/spinner_badge" %><% end %>
+            <% cache "home/button_group_input_group" do %><%= render "home/button_group_input_group" %><% end %>
+            <% cache "home/field_slider" do %><%= render "home/field_slider" %><% end %>
+            <% cache "home/input_group_demo" do %><%= render "home/input_group_demo" %><% end %>
           </div>
 
           <%# Column 3 - InputGroupButtonExample, ItemDemo, FieldSeparator, AppearanceSettings %>
           <div class="flex flex-col gap-6 *:[div]:w-full *:[div]:max-w-full">
-            <%= render "home/input_group_button" %>
-            <%= render "home/item_demo" %>
-            <%= render "ui/field/separator", classes: "my-4" do %>Appearance Settings<% end %>
-            <%= render "home/appearance_settings" %>
+            <% cache "home/input_group_button" do %><%= render "home/input_group_button" %><% end %>
+            <% cache "home/item_demo" do %><%= render "home/item_demo" %><% end %>
+            <% cache "home/field_separator" do %><%= render "ui/field/separator", classes: "my-4" do %>Appearance Settings<% end %><% end %>
+            <% cache "home/appearance_settings" do %><%= render "home/appearance_settings" %><% end %>
           </div>
 
           <%# Column 4 - NotionPromptForm, ButtonGroupDemo, FieldCheckbox, ButtonGroups, FieldHear, SpinnerEmpty %>
           <div class="order-first flex flex-col gap-6 lg:hidden xl:order-last xl:flex *:[div]:w-full *:[div]:max-w-full">
-            <%= render "home/notion_prompt_form" %>
-            <%= render "home/button_group_demo" %>
-            <%= render "home/field_checkbox" %>
+            <% cache "home/notion_prompt_form" do %><%= render "home/notion_prompt_form" %><% end %>
+            <% cache "home/button_group_demo" do %><%= render "home/button_group_demo" %><% end %>
+            <% cache "home/field_checkbox" do %><%= render "home/field_checkbox" %><% end %>
             <div class="flex justify-between gap-4">
-              <%= render "home/button_group_nested" %>
-              <%= render "home/button_group_popover" %>
+              <% cache "home/button_group_nested" do %><%= render "home/button_group_nested" %><% end %>
+              <% cache "home/button_group_popover" do %><%= render "home/button_group_popover" %><% end %>
             </div>
-            <%= render "home/field_hear" %>
-            <%= render "home/spinner_empty" %>
+            <% cache "home/field_hear" do %><%= render "home/field_hear" %><% end %>
+            <% cache "home/spinner_empty" do %><%= render "home/spinner_empty" %><% end %>
           </div>
 
         </div>
