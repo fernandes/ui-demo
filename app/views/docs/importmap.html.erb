@@ -1,0 +1,106 @@
+<% content_for(:title) { "Importmap" } %>
+<div class="container-wrapper px-6">
+  <div class="lg:grid lg:grid-cols-[240px_minmax(0,1fr)] lg:gap-10">
+    <%= render Docs::Sidebar.new(current_path: request.path) %>
+
+    <div class="flex-1 min-w-0 py-6 lg:py-8">
+      <h1 class="text-3xl font-bold tracking-tight mb-2">Importmap</h1>
+      <p class="text-muted-foreground mb-8">
+        Install and configure UI for Rails with Importmap.
+      </p>
+
+      <div class="space-y-8">
+        <section>
+          <h3 class="text-lg font-semibold mb-3">Add the gem</h3>
+          <p class="text-muted-foreground mb-3">
+            Add the UI gem to your <code class="bg-muted px-1.5 py-0.5 rounded text-sm">Gemfile</code>:
+          </p>
+          <figure class="relative rounded-lg border">
+            <div class="flex items-center gap-2 border-b px-4 py-2 text-sm text-muted-foreground">
+              <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V7Z"/><path d="M14 2v4a2 2 0 0 0 2 2h4"/></svg>
+              Gemfile
+            </div>
+            <pre class="overflow-x-auto p-4"><code class="text-sm">gem "fernandes-ui"</code></pre>
+          </figure>
+        </section>
+
+        <section>
+          <h3 class="text-lg font-semibold mb-3">Install dependencies</h3>
+          <p class="text-muted-foreground mb-3">Run bundle install:</p>
+          <figure class="relative rounded-lg border">
+            <pre class="overflow-x-auto p-4"><code class="text-sm">bundle install</code></pre>
+          </figure>
+        </section>
+
+        <section>
+          <h3 class="text-lg font-semibold mb-3">Pin JavaScript dependencies</h3>
+          <p class="text-muted-foreground mb-3">Add the UI JavaScript to your importmap:</p>
+          <figure class="relative rounded-lg border">
+            <pre class="overflow-x-auto p-4"><code class="text-sm">bin/importmap pin ui --from fernandes-ui</code></pre>
+          </figure>
+        </section>
+
+        <section>
+          <h3 class="text-lg font-semibold mb-3">Import in your application</h3>
+          <p class="text-muted-foreground mb-3">
+            Import UI in your JavaScript entry point:
+          </p>
+          <figure class="relative rounded-lg border">
+            <div class="flex items-center gap-2 border-b px-4 py-2 text-sm text-muted-foreground">
+              <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V7Z"/><path d="M14 2v4a2 2 0 0 0 2 2h4"/></svg>
+              app/javascript/application.js
+            </div>
+            <pre class="overflow-x-auto p-4"><code class="text-sm">import "ui"</code></pre>
+          </figure>
+        </section>
+
+        <section>
+          <h3 class="text-lg font-semibold mb-3">Configure Tailwind CSS</h3>
+          <p class="text-muted-foreground mb-3">
+            Add the UI paths to your Tailwind configuration:
+          </p>
+          <figure class="relative rounded-lg border">
+            <div class="flex items-center gap-2 border-b px-4 py-2 text-sm text-muted-foreground">
+              <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V7Z"/><path d="M14 2v4a2 2 0 0 0 2 2h4"/></svg>
+              config/tailwind.config.js
+            </div>
+            <pre class="overflow-x-auto p-4"><code class="text-sm">module.exports = {
+  content: [
+    // ... your paths
+    require("fernandes-ui").tailwindSource
+  ]
+}</code></pre>
+          </figure>
+        </section>
+
+        <section>
+          <h3 class="text-lg font-semibold mb-3">Start using components</h3>
+          <p class="text-muted-foreground mb-3">
+            You can now start using UI components in your views:
+          </p>
+          <figure class="relative rounded-lg border">
+            <div class="flex items-center gap-2 border-b px-4 py-2 text-sm text-muted-foreground">
+              <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V7Z"/><path d="M14 2v4a2 2 0 0 0 2 2h4"/></svg>
+              app/views/example.html.erb
+            </div>
+            <pre class="overflow-x-auto p-4"><code class="text-sm">&lt;%= ui_button do %&gt;
+  Click me
+&lt;% end %&gt;</code></pre>
+          </figure>
+        </section>
+      </div>
+
+      <%# Navigation %>
+      <div class="mt-12 flex items-center justify-between">
+        <%= link_to docs_installation_path, class: "inline-flex items-center gap-1 text-sm text-muted-foreground hover:text-foreground" do %>
+          <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m15 18-6-6 6-6"/></svg>
+          Installation
+        <% end %>
+        <%= link_to docs_installation_node_path, class: "inline-flex items-center gap-1 text-sm text-muted-foreground hover:text-foreground" do %>
+          Node
+          <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m9 18 6-6-6-6"/></svg>
+        <% end %>
+      </div>
+    </div>
+  </div>
+</div>

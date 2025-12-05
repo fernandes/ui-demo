@@ -3,27 +3,10 @@
 module Docs
   # Left sidebar navigation component for documentation pages.
   # Similar to shadcn/ui docs sidebar structure.
+  # Used across all docs pages (installation, components, etc.)
   class Sidebar < Phlex::HTML
     include Phlex::Rails::Helpers::LinkTo
     include Phlex::Rails::Helpers::Routes
-
-    SECTIONS = [
-      {
-        title: "Sections",
-        links: [
-          { name: "Get Started", href: "/docs" },
-          { name: "Components", href: "/docs/components" }
-        ]
-      },
-      {
-        title: "Get Started",
-        links: [
-          { name: "Installation", href: "/docs/installation" },
-          { name: "Theming", href: "/docs/theming" },
-          { name: "Dark Mode", href: "/docs/dark-mode" }
-        ]
-      }
-    ].freeze
 
     # Sub-component suffixes to filter out from the sidebar
     # These are components that are part of a parent component
@@ -45,18 +28,21 @@ module Docs
       input_group
     ].freeze
 
-    def initialize(current_slug: nil)
+    def initialize(current_slug: nil, current_path: nil)
       @current_slug = current_slug
+      @current_path = current_path
       @components = load_components
     end
 
     def view_template
-      aside(class: "hidden md:block") do
+      aside(class: "hidden lg:block") do
         # Sticky container - stays fixed below header
-        div(class: "sticky top-14 z-30 h-[calc(100vh-3.5rem)]") do
+        # Uses --header-height CSS variable for precise positioning
+        div(class: "sticky top-[--header-height] z-30 h-[calc(100vh-var(--header-height))]") do
           # Scrollable content area - independent scroll from main
-          div(class: "flex h-full flex-col gap-2 overflow-y-auto overflow-x-hidden py-6 px-2 lg:py-8 scrollbar-none") do
-            render_sections
+          # py-6 lg:py-8 matches content area padding for alignment
+          div(class: "flex h-full flex-col gap-2 overflow-y-auto overflow-x-hidden py-6 lg:py-8 scrollbar-none") do
+            render_get_started_section
             render_components
           end
         end
@@ -65,9 +51,14 @@ module Docs
 
     private
 
-    def render_sections
-      SECTIONS.each do |section|
-        render_section_group(section[:title], section[:links])
+    def render_get_started_section
+      div(class: "relative flex w-full min-w-0 flex-col") do
+        div(class: "flex h-8 shrink-0 items-center text-xs font-medium text-muted-foreground") do
+          "Get Started"
+        end
+        ul(class: "flex w-full min-w-0 flex-col gap-0.5") do
+          render_nav_link("Installation", helpers.docs_installation_path)
+        end
       end
     end
 
@@ -76,28 +67,27 @@ module Docs
     end
 
     def render_section_group(title, items, is_components: false)
-      div(class: "relative flex w-full min-w-0 flex-col p-2") do
-        div(class: "flex h-8 shrink-0 items-center rounded-md px-2 text-xs font-medium text-muted-foreground") do
+      div(class: "relative flex w-full min-w-0 flex-col pt-4") do
+        div(class: "flex h-8 shrink-0 items-center text-xs font-medium text-muted-foreground") do
           title
         end
         ul(class: "flex w-full min-w-0 flex-col gap-0.5") do
           items.each do |item|
-            if is_components
-              render_component_link(item)
-            else
-              render_nav_link(item)
-            end
+            render_component_link(item)
           end
         end
       end
     end
 
-    def render_nav_link(link)
+    def render_nav_link(name, path)
+      is_current = @current_path == path
+
       li(class: "group/menu-item relative") do
         a(
-          href: link[:href],
-          class: link_classes(false)
-        ) { link[:name] }
+          href: path,
+          class: link_classes(is_current),
+          data: { active: is_current }
+        ) { name }
       end
     end
 
@@ -114,7 +104,7 @@ module Docs
     end
 
     def link_classes(is_active)
-      base = "flex items-center gap-2 rounded-md p-2 text-left h-[30px] text-[0.8rem] font-medium hover:bg-accent hover:text-accent-foreground"
+      base = "flex items-center gap-2 rounded-md px-2 py-1.5 text-left text-sm font-medium hover:bg-accent hover:text-accent-foreground"
 
       if is_active
         "#{base} bg-accent text-accent-foreground"

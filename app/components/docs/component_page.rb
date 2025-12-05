@@ -18,40 +18,43 @@ module Docs
     end
 
     def view_template(&examples_block)
-      # Outer wrapper - centralized layout for all component pages
-      div(class: "flex-1 items-start") do
-        div(class: "flex-1 md:grid md:grid-cols-[220px_minmax(0,1fr)] md:gap-6 lg:grid-cols-[240px_minmax(0,1fr)] lg:gap-10") do
+      # Main grid layout matching shadcn structure
+      # 2-column layout: sidebar (240px) | content area (flex with TOC)
+      div(class: "lg:grid lg:grid-cols-[240px_minmax(0,1fr)] lg:gap-10") do
         # Left sidebar with navigation
         render Sidebar.new(current_slug: @component_name)
 
-        # Main content area with optional right TOC (shadcn structure)
-        div(class: "flex items-stretch xl:w-full") do
-          # Main content column
-          div(class: "flex min-w-0 flex-1 flex-col") do
-            # Content wrapper - centered with max-w-2xl like shadcn
-            div(class: "mx-auto flex w-full max-w-2xl min-w-0 flex-1 flex-col gap-8 px-4 py-6 md:px-0 lg:py-8") do
-              render_header
-              render_description
+        # Content area with TOC on the right
+        # Using flex layout with constrained content and sticky TOC
+        div(class: "relative py-6 lg:py-8") do
+          div(class: "flex w-full gap-10") do
+            # Main content column - constrained width like shadcn
+            div(class: "min-w-0 flex-1 max-w-2xl mx-auto") do
+              div(class: "flex flex-col gap-8") do
+                render_header
+                render_description
 
-              # Examples section - yields to the block with examples
-              if block_given?
-                render Section.new(title: "Examples", id: "examples") do
-                  yield
+                # Examples section - yields to the block with examples
+                if block_given?
+                  render Section.new(title: "Examples", id: "examples") do
+                    yield
+                  end
                 end
-              end
 
-              render_features
-              render_api
-              render_common_ratios
-              render AccessibilitySection.new(data: @metadata[:accessibility] || @metadata["accessibility"])
-              render KeyboardTable.new(shortcuts: @metadata[:keyboard] || @metadata["keyboard"])
-              render JavascriptSection.new(data: @metadata[:javascript] || @metadata["javascript"])
+                render_features
+                render_api
+                render_common_ratios
+                render AccessibilitySection.new(data: @metadata[:accessibility] || @metadata["accessibility"])
+                render KeyboardTable.new(shortcuts: @metadata[:keyboard] || @metadata["keyboard"])
+                render JavascriptSection.new(data: @metadata[:javascript] || @metadata["javascript"])
+              end
+            end
+
+            # Right sidebar TOC - hidden on smaller screens, shown on xl
+            div(class: "hidden xl:block w-[200px] shrink-0") do
+              render Toc.new(metadata: @metadata)
             end
           end
-
-          # Right sidebar TOC
-          render Toc.new(metadata: @metadata)
-        end
         end
       end
     end

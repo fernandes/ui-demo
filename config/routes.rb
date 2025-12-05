@@ -16,5 +16,8 @@ Rails.application.routes.draw do
   scope "docs" do
     get "components", to: "components#index", as: :components
     get "components/:slug", to: "components#show", as: :component
+    get "installation", to: "docs#installation", as: :docs_installation
+    get "installation/importmap", to: "docs#importmap", as: :docs_installation_importmap
+    get "installation/node", to: "docs#node", as: :docs_installation_node
   end
 end

@@ -1,3 +1,4 @@
+<% content_for(:title, "The Foundation for your Design System") %>
 <div class="flex flex-1 flex-col mx-auto">
   <%# Hero Section %>
   <section class="border-grid">
@@ -25,6 +26,13 @@
     </div>
   </section>
 
+  <%# Mobile Hero Image - only visible on small screens %>
+  <div class="md:hidden px-1 pb-8">
+    <%= image_tag "hero-mobile.jpg",
+        alt: "UI Components Preview",
+        class: "w-full rounded-lg border" %>
+  </div>
+
   <%# Examples Navigation %>
   <div class="container-wrapper scroll-mt-24 hidden md:flex">
     <div class="container flex items-center justify-between gap-4 py-4">
@@ -35,9 +43,9 @@
   </div>
 
   <%# Examples Grid %>
-  <div class="container-wrapper section-soft flex-1 pb-6">
+  <div class="container-wrapper section-soft flex-1 pb-6 hidden md:block">
     <div class="container overflow-hidden">
-      <section class="theme-container hidden md:block">
+      <section class="theme-container">
         <div class="theme-container mx-auto grid gap-8 py-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 xl:gap-6 2xl:gap-8">
 
           <%# Column 1 - FieldDemo %>

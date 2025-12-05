@@ -1,7 +1,23 @@
 <!DOCTYPE html>
-<html>
+<html class="light">
   <head>
-    <title><%= content_for(:title) || "UI Demo" %></title>
+    <script>
+      (function() {
+        const storageKey = 'ui-theme';
+        const theme = localStorage.getItem(storageKey) || 'system';
+        const root = document.documentElement;
+
+        if (theme === 'system') {
+          const systemTheme = window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
+          root.classList.remove('light', 'dark');
+          root.classList.add(systemTheme);
+        } else {
+          root.classList.remove('light', 'dark');
+          root.classList.add(theme);
+        }
+      })();
+    </script>
+    <title><%= content_for?(:title) ? "#{content_for(:title)} - fernandes/ui" : "fernandes/ui" %></title>
     <meta name="viewport" content="width=device-width,initial-scale=1">
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="application-name" content="UI Demo">
@@ -19,8 +35,8 @@
     <%= javascript_importmap_tags %>
   </head>
 
-  <body class="group/body overscroll-none antialiased [--footer-height:calc(var(--spacing)*14)] [--header-height:calc(var(--spacing)*14)] xl:[--footer-height:calc(var(--spacing)*24)]">
-    <div data-slot="layout" class="bg-background relative z-10 flex min-h-svh flex-col">
+  <body class="group/body overscroll-none antialiased text-foreground [--footer-height:calc(var(--spacing)*14)] [--header-height:calc(var(--spacing)*14)] xl:[--footer-height:calc(var(--spacing)*24)]">
+    <div data-slot="layout" class="bg-background relative z-10 flex flex-col">
       <%= render "layouts/header" %>
 
       <main class="flex flex-1 flex-col">

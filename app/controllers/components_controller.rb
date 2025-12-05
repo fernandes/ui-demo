@@ -1,6 +1,8 @@
 # frozen_string_literal: true
 
 class ComponentsController < ApplicationController
+  before_action :load_sidebar_components
+
   def index
     @components = load_components
   end

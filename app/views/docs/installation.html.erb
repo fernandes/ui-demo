@@ -1,0 +1,44 @@
+<% content_for(:title) { "Installation" } %>
+<div class="container-wrapper px-6">
+  <div class="lg:grid lg:grid-cols-[240px_minmax(0,1fr)] lg:gap-10">
+    <%= render Docs::Sidebar.new(current_path: request.path) %>
+
+    <div class="flex-1 min-w-0 py-6 lg:py-8">
+      <h1 class="text-3xl font-bold tracking-tight mb-2">Installation</h1>
+      <p class="text-muted-foreground mb-8">
+        How to install dependencies and structure your app.
+      </p>
+
+      <h2 class="text-xl font-semibold tracking-tight mb-4">Pick Your Method</h2>
+      <p class="text-muted-foreground mb-6">
+        Start by selecting your preferred setup method. Then follow the instructions to install the dependencies and structure your app.
+      </p>
+
+      <div class="grid gap-4 sm:grid-cols-2">
+        <%= link_to docs_installation_importmap_path,
+                    class: "group flex flex-col items-center justify-center rounded-lg border p-6 hover:bg-accent transition-colors" do %>
+          <div class="mb-4 flex size-12 items-center justify-center rounded-lg border bg-background">
+            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="size-6">
+              <path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"></path>
+              <polyline points="3.29 7 12 12 20.71 7"></polyline>
+              <line x1="12" y1="22" x2="12" y2="12"></line>
+            </svg>
+          </div>
+          <p class="font-medium">Importmap</p>
+        <% end %>
+
+        <%= link_to docs_installation_node_path,
+                    class: "group flex flex-col items-center justify-center rounded-lg border p-6 hover:bg-accent transition-colors" do %>
+          <div class="mb-4 flex size-12 items-center justify-center rounded-lg border bg-background">
+            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="size-6">
+              <path d="M12 2L2 7l10 5 10-5-10-5z"></path>
+              <path d="M2 17l10 5 10-5"></path>
+              <path d="M2 12l10 5 10-5"></path>
+            </svg>
+          </div>
+          <p class="font-medium">Node</p>
+        <% end %>
+      </div>
+    </div>
+  </div>
+</div>

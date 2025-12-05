@@ -20,7 +20,8 @@
       "WebFetch(domain:raw.githubusercontent.com)",
       "Bash(find:*)",
       "mcp__playwright__browser_hover",
-      "Bash(bun test:*)"
+      "Bash(bun test:*)",
+      "mcp__playwright__browser_close"
     ]
   },
   "enabledMcpjsonServers": [
