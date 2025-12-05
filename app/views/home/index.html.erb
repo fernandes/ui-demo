@@ -19,8 +19,12 @@
         </p>
 
         <div class="flex w-full items-center justify-center gap-2 pt-2">
-          <%= render "ui/button", size: :sm do %>Get Started<% end %>
-          <%= render "ui/button", variant: :ghost, size: :sm do %>View Components<% end %>
+          <%= link_to docs_installation_path do %>
+            <%= render "ui/button", size: :sm, as: :span do %>Get Started<% end %>
+          <% end %>
+          <%= link_to components_path do %>
+            <%= render "ui/button", variant: :ghost, size: :sm, as: :span do %>View Components<% end %>
+          <% end %>
         </div>
       </div>
     </div>

@@ -8,30 +8,9 @@ module Docs
     include Phlex::Rails::Helpers::LinkTo
     include Phlex::Rails::Helpers::Routes
 
-    # Sub-component suffixes to filter out from the sidebar
-    # These are components that are part of a parent component
-    # Only filter if the prefix (before underscore) is also a component
-    SUB_COMPONENT_SUFFIXES = %w[
-      content trigger item label group slot button badge skeleton
-      header footer title description close overlay portal
-      scrollbar thumb corner viewport panel handle inset rail
-      provider sub separator checkbox radio shortcut icon
-      indicator action media error legend addon body caption
-      cell head row wrapper menu
-    ].freeze
-
-    # Components that should NOT be filtered out even if they match sub-component pattern
-    # These are standalone components that happen to have a suffix matching a parent
-    EXCEPTION_SLUGS = %w[
-      button_group
-      toggle_group
-      input_group
-    ].freeze
-
     def initialize(current_slug: nil, current_path: nil)
       @current_slug = current_slug
       @current_path = current_path
-      @components = load_components
     end
 
     def view_template
@@ -63,10 +42,10 @@ module Docs
     end
 
     def render_components
-      render_section_group("Components", @components, is_components: true)
+      render_section_group("Components", helpers.components_for_sidebar)
     end
 
-    def render_section_group(title, items, is_components: false)
+    def render_section_group(title, items)
       div(class: "relative flex w-full min-w-0 flex-col pt-4") do
         div(class: "flex h-8 shrink-0 items-center text-xs font-medium text-muted-foreground") do
           title
@@ -110,56 +89,6 @@ module Docs
         "#{base} bg-accent text-accent-foreground"
       else
         "#{base} text-foreground"
-      end
-    end
-
-    def load_components
-      components_path = UI::Engine.root.join("docs", "components")
-      return [] unless File.directory?(components_path)
-
-      # First pass: collect all component slugs to know what exists
-      all_slugs = Dir[File.join(components_path, "*.yml")].map do |path|
-        YAML.load_file(path, symbolize_names: true)[:slug]
-      end.compact.to_set
-
-      # Second pass: filter out sub-components
-      Dir[File.join(components_path, "*.yml")].filter_map do |path|
-        data = YAML.load_file(path, symbolize_names: true)
-        slug = data[:slug]
-
-        # Skip sub-components
-        next if sub_component?(slug, all_slugs)
-
-        {
-          name: data[:name],
-          slug: slug
-        }
-      end.sort_by { |c| c[:name] }
-    rescue StandardError => e
-      Rails.logger.warn "Failed to load components: #{e.message}"
-      []
-    end
-
-    def sub_component?(slug, all_slugs)
-      return false if slug.nil?
-      return false unless slug.include?("_")
-      return false if EXCEPTION_SLUGS.include?(slug)
-
-      # Check if this looks like a sub-component by seeing if:
-      # 1. It ends with a known sub-component suffix
-      # 2. AND the prefix (parent) exists as a separate component
-      parts = slug.split("_")
-      return false if parts.length < 2
-
-      suffix = parts.last
-      return false unless SUB_COMPONENT_SUFFIXES.include?(suffix)
-
-      # Check if parent component exists
-      # For "select_item" -> check if "select" exists
-      # For "sidebar_menu_button" -> check if "sidebar_menu" or "sidebar" exists
-      (1...parts.length).any? do |i|
-        parent_slug = parts[0...i].join("_")
-        all_slugs.include?(parent_slug)
       end
     end
   end

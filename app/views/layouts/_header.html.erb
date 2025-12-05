@@ -139,24 +139,23 @@
         </div>
       </div>
 
-      <%# Menu content %>
+      <%# Menu content - matches desktop sidebar structure %>
       <nav class="flex flex-col gap-6 pb-8">
-        <%# Menu section %>
+        <%# Get Started section %>
         <div class="flex flex-col gap-3">
-          <h4 class="text-muted-foreground text-sm font-medium">Menu</h4>
+          <h4 class="text-muted-foreground text-sm font-medium">Get Started</h4>
           <div class="flex flex-col gap-2">
-            <%= link_to "Home", root_path, data: { action: "mobile-menu#navigate" }, class: "text-foreground hover:text-foreground/80 text-lg font-medium" %>
-            <%= link_to "Docs", docs_installation_path, data: { action: "mobile-menu#navigate" }, class: "text-foreground hover:text-foreground/80 text-lg font-medium" %>
-            <%= link_to "Components", components_path, data: { action: "mobile-menu#navigate" }, class: "text-foreground hover:text-foreground/80 text-lg font-medium" %>
+            <%= link_to "Installation", docs_installation_path, data: { action: "mobile-menu#navigate" }, class: "text-foreground hover:text-foreground/80 text-lg font-medium" %>
           </div>
         </div>
 
-        <%# Sections %>
+        <%# Components section %>
         <div class="flex flex-col gap-3">
-          <h4 class="text-muted-foreground text-sm font-medium">Sections</h4>
+          <h4 class="text-muted-foreground text-sm font-medium">Components</h4>
           <div class="flex flex-col gap-2">
-            <%= link_to "Get Started", docs_installation_path, data: { action: "mobile-menu#navigate" }, class: "text-foreground hover:text-foreground/80 text-lg font-medium" %>
-            <%= link_to "Components", components_path, data: { action: "mobile-menu#navigate" }, class: "text-foreground hover:text-foreground/80 text-lg font-medium" %>
+            <% components_for_sidebar.each do |component| %>
+              <%= link_to component[:name], component_path(slug: component[:slug]), data: { action: "mobile-menu#navigate" }, class: "text-foreground hover:text-foreground/80 text-lg font-medium" %>
+            <% end %>
           </div>
         </div>
       </nav>
